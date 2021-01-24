@@ -68,3 +68,5 @@ nash_prices <- function(n, ...) {
 			control = list(reltol = 1e-12))$par)
 }
 
+
+# new local comment

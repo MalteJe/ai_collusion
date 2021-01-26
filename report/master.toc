@@ -1,0 +1,84 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Introduction}{7}{section.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Literature Review}{7}{section.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Environment}{7}{section.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Reinforcement Learning with Function Approximation}{7}{section.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Results}{7}{section.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Robustness \& Extensions}{7}{section.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Conclusions}{7}{section.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}To Do}{7}{section.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Hierarchy and References}{7}{section.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.1}Hierarchy}{7}{subsection.9.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.1.1}Block Numbering}{7}{subsubsection.9.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.1.2}Further hierarchy commands}{8}{subsubsection.9.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2}Calling other text files}{8}{subsection.9.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.3}References}{8}{subsection.9.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.1}Default References}{8}{subsubsection.9.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.2}Hyperref}{8}{subsubsection.9.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.3}URLs and local file paths}{9}{subsubsection.9.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.4}Footnotes}{9}{subsection.9.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10}Various}{9}{section.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.1}Font Types}{9}{subsection.10.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.2}Font Size}{10}{subsection.10.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.3}Quote and dash variations}{10}{subsection.10.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.4}Formatting}{11}{subsection.10.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.4.1}line breaks}{11}{subsubsection.10.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.4.2}Indention}{11}{subsubsection.10.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.4.3}Hyphenation}{12}{subsubsection.10.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.5}Centering}{12}{subsection.10.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.6}Itemization \& Enumeration}{12}{subsection.10.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11}Tables and Figures}{13}{section.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.1}Tables}{13}{subsection.11.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.2}Figures}{13}{subsection.11.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12}Math}{15}{section.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.1}Matrizen}{15}{subsection.12.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.2}Summen}{15}{subsection.12.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.3}Brüche und Wurzeln}{15}{subsection.12.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13}Crafting and automating the bibliography}{16}{section.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.1}Workflow}{16}{subsection.13.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.2}Configurations}{16}{subsection.13.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.3}Troubleshooting}{17}{subsection.13.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Glossary}{17}{appendix.A}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B}second appendix}{17}{appendix.B}%

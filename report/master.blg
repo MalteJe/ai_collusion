@@ -1,0 +1,11 @@
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'master.blg'
+[102] biber-MSWIN64:322> INFO - === 
+[130] Biber.pm:415> INFO - Reading 'master.bcf'
+[292] Biber.pm:943> INFO - Found 4 citekeys in bib section 0
+[322] Biber.pm:4256> INFO - Processing section 0
+[323] Utils.pm:75> INFO - Globbing data source 'bibliographydemo.bib'
+[336] Utils.pm:91> INFO - Globbed data source 'bibliographydemo.bib' to bibliographydemo.bib
+[358] Biber.pm:4455> INFO - Looking for bibtex format file 'bibliographydemo.bib' for section 0
+[817] Utils.pm:320> ERROR - Cannot find 'bibliographydemo.bib'!
+[817] Biber.pm:132> INFO - ERRORS: 1

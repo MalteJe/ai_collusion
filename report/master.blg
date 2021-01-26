@@ -1,11 +1,22 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
 [0] Config.pm:307> INFO - Logfile is 'master.blg'
-[102] biber-MSWIN64:322> INFO - === 
-[130] Biber.pm:415> INFO - Reading 'master.bcf'
-[292] Biber.pm:943> INFO - Found 4 citekeys in bib section 0
-[322] Biber.pm:4256> INFO - Processing section 0
-[323] Utils.pm:75> INFO - Globbing data source 'bibliographydemo.bib'
-[336] Utils.pm:91> INFO - Globbed data source 'bibliographydemo.bib' to bibliographydemo.bib
-[358] Biber.pm:4455> INFO - Looking for bibtex format file 'bibliographydemo.bib' for section 0
-[817] Utils.pm:320> ERROR - Cannot find 'bibliographydemo.bib'!
-[817] Biber.pm:132> INFO - ERRORS: 1
+[79] biber-MSWIN64:322> INFO - === 
+[103] Biber.pm:415> INFO - Reading 'master.bcf'
+[230] Biber.pm:943> INFO - Found 6 citekeys in bib section 0
+[253] Biber.pm:4256> INFO - Processing section 0
+[253] Utils.pm:75> INFO - Globbing data source 'zotero_refs.bib'
+[264] Utils.pm:91> INFO - Globbed data source 'zotero_refs.bib' to zotero_refs.bib
+[284] Biber.pm:4455> INFO - Looking for bibtex format file 'zotero_refs.bib' for section 0
+[290] bibtex.pm:1653> INFO - LaTeX decoding ...
+[402] bibtex.pm:1471> INFO - Found BibTeX data source 'zotero_refs.bib'
+[438] Utils.pm:304> WARN - I didn't find a database entry for 'demo_art' (section 0)
+[438] Utils.pm:304> WARN - I didn't find a database entry for 'demo_book' (section 0)
+[438] Utils.pm:304> WARN - I didn't find a database entry for 'demo_source' (section 0)
+[438] Utils.pm:304> WARN - I didn't find a database entry for 'grapov2018rise' (section 0)
+[448] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[449] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[449] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[449] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[458] bbl.pm:652> INFO - Writing 'master.bbl' with encoding 'UTF-8'
+[461] bbl.pm:755> INFO - Output to master.bbl
+[461] Biber.pm:128> INFO - WARNINGS: 4

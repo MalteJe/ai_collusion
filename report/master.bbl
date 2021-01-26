@@ -1,0 +1,156 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{calvano_artificial_2019}{report}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=251159e14bbd3cf5d61777ead5d463a5}{%
+           family={Calvano},
+           familyi={C\bibinitperiod},
+           given={Emilio},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5f94b7504494f666a2b2eebedab0368d}{%
+           family={Calzolari},
+           familyi={C\bibinitperiod},
+           given={Giacomo},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f80e1192ff1e3bb1c3bd7c962aa511d7}{%
+           family={Denicolò},
+           familyi={D\bibinitperiod},
+           given={Vincenzo},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=990b7ca7771e7a800d292dd804707ebd}{%
+           family={Pastorello},
+           familyi={P\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Social Science Research Network}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Rochester, NY}%
+      }
+      \strng{namehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{fullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
+      \strng{bibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{authorbibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{authornamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{authorfullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Pricing algorithms are increasingly replacing human decision making in real marketplaces. To inform the competition policy debate on possible consequences, we run experiments with pricing algorithms powered by Artificial Intelligence in controlled environments (computer simulations).In particular, we study the interaction among a number of Q-learning algorithms in the context of a workhorse oligopoly model of price competition with Logit demand and constant marginal costs. We show that the algorithms consistently learn to charge supra-competitive prices, without communicating with each other. The high prices are sustained by classical collusive strategies with a finite punishment phase followed by a gradual return to cooperation. This finding is robust to asymmetries in cost or demand and to changes in the number of players.}
+      \field{month}{4}
+      \field{number}{ID 3304991}
+      \field{title}{Artificial {Intelligence}, {Algorithmic} {Pricing} and {Collusion}}
+      \field{type}{{SSRN} {Scholarly} {Paper}}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.2139/ssrn.3304991
+      \endverb
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\BCZC26X8\\papers.html:text/html;calvano_et_al2020_supplementary.pdf:C\:\\Users\\psymo\\Zotero\\storage\\E3CWZ5ZJ\\calvano_et_al2020_supplementary.pdf:application/pdf;calvano_et_al2019_20.pdf:C\:\\Users\\psymo\\Zotero\\storage\\YW4I8JRH\\calvano_et_al2019_20.pdf:application/pdf;summary.html:C\:\\Users\\psymo\\Zotero\\storage\\8LA7B44I\\summary.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/abstract=3304991
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/abstract=3304991
+      \endverb
+      \keyw{Artificial Intelligence,Collusion,Pricing-Algorithms,Q-Learning.,Reinforcement Learning}
+    \endentry
+    \entry{klein_autonomous_2019}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=27aa2e0111d1e6dfdb6b78ecf424f9e0}{%
+           family={Klein},
+           familyi={K\bibinitperiod},
+           given={Timo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Social Science Research Network}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Rochester, NY}%
+      }
+      \strng{namehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
+      \strng{fullhash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
+      \strng{bibnamehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
+      \strng{authorbibnamehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
+      \strng{authornamehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
+      \strng{authorfullhash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Prices are increasingly set by algorithms. One concern is that intelligent algorithms may learn to collude on higher prices even in absence of the kind of communication or agreement necessary to establish an antitrust infringement. However, exactly how this may happen is an open question. I show in a simulated environment of sequential competition that competing reinforcement learning algorithms can indeed learn to converge to collusive equilibria. When the set of discrete prices increases, the algorithm considered increasingly converges to supra-competitive asymmetric cycles. I show that results are robust to various extensions and discuss practical limitations and policy implications.}
+      \field{month}{7}
+      \field{number}{ID 3195812}
+      \field{shorttitle}{Autonomous {Algorithmic} {Collusion}}
+      \field{title}{Autonomous {Algorithmic} {Collusion}: {Q}-{Learning} {Under} {Sequential} {Pricing}}
+      \field{type}{{SSRN} {Scholarly} {Paper}}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.2139/ssrn.3195812
+      \endverb
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\NLKCWL3C\\papers.html:text/html;Klein - 2019 - Autonomous Algorithmic Collusion Q-Learning Under.pdf:C\:\\Users\\psymo\\Zotero\\storage\\4CVWNUVC\\Klein - 2019 - Autonomous Algorithmic Collusion Q-Learning Under.pdf:application/pdf;summary.html:C\:\\Users\\psymo\\Zotero\\storage\\H2NTHC5F\\summary.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/abstract=3195812
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/abstract=3195812
+      \endverb
+      \keyw{algorithmic collusion,artificial intelligence,machine learning,pricing algorithms,Q-learning,reinforcement learning,sequential pricing}
+    \endentry
+  \enddatalist
+  \missing{demo_art}
+  \missing{demo_book}
+  \missing{demo_source}
+  \missing{grapov2018rise}
+\endrefsection
+\endinput
+

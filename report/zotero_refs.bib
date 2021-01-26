@@ -1,0 +1,497 @@
+
+@techreport{calvano_artificial_2019,
+	address = {Rochester, NY},
+	type = {{SSRN} {Scholarly} {Paper}},
+	title = {Artificial {Intelligence}, {Algorithmic} {Pricing} and {Collusion}},
+	url = {https://papers.ssrn.com/abstract=3304991},
+	abstract = {Pricing algorithms are increasingly replacing human decision making in real marketplaces. To inform the competition policy debate on possible consequences, we run experiments with pricing algorithms powered by Artificial Intelligence in controlled environments (computer simulations).In particular, we study the interaction among a number of Q-learning algorithms in the context of a workhorse oligopoly model of price competition with Logit demand and constant marginal costs. We show that the algorithms consistently learn to charge supra-competitive prices, without communicating with each other. The high prices are sustained by classical collusive strategies with a finite punishment phase followed by a gradual return to cooperation. This finding is robust to asymmetries in cost or demand and to changes in the number of players.},
+	language = {en},
+	number = {ID 3304991},
+	urldate = {2021-01-25},
+	institution = {Social Science Research Network},
+	author = {Calvano, Emilio and Calzolari, Giacomo and Denicolò, Vincenzo and Pastorello, Sergio},
+	month = apr,
+	year = {2019},
+	doi = {10.2139/ssrn.3304991},
+	keywords = {Artificial Intelligence, Collusion, Pricing-Algorithms, Q-Learning., Reinforcement Learning},
+	file = {Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\BCZC26X8\\papers.html:text/html;calvano_et_al2020_supplementary.pdf:C\:\\Users\\psymo\\Zotero\\storage\\E3CWZ5ZJ\\calvano_et_al2020_supplementary.pdf:application/pdf;calvano_et_al2019_20.pdf:C\:\\Users\\psymo\\Zotero\\storage\\YW4I8JRH\\calvano_et_al2019_20.pdf:application/pdf;summary.html:C\:\\Users\\psymo\\Zotero\\storage\\8LA7B44I\\summary.html:text/html},
+}
+
+@article{tesauro_pricing_2002,
+	title = {Pricing in {Agent} {Economies} {Using} {Multi}-{Agent} {Q}-{Learning}},
+	volume = {5},
+	issn = {1573-7454},
+	url = {https://doi.org/10.1023/A:1015504423309},
+	doi = {10.1023/A:1015504423309},
+	abstract = {This paper investigates how adaptive software agents may utilize reinforcement learning algorithms such as Q-learning to make economic decisions such as setting prices in a competitive marketplace. For a single adaptive agent facing fixed-strategy opponents, ordinary Q-learning is guaranteed to find the optimal policy. However, for a population of agents each trying to adapt in the presence of other adaptive agents, the problem becomes non-stationary and history dependent, and it is not known whether any global convergence will be obtained, and if so, whether such solutions will be optimal. In this paper, we study simultaneous Q-learning by two competing seller agents in three moderately realistic economic models. This is the simplest case in which interesting multi-agent phenomena can occur, and the state space is small enough so that lookup tables can be used to represent the Q-functions. We find that, despite the lack of theoretical guarantees, simultaneous convergence to self-consistent optimal solutions is obtained in each model, at least for small values of the discount parameter. In some cases, exact or approximate convergence is also found even at large discount parameters. We show how the Q-derived policies increase profitability and damp out or eliminate cyclic price “wars” compared to simpler policies based on zero lookahead or short-term lookahead. In one of the models (the “Shopbot” model) where the sellers' profit functions are symmetric, we find that Q-learning can produce either symmetric or broken-symmetry policies, depending on the discount parameter and on initial conditions.},
+	language = {en},
+	number = {3},
+	urldate = {2021-01-25},
+	journal = {Autonomous Agents and Multi-Agent Systems},
+	author = {Tesauro, Gerald and Kephart, Jeffrey O.},
+	month = sep,
+	year = {2002},
+	pages = {289--304},
+	annote = {Summary
+ 
+economic model
+
+
+
+infinitively repeated
+sequential price competition (Maskin Tirole 1988???)
+three benchmarks
+
+vertical product differentiation
+horizontal product competition
+no differentiation
+
+
+
+
+
+Algorithm: Dynamic Programming
+Results
+
+throughout specifications
+
+Algorithms generally learn to increase prices and profits compared to myopic agents (with perfect information)
+
+
+},
+	file = {Springer Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\FG8HVHGR\\Tesauro and Kephart - 2002 - Pricing in Agent Economies Using Multi-Agent Q-Lea.pdf:application/pdf},
+}
+
+@article{waltman_q-learning_2008,
+	title = {Q-learning agents in a {Cournot} oligopoly model},
+	volume = {32},
+	issn = {0165-1889},
+	url = {https://econpapers.repec.org/article/eeedyncon/v_3a32_3ay_3a2008_3ai_3a10_3ap_3a3275-3293.htm},
+	number = {10},
+	urldate = {2021-01-25},
+	journal = {Journal of Economic Dynamics and Control},
+	author = {Waltman, Ludo and Kaymak, Uzay},
+	year = {2008},
+	note = {Publisher: Elsevier},
+	pages = {3275--3293},
+	annote = {Summary
+focus on collusive outcomes (not strategies)
+economic model:
+
+
+
+infinitely repeated Cournot (quantity) competition
+no product differentiation
+
+
+
+Algorithm: Q-learning
+
+
+
+time-declining exploration rate
+Boltzman exploration strategy
+
+
+
+Results
+
+
+
+quantities and profits between One-Shot Nash and competition
+surprisingly supra-competitive outcomes also for memoryless agents (Q-learning without states, just actions)
+
+
+},
+	file = {RePEc Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\PLR46KCF\\v_3a32_3ay_3a2008_3ai_3a10_3ap_3a3275-3293.html:text/html;Waltman and Kaymak - 2008 - Q-learning agents in a Cournot oligopoly model.pdf:C\:\\Users\\psymo\\Zotero\\storage\\9TVZX8S5\\Waltman and Kaymak - 2008 - Q-learning agents in a Cournot oligopoly model.pdf:application/pdf},
+}
+
+@article{kimbrough_learning_2009,
+	title = {Learning to {Collude} {Tacitly} on {Production} {Levels} by {Oligopolistic} {Agents}},
+	volume = {33},
+	doi = {10.1007/s10614-008-9150-6},
+	abstract = {Classical oligopoly theory has strong analytical foundations but is weak in capturing the operating environment of oligopolists
+and the available knowledge they have for making decisions, areas in which the management literature is relevant. We use agent-based
+models to simulate the impact on firm profitability of policies that oligopolists can pursue when setting production levels.
+We develop an approach to analyzing simulation results that makes use of nonparametric statistical tests, taking advantage
+of the large amounts of data generated by simulations, and avoiding the assumption of normality that does not necessarily
+hold. Our results show that in a quantity game, a simple exploration rule, which we call Probe and Adjust, can find either the Cournot equilibrium or the monopoly solution depending on the measure of success chosen by the firms.
+These results shed light on how tacit collusion can develop within an oligopoly.},
+	journal = {Computational Economics},
+	author = {Kimbrough, Steven and Murphy, Frederic},
+	month = feb,
+	year = {2009},
+	pages = {47--78},
+	annote = {Summary
+focus on collusive outcomes (not strategies)
+economic model:
+
+
+
+infinitely repeated Cournot (quantity) competition
+no product differentiation
+
+
+
+Algorithm: Probe and adjust
+
+
+
+inspired my management literature
+
+models human decision makers rather than algorithms
+
+
+allows for continuous action space
+
+
+
+Results
+
+depend on programmed reward:
+
+firm profits: (One Shot) Cournot equilibrium
+supra-competitive outcomes require that rewards include industry profitsin some form
+
+
+},
+	file = {Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\REP7QJL4\\Kimbrough and Murphy - 2009 - Learning to Collude Tacitly on Production Levels b.pdf:application/pdf},
+}
+
+@article{siallagan_aspiration-based_2013,
+	title = {Aspiration-{Based} {Learning} in a {Cournot} {Duopoly} {Model}},
+	volume = {10},
+	issn = {2188-2096},
+	url = {https://doi.org/10.14441/eier.A2013015},
+	doi = {10.14441/eier.A2013015},
+	abstract = {This paper explores the implication of aspiration-based learning in a simple Cournot duopoly model. When the firms know the average industry-wide profit and perceive it as aspiration level, then the market leads to collusive outcome or collusive equilibrium. In this sense, all firms have the same reference point, i.e., the average industry-wide profit as their aspiration level. However, the firms may have their own aspiration level (e.g., a goal of profit) and will choose their strategy accordingly. Therefore, the firms will try to reach their own aspiration level. This aspiration level is not static and the firms will adjust their aspiration level. In this research we consider a market that consists of several firms with their own aspiration level. We propose an aspiration-based learning shaped by an information searching mechanism to examine the behavior of the firms in the market. A firm updates its aspiration level by searching the information of the other firms’ aspiration level and then compares this information with its current aspiration level. Based on its aspiration level, the firm will choose the best strategy through learning. Simulation results show that the learning model and the information searching mechanism lead the market to competitive outcome, i.e., Nash equilibrium, if the firms have many strategies even if their initial aspiration level is low. However, if the firms have fewer strategies and start with high initial aspiration level, then collusive behavior will occur.},
+	language = {en},
+	number = {2},
+	urldate = {2021-01-25},
+	journal = {Evolutionary and Institutional Economics Review},
+	author = {Siallagan, Manahan and Deguchi, Hiroshi and Ichikawa, Manabu},
+	month = dec,
+	year = {2013},
+	pages = {295--314},
+	annote = {Summary
+focus on collusive outcomes (not strategies)
+economic model:
+
+
+
+infinitely repeated Cournot (quantity) competition
+
+each episode, all players face each other 1v1 in a duopoly game
+
+
+
+
+
+aspiration-based learning
+
+
+
+discrete action space
+models human decision makers rather than algorithms
+aspiration level is adjusted by
+
+signal of other firms' aspiration levels
+differences between aspiration levels and realized profits
+
+
+
+
+
+Results:
+
+
+
+convergence to collusion only attainable with action space of 3
+
+
+},
+	file = {Springer Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\7F4RRA5Z\\Siallagan et al. - 2013 - Aspiration-Based Learning in a Cournot Duopoly Mod.pdf:application/pdf},
+}
+
+@techreport{klein_assessing_2018,
+	type = {Working {Paper}},
+	title = {Assessing {Autonomous} {Algorithmic} {Collusion}: {Q}-{Learning} {Under} {Short}-{Run} {Price} {Commitments}},
+	copyright = {http://www.econstor.eu/dspace/Nutzungsbedingungen},
+	shorttitle = {Assessing {Autonomous} {Algorithmic} {Collusion}},
+	url = {https://www.econstor.eu/handle/10419/185575},
+	abstract = {A novel debate within competition policy and regulation circles is whether autonomous machine learning algorithms may learn to collude on prices. We show that when firms face short-run price commitments, independent Q-learning (a simple but well-established self-learning algorithm) learns to profitably coordinate on either a fixed price or on asymmetric price cycles -- although convergence to rational and Pareto-optimal collusive behavior is not guaranteed. The general framework used can guide future research into the capacity of more advanced algorithms to collude, also in environments that are less stylized or more case-specific.},
+	language = {eng},
+	number = {TI 2018-056/VII},
+	urldate = {2021-01-25},
+	institution = {Tinbergen Institute Discussion Paper},
+	author = {Klein, Timo},
+	year = {2018},
+	annote = {Summary
+essentially as in Klein (2019)},
+	file = {Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\PGNMH26J\\Klein - 2018 - Assessing Autonomous Algorithmic Collusion Q-Lear.pdf:application/pdf;Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\6XRFYLTP\\185575.html:text/html},
+}
+
+@techreport{klein_autonomous_2019,
+	address = {Rochester, NY},
+	type = {{SSRN} {Scholarly} {Paper}},
+	title = {Autonomous {Algorithmic} {Collusion}: {Q}-{Learning} {Under} {Sequential} {Pricing}},
+	shorttitle = {Autonomous {Algorithmic} {Collusion}},
+	url = {https://papers.ssrn.com/abstract=3195812},
+	abstract = {Prices are increasingly set by algorithms. One concern is that intelligent algorithms may learn to collude on higher prices even in absence of the kind of communication or agreement necessary to establish an antitrust infringement. However, exactly how this may happen is an open question. I show in a simulated environment of sequential competition that competing reinforcement learning algorithms can indeed learn to converge to collusive equilibria. When the set of discrete prices increases, the algorithm considered increasingly converges to supra-competitive asymmetric cycles. I show that results are robust to various extensions and discuss practical limitations and policy implications.},
+	language = {en},
+	number = {ID 3195812},
+	urldate = {2021-01-25},
+	institution = {Social Science Research Network},
+	author = {Klein, Timo},
+	month = jul,
+	year = {2019},
+	doi = {10.2139/ssrn.3195812},
+	keywords = {algorithmic collusion, artificial intelligence, machine learning, pricing algorithms, Q-learning, reinforcement learning, sequential pricing},
+	file = {Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\NLKCWL3C\\papers.html:text/html;Klein - 2019 - Autonomous Algorithmic Collusion Q-Learning Under.pdf:C\:\\Users\\psymo\\Zotero\\storage\\4CVWNUVC\\Klein - 2019 - Autonomous Algorithmic Collusion Q-Learning Under.pdf:application/pdf;summary.html:C\:\\Users\\psymo\\Zotero\\storage\\H2NTHC5F\\summary.html:text/html},
+}
+
+@article{noel_edgeworth_2008,
+	title = {Edgeworth {Price} {Cycles} and {Focal} {Prices}: {Computational} {Dynamic} {Markov} {Equilibria}},
+	volume = {17},
+	copyright = {© 2008, The Author(s) Journal Compilation © 2008 Blackwell Publishing},
+	issn = {1530-9134},
+	shorttitle = {Edgeworth {Price} {Cycles} and {Focal} {Prices}},
+	url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1530-9134.2008.00181.x},
+	doi = {https://doi.org/10.1111/j.1530-9134.2008.00181.x},
+	abstract = {Motivated by the apparent discovery of Edgeworth Cycles in many retail gasoline markets, this article extends the theory of Edgeworth Cycles along several key dimensions, including models of fluctuating marginal costs, differentiation, capacity constraints and triopoly. A computational approach to search for Markov perfect equilibria is taken. Edgeworth Cycles are found in equilibrium in many situations, and the shape of the cycles are found to carry information about underlying competitive intensity. Cycles in triopoly exhibit interesting coordination problems such as delayed starts and false starts.},
+	language = {en},
+	number = {2},
+	urldate = {2021-01-25},
+	journal = {Journal of Economics \& Management Strategy},
+	author = {Noel, Michael D.},
+	year = {2008},
+	note = {\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1530-9134.2008.00181.x},
+	pages = {345--377},
+	annote = {Summary
+economic model
+
+
+
+infinitively repeated
+sequential price competition (Maskin Tirole (1988))
+extensions:
+
+differentiated goods
+fluctuating costs
+2-3 firms
+
+
+
+
+
+Algorithm: Dynamic Programming
+
+
+
+algorithms know probabilities of next state?
+algorithms evaluate best responses to make a choice?
+
+
+
+Results
+
+
+
+focal points and edgeworth price cycles
+delayed and false starts with 3 players (cycles are a more difficult to maintain)
+
+
+},
+	file = {Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\KMSPC8H4\\j.1530-9134.2008.00181.html:text/html;Noel - 2008 - Edgeworth Price Cycles and Focal Prices Computati.pdf:C\:\\Users\\psymo\\Zotero\\storage\\95BZM5H8\\Noel - 2008 - Edgeworth Price Cycles and Focal Prices Computati.pdf:application/pdf},
+}
+
+@techreport{abada_artificial_2020,
+	address = {Rochester, NY},
+	type = {{SSRN} {Scholarly} {Paper}},
+	title = {Artificial {Intelligence}: {Can} {Seemingly} {Collusive} {Outcomes} {Be} {Avoided}?},
+	shorttitle = {Artificial {Intelligence}},
+	url = {https://papers.ssrn.com/abstract=3559308},
+	abstract = {Strategic decisions are increasingly delegated to algorithms. We extend the results of Waltman and Kaymak [2008] and Calvano et al. [2020b] to the context of dynamic optimization with imperfect monitoring by analyzing a setting where a limited number of agents use simple and independent machine-learning algorithms to buy and sell a storable good on behalf of a large number of consumers. No specific instruction is given to them, only that their objective is to maximize profits based solely on past market prices and payoffs. With an original application to battery operations, we observe that the algorithms learn quickly to exert market power at seemingly collusive levels, despite the absence of any formal communication between them. Contrary to the findings reported in the existing literature, we show that seeming collusion may originate in imperfect exploration, rather than excessive algorithmic sophistication. We then show that a regulator may succeed in disciplining the market to produce socially desirable outcomes by enforcing decentralized learning or with adequate intervention during the learning process.},
+	language = {en},
+	number = {ID 3559308},
+	urldate = {2021-01-25},
+	institution = {Social Science Research Network},
+	author = {Abada, Ibrahim and Lambin, Xavier},
+	month = feb,
+	year = {2020},
+	doi = {10.2139/ssrn.3559308},
+	keywords = {algorithmic decision-making, batteries, decentralized power systems, delegated decisions, Machine learning, multi-agent reinforcement learning, tacit collusion, virtual power plants},
+	file = {Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\J3JEJ85Y\\papers.html:text/html;Abada and Lambin - 2020 - Artificial Intelligence Can Seemingly Collusive O.pdf:C\:\\Users\\psymo\\Zotero\\storage\\PP5M5RZE\\Abada and Lambin - 2020 - Artificial Intelligence Can Seemingly Collusive O.pdf:application/pdf},
+}
+
+@techreport{johnson_platform_2020,
+	address = {Rochester, NY},
+	type = {{SSRN} {Scholarly} {Paper}},
+	title = {Platform {Design} {When} {Sellers} {Use} {Pricing} {Algorithms}},
+	url = {https://papers.ssrn.com/abstract=3691621},
+	abstract = {Using both economic theory and  Artificial Intelligence (AI) pricing algorithms,  we investigate the ability of a platform to design its marketplace to promote competition, improve consumer surplus, and even raise its own profits. We allow sellers to use Q-learning algorithms (a common reinforcement-learning technique from the computer-science literature) to devise pricing strategies in a setting with repeated interactions, and consider the effect of  platform rules that reward firms that cut prices with additional exposure to consumers. Overall, the evidence from our experiments suggests that platform design decisions can meaningfully benefit consumers even when algorithmic collusion might otherwise emerge but that achieving these gains may require more than the simplest steering policies when algorithms value the future highly. We also find that policies that raise consumer surplus can raise the profits of the platform, depending on the platform's revenue model. Finally, we  document several learning challenges faced by the algorithms.},
+	language = {en},
+	number = {ID 3691621},
+	urldate = {2021-01-25},
+	institution = {Social Science Research Network},
+	author = {Johnson, Justin and Rhodes, Andrew and Wildenbeest, Matthijs R.},
+	month = dec,
+	year = {2020},
+	doi = {10.2139/ssrn.3691621},
+	keywords = {Algorithms, artificial intelligence, collusion, platform design},
+	annote = {Summary
+focus on platform design to prevent algorithmic collusion
+economic model
+
+
+
+infinitively repeated
+price competition
+horizontal differentiation
+platform only displays subset of suppliers (with low prices) to some consumers
+
+
+
+Algorithm: Q-Learning
+
+
+
+time declining exploration rate, i.e.
+
+initially: mostly exploration
+over time: mostly exploitation
+
+
+
+
+},
+	file = {Submitted Version:C\:\\Users\\psymo\\Zotero\\storage\\6Q3S5953\\Johnson et al. - 2020 - Platform Design When Sellers Use Pricing Algorithm.pdf:application/pdf;Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\WEE8BXUU\\papers.html:text/html},
+}
+
+@article{xie_studies_2004,
+	title = {Studies on horizontal competition among homogenous retailers through agent-based simulation},
+	volume = {13},
+	issn = {1861-9576},
+	url = {https://doi.org/10.1007/s11518-006-0178-7},
+	doi = {10.1007/s11518-006-0178-7},
+	abstract = {This paper adopts agent-based simulation to study the horizontal competition among homogenous price-setting retailers in a one-to-many supply chain (a supply chain consists of one supplier and multiple retailers). We model the supplier and retailers as agents, and design their behavioral rules respectively. The results show that although the agents learn individually based on their own experiences, the system converges asymptotically to near Nash equilibrium steady states. When analyzing the results, we first discuss the properties of these steady states. Then based on these properties, we analyze the effects of the retailers’ horizontal competition on the retail prices, retailers’ profits and supplier’s revenue.},
+	language = {en},
+	number = {4},
+	urldate = {2021-01-25},
+	journal = {Journal of Systems Science and Systems Engineering},
+	author = {Xie, Ming and Chen, Jian},
+	month = dec,
+	year = {2004},
+	pages = {490--505},
+	file = {Springer Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\NXPLZBCP\\Xie and Chen - 2004 - Studies on horizontal competition among homogenous.pdf:application/pdf},
+}
+
+@article{dogan_reinforcement_2015,
+	title = {A reinforcement learning approach to competitive ordering and pricing problem},
+	volume = {32},
+	copyright = {© 2013 Wiley Publishing Ltd},
+	issn = {1468-0394},
+	url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/exsy.12054},
+	doi = {https://doi.org/10.1111/exsy.12054},
+	abstract = {This study analyses simultaneous ordering and pricing decisions for retailers working in a multi-retailer competitive environment for an infinite horizon. Retailers compete for the same market where the market demand is uncertain. The customer selects the winning agent (retailer) in each term on the basis of random utility maximization, which depends primarily on retailer price and random error. The complexity of the problem is increased by competitiveness, necessity for simultaneous decisions and uncertainty in the nature of increases, and is not conducive to examination using standard analytical methods. Therefore, we model the problem using reinforcement learning (RL), which is founded on stochastic dynamic programming and agent-based simulations. We analyse the effects of competitiveness and performance of RL on three different scenarios: a monopolistic case where one retailer employing a RL agent maximizes its profit, a duopolistic case where one retailer employs RL and another utilizes adaptive pricing and ordering policies, and a duopolistic case where both retailers employ RL.},
+	language = {en},
+	number = {1},
+	urldate = {2021-01-25},
+	journal = {Expert Systems},
+	author = {Dogan, Ibrahim and Güner, Ali R.},
+	year = {2015},
+	note = {\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/exsy.12054},
+	keywords = {agent-based simulation, pricing, reinforcement learning, supply chain},
+	pages = {39--48},
+	file = {Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\7R32FEUB\\exsy.html:text/html},
+}
+
+@article{barr_cournot_2005,
+	series = {Computing in economics and finance},
+	title = {Cournot competition, organization and learning},
+	volume = {29},
+	issn = {0165-1889},
+	url = {http://www.sciencedirect.com/science/article/pii/S0165188904000156},
+	doi = {10.1016/j.jedc.2003.07.003},
+	abstract = {We model firms’ output decisions in a repeated duopoly framework, focusing on three interrelated issues: (1) the role of learning in the adjustment process toward equilibrium, (2) the role of organizational structure in the firm's decision making, and (3) the role of changing environmental conditions on learning and output decisions. We characterize the firm as a type of artificial neural network, which must estimate its optimal output decision based on signals it receives from the economic environment (which influences the demand function). Via simulation analysis we show: (1) how organizations learn to estimate the optimal output over time as a function of the environmental dynamics, (2) which networks are optimal for each level of environmental complexity, and (3) the equilibrium industry structure.},
+	language = {en},
+	number = {1},
+	urldate = {2021-01-25},
+	journal = {Journal of Economic Dynamics and Control},
+	author = {Barr, Jason and Saraceno, Francesco},
+	month = jan,
+	year = {2005},
+	keywords = {Cournot competition, Firm learning, Neural networks},
+	pages = {277--295},
+	annote = {Summary
+
+successor of Barr/Saracenco 2002
+
+economic model
+
+
+
+Cournot game
+2 firms
+no product differentiation
+
+
+
+Algorithm: artificial neural network
+
+
+
+supposed to model organizational decision process rather than deployed algorithm
+focuses on learning the economic environment
+state only comprises contemporaneous variables (not memory of past prices --{\textgreater} collusion not attainable/sustainable)
+opponent's price not part of inputs but enters into re-evaluation of network's performance by backward propagation reinforcement learning algorithm
+
+
+
+Result
+
+
+
+artificial networks learn to play (close to) one-shot equilibrium settings throughout specifications
+
+
+},
+	file = {ScienceDirect Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\MITND4XP\\S0165188904000156.html:text/html;Barr and Saraceno - 2005 - Cournot competition, organization and learning.pdf:C\:\\Users\\psymo\\Zotero\\storage\\SF5QN4M8\\Barr and Saraceno - 2005 - Cournot competition, organization and learning.pdf:application/pdf},
+}
+
+@inproceedings{sandholm_multiagent_1996,
+	address = {Berlin, Heidelberg},
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {On multiagent {Q}-learning in a semi-competitive domain},
+	isbn = {978-3-540-49726-4},
+	doi = {10.1007/3-540-60923-7_28},
+	abstract = {Q-learning is a recent reinforcement learning (RL) algorithm that does not need a model of its environment and can be used online. Therefore it is well-suited for use in repeated games against an unknown opponent. Most RL research has been confined to single agent settings or to multiagent settings where the agents have totally positively correlated payoffs (team problems) or totally negatively correlated payoffs (zerosum games). This paper is an empirical study of reinforcement learning in the iterated prisoner's dilemma (IPD), where the agents' payoffs are neither totally positively nor totally negatively correlated. RL is considerably more difficult in such a domain. This paper investigates the ability of a variety of Q-learning agents to play the IPD game against an unknown opponent. In some experiments, the opponent is the fixed strategy Tit-for-Tat, while in others it is another Q-learner. All the Q-learners learned to play optimally against Tit-for-Tat. Playing against another learner was more difficult because the adaptation of the other learner creates a nonstationary environment in ways that are detailed in the paper. The learners that were studied varied along three dimensions: the length of history they received as context, the type of memory they employed (lookup tables based on restricted history windows or recurrent neural networks (RNNs) that can theoretically store features from arbitrarily deep in the past), and the exploration schedule they followed. Although all the learners faced difficulties when playing against other learners, agents with longer history windows, lookup table memories, and longer exploration schedules fared best in the IPD games.},
+	language = {en},
+	booktitle = {Adaption and {Learning} in {Multi}-{Agent} {Systems}},
+	publisher = {Springer},
+	author = {Sandholm, Tuomas W. and Crites, Robert H.},
+	editor = {Weiß, Gerhard and Sen, Sandip},
+	year = {1996},
+	keywords = {Annealing Schedule, Forward Pass, Lookup Table, Recurrent Neural Network, Reinforcement Learning},
+	pages = {191--205},
+	file = {Springer Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\NQIICD9P\\Sandholm and Crites - 1996 - On multiagent Q-learning in a semi-competitive dom.pdf:application/pdf},
+}
+
+@article{sandholm_multiagent_1996-1,
+	title = {Multiagent reinforcement learning in the {Iterated} {Prisoner}'s {Dilemma}},
+	volume = {37},
+	issn = {0303-2647},
+	url = {http://www.sciencedirect.com/science/article/pii/0303264795015515},
+	doi = {10.1016/0303-2647(95)01551-5},
+	abstract = {Reinforcement learning (RL) is based on the idea that the tendency to produce an action should be strengthened (reinforced) if it produces favorable results, and weakened if it produces unfavorable results. Q-learning is a recent RL algorithm that does not need a model of its environment and can be used on-line. Therefore, it is well suited for use in repeated games against an unknown opponent. Most RL research has been confined to single-agent settings or to multiagent settings where the agents have totally positively correlated payoffs (team problems) or totally negatively correlated payoffs (zero-sum games). This paper is an empirical study of reinforcement learning in the Iterated Prisoner's Dilemma (IPD), where the agents' payoffs are neither totally positively nor totally negatively correlated. RL is considerably more difficult in such a domain. This paper investigates the ability of a variety of Q-learning agents to play the IPD game against an unknown opponent. In some experiments, the opponent is the fixed strategy Tit-For-Tat, while in others it is another Q-learner. All the Q-learners learned to play optimally against Tit-For-Tat. Playing against another learner was more difficult because the adaptation of the other learner created a non-stationary environment, and because the other learner was not endowed with any a priori knowledge about the IPD game such as a policy designed to encourage cooperation. The learners that were studied varied along three dimensions: the length of history they received as context, the type of memory they employed (lookup tables based on restricted history windows or recurrent neural networks that can theoretically store features from arbitrarily deep in the past), and the exploration schedule they followed. Although all the learners faced difficulties when playing against other learners, agents with longer history windows, lookup table memories, and longer exploration schedules fared best in the IPD games.},
+	language = {en},
+	number = {1},
+	urldate = {2021-01-25},
+	journal = {Biosystems},
+	author = {Sandholm, Tuomas W. and Crites, Robert H.},
+	month = jan,
+	year = {1996},
+	keywords = {Exploration, Machine learning, Multiagent learning, Prisoner's Dilemma, Recurrent neural network, Reinforcement learning},
+	pages = {147--166},
+	file = {ScienceDirect Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\TBYLIHXV\\0303264795015515.html:text/html},
+}

@@ -22,6 +22,19 @@ calculate_profits <- function(p, c, ...) {
 }
 
 
+# helpers to calculate initial Q matrix
+
+init_profits <- function(p1, p2, ...) {
+	calculate_profits(p = c(p1,p2), ...)[1]
+}
+
+init_Q_entry <- function(i, delta, available_prices, ...) {
+	pis <- map_dbl(available_prices, init_profits, p1 = available_prices[i], ...)
+	sum(pis)/((1-delta) * length(available_prices))
+}
+
+
+
 # numerically optimize joint profits with respect to both prices
 
 joint_profits_helper <- function(p, ...) {

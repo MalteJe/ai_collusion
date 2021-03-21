@@ -167,16 +167,16 @@ single_run <- function(n = 2,   # number of players
 }
 
 
-# single_res <- single_run(n = 2,
-# 			  seed = 1234567,
-# 			  zeta = 0.1,
-# 			  m = 15,
-# 			  delta = 0.95,
-# 			  TT = 1200000,
-# 			  TT_intervention = 20,
-# 			  alpha = 0.1,
-# 			  beta = 5*10^-6,
-# 			  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+single_res <- single_run(n = 2,
+			  seed = 1234567,
+			  zeta = 0.1,
+			  m = 15,
+			  delta = 0.95,
+			  TT = 1200000,
+			  TT_intervention = 20,
+			  alpha = 0.1,
+			  beta = 5*10^-6,
+			  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 
 # retrieve number of cores and specify required number of runs
 (no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))

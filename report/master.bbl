@@ -19,6 +19,59 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{anderson_logit_1992}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b07695d6e577430c83e9bb0ea8a92a45}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={Simon\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bf09a2b587fc6266aa097cf7d8f8e19d}{%
+           family={Palma},
+           familyi={P\bibinitperiod},
+           given={Andre},
+           giveni={A\bibinitperiod},
+           givenun=0,
+           prefix={de},
+           prefixi={d\bibinitperiod},
+           prefixun=0}}%
+      }
+      \strng{namehash}{612f2d36ea39fe11a273f7306008565a}
+      \strng{fullhash}{612f2d36ea39fe11a273f7306008565a}
+      \strng{bibnamehash}{612f2d36ea39fe11a273f7306008565a}
+      \strng{authorbibnamehash}{612f2d36ea39fe11a273f7306008565a}
+      \strng{authornamehash}{612f2d36ea39fe11a273f7306008565a}
+      \strng{authorfullhash}{612f2d36ea39fe11a273f7306008565a}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0030-7653}
+      \field{journaltitle}{Oxford Economic Papers}
+      \field{note}{Publisher: Oxford University Press}
+      \field{number}{1}
+      \field{title}{The {Logit} as a {Model} of {Product} {Differentiation}}
+      \field{urlday}{23}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{volume}{44}
+      \field{year}{1992}
+      \field{urldateera}{ce}
+      \field{pages}{51\bibrangedash 67}
+      \range{pages}{17}
+      \verb{file}
+      \verb JSTOR Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\NHVEAHJQ\\Anderson and de Palma - 1992 - The Logit as a Model of Product Differentiation.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/2663424
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/2663424
+      \endverb
+    \endentry
     \entry{calvano_artificial_2019}{report}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=251159e14bbd3cf5d61777ead5d463a5}{%
@@ -145,6 +198,173 @@
       \verb https://papers.ssrn.com/abstract=3195812
       \endverb
       \keyw{algorithmic collusion,artificial intelligence,machine learning,pricing algorithms,Q-learning,reinforcement learning,sequential pricing}
+    \endentry
+    \entry{naik_discounted_2019}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=3f00c53e13e0a727532280d48b4df5ce}{%
+           family={Naik},
+           familyi={N\bibinitperiod},
+           given={Abhishek},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4acfcb6f31bb7afcf88f9f0845770b2f}{%
+           family={Shariff},
+           familyi={S\bibinitperiod},
+           given={Roshan},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5e02b19f41bae8330d6cdbdd984524a8}{%
+           family={Yasui},
+           familyi={Y\bibinitperiod},
+           given={Niko},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f17d6b9c135febd7ab6a3e84ebbbe23e}{%
+           family={Yao},
+           familyi={Y\bibinitperiod},
+           given={Hengshuai},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S.},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b4fc7ffead9491d19d9624c400a6e727}
+      \strng{fullhash}{e3438806a8107b070eef416aaf9fffae}
+      \strng{bibnamehash}{b4fc7ffead9491d19d9624c400a6e727}
+      \strng{authorbibnamehash}{b4fc7ffead9491d19d9624c400a6e727}
+      \strng{authornamehash}{b4fc7ffead9491d19d9624c400a6e727}
+      \strng{authorfullhash}{e3438806a8107b070eef416aaf9fffae}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Discounted reinforcement learning is fundamentally incompatible with function approximation for control in continuing tasks. It is not an optimization problem in its usual formulation, so when using function approximation there is no optimal policy. We substantiate these claims, then go on to address some misconceptions about discounting and its connection to the average reward formulation. We encourage researchers to adopt rigorous optimization approaches, such as maximizing average reward, for reinforcement learning in continuing tasks.}
+      \field{annotation}{Comment: Accepted for presentation at the Optimization Foundations of Reinforcement Learning Workshop at NeurIPS 2019}
+      \field{journaltitle}{arXiv:1910.02140 [cs]}
+      \field{month}{11}
+      \field{note}{arXiv: 1910.02140}
+      \field{title}{Discounted {Reinforcement} {Learning} {Is} {Not} an {Optimization} {Problem}}
+      \field{urlday}{14}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb arXiv Fulltext PDF:C\:\\Users\\psymo\\Zotero\\storage\\8YB4C936\\Naik et al. - 2019 - Discounted Reinforcement Learning Is Not an Optimi.pdf:application/pdf;arXiv.org Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\DW3BUZMZ\\1910.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1910.02140
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1910.02140
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence}
+    \endentry
+    \entry{seijen_true_2014}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5f41c43aea184b1ebb935b32cad851f9}{%
+           family={Seijen},
+           familyi={S\bibinitperiod},
+           given={Harm},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=5c4a29473a4a5e567dbe5c875cfae646}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Rich},
+           giveni={R\bibinitperiod},
+           givenun=1}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{972bc875ec34e6d7180c87cec9a48289}
+      \strng{fullhash}{972bc875ec34e6d7180c87cec9a48289}
+      \strng{bibnamehash}{972bc875ec34e6d7180c87cec9a48289}
+      \strng{authorbibnamehash}{972bc875ec34e6d7180c87cec9a48289}
+      \strng{authornamehash}{972bc875ec34e6d7180c87cec9a48289}
+      \strng{authorfullhash}{972bc875ec34e6d7180c87cec9a48289}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{TD(lambda) is a core algorithm of modern reinforcement learning. Its appeal comes from its equivalence to a clear and conceptually simple forward view, and the fact that it can be implemented onlin...}
+      \field{booktitle}{International {Conference} on {Machine} {Learning}}
+      \field{month}{1}
+      \field{note}{ISSN: 1938-7228}
+      \field{title}{True {Online} {TD}(lambda)}
+      \field{urlday}{12}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \field{pages}{692\bibrangedash 700}
+      \range{pages}{9}
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\Y5N8TJFN\\Seijen and Sutton - 2014 - True Online TD(lambda).pdf:application/pdf;Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\NTLD6NWB\\seijen14.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://proceedings.mlr.press/v32/seijen14.html
+      \endverb
+      \verb{url}
+      \verb http://proceedings.mlr.press/v32/seijen14.html
+      \endverb
+    \endentry
+    \entry{sutton_reinforcement_2018}{book}{}
+      \name{author}{2}{}{%
+        {{un=1,uniquepart=given,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S.},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=32a0a208f8bcf56a13b0a8e618aa806a}{%
+           family={Barto},
+           familyi={B\bibinitperiod},
+           given={Andrew\bibnamedelima G.},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{fullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{bibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authorbibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authornamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{authorfullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The significantly expanded and updated new edition of a widely used text on reinforcement learning, one of the most active research areas in artificial intelligence.Reinforcement learning, one of the most active research areas in artificial intelligence, is a computational approach to learning whereby an agent tries to maximize the total amount of reward it receives while interacting with a complex, uncertain environment. In Reinforcement Learning, Richard Sutton and Andrew Barto provide a clear and simple account of the field's key ideas and algorithms. This second edition has been significantly expanded and updated, presenting new topics and updating coverage of other topics.Like the first edition, this second edition focuses on core online learning algorithms, with the more mathematical material set off in shaded boxes. Part I covers as much of reinforcement learning as possible without going beyond the tabular case for which exact solutions can be found. Many algorithms presented in this part are new to the second edition, including UCB, Expected Sarsa, and Double Learning. Part II extends these ideas to function approximation, with new sections on such topics as artificial neural networks and the Fourier basis, and offers expanded treatment of off-policy learning and policy-gradient methods. Part III has new chapters on reinforcement learning's relationships to psychology and neuroscience, as well as an updated case-studies chapter including AlphaGo and AlphaGo Zero, Atari game playing, and IBM Watson's wagering strategy. The final chapter discusses the future societal impacts of reinforcement learning.}
+      \field{isbn}{978-0-262-35270-3}
+      \field{month}{11}
+      \field{note}{Google-Books-ID: uWV0DwAAQBAJ}
+      \field{shorttitle}{Reinforcement {Learning}, second edition}
+      \field{title}{Reinforcement {Learning}, second edition: {An} {Introduction}}
+      \field{year}{2018}
+      \verb{file}
+      \verb Sutton and Barto - 2018 - Reinforcement Learning, second edition An Introdu.pdf:C\:\\Users\\psymo\\Zotero\\storage\\HM4HPA84\\Sutton and Barto - 2018 - Reinforcement Learning, second edition An Introdu.pdf:application/pdf
+      \endverb
+      \keyw{Computers / Intelligence (AI) \& Semantics}
     \endentry
   \enddatalist
   \missing{demo_art}

@@ -2185,10 +2185,18 @@
   <bcf:section number="0">
     <bcf:citekey order="1">calvano_artificial_2019</bcf:citekey>
     <bcf:citekey order="2">klein_autonomous_2019</bcf:citekey>
-    <bcf:citekey order="3">demo_art</bcf:citekey>
-    <bcf:citekey order="4">demo_book</bcf:citekey>
-    <bcf:citekey order="5">demo_source</bcf:citekey>
-    <bcf:citekey order="6">grapov2018rise</bcf:citekey>
+    <bcf:citekey order="3">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="4">anderson_logit_1992</bcf:citekey>
+    <bcf:citekey order="5">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="6">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="7">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="8">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="9">naik_discounted_2019</bcf:citekey>
+    <bcf:citekey order="10">seijen_true_2014</bcf:citekey>
+    <bcf:citekey order="11">demo_art</bcf:citekey>
+    <bcf:citekey order="12">demo_book</bcf:citekey>
+    <bcf:citekey order="13">demo_source</bcf:citekey>
+    <bcf:citekey order="14">grapov2018rise</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

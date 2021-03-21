@@ -7,7 +7,10 @@ enumerator_i <- function(p, a, mu) {
 outside <- function(a_0, mu) {exp(a_0/mu)}
 
 calculate_demands <- function(p, a, a_0, mu) {
-	en <- map2_dbl(p, a, enumerator_i, mu = mu)
+	en <- map2_dbl(.x = p,
+						.y = a,
+						.f = enumerator_i,
+						mu = mu)
 	out <- outside(a_0, mu)
 	den <- sum(en, out)
 	q <- en/den
@@ -81,5 +84,3 @@ nash_prices <- function(n, ...) {
 			control = list(reltol = 1e-12))$par)
 }
 
-
-# new local comment

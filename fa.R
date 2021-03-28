@@ -80,8 +80,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	# TBD: make more general so that two players have different available prices due to varying marginal costs
 	max_price <- p_m + zeta * (p_n - mc)
 	available_prices <- round(seq(from = mc, to = max_price, length.out = m), rounding_precision)
-	
-	
+
 	# calculate reward set as response to cartesian product of available prices
 	R <- cross2(available_prices, available_prices) %>%
 		map(as.numeric) %>% 
@@ -261,7 +260,7 @@ single_res <- single_run(Algorithm = "expected",
 								 	n_tilings = 1,
 								 	n_tiles = 8
 								 ),
-								 features_by = "tiling",								 
+								 features_by = "poly",								 
 								 td_error_method = "discounted",
 								 dutch_traces = TRUE,
 								 policy = "greedy",
@@ -318,7 +317,6 @@ meta_res <- future_lapply(X = c("poly_normalized", "splines" ,"poly", "tiling"),
 								  convergence_check_frequency = 2000,
 								  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 
-#str(meta_res)
 
 str(meta_res[[1]])
 

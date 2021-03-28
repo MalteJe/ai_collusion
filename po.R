@@ -112,45 +112,55 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 	if (features_by == "tiling") {
 		get_x <<- get_x_tiling
 		
-		theta_specs <- set_up_tilings(specifications = specifications, min_price = mc, max_price = max_price)
-		w_specs <- set_up_tilings(specifications = specifications)
+		theta_specs <- set_up_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
+		w_specs <- set_up_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 2)
 		
-		length_w <- specifications$n_tiles^3 * specifications$n_tilings
+		theta_length <- specifications$n_tiles^3 * specifications$n_tilings
+		w_length <- specifications$n_tiles^2 * specifications$n_tilings
 	} else if (features_by == "splines") {
 		
 		get_x <<- get_x_splines
 		# get_x <<- get_x_splines2
 		
-		feature_specs <- set_up_splines(specifications = specifications, min_price = mc, max_price = max_price, rounding_precision = rounding_precision)
+		theta_specs <- set_up_splines(specifications = specifications, min_price = mc, max_price = max_price, rounding_precision = rounding_precision, vars = 3)
+		w_specs <- set_up_splines(specifications = specifications, min_price = mc, max_price = max_price, rounding_precision = rounding_precision, vars = 2)
 		
-		length_w <- 6 * (specifications$splines_degree + specifications$n_knots)
+		theta_length <- 3 * (specifications$splines_degree + specifications$n_knots)
+		w_length <- 6 * (specifications$splines_degree + specifications$n_knots)
 		#length_w <- (specifications$splines_degree + specifications$n_knots)^3
 	} else if (features_by == "poly") {
 		get_x <<- get_x_poly
 		
-		feature_specs <- set_up_poly(specifications = specifications)
+		theta_specs <- set_up_poly(specifications = specifications, vars = 3)
+		w_specs <- set_up_poly(specifications = specifications, vars = 2)
 		
 		length_states <- n + 1  # '+1' reflects action undertaken
-		length_w <- choose(specifications$degree + length_states, length_states) - 1
+		theta_length <- choose(specifications$degree + length_states, length_states) - 1
+		w_length <- choose(specifications$degre + n, n) - 1
 	} else if (features_by == "poly_normalized") {
 		get_x <<- get_x_poly_normalized
 		
-		feature_specs <- set_up_poly_normalized(specifications = specifications, min_price = mc, max_price = max_price)
+		theta_specs <- set_up_poly_normalized(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
+		w_specs <- set_up_poly_normalized(specifications = specifications, min_price = mc, max_price = max_price, vars = 2)
 		
 		length_states <- n + 1  # '+1' reflects action undertaken
-		length_w <- choose(specifications$degree + length_states, length_states) - 1
+		theta_length <- choose(specifications$degree + length_states, length_states) - 1
+		w_length <- choose(specifications$degre + n, n) - 1
 	} else {
 		stop("features_by must be one of 'tiling', 'splines', 'poly' or 'poly_normalized'")
 	}
 	
 	
-	theta_single <- rep(w_init, length_w)
+	# initialize theta and w
+	theta_single <- rep(0, theta_length)
 	theta <- list(theta_single, theta_single)
 	
-	# initiate eligibility trace
-	z_single <- rep(0, length_w)
-	z_theta <- list(z_single, z_single)
-	z_w <- z_theta
+	w_single <- rep(0, w_length)
+	w <- list(w_single, w_single)
+	
+	# initiate eligibility traces
+	z_theta <- theta
+	z_w <- w
 	
 	
 	

@@ -5,8 +5,8 @@ set_up_poly <- function(specifications,    # list with named element: polynomial
 								vars               # number of variables to enter the feature vector
 								) {
 	
-	expon <- expand.grid(rep(list(0:3), vars)) %>%
-		filter(between(rowSums(.), 1, 3))
+	expon <- expand.grid(rep(list(0:specifications$degree), vars)) %>%
+		filter(between(rowSums(.), 1, specifications$degree))
 	
 	exponents <- expon %>%
 		arrange(get(rev(names(expon)))) %>%
@@ -26,8 +26,8 @@ get_x_poly <- function(state_set, action, feature_specs) {
 }
 
 
-# fs_poly <- set_up_poly(list(degree = 3), vars = 2)
-# get_x_poly(c(1,2), NULL, fs_poly)
+# fs_poly <- set_up_poly(list(degree = 4), vars = 3)
+# get_x_poly(c(1,2), 1.8, fs_poly)
 
   # A2 - Polynomial into normalization
 

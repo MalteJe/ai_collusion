@@ -4,9 +4,9 @@ if the system were stationary --> convergence guarantee (e.g. Jaakoola et al. 19
 
 Though both agents repeatedly face the environment as presented in \autoref{enironment}, I will present this section from the vantage point of a single agent. Accordingly, the subscript {i} is dropped when appropriate.
 
-\subsection{value approximation}
+\subsection{value approximation}\label{value_approximation}
 
-The agent learns to approximate the value of an action given the available information. The potential actions reflect the available prices in the current period. It is useful to discretize the action space.\footnote{This discretization usually implies that agents will not charge exactly $p_n$ or $p_m$.} Compared to the baseline specification in \textcite{calvano_artificial_2019}, I consider a wider price range confined by a lower bound $A_i^L$ and an upper bound $A_i^U$:
+The agent learns to approximate the value of an action given the available information. The potential actions reflect the available prices in the current period. It is useful to discretize the action space.\footnote{This discretization usually implies that agents will not charge exactly $p_n$ or $p_m$.} Compared to the baseline specification in \textcite{calvano_artificial_2019}, I consider a wider price range confined by a lower bound $A^L$ and an upper bound $A^U$:
 
 \begin{gather}
 A^{L} = c
@@ -16,39 +16,55 @@ A^{L} = c
 A^{U} = p_m + \zeta (p_n - c)
 \end{gather}
 
-The lower bound ensures positive margins. It is conceivable that a human manager could implement a sanity restriction like that before conceding pricing authority to an algorithm. The parameter $\zeta$ controls the extent to which the upper bound $A_i^U$ exceeds the monopoly price. With $\zeta = 1$, the difference between $A^{L}$ and $p_n$ is equal to the difference between $A^{U}$ and $p_m$. The available set of prices $\mathcal{A}$ is then evenly spaced out in the the interval $[A^L, A^U]$:
+The lower bound ensures positive margins. It is conceivable that a human manager could implement a sanity restriction like that before conceding pricing authority to an algorithm. The parameter $\zeta$ controls the extent to which the upper bound $A^U$ exceeds the monopoly price. With $\zeta = 1$, the difference between $A^{L}$ and $p_n$ is equal to the difference between $A^{U}$ and $p_m$. The available set of prices $\mathcal{A}$ is then evenly spaced out in the the interval $[A^L, A^U]$:
 
 \begin{gather}
-	\mathcal{A} = (A^L, A^L + \frac{1(A^U - A^L)}{m-1}, A^L + \frac{2(A^U - A^L)}{m-1}~ , ... , ~ A^L + \frac{m-2(A^U - A^L)}{m-1}, A^U)
+	\mathcal{A} = (A^L, A^L + \frac{1(A^U - A^L)}{m-1}, A^L + \frac{2(A^U - A^L)}{m-1}~ , ... , ~ A^L + \frac{(m-2)(A^U - A^L)}{m-1}, A^U)
 \end{gather}
 
 $m$ determines the number of feasible prices. Following \textcite{sutton_reinforcement_2018}, I denote any possible action as $a \in \mathcal{A}$ and the actual realization at time $t$ as $A_t$.
 
-In this simulation, the state set $S_t$  comprises merely the prices of the previous period $t-1$:
+In this simulation, the state set $S_t$ comprises merely the prices of the previous period $t-1$:
 
 \begin{gather}
 S_t = \{ p_{i, t-1}, p_{j, t-1} \}
 \end{gather}
 
 
+Accordingly, for every state variable, the set of possible states is identical to the feasible actions, i.e. $\mathcal{A}$. However, this is not required for functional approximation methods. Theoretically, any state variable could be continuous and unbounded. Similarly to actions, $s \in \mathcal{S}$ denotes any possible state set and $S_t$ refers to the actual states at $t$.
 
-Lastly, a set of parameters $\boldsymbol{w} = \{w_1, w_2, ..., w_d\}$ maps any combination of $S_t$ and $A_t$ to a value estimate $\hat{q}$.\footnote{In the computer science literature, $\boldsymbol{w}$ is typically referred to as \emph{weights}. I will stick to the economic vocabulary and declare $\boldsymbol{w}$ parameters.} Hence:
+
+
+
+
+
+Lastly, a set of parameters $\boldsymbol{w} = \{w_1, w_2, ..., w_D\}$, where $d \in \{1, 2, ..., D\}$, maps any combination of $S_t$ and $A_t$ to a value estimate $\hat{q}$.\footnote{In the computer science literature, $\boldsymbol{w}$ is typically referred to as \emph{weights}. I will stick to the economic vocabulary and declare $\boldsymbol{w}$ parameters.} Hence:
 
 \begin{gather}\label{q_estimation}
 	\hat{q}(S_t,A_t,\boldsymbol{w}_t) = \hat{q}(p_{i, t-1}, p_{j, t-1}, p_{i, t}, \boldsymbol{w}_t)
 \end{gather}
 
-Two elements are required for this system to work successfully. First, the agents must mix between \emph{exploration and exploitation}. Second, the set of parameters $\boldsymbol{w}$ must be continuously optimized.
+More specifically, any state-action combination is represented by a \emph{feature vector} $\boldsymbol{x}_t = \boldsymbol{x}(S_t, A_t) = \{x_1(S_t, A_t), x_2(S_t, A_t), ..., x_D(S_t, A_t)\}$ and every \emph{feature} $x_d = x_d(S_t, A_t)$ is associated with a counterpart $w_d$. In section \ref{feature_extraction} the mechanisms to extract features are outlined in more detail. For now, note that I will only consider linear functions of $\hat{q}$. In this case, \autoref{q_estimation} can be written as the inner product of the feature vector and the set of parameters, i.e.\ $\boldsymbol{x}_t \top \boldsymbol{w} = \sum_{d=1}^{D} x_d * w_d$
+
+Two elements are required for the algorithms to work successfully. First, the agents must mix between \emph{exploration and exploitation}. Second, the set of parameters $\boldsymbol{w}$ must be continuously optimized.
 
 \paragraph{Exploration and Exploitation} 
 In every period, the agent chooses either to \emph{exploit} its current knowledge and pick the supposedly optimal action or to \emph{explore} in order to test the merit of alternative choices that are perceived sub-optimal but may turn out to be superior. As is common, I use a simple $\epsilon$-greedy policy to steer this tradeoff:
 
 \begin{gather}\label{action_selection}
- A_t = \begin{cases} arg ~\underset{a}{max} ~ \hat{q}(S_t,a,\boldsymbol{w}_t) & \quad \text{with probability } 1 - \epsilon\\
-\text{randomize over } \mathcal{A} & \quad \text{with probability } \epsilon\\ \end{cases} 
+ A_t = \begin{cases} arg ~\underset{a}{max} ~ \hat{q}(S_t,a,\boldsymbol{w}_t) & \quad \text{with probability } 1 - \epsilon_t\\
+\text{randomize over } \mathcal{A} & \quad \text{with probability } \epsilon_t\\ \end{cases} 
 \end{gather}
 
-In words, the agent chooses to play the action that is regarded optimal with probability $1-\epsilon$ and randomizes over all prices with probability $\epsilon$.\footnote{If more than one $a$ maximizes $\hat{q}$, ties are broken randomly.} Subsequently, the quantities and profits are realized in accordance with equations \ref{quantity} \& \ref{profit}. The agents' actions in period $t$ become the state set in $t+1$ and new actions are chosen as dictated by equations \ref{q_estimation} \& \ref{action_selection}.
+In words, the agent chooses to play the action that is regarded optimal with probability $1-\epsilon_t$ and randomizes over all prices with probability $\epsilon_t$.\footnote{If more than one $a$ maximizes $\hat{q}$, ties are broken randomly.} The subscript suggests that exploration varies over time. The explicit definition is given by:
+
+\begin{gather}
+	\epsilon_t = \psi e^{-\beta t}~ \text{, where}
+\end{gather}
+
+$\psi \in [0, 1]$ defines the initial exploration rate at $t = 0$ and $\beta$ controls the speed of its decay. This \emph{time-declining} exploration rate ensures that the agents randomize actions frequently at the beginning of the simulation and stabilizes its behavior over time. 
+
+After both agents selected an action, the quantities and profits are realized in accordance with equations \ref{quantity} \& \ref{profit}. The agents' actions in period $t$ become the state set in $t+1$ and new actions are chosen as dictated by equations \ref{q_estimation} \& \ref{action_selection}.
 
 Irrespective of the \emph{exploit vs explore} decision, the agent proceeds to leverage the observed outcomes to refine $\boldsymbol{w}$.
 
@@ -112,3 +128,8 @@ where $ \boldsymbol{x}_t \intercal \boldsymbol{z}_t $ denotes the inner product 
 				 \boldsymbol{w}_{t-1} \intercal \boldsymbol{x}_t)
 				(\boldsymbol{z}_t - \boldsymbol{x}_t)
 \end{gather}
+
+
+
+
+\input{04b_feature_extraction.tex}

@@ -2193,10 +2193,11 @@
     <bcf:citekey order="8">sutton_reinforcement_2018</bcf:citekey>
     <bcf:citekey order="9">naik_discounted_2019</bcf:citekey>
     <bcf:citekey order="10">seijen_true_2014</bcf:citekey>
-    <bcf:citekey order="11">demo_art</bcf:citekey>
-    <bcf:citekey order="12">demo_book</bcf:citekey>
-    <bcf:citekey order="13">demo_source</bcf:citekey>
-    <bcf:citekey order="14">grapov2018rise</bcf:citekey>
+    <bcf:citekey order="11">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="12">demo_art</bcf:citekey>
+    <bcf:citekey order="13">demo_book</bcf:citekey>
+    <bcf:citekey order="14">demo_source</bcf:citekey>
+    <bcf:citekey order="15">grapov2018rise</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

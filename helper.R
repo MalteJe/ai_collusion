@@ -1,3 +1,39 @@
+# function approximation --------------------------------------------------------------
+
+
+estimate_state_action_value <- function(state_set, action, feature_specs, w) {
+	x <- get_x(state_set = state_set, action = action, feature_specs = feature_specs)
+	sum(x * w)
+}
+
+
+optimize_action <- function(state_set, available_prices, feature_specs, w) {
+	opt_id <- map_dbl(.x = available_prices,
+							.f = estimate_state_action_value,
+							state_set = state_set,
+							feature_specs,
+							w = w) %>%
+		which.is.max()
+	
+	available_prices[opt_id]
+}
+
+
+optimize_grid <- function(w, price_grid, available_prices, feature_specs) {
+	map_dbl(.x = price_grid,
+			  .f = optimize_action,
+			  available_prices = available_prices,
+			  feature_specs = feature_specs, 
+			  w = w)
+}
+
+
+
+
+
+
+
+
 # shifts positions of a vector by x steps
 shifter <- function(n = 1, x) {
 	if (n == 0) x else c(tail(x, -n), head(x, n))

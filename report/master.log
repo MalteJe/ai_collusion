@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7440 64-bit) (preloaded format=pdflatex 2020.7.2)  14 MAR 2021 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7440 64-bit) (preloaded format=pdflatex 2020.7.2)  26 MAR 2021 19:25
 entering extended mode
 **./master.tex
 (master.tex
@@ -443,8 +443,12 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@randommax=\count384
 \c@blind@pangramcount=\count385
 \c@blind@pangrammax=\count386
-) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xcolor.st
-y"
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fundus-calligra\ca
+lligra.sty"
+Package: calligra 2012/04/10 v1.9 LaTeX package calligra
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xcolor.sty"
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\color
@@ -774,25 +778,25 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (master.aux)
 \openout1 = `master.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-Package scrbase Info: activating english \contentsname on input line 32.
-Package scrbase Info: activating english \listfigurename on input line 32.
-Package scrbase Info: activating english \listtablename on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+Package scrbase Info: activating english \contentsname on input line 37.
+Package scrbase Info: activating english \listfigurename on input line 37.
+Package scrbase Info: activating english \listtablename on input line 37.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -837,8 +841,8 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 32.
-Package biblatex Info: Reference segment=0 on input line 32.
+Package biblatex Info: Reference section=0 on input line 37.
+Package biblatex Info: Reference segment=0 on input line 37.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
 df.mkii"
@@ -862,7 +866,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
 \AtBeginShipoutBox=\box52
-Package hyperref Info: Link coloring OFF on input line 32.
+Package hyperref Info: Link coloring OFF on input line 37.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -878,9 +882,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count426
 )
-LaTeX Info: Redefining \ref on input line 32.
-LaTeX Info: Redefining \pageref on input line 32.
-LaTeX Info: Redefining \nameref on input line 32.
+LaTeX Info: Redefining \ref on input line 37.
+LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \nameref on input line 37.
  (master.out) (master.out)
 \@outlinefile=\write4
 \openout4 = `master.out'.
@@ -892,7 +896,7 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 32.
+(scrartcl)           before \begin{document} on input line 37.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/bookmark\bookmark.
 sty"
@@ -906,13 +910,13 @@ Package auxhook Info: \AddLineBeginMainAux comes a little late,
 e 168.
 \BKM@id=\count427
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
 
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -933,73 +937,90 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout7 = `master.lot'.
 
  [6] (01_introduction.tex)
-(02_literature.tex) (03_environment.tex) (04_algorithm.tex [7] [8] [9])
-(05_results.tex) (06_extensions.tex) (07_conclusions.tex) [10]
+(02_literature.tex) (03_environment.tex) (04_algorithm.tex [7] [8] [9] [10]
+(04b_feature_extraction.tex
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 29.
+
+[11]
+LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
+(Font)              scaled to size 15.76802pt on input line 41.
+LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
+(Font)              scaled to size 11.52002pt on input line 41.
+LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
+(Font)              scaled to size 8.64001pt on input line 41.
+LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
+(Font)              scaled to size 12.96002pt on input line 47.
+LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
+(Font)              scaled to size 7.20001pt on input line 47.
+ [12])) (05_results.tex) (06_extensions.tex) (07_conclusions.tex)
 LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 
-105.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 105.
+110.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 110.
 
 
 LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbackslash' on input line 105.
+(Font)              for symbol `textbackslash' on input line 110.
 
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-06.
+11.
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 106.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 111.
 
-[11]
+[13]
 
-LaTeX Warning: Reference `tokyo' on page 12 undefined on input line 143.
-
-
-LaTeX Warning: Reference `tokyo' on page 12 undefined on input line 146.
-
-[12] [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 246--247
-
- []
+LaTeX Warning: Reference `tokyo' on page 14 undefined on input line 148.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--258
+LaTeX Warning: Reference `tokyo' on page 14 undefined on input line 151.
+
+[14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 
  []
 
-[15]
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--263
+
+ []
+
+[17]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 276.
- [16]
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 281.
+ [18]
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
 
  []
 
 
-Overfull \hbox (22.15771pt too wide) in paragraph at lines 315--331
+Overfull \hbox (22.15771pt too wide) in paragraph at lines 320--336
 [][] 
  []
 
-[17] [18] [19] [20]
-Overfull \hbox (24.02502pt too wide) in paragraph at lines 453--454
+[19] [20] [21] [22]
+Overfull \hbox (24.02502pt too wide) in paragraph at lines 458--459
 [][]$\OT1/cmtt/m/n/10.95 https : / / ipfs-[]sec . stackexchange . cloudflare-[]
 ipfs . com / tex / A / question / 63852 .
  []
 
 
-Overfull \hbox (29.77371pt too wide) in paragraph at lines 454--455
+Overfull \hbox (29.77371pt too wide) in paragraph at lines 459--460
 [][]$\OT1/cmtt/m/n/10.95 https : / / ipfs-[]sec . stackexchange . cloudflare-[]
 ipfs . com / tex / A / question / 286706 .
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 462.
-[21] [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 462.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 467.
+[23] [24]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 467.
  (master.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 462.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 462.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 467.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 467.
 Package rerunfilecheck Info: File `master.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1014,54 +1035,55 @@ Package logreq Info: Writing requests to 'master.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20568 strings out of 480797
- 382353 string characters out of 2895576
- 1141777 words of memory out of 3000000
- 36154 multiletter control sequences out of 15000+200000
- 554368 words of font info for 105 fonts, out of 3000000 for 9000
+ 20631 strings out of 480797
+ 383562 string characters out of 2895576
+ 1143273 words of memory out of 3000000
+ 36193 multiletter control sequences out of 15000+200000
+ 556538 words of font info for 110 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  49i,18n,56p,10103b,3474s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\psymo\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm1095.pk><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmbsy10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/psymo/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/psymo/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/psymo
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
+ <C:\Users\psymo\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/public/calligra/dpi
+631\callig15.pk> <C:\Users\psymo\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknap
+pen/ec/dpi600\tcrm1095.pk><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/Users/psymo/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/psymo/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/psy
+mo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><
 C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmex10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/psymo/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/psymo/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/psymo/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/
-Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cmext
-ra/cmmib8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cmextra/cmmib9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/psymo/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/psymo/AppData
-/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/p
-symo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-<C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmsl10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/psymo/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/psymo/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
-/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-msy6.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmsy8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/psymo/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/psymo/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/User
-s/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10
-.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/symbols/msam10.pfb>
-Output written on master.pdf (22 pages, 472113 bytes).
+/cmcsc10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmex10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/psymo/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/psymo/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/psymo/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/
+Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+mib10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cmextra/cmmib8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cmextra/cmmib9.pfb><C:/Users/psymo/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/psymo/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
+/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.p
+fb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmr6.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/psymo/AppData/Local/
+Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/psymo/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C
+:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsy6.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/psymo/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/psymo/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Us
+ers/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti
+9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmtt10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/symbols/msam10.pfb>
+Output written on master.pdf (24 pages, 494971 bytes).
 PDF statistics:
- 571 PDF objects out of 1000 (max. 8388607)
- 116 named destinations out of 1000 (max. 500000)
- 337 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 628 PDF objects out of 1000 (max. 8388607)
+ 132 named destinations out of 1000 (max. 500000)
+ 377 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -13,78 +13,88 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\nonumberline Exploration and Exploitation}{9}{section*.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline Update}{9}{section*.5}%
+\contentsline {paragraph}{\nonumberline Update}{10}{section*.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Results}{11}{section.5}%
+\contentsline {subsection}{\numberline {4.2}Feature Extraction}{11}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Robustness \& Extensions}{11}{section.6}%
+\contentsline {subsubsection}{\numberline {4.2.1}Polynomials}{11}{subsubsection.4.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Conclusions}{11}{section.7}%
+\contentsline {subsubsection}{\numberline {4.2.2}Normalized Polynomials}{12}{subsubsection.4.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}To Do}{11}{section.8}%
+\contentsline {subsubsection}{\numberline {4.2.3}Polynomial Splines}{12}{subsubsection.4.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Hierarchy and References}{11}{section.9}%
+\contentsline {subsubsection}{\numberline {4.2.4}Tile Coding}{12}{subsubsection.4.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1}Hierarchy}{11}{subsection.9.1}%
+\contentsline {section}{\numberline {5}Results}{13}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.1.1}Block Numbering}{11}{subsubsection.9.1.1}%
+\contentsline {section}{\numberline {6}Robustness \& Extensions}{13}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.1.2}Further hierarchy commands}{11}{subsubsection.9.1.2}%
+\contentsline {section}{\numberline {7}Conclusions}{13}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2}Calling other text files}{12}{subsection.9.2}%
+\contentsline {section}{\numberline {8}To Do}{13}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.3}References}{12}{subsection.9.3}%
+\contentsline {section}{\numberline {9}Hierarchy and References}{13}{section.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.3.1}Default References}{12}{subsubsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.1}Hierarchy}{13}{subsection.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.3.2}Hyperref}{12}{subsubsection.9.3.2}%
+\contentsline {subsubsection}{\numberline {9.1.1}Block Numbering}{13}{subsubsection.9.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.3.3}URLs and local file paths}{12}{subsubsection.9.3.3}%
+\contentsline {subsubsection}{\numberline {9.1.2}Further hierarchy commands}{14}{subsubsection.9.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.4}Footnotes}{13}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.2}Calling other text files}{14}{subsection.9.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10}Various}{13}{section.10}%
+\contentsline {subsection}{\numberline {9.3}References}{14}{subsection.9.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.1}Font Types}{13}{subsection.10.1}%
+\contentsline {subsubsection}{\numberline {9.3.1}Default References}{14}{subsubsection.9.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.2}Font Size}{14}{subsection.10.2}%
+\contentsline {subsubsection}{\numberline {9.3.2}Hyperref}{14}{subsubsection.9.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.3}Quote and dash variations}{14}{subsection.10.3}%
+\contentsline {subsubsection}{\numberline {9.3.3}URLs and local file paths}{15}{subsubsection.9.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.4}Formatting}{15}{subsection.10.4}%
+\contentsline {subsection}{\numberline {9.4}Footnotes}{15}{subsection.9.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {10.4.1}line breaks}{15}{subsubsection.10.4.1}%
+\contentsline {section}{\numberline {10}Various}{15}{section.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {10.4.2}Indention}{15}{subsubsection.10.4.2}%
+\contentsline {subsection}{\numberline {10.1}Font Types}{15}{subsection.10.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {10.4.3}Hyphenation}{16}{subsubsection.10.4.3}%
+\contentsline {subsection}{\numberline {10.2}Font Size}{16}{subsection.10.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.5}Centering}{16}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.3}Quote and dash variations}{16}{subsection.10.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.6}Itemization \& Enumeration}{16}{subsection.10.6}%
+\contentsline {subsection}{\numberline {10.4}Formatting}{17}{subsection.10.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {11}Tables and Figures}{17}{section.11}%
+\contentsline {subsubsection}{\numberline {10.4.1}line breaks}{17}{subsubsection.10.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {11.1}Tables}{17}{subsection.11.1}%
+\contentsline {subsubsection}{\numberline {10.4.2}Indention}{17}{subsubsection.10.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {11.2}Figures}{17}{subsection.11.2}%
+\contentsline {subsubsection}{\numberline {10.4.3}Hyphenation}{18}{subsubsection.10.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {12}Math}{19}{section.12}%
+\contentsline {subsection}{\numberline {10.5}Centering}{18}{subsection.10.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {12.1}Matrizen}{19}{subsection.12.1}%
+\contentsline {subsection}{\numberline {10.6}Itemization \& Enumeration}{18}{subsection.10.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {12.2}Summen}{19}{subsection.12.2}%
+\contentsline {section}{\numberline {11}Tables and Figures}{19}{section.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {12.3}Brüche und Wurzeln}{19}{subsection.12.3}%
+\contentsline {subsection}{\numberline {11.1}Tables}{19}{subsection.11.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13}Crafting and automating the bibliography}{20}{section.13}%
+\contentsline {subsection}{\numberline {11.2}Figures}{19}{subsection.11.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {13.1}Workflow}{20}{subsection.13.1}%
+\contentsline {section}{\numberline {12}Math}{21}{section.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {13.2}Configurations}{20}{subsection.13.2}%
+\contentsline {subsection}{\numberline {12.1}Matrizen}{21}{subsection.12.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {13.3}Troubleshooting}{21}{subsection.13.3}%
+\contentsline {subsection}{\numberline {12.2}Summen}{21}{subsection.12.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Glossary}{22}{appendix.A}%
+\contentsline {subsection}{\numberline {12.3}Brüche und Wurzeln}{21}{subsection.12.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}second appendix}{22}{appendix.B}%
+\contentsline {section}{\numberline {13}Crafting and automating the bibliography}{22}{section.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.1}Workflow}{22}{subsection.13.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.2}Configurations}{22}{subsection.13.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.3}Troubleshooting}{23}{subsection.13.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Glossary}{24}{appendix.A}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B}second appendix}{24}{appendix.B}%

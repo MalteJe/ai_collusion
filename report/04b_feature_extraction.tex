@@ -2,6 +2,25 @@
 \subsection{Feature Extraction}\label{feature_extraction}
 
 \textbf{TBD: introduction}
+
+\textbf{Tabular}
+
+A natural way to represent the state-action space is to preserve a distinct feature (and coefficient) for every unique state-action combination. Features are binary, i.e.\ any feature is $1$ if the associated state-action combination is selected and $0$ otherwise. The respective coefficient tracks the performance over time and directly represents the \emph{value} of that state-action combination. This approach is called \emph{tabular} because it is easy to imagine a table where every cell represents a unique state-action combination. Tabular methods have been used extensively in the simulations on algorithmic collusion that provided empirical evidence of collusive outcomes being possible in simple environments (\textbf(citations)). Their widespread application is justified by their conceptual simplicity and their historic usage in autonomous pricing of airline fares and electricity markets \parencite{ittoo_algorithmic_2017}. Moreover, tabular methods give rise to a family of robust learning algorithms with well-understood convergence guarantees (\textbf{citation}) \footnote{Q-Learning being just one particular application.}.
+
+However, tabular methods are not necessarily the best or fastest way to learn an optimal policy. In real life markets, two salient factors may impede its effectiveness. First, prices are (quasi-) continuous - a fact essentially ignored by tabular methods. Second, most economic markets are complex and change over time. I will take a closer look at each of these factors and the potential repercussions when utilizing tabular methods.
+
+Obviously, any decision maker is only restricted by the currency's smallest feasible increment and can set more than just a handful of prices. It is certainly conceivable, maybe even desirable, that a decision maker reduces the number of considered prices and gets arbitrarily close to an optimal solution without exactly achieving it. However, strictly speaking, when considering the price of other players
+	
+
+disadvantages:
+prices are continuous.
+	- more serious, in reality one agent can not limit the action space of other agents (or even additional environment variables that capture demand) and it is not entirely clear how to handle that. possible response is to approximate continuous prices by reducing price intervals to arbitrary length
+		-> increases complexity and thus, learning time. (as shown in appendix of Calvano et al. appendix?)
+	- neglects similarity of prices
+
+
+tabular case as baseline --> special case of tile coding
+
 As outlined in \autoref{value_approximation}, the state-action space contains just 3 variables. Assigning a single coefficient to each variable certainly fails to do justice to the complexity of the optimization problem. In particular, a \emph{reward-punishment} theme requires that actions are chosen conditional on past prices (i.e.\ the state space). Hence, it is imperative to consider interactions and non-linearities. Therefore, I utilize various methods to extract features form the state-action space.
 
 In reinforcement learning, a common approach is to store a distinct set of coefficients for every feasible action.\footnote{In this case, the vector of coefficients contains \emph{m} times features components} This is a sensible approach with qualitative action spaces. However, very much like tabular learning, a separate set of coefficients neglects the (quasi-) continuous nature of prices. Therefore two issues arise. First, discretizing the action space doesn't scale well if the number of feasible prices increases. Consequently, learning requires relatively many periods with large $m$. Second, observing a particular reward may not only constitute an informative feedback for the particular action undertaken, but also for 'similar' prices. Using and updating coefficients valid for (a subset of) all feasible prices exploits this.

@@ -65,23 +65,12 @@ server <- function(input, output, session) {
   })  
   
   run_info <- reactive({
-    tribble(
-      ~parameter, ~value,
-      "Run ID"    , selected_run()$run_id,
-      "m"         , selected_run()$specs$m,
-      "Alpha"     , selected_run()$specs$Alpha,
-      "Beta"      , selected_run()$specs$Beta,
-      "Gamma"     , selected_run()$specs$Gamma,
-      "Lambda"    , selected_run()$specs$Lambda,
-     #  "Polynomial Degree", selected_run()$specs$specifications$degree,
-      "Tiling"    , selected_run()$specs$Tiling,
-      "Number of Tilings", selected_run()$specs$specifications$n_tilings,
-      "Number of Tiles", selected_run()$specs$specifications$n_tiles,
-      "differential"    , selected_run()$specs$differential,
-      "dutch Traces"    , selected_run()$specs$dutch_traces,
-      "Convergence achieved", selected_run()$convergence$converged,
-      "Convergence after", selected_run()$convergence$convergence_t) %>%
-      mutate(value = ifelse(is.symbol(value), NA, value))
+    
+    c(selected_run()$specs[-1], selected_run()$convergence) %>%
+      list.filter(!is.symbol(.), length(.) == 1) %>%
+      flatten_dfc() %>%
+      map_dfr(as.character) %>%
+      pivot_longer(cols = everything(), names_to = "parameter")
   })
   
   
@@ -118,8 +107,7 @@ server <- function(input, output, session) {
 # Intervention ------------------------------------------------------------
   
   intervention_t <- reactive({
-  	n_rows <- nrow(run_outcomes())
-  	n_rows - (n_rows %% 1000)
+    selected_run()$convergence$convergence_t
   })
   
   t_before_intervention <- reactive({
@@ -138,7 +126,7 @@ server <- function(input, output, session) {
   		ggplot() +
       geom_hline(data = benchmarks, aes(yintercept = value), size = 0.6) +
   		geom_line(aes(x = t, y = value, col = player, linetype = player), size = 1.2) +
-  		geom_point(aes(x = t, y = value, col = player, linetype = player), size = 1) +
+  		geom_point(aes(x = t, y = value, col = player), size = 1) +
   		geom_vline(xintercept = intervention_t() + 0.1, color = "red") +
   		facet_wrap(~metric, nrow = 2, scales = "free_y") +
   		theme_tq()
@@ -167,11 +155,13 @@ server <- function(input, output, session) {
   
   
   plot_wide <- reactive({
+    
     brs <- map_dfc(.x = run_w(),
             .f = optimize_grid,
             price_grid = price_grid(),
             available_prices = available_prices(),
-            feature_specs = feature_specs())
+            feature_specs = feature_specs(),
+            get_x_run = selected_run()$get_x)
     
     brs %>%
       rename(p1_response = V1, p2_response = V2) %>%
@@ -180,17 +170,20 @@ server <- function(input, output, session) {
   })
   
   plot_long <- reactive({
+    
     plot_wide() %>%
       pivot_longer(cols = c("p1_response", "p2_response"), names_to = "response", values_to = "value")
   })
   
   
   equilibriums <- reactive({
+    
     filter(plot_wide(), equilibrium == TRUE)
   })
   
   
   output$tiles <- renderPlot({
+
     if(input$tiles) {
       out <- ggplot(mapping = aes(x = p1, y = p2)) +
         geom_raster(data = plot_long(), aes(fill = value)) +

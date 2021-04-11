@@ -16,7 +16,7 @@ A^{L} = c
 A^{U} = p_m + \zeta (p_n - c)
 \end{gather}
 
-The lower bound ensures positive margins. It is conceivable that a human manager could implement a sanity restriction like that before conceding pricing authority to an algorithm. The parameter $\zeta$ controls the extent to which the upper bound $A^U$ exceeds the monopoly price. With $\zeta = 1$, the difference between $A^{L}$ and $p_n$ is equal to the difference between $A^{U}$ and $p_m$. The available set of prices $\mathcal{A}$ is then evenly spaced out in the the interval $[A^L, A^U]$:
+The lower bound ensures positive margins. It is conceivable that a human manager could implement a sanity restriction like that before conceding pricing authority to an algorithm. The parameter $\zeta$ controls the extent to which the upper bound $A^U$ exceeds the monopoly price. With $\zeta = 1$, the difference between $A^{L}$ and $p_n$ is equal to the difference between $A^{U}$ and $p_m$. The available set of prices $\mathcal{A}$ is then evenly spaced out in the interval $[A^L, A^U]$:
 
 \begin{gather}
 	\mathcal{A} = (A^L, A^L + \frac{1(A^U - A^L)}{m-1}, A^L + \frac{2(A^U - A^L)}{m-1}~ , ... , ~ A^L + \frac{(m-2)(A^U - A^L)}{m-1}, A^U)
@@ -31,20 +31,20 @@ S_t = \{ p_{i, t-1}, p_{j, t-1} \}
 \end{gather}
 
 
-Accordingly, for every state variable, the set of possible states is identical to the feasible actions, i.e. $\mathcal{A}$. However, this is not required for functional approximation methods. Theoretically, any state variable could be continuous and unbounded. Similarly to actions, $s \in \mathcal{S}$ denotes any possible state set and $S_t$ refers to the actual states at $t$.
+Accordingly, for every state variable, the set of possible states is identical to the feasible actions, i.e. $\mathcal{A}$. However, this is not required with function approximation methods. Theoretically, any state variable could be continuous and unbounded. Similarly to actions, $s \in \mathcal{S}$ denotes any possible state set and $S_t$ refers to the actual states at $t$.
 
 
 
 
 
 
-Lastly, a set of parameters $\boldsymbol{w} = \{w_1, w_2, ..., w_D\}$, where $d \in \{1, 2, ..., D\}$, maps any combination of $S_t$ and $A_t$ to a value estimate $\hat{q}$.\footnote{In the computer science literature, $\boldsymbol{w}$ is typically referred to as \emph{weights}. I will stick to the economic vocabulary and declare $\boldsymbol{w}$ parameters.} Hence:
+Lastly, a set of parameters $\boldsymbol{w} = \{w_1, w_2, ..., w_D\}$, where $d \in \{1, 2, ..., D\}$, maps any combination of $S_t$ and $A_t$ to a value estimate $\hat{q-}_t$.\footnote{In the computer science literature, $\boldsymbol{w}$ is typically referred to as \emph{weights}. I will stick to the economic vocabulary and declare $\boldsymbol{w}$ parameters.} Hence:
 
 \begin{gather}\label{q_estimation}
-	\hat{q}(S_t,A_t,\boldsymbol{w}_t) = \hat{q}(p_{i, t-1}, p_{j, t-1}, p_{i, t}, \boldsymbol{w}_t)
+	\hat{q-}_t = \hat{q}(S_t,A_t,\boldsymbol{w}_t) = \hat{q}(p_{i, t-1}, p_{j, t-1}, p_{i, t}, \boldsymbol{w}_t)
 \end{gather}
 
-More specifically, any state-action combination is represented by a \emph{feature vector} $\boldsymbol{x}_t = \boldsymbol{x}(S_t, A_t) = \{x_1(S_t, A_t), x_2(S_t, A_t), ..., x_D(S_t, A_t)\}$ and every \emph{feature} $x_d = x_d(S_t, A_t)$ is associated with a counterpart $w_d$. In section \ref{feature_extraction} the mechanisms to extract features are outlined in more detail. For now, note that I will only consider linear functions of $\hat{q}$. In this case, \autoref{q_estimation} can be written as the inner product of the feature vector and the set of parameters, i.e.\ $\boldsymbol{x}_t \top \boldsymbol{w} = \sum_{d=1}^{D} x_d * w_d$
+More specifically, any state-action combination is represented by a \emph{feature vector} $\boldsymbol{x}_t = \boldsymbol{x}(S_t, A_t) = \{x_1(S_t, A_t), x_2(S_t, A_t), ..., x_D(S_t, A_t)\}$ and every \emph{feature} $x_d = x_d(S_t, A_t)$, where every element is derived from a state, an action or a combination thereof. Moreover each $x_d$ is associated with a counterpart $w_d$. In section \ref{feature_extraction} the mechanisms to extract features are outlined in more detail. For now, note that I will only consider linear functions of $\hat{q}$. In this case, \autoref{q_estimation} can be written as the inner product of the feature vector and the set of parameters, i.e.\ $\boldsymbol{x}_t \top \boldsymbol{w} = \sum_{d=1}^{D} x_d * w_d$
 
 Two elements are required for the algorithms to work successfully. First, the agents must mix between \emph{exploration and exploitation}. Second, the set of parameters $\boldsymbol{w}$ must be continuously optimized.
 
@@ -62,7 +62,7 @@ In words, the agent chooses to play the action that is regarded optimal with pro
 	\epsilon_t = \psi e^{-\beta t}~ \text{, where}
 \end{gather}
 
-$\psi \in [0, 1]$ defines the initial exploration rate at $t = 0$ and $\beta$ controls the speed of its decay. This \emph{time-declining} exploration rate ensures that the agents randomize actions frequently at the beginning of the simulation and stabilizes its behavior over time. 
+$\psi \in [0, 1]$ defines the initial exploration rate at $t = 0$ and $\beta$ controls the speed of its decay. This \emph{time-declining} exploration rate ensures that the agent randomizes actions frequently at the beginning of the simulation and stabilizes its behavior over time. 
 
 After both agents selected an action, the quantities and profits are realized in accordance with equations \ref{quantity} \& \ref{profit}. The agents' actions in period $t$ become the state set in $t+1$ and new actions are chosen as dictated by equations \ref{q_estimation} \& \ref{action_selection}.
 
@@ -72,7 +72,7 @@ Irrespective of the \emph{exploit vs explore} decision, the agent proceeds to le
 
 \paragraph{Update}
 
-After observing the opponent's price and the own profits\footnote{Again, the computer science literature tends to refer to $\pi$ as \emph{reward} which is close to the economic interpretation of \emph{profits}.}, the agent exploits this new information to improve $\boldsymbol{w}$. A good starting point to introduce the utilized update rules is the so called \emph{TD error}, denoted $\delta_t$ (\textbf{finalize footnote}).\footnote{Without function approximation, versions of the \emph{TD error} usually encompass a discount factor $gamma$, such as:
+After observing the opponent's price and the own profits, the agent exploits this new information to improve $\boldsymbol{w}$. A good starting point to introduce the utilized update rules is the so called \emph{TD error}, denoted $\delta_t$ (\textbf{finalize footnote}).\footnote{Without function approximation, versions of the \emph{TD error} usually encompass a discount factor $gamma$, such as:
 	\begin{center}
 		$\delta_t^{SARSA} = \pi_t + \gamma \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}) - \hat{q}(S_t, A_t, \boldsymbol{w})$
 		
@@ -83,10 +83,10 @@ While they come with a meaningful economic interpretation, \textcite{sutton_rein
 \textbf{average setting update}
 
 \begin{gather}
-	\delta_t = \pi_t -\widetilde{R}_{t-1} + \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~   \text{,}
+	\delta_t = r_t - \widetilde{R}_{t-1} + \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~   \text{,}
 \end{gather}
 
-where $\widetilde{R}_{t-1}$ is a (weighted) average reward. $\delta_t$ measures the difference between the \emph{ex ante} ascribed value to the selected state-action combination in $t$ and the \emph{ex post} \emph{differential} profit $\pi_t - \widetilde{R}_{t_1}$ in conjunction with the estimated value of the newly arising state-action combination in $t+1$. A positive $\delta_t$ indicates that the actual realization turned out to exceed the original expectation. Likewise, a negative $\delta_t$ suggests that the realization failed short of the expected reward of playing the particular state-action combination. In both instances, $\boldsymbol{w}$ will be adjusted accordingly, such that the state-action combination is valued respectively higher or lower next time. Note that $\delta_t$ can only be calculated after the action in the next period has been taken.\footnote{This is often referred to as \emph{SARSA}, abbreviating a state-action-reward-state-action sequence.}
+where the reward $r_t = \pi_t - p_n$ reflects the profits relative to the Nash solution and $\widetilde{R}_{t-1}$ is a (weighted) average reward.\footnote{Please note that I explicitly distinguish profits and rewards. Profits, $\pi$, represent the monetary remuneration from operating in the environment and can be interpreted economically. However, profits do not enter the learning algorithm directly. Instead, rewards, $r$, immediate successors of profits, constitute the signal that is utilized as feedback by the agents to refine their algorithms.} $\delta_t$ measures the difference between the \emph{ex ante} ascribed value to the selected state-action combination in $t$ and the \emph{ex post} \emph{differential} profit $\pi_t - \widetilde{R}_{t-1}$ in conjunction with the estimated value of the newly arising state-action combination in $t+1$. A positive $\delta_t$ indicates that the actual realization turned out to exceed the original expectation. Likewise, a negative $\delta_t$ suggests that the realization failed short of the expected reward of playing the particular state-action combination. In both instances, $\boldsymbol{w}$ will be adjusted accordingly, such that the state-action combination is valued respectively higher or lower next time. Note that $\delta_t$ can only be calculated after the action in the next period has been taken.\footnote{This is often referred to as \emph{SARSA}, abbreviating a state-action-reward-state-action sequence.}
 
 
 Surprisingly, this system 
@@ -110,7 +110,7 @@ $\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}} =
  	\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}} ~~ \text{,}
 \end{gather}
 
-where $\alpha$ steers the speed of learning. Note that I will only consider approximations that are linear in parameters. Thus, $\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}}$ simplifies to a \emph{feature vector} $\boldsymbol{x} = \{x_1, x_2, ..., x_d\}$ where every element is derived from a state, an action or a combination thereof (\textbf{more in section XYZ}).
+where $\alpha$ steers the speed of learning. As indicated earlier, I will only consider approximations that are linear in parameters. Thus, $\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}}$ simplifies to the \emph{feature vector} $\boldsymbol{x}_t = \{x_1, x_2, ..., x_d\}$.
 
 \textcite{seijen_true_2014} showed that the performance of that algorithm can be improved by keeping track of an eligibility vector $\boldsymbol{z} = \{z_1, z_2, ..., z_d\}$, called the \emph{Dutch Trace}. Like $\boldsymbol{w}$, this trace vector is updated at every time step. The trick is that the eligibility trace controls the magnitude by which individual parameters are updated, prioritizing those that contributed to producing an estimate of $hat{q}$. The update rule for the eligibility trace is:
 
@@ -118,7 +118,7 @@ where $\alpha$ steers the speed of learning. Note that I will only consider appr
 \boldsymbol{z}_{t} \leftarrow \boldsymbol{z}_{t-1} \gamma \lambda + \boldsymbol{x_t} (1 - \alpha \gamma \lambda  {  \boldsymbol{x_t} \intercal \boldsymbol{z}_{t-1} }) ~~ \text{,}
 \end{gather}
 
-where $ \boldsymbol{x}_t \intercal \boldsymbol{z}_t $ denotes the inner product of $\boldsymbol{x}_t$ and $\boldsymbol{z}_t$, i.e. $\sum_{i}^{d} x_i z_i$. $\boldsymbol{z}$ is then used in the refined parameter update:
+where $ \boldsymbol{x}_t \top \boldsymbol{z}_t $ denotes the inner product of $\boldsymbol{x}_t$ and $\boldsymbol{z}_t$, i.e. $ \boldsymbol{x}_t \top \boldsymbol{z}_t  = \sum_{i}^{d} x_i z_i$. $\boldsymbol{z}$ is then used in the refined parameter update:
 
 \begin{gather}
 	\boldsymbol{w}_{t+1} \leftarrow

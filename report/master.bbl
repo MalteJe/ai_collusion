@@ -144,6 +144,67 @@
       \endverb
       \keyw{Artificial Intelligence,Collusion,Pricing-Algorithms,Q-Learning.,Reinforcement Learning}
     \endentry
+    \entry{ittoo_algorithmic_2017}{report}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=022281daa38a949268ce8cd19108b04f}{%
+           family={Ittoo},
+           familyi={I\bibinitperiod},
+           given={Ashwin},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d2865f7c5d200f23e4bd424a7c52d847}{%
+           family={Petit},
+           familyi={P\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Social Science Research Network}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Rochester, NY}%
+      }
+      \strng{namehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
+      \strng{fullhash}{5adba9faeee1896567ba6fcf5a4bfb1b}
+      \strng{bibnamehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
+      \strng{authorbibnamehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
+      \strng{authornamehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
+      \strng{authorfullhash}{5adba9faeee1896567ba6fcf5a4bfb1b}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Amongst the wealth of concerns raised by Artificial Intelligence (“AI”), one is the risk that the deployment of algorithmic pricing agents on markets will increase occurrences of tacit collusion by orders of magnitude, and well beyond the oligopoly setting where such markets failures have been traditionally observed. This concern has already generated policy interest, and regulatory options are now commonly discussed at academic, commercial and official conferences. At the same time, however, we remain in lack of understanding of whether current AI technology holds the capabilities that entitle algorithmic pricing agents to autonomously enter into tacitly collusive strategies without human intervention. In this paper, we look at three plain-vanilla Reinforcement Learning (“RL”) technologies, and attempt to understand whether their introduction at scale on markets can lead to tacit collusion. While we do not deny the fact that smart pricing agents can enter into tacit collusion and that regulators may be right to be vigilant, we find that there are several technological challenges in the general realm of RL that mitigate this risk.Our paper proceeds in five steps. We first discuss the algorithmic tacit collusion conjecture (I). We then provide a non technical overview of reinforcement learning technologies (II). We then move on to discuss how naïve single agent Q-learning (III) and multi-agent Q-learning (IV) interact as market players. We close with a discussion of how technological challenges fragilize the algorithmic tacit collusion conjecture (V).}
+      \field{month}{10}
+      \field{number}{ID 3046405}
+      \field{shorttitle}{Algorithmic {Pricing} {Agents} and {Tacit} {Collusion}}
+      \field{title}{Algorithmic {Pricing} {Agents} and {Tacit} {Collusion}: {A} {Technological} {Perspective}}
+      \field{type}{{SSRN} {Scholarly} {Paper}}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.2139/ssrn.3046405
+      \endverb
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\QXJE9JS7\\papers.html:text/html;Submitted Version:C\:\\Users\\psymo\\Zotero\\storage\\26VPYVQC\\Ittoo and Petit - 2017 - Algorithmic Pricing Agents and Tacit Collusion A .pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/abstract=3046405
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/abstract=3046405
+      \endverb
+      \keyw{Artificial Intelligence,Collusion,Reinforcement Learning,Algorithms,Antitrust,Markets,Pricing}
+    \endentry
     \entry{klein_autonomous_2019}{report}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=27aa2e0111d1e6dfdb6b78ecf424f9e0}{%

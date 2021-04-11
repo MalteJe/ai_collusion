@@ -26,7 +26,7 @@ get_x_poly <- function(state_set, action, feature_specs) {
 }
 
 
-# fs_poly <- set_up_poly(list(degree = 4), vars = 3)
+# fs_poly <- set_up_poly(list(degree = 5), vars = 3)
 # get_x_poly(c(1,2), 1.8, fs_poly)
 
   # A2 - Polynomial into normalization
@@ -53,9 +53,51 @@ get_x_poly_normalized <- function(state_set, action, feature_specs) {
 }
 
 
-# fs_normalized <- set_up_poly_normalized(list(degree = 3), min_price = 1, max_price = 2.4, vars = 2)
+# fs_normalized <- set_up_poly_normalized(list(degree = 5), min_price = 1, max_price = 2.4, vars = 3)
 # 
-# get_x_poly_normalized(c(1,1.5), NULL, fs_normalized)
+# get_x_poly_normalized(c(1,1.5), 2, fs_normalized)
+
+
+
+# A3 - Separate Polynomials -----------------------------------------------
+
+
+set_up_poly_separate <- function(specifications,    # list with named element: polynomial degree
+											available_prices,  # vector of feasible prices
+											vars               # number of variables to enter the feature vector
+) {
+	
+	# calculate exponents matrix
+	exponents <- set_up_poly(list(degree = specifications$degree_sep), vars = vars)$exponents
+
+	m <- length(available_prices)
+	le <- choose(specifications$degree_sep + 2, 2) - 1
+	
+	x_default <- rep(0, m * le)
+	
+	
+	
+	return(list(exponents = exponents, x_default = x_default, le = le, thresholds = c(available_prices)))
+}
+
+get_x_poly_separate <- function(state_set, action, feature_specs) {
+	
+	raw <- apply(feature_specs$exponents, 1, function(x) prod((c(state_set))^x, na.rm = TRUE))
+	
+	action_id <- findInterval(x = action, vec = feature_specs$thresholds, rightmost.closed = FALSE, all.inside = FALSE) - 1L
+	activated_demarcation <- action_id * feature_specs$le
+	
+	replace(x = feature_specs$x_default,
+			  list = (activated_demarcation + 1):(activated_demarcation + feature_specs$le),
+			  values = raw)
+}
+
+
+# available_prices <- seq(from = 1, to = 2.4, by = 0.1)
+# fs_separate <- set_up_poly_separate(list(degree_sep = 4), available_prices = available_prices, vars = 2)
+# get_x_poly_separate(state_set = c(1.4, 1.8), action = 1, feature_specs = fs_separate)
+
+
 
 
 # B - Splines -------------------------------------------------------------
@@ -124,10 +166,10 @@ get_x_splines2 <- function(state_set, action, feature_specs) {
 }
 
 
-# splines_fs <- set_up_splines(specifications = list(splines_degree = 3, n_knots = 3), min_price = 1, max_price = 2.4, rounding_precision = 8L, vars = 2)
+# splines_fs <- set_up_splines(specifications = list(splines_degree = 4, n_knots = 3), min_price = 1, max_price = 2.4, rounding_precision = 8L, vars = 3)
 # 
-# get_x_splines(c(1.5,1.9), action = NULL, splines_fs)
-# get_x_splines2(c(1.5,1.9), action = NULL, splines_fs)
+# get_x_splines(c(1.5,1.9), action = 2.4, splines_fs)
+# get_x_splines2(c(1.5,1.9), action = 2.4, splines_fs)
 
 # microbenchmark(get_x_splines(c(1.3, 1.7), 3, feature_specs = fs),
 # 					get_x_splines2(c(1.3, 1.7), 3, feature_specs = fs))
@@ -224,14 +266,154 @@ get_x_tiling <- function(state_set,     # state set (i.e. vector of length 2)
 
 
 
-# tiling_specs <- set_up_tilings(specifications = list(n_tilings = 4L, n_tiles = 10L),
+# tiling_specs <- set_up_tilings(specifications = list(n_tilings = 6L, n_tiles = 10L),
 # 				 min_price = 1, max_price = 2.4, vars = 3)
 # 
-# tiling_specs2 <- set_up_tilings(specifications = list(n_tilings = 4L, n_tiles = 10L),
+# tiling_specs2 <- set_up_tilings(specifications = list(n_tilings = 6L, n_tiles = 10L),
 # 										  min_price = 1, max_price = 2.4, vars = 2)
 # 
 # get_x_tiling(c(1, 1.5), 2, tiling_specs)
 # get_x_tiling(c(2, 2), NULL, tiling_specs2)
+
+
+# D: Polynomial Tiling -------------------------------------------------
+
+set_up_poly_tilings <- function(specifications,  # list with named elements regarding number of tiles and tilings
+										  min_price,       # minimum price
+										  max_price,       # maximum price
+										  vars             # number of variables to enter the feature vector
+) {
+	
+	# calculate exponents matrix
+	exponents <- set_up_poly(list(degree_ = specifications$degree_poly_tiling), vars = vars)$exponents
+	
+	# calculate length of single polynomials
+	le <- choose(specifications$degree_poly_tiling + vars, vars) - 1
+	
+	
+	# convert to integers to ensure efficient calculations
+	if (!is.integer(specifications$poly_n_tilings)) {specifications$poly_n_tilings <- as.integer(specifications$poly_n_tilings)}
+	if (!is.integer(specifications$poly_n_tiles))   {specifications$poly_n_tiles   <- as.integer(specifications$poly_n_tiles)}
+	
+	# lay out default tile cutoffs
+	main_tiling <- seq(from = min_price, to = max_price, length.out = specifications$poly_n_tiles) - 1*10^-6
+	
+	# determine offsets for other tilings
+	max_offset <- main_tiling[2] - main_tiling[1] - 2*10^-6   # the final subtraction ensures that the minimal price is always in the first tile available
+	offsets <- seq(from = 0, to = max_offset, length.out = specifications$poly_n_tilings)
+	
+	# lay out all tilings
+	tilings <- map(.x = offsets,
+						.f = ~main_tiling - .x)
+	
+	
+	# create vector for mapping coordinates to position in feature vector (within tiling)
+	coordinate_mapping <- specifications$poly_n_tiles^((vars-1):0) %>% as.integer()
+	
+	# create vector for mapping position within tiling to position in feature vector
+	tiling_mapping <- as.integer(specifications$poly_n_tiles^vars) * 0L:(specifications$poly_n_tilings - 1L)
+	
+	# create logical with all tiles deactivated
+	x_default<- rep(0, specifications$poly_n_tilings * specifications$poly_n_tiles^vars * le)
+	
+	# return specifications as list
+	return(list(
+		exponents = exponents,
+		le = le,
+		n_tilings = specifications$poly_n_tilings,
+		tilings = tilings,
+		coordinate_mapping = coordinate_mapping,
+		tiling_mapping = tiling_mapping,
+		x_default = x_default))
+}
+
+
+
+
+get_x_positions <- function(right_boundary, length_poly) {
+	(right_boundary - length_poly + 1):right_boundary
+}
+
+
+get_x_poly_tilings <- function(state_set,     # state set (i.e. vector of length 2)
+										 action,        # action
+										 feature_specs  # tiling specifications obtained from 'set_up_tilings'
+) {  
+	
+	
+	# concatenate state and action space
+	s_a_t <- c(state_set, action)
+	
+	# get raw polynomial
+	raw <- apply(feature_specs$exponents, 1, function(x) prod((s_a_t)^x, na.rm = TRUE))
+	
+	# retrieve the active tiles of every tiling
+	active_tiles <- map_int(.x = feature_specs$tilings,
+									.f = get_active_tile,
+									state_action = s_a_t,
+									coordinate_mapping = feature_specs$coordinate_mapping)
+	
+	# map positions from within a tiling to the positions in the feature vector
+	right_boundary <- (active_tiles + feature_specs$tiling_mapping) * feature_specs$le
+	
+	x_positions <- map(.x = right_boundary,
+							 .f = get_x_positions,
+							 length_poly = feature_specs$le) %>%
+		purrr::flatten_int()
+	
+	# map positions from within
+	
+	# return feacture vector as logical with activated tiles identified with TRUE
+	return(replace(x = feature_specs$x_default, list = x_positions, values = rep(raw, feature_specs$n_tilings)))
+}
+
+input <- list(degree_poly_tiling = 3,
+				  poly_n_tilings = 2,
+				  poly_n_tiles = 3)
+
+fs_poly_tilings <- set_up_poly_tilings(input, min_price = 1, max_price = 2.4, vars = 2)
+s_t <- c(2.4, 1)
+a_t <- NULL
+
+(res <- get_x_poly_tilings(s_t, a_t, fs_poly_tilings))
+# 
+# 
+# microbenchmark(
+# 	get_x_poly(s_t, a_t, fs_poly),
+# 	get_x_poly_normalized(s_t, a_t, fs_normalized),
+# 	get_x_poly_separate(s_t, a_t, fs_separate),
+# 	get_x_splines(s_t, a_t, splines_fs),
+# 	get_x_splines2(s_t, a_t, splines_fs),
+# 	get_x_tiling(s_t, a_t, tiling_specs),
+# 	get_x_tiling(s_t, NULL, tiling_specs2),
+# 	get_x_poly_tilings(s_t, a_t, fs_poly_tilings)
+# )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # library(microbenchmark)
 # 
@@ -242,6 +424,8 @@ get_x_tiling <- function(state_set,     # state set (i.e. vector of length 2)
 # 	get_x(state_set = s_t, action = a_t, degree = 3),
 # 	get_x_tiling(state_set = s_t, action = a_t, feature_specs = tiling_specs)
 # )
+
+
 
 
 

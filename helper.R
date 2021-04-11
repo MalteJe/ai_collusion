@@ -19,7 +19,10 @@ optimize_action <- function(state_set, available_prices, feature_specs, w) {
 }
 
 
-optimize_grid <- function(w, price_grid, available_prices, feature_specs) {
+optimize_grid <- function(w, price_grid, available_prices, feature_specs, get_x_run) {
+	
+	get_x <<- get_x_run
+	
 	map_dbl(.x = price_grid,
 			  .f = optimize_action,
 			  available_prices = available_prices,

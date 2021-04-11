@@ -1,78 +1,100 @@
+library(purrr)
+library(tidyquant)
+library(tidyverse)
+library(parallel)
+library(future.apply)
+library(nnet)
+library(viridis)
+
+getwd() %>%
+	list.files(full.names = TRUE) %>%
+	str_subset("^(?!.*master.R$)") %>% 
+	str_subset("^(?!.*fa.R$)") %>%
+	str_subset("^(?!.*po.R$)") %>%
+	str_subset("^(?!.*po_normal.R$)") %>%
+	str_subset(".R$") %>%
+	walk(source)
 
 
-s_t <- c(1.5, 1.7)
-w <- rnorm(19)
-ap <- seq(from = 1, to = 2.4, by = 0.1)
-
-fs <- set_up_poly(list(degree = 3))
-
-get_x(s_t, 1.2, feature_specs = fs)
-
-select_action_on_policy_boltzmann(s_t, w, epsilon = 0.5, m = 15, available_prices = ap, fs)
 
 
-
-select_action_po_boltzmann <- function(state_set, theta, epsilon, m, available_prices, feature_specs) {
+select_action_po_softmax <- function(state_set, theta, m, available_prices, feature_specs) {
 	
-	estimated_values <- map_dbl(.x = available_prices,
-										 .f = estimate_state_action_value,
-										 state_set = state_set,
-										 feature_specs = feature_specs,
-										 w = theta)
+	# calculate feature vector for every feasible action
+	X <- map(.x = available_prices,
+				.f = get_x,
+				state_set = state_set,
+				feature_specs = feature_specs)
 	
-	if(epsilon == 0) {
-		selected_action_id <- which.is.max(estimated_values)
-	} else {
-		enum <- exp(estimated_values/epsilon)
-		denom <- sum(enum)
-		prob <- enum/denom
+	# estimate qualities of state-action combinations
+	estimated_values <- map_dbl(.x = X, .f = ~sum(. * theta))
+	
+	# select action based on estimated values
+	enum <- exp(estimated_values)
+	denom <- sum(enum)
+	prob <- enum/denom
 		
-		selected_action_id <- sample.int(n = m,
-													size = 1,
-													prob = prob)
-		
-	}
+	selected_action_id <- sample.int(n = m,
+												size = 1,
+												prob = prob)
 	
+	
+	# calculate derivate of log of policy (required for update of theta)
+	
+	adj_X <- map2(.x = X, .y = prob, .f = ~.x * .y)
+	log_deriv <- X[[selected_action_id]] - Reduce(`+`, adj_X)
 	
 	return(list(
 		id = selected_action_id,
-		value = available_prices[selected_action_id]))
-	
+		value = available_prices[selected_action_id],
+		log_deriv = list(log_deriv)))
 }
 
 
-action <- select_action_po_boltzmann(s_t, w, epsilon = 1, m = 15, available_prices = ap, fs)
-
-action
-
-r <- calculate_profits(c(action$value, 2.4), c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
-
-td <- r + Delta 
 
 
-single_run_po <- function(Algorithm,  # determines type of learning Algorithm
-								  n = 2,   # number of players
+
+
+# r <- calculate_profits(c(action$value, 2.4), c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+# 
+# td <- r + Delta 
+
+
+td_error_po_discounted <- function(r, Delta, s_t, s_t2, w, feature_specs) {
+	
+	x <- get_x(state_set = s_t, action = NULL, feature_specs = feature_specs)
+	v_t <- sum(x * w)
+	
+	v_t2 <- estimate_state_action_value(state_set = s_t2, action = NULL, feature_specs = feature_specs, w = w)
+
+	error <- r + Delta * v_t2 - v_t
+	
+	return(list(x_t = x, error = error))
+}
+
+
+
+
+
+
+
+single_run_po <- function(n = 2,   # number of players
 								  zeta = 0.1, # deviation above monopoly price and below one shot nash price
 								  rounding_precision = 6, # rounding available prices after x digits
 								  m, # number of discrete prices
 								  TT = 1e6, # time periods
 								  TT_intervention = 10, # time periods after manual intervention
 								  Alpha, # update rule,
-								  Beta, # exploration control,
 								  Gamma, # control speed of update for average reward
-								  Delta = 1, # discount factor (usually not used in function approximation)
-								  Lambda = 0, # trace decay rate (dutch traces)
-								  Epsilon_constant = NA, # epsilon if exploration is constant
-								  Psi = 1, # initial exploration rate at t = 1
-								  w_init = 0, # initial weights
+								  Delta = 0.95, # discount factor (usually not used in function approximation)
+								  Lambda = 0.5, # trace decay rate (dutch traces)
 								  r_adjust = 0, # initial 'average reward'
 								  seed = NA, # seed for individual run,
 								  run_id = NA, # identification of run for apply functions,
 								  specifications, # specifications regarding calculation of feature set
 								  features_by = "tiling", # calculate features using tiling, polynomial or splines?
 								  td_error_method = "discounted",  # use differential reward setting?
-								  dutch_traces = FALSE, # logical: use eligibility traces?
-								  policy = "greedy",  # logical: use boltzmann to select action probabilistically
+								  policy = "softmax",  # logical: use boltzmann to select action probabilistically
 								  convergence_chunk_length = 10000, # length of block that is checked against convergence
 								  convergence_cycle_length = 10, # what is the maximum cycle length considered
 								  convergence_check_frequency = 2000, # how often should convergence be checked
@@ -83,8 +105,7 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 	# source(str_c(getwd(), "/selection_methods_and_td.R"))
 	
 	# workaround to ensure all required functions are loaded on workers
-	a <- select_action_on_policy_greedy;a <-  select_action_on_policy_boltzmann;a <-  select_action_expected_greedy; a <-  select_action_tree_backup_greedy; a <-  td_error_on_policy_differential; a <-  td_error_on_policy_discounted; a <- td_error_on_policy_discounted; a <- td_error_expected_discounted; a <-  td_error_expected_differential; a <- td_error_tree_backup_discounted; a <- td_error_tree_backup_differential
-	
+	a <- select_action_po_softmax; a <- td_error_po_discounted
 	
 	
 	#print(as.list(match.call()))
@@ -136,7 +157,7 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 		
 		length_states <- n + 1  # '+1' reflects action undertaken
 		theta_length <- choose(specifications$degree + length_states, length_states) - 1
-		w_length <- choose(specifications$degre + n, n) - 1
+		w_length <- choose(specifications$degree + n, n) - 1
 	} else if (features_by == "poly_normalized") {
 		get_x <<- get_x_poly_normalized
 		
@@ -146,8 +167,20 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 		length_states <- n + 1  # '+1' reflects action undertaken
 		theta_length <- choose(specifications$degree + length_states, length_states) - 1
 		w_length <- choose(specifications$degre + n, n) - 1
+	} else if (features_by == "poly_tiling") {
+		get_x <<- get_x_poly_tilings
+		
+		theta_specs <- set_up_poly_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
+		w_specs <- set_up_poly_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 2)
+		
+		length_states <- n + 1  # '+1' reflects action undertaken
+		theta_length <- (choose(specifications$degree_poly_tiling + length_states, length_states) - 1) *
+			specifications$poly_n_tilings * specifications$poly_n_tiles^length_states
+		w_length <- (choose(specifications$degree_poly_tiling + n, n) - 1) *
+			specifications$poly_n_tilings * specifications$poly_n_tiles^length_states
+		
 	} else {
-		stop("features_by must be one of 'tiling', 'splines', 'poly' or 'poly_normalized'")
+		stop("features_by must be one of 'tiling', 'splines', 'poly', 'poly_normalized' or 'poly_tiling'")
 	}
 	
 	
@@ -196,20 +229,21 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 	# }
 	# 
 	
-	select_action <- get(str_c("select_action", Algorithm, policy, sep = "_"))
+	select_action <- get(str_c("select_action_po", policy, sep = "_"))
+	td_error <- get(str_c("td_error_po", td_error_method, sep = "_"))
 	
 	# pre-determine (time-declining) exploration rate
-	if(is.na(Epsilon_constant)) {
-		
-		if (policy == "boltzmann") {
-			epsilon <- seq(from = 0.1, to = Beta, length.out = TT)
-		} else {
-			epsilon <- Psi * exp(-Beta * 1:TT)
-		}
-		
-	} else {
-		epsilon <- rep(Epsilon_constant, TT)
-	}
+	# if(is.na(Epsilon_constant)) {
+	# 	
+	# 	if (policy == "boltzmann") {
+	# 		epsilon <- seq(from = 0.1, to = Beta, length.out = TT)
+	# 	} else {
+	# 		epsilon <- Psi * exp(-Beta * 1:TT)
+	# 	}
+	# 	
+	# } else {
+	# 	epsilon <- rep(Epsilon_constant, TT)
+	# }
 	
 	
 	
@@ -220,6 +254,7 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 							 dimnames = list(NULL, map(c("price", "profit"), ~str_c(., 1:n, sep = "_")) %>% unlist()))
 	convergence <- list(converged = FALSE)
 	
+	TDs <- list(list(Error = 0), list(Error = 0))
 	
 	
 	# Sample Initial State ----------------------------------------------------
@@ -233,24 +268,34 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 	
 	print("before")
 	
+	
 	environment_initialization <- mget(ls())
 	
-	if (Algorithm == "on_policy") {
-		environment_convergence <- SARSA(passed_environment = environment_initialization)
-		
-	} else if (Algorithm %in% c("expected", "tree_backup")) {
-		environment_convergence <- expected_SARSA(passed_environment = environment_initialization)
-		
-	}
+	environment_convergence <- po(passed_environment = environment_initialization)
 	
-	list2env(x = environment_convergence, envir = environment())
+	
+	
+	
+	
+	
+	# environment_initialization <- mget(ls())
+	# 
+	# if (Algorithm == "on_policy") {
+	# 	environment_convergence <- SARSA(passed_environment = environment_initialization)
+	# 	
+	# } else if (Algorithm %in% c("expected", "tree_backup")) {
+	# 	environment_convergence <- expected_SARSA(passed_environment = environment_initialization)
+	# 	
+	# }
+	# 
+	# list2env(x = environment_convergence, envir = environment())
 	
 	print("intervention")
 	
 	# Manual Intervention ------------------------------------------------------
 	
 	
-	environment_intervention <- intervention(passed_environment = environment_convergence)
+	environment_intervention <- intervention_po(passed_environment = environment_convergence)
 	list2env(x = environment_intervention, envir = environment())
 	
 	
@@ -264,14 +309,18 @@ single_run_po <- function(Algorithm,  # determines type of learning Algorithm
 	return(list(outcomes = outcomes, w = w, timestamp = Sys.time(),
 					available_prices = available_prices, run_id = run_id,
 					specs = as.list(match.call()),
-					feature_specs = feature_specs,
-					convergence = convergence))
+					theta_specs = theta_specs,
+					w_specs = w_specs,
+					convergence = convergence,
+					get_x = get_x))
 }
+
 
 po <- function(passed_environment) {
 	
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
+	
 	
 	while (convergence$converged == FALSE && t < TT) {
 		
@@ -281,9 +330,8 @@ po <- function(passed_environment) {
 		selected_actions <- map(.x = theta,
 										.f = select_action,
 										state_set = s_t,
-										epsilon = epsilon[t],
 										m = m,
-										feature_specs = feature_specs,
+										feature_specs = theta_specs,
 										available_prices = available_prices) %>%
 			transpose() %>% map(unlist, recursive = FALSE)
 		
@@ -315,22 +363,16 @@ po <- function(passed_environment) {
 			
 			
 			# calculate TD-error 
-			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
-										w = w[[a]], epsilon = epsilon[t], m = m, available_prices = available_prices,
-										feature_specs = feature_specs, TD = TDs[[a]])
+			TDs[[a]] <- td_error(r = r[a], Delta = Delta, s_t = s_t, s_t2 = s_t2,
+										w = w[[a]], feature_specs = w_specs)
 			
+			# update traces
+			z_w[[a]] <- Lambda * z_w[[a]] + TDs[[a]]$x_t
+			z_theta[[a]] <- Lambda * z_theta[[a]] + selected_actions$log_deriv[[a]]
 			
-			# update eligbility trace
-			if (Algorithm == "expected") {
-				z[[a]] <- Delta * Lambda * selected_actions$rho[a] * z[[a]] + selected_actions$x_t[[a]]
-			} else if (Algorithm == "tree_backup") {
-				z[[a]] <- Delta * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
-			}
-			
-			
-			
-			# update w
-			w[[a]] <- w[[a]] + Alpha * TDs[[a]]$Error * z[[a]]
+			#  update w and theta
+			w[[a]] <- w[[a]] + Alpha * TDs[[a]]$error * z_w[[a]]
+			theta[[a]] <- theta[[a]] + Alpha * TDs[[a]]$error * z_theta[[a]]
 			
 		}
 		
@@ -354,3 +396,160 @@ po <- function(passed_environment) {
 	return(mget(ls()))
 	
 }
+
+
+intervention_po <- function(passed_environment) {
+	
+	list2env(x = passed_environment, envir = environment())
+	rm(passed_environment)
+	
+	# second agent adheres to learned value approximation (strategy now: full exploitation)
+	selected_actions$id[2] <- select_action(state_set = s_t, theta = theta[[2]], m = m, feature_specs = theta_specs, available_prices = available_prices)$id
+	
+	# selected_actions$id[2] <- m-1
+	# selected_actions$value[2] <- available_prices[m-1]
+	
+	# first agent examines direct rewards and chooses maximum
+	R_available <- (selected_actions$id[2]-1) * m + 1:m
+	selected_actions$id[1] <- R[R_available] %>% map_dbl(first) %>% which.max()
+	
+	# get price according to action's id
+	selected_actions$value <- available_prices[selected_actions$id]
+	
+	# retrieve deviation profits from list
+	r <- R[[selected_actions$id[1] + (selected_actions$id[2]-1) * m]]
+	
+	# record prices and profits of deviation episode
+	outcomes[t,] <- c(selected_actions$value, r)
+	
+	# update timer
+	t <- t + 1
+	
+	# observe next stage status (i.e. collect price choice id's)
+	s_t <- selected_actions$value
+	
+	### after manual intervention
+	while(t <= convergence$convergence_t + TT_intervention) {
+		
+		# both players fully exploit learned strategy
+		selected_actions <- map(.x = theta,
+										.f = select_action,
+										state_set = s_t,
+										m = m,
+										feature_specs = theta_specs,
+										available_prices = available_prices) %>%
+			transpose() %>%
+			map(unlist)
+		
+		# retrieve profits from list
+		r <- R[[selected_actions$id[1] + (selected_actions$id[2]-1) * m]]
+		
+		# record prices and profits
+		outcomes[t,] <- c(selected_actions$value, r)
+		
+		# observe next stage status (i.e. collect price choice id's)
+		s_t <- selected_actions$value
+		
+		# update timer
+		t <- t + 1
+		
+	}
+	
+	
+	return(mget(ls()))
+	
+}
+
+
+
+po_res <- single_run_po(n = 2,
+				  zeta = 1,
+				  rounding_precision = 6,
+				  m = 12,
+				  TT = 50,
+				  TT_intervention = 10,
+				  Alpha = 1 * 10^-3,
+				  Gamma = NA,
+				  Delta = 0.95,
+				  Lambda = 0.5,
+				  r_adjust = 0.2229272,
+				  seed = NA,
+				  run_id = 321,
+				  specifications = list(
+				  	degree = 4,
+				  	splines_degree = 3,
+				  	n_knots = 4,
+				  	degree_sep = 4,
+				  	degree_poly_tiling = 4,
+				  	poly_n_tilings = 5,
+				  	poly_n_tiles = 4,
+				  	n_tilings = 1,
+				  	n_tiles = 8
+				  ),
+				  features_by = "poly",
+				  td_error_method = "discounted",
+				  policy = "softmax",
+				  convergence_chunk_length = 20,
+				  convergence_cycle_length = 10,
+				  convergence_check_frequency = 20,
+				  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+
+
+
+# single_simulation_outcomes <- single_res$outcomes
+
+0.7 * exp(- 9 * 10^-6 * c(1, 1000, 10000, 50000, 100000, 150000, 200000, 300000, 1000000))
+
+# retrieve number of cores and specify required number of runs
+(no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))
+run_ids <- 1:no_of_cores
+
+# run simulations on cluster with specified number of cores
+plan(strategy = cluster, workers = no_of_cores)
+meta_res <- future_lapply(X = c(0, 0.5, 0.8, 1),
+								  FUN = single_run_po,
+								  n = 2,
+								  future.seed = 123456,
+								  zeta = 1,
+								  rounding_precision = 6,
+								  m = 20,
+								  TT = 300000,
+								  TT_intervention = 10,
+								  Alpha = 1 * 10^-6,
+								  Gamma = NA,
+								  # Delta = 0.95,
+								  Lambda = 0.5,
+								  r_adjust = 0.2229272,
+								  seed = NA,
+								  run_id = NA,
+								  specifications = list(
+								  	degree = 5,
+								  	splines_degree = 3,
+								  	n_knots = 4,
+								  	degree_poly_tiling = 4,
+								  	poly_n_tilings = 5,
+								  	poly_n_tiles = 4,
+								  	n_tilings = 5,
+								  	n_tiles = 8
+								  ),
+								  features_by = "poly_tiling",
+								  td_error_method = "discounted",
+								  policy = "softmax",
+								  convergence_chunk_length = 2000,
+								  convergence_cycle_length = 10,
+								  convergence_check_frequency = 2000,
+								  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+
+
+
+str(meta_res[[1]])
+
+map(meta_res, .f = ~.$timestamp)
+map(meta_res, .f = ~.$w[[1]])
+map(meta_res, .f = ~ str(.$specs))
+
+
+map(meta_res, ~tail(.$outcomes, 20))
+
+source("shiny/visualize_outcomes.R")
+shinyApp(ui, server)

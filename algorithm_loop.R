@@ -169,6 +169,7 @@ expected_SARSA <- function(passed_environment) {
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
 
+
 	while (convergence$converged == FALSE && t < TT) {
 		
 		
@@ -263,7 +264,6 @@ intervention <- function(passed_environment) {
 
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
-	
 	
 	# second agent adheres to learned value approximation (strategy now: full exploitation)
 	selected_actions$id[2] <- select_action(state_set = s_t, w = w[[2]], epsilon = 0, m = m, feature_specs = feature_specs, available_prices = available_prices)$id

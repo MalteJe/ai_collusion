@@ -6,18 +6,12 @@ library(future.apply)
 library(nnet)
 library(viridis)
 
-# # load functions from helper scripts
-# getwd() %>%
-# 	list.files(full.names = TRUE) %>%
-# 	str_subset("^(?!.*master.R$)") %>% 
-# 	str_subset("^(?!.*fa.R$)") %>%
-# 	str_subset(".R$") %>%
-# 	walk(source)
-
 getwd() %>%
 	list.files(full.names = TRUE) %>%
 	str_subset("^(?!.*master.R$)") %>% 
 	str_subset("^(?!.*fa.R$)") %>%
+	str_subset("^(?!.*po.R$)") %>%
+	str_subset("^(?!.*po_normal.R$)") %>%
 	str_subset(".R$") %>%
 	walk(source)
 
@@ -86,7 +80,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		map(as.numeric) %>% 
 		map(calculate_profits, ...)
 	
-	
 	if (features_by == "tiling") {
 		get_x <<- get_x_tiling
 		
@@ -116,8 +109,22 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		
 		length_states <- n + 1  # '+1' reflects action undertaken
 		length_w <- choose(specifications$degree + length_states, length_states) - 1
+	} else if (features_by == "poly_separated"){
+		get_x <<- get_x_poly_separate
+		
+		feature_specs <- set_up_poly_separate(specifications = specifications, available_prices, vars = 2)
+		length_w <- (choose(specifications$degree_sep + n, n) - 1) * m
+	} else if (features_by == "poly_tiling") {
+		get_x <<- get_x_poly_tilings
+		
+		feature_specs <- set_up_poly_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
+		
+		length_states <- n + 1  # '+1' reflects action undertaken
+		length_w <- (choose(specifications$degree_poly_tiling + length_states, length_states) - 1) *
+			specifications$poly_n_tilings * specifications$poly_n_tiles^length_states
+		
 	} else {
-		stop("features_by must be one of 'tiling', 'splines', 'poly' or 'poly_normalized'")
+		stop("features_by must be one of 'tiling', 'splines', 'poly' 'poly_normalized', `poly_separated` or 'poly_tiling'")
 	}
 	
 	
@@ -215,7 +222,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 
 # Manual Intervention ------------------------------------------------------
 
-	
 	environment_intervention <- intervention(passed_environment = environment_convergence)
 	list2env(x = environment_intervention, envir = environment())
 
@@ -231,7 +237,8 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 					available_prices = available_prices, run_id = run_id,
 					specs = as.list(match.call()),
 					feature_specs = feature_specs,
-					convergence = convergence))
+					convergence = convergence,
+					get_x = get_x))
 }
 
 
@@ -240,10 +247,10 @@ single_res <- single_run(Algorithm = "expected",
 								 seed = 1234567,
 								 zeta = 1,
 								 rounding_precision = 8,
-								 m = 8,
-								 TT = 1000,
+								 m = 30,
+								 TT = 400,
 								 TT_intervention = 2,
-								 Alpha = 5*10^-3,
+								 Alpha = 5*10^-5,
 								 Beta = 1*10^-3,
 								 Gamma = 0.05,
 								 Delta = 0.95,
@@ -257,22 +264,26 @@ single_res <- single_run(Algorithm = "expected",
 								 	degree = 4,
 								 	splines_degree = 3,
 								 	n_knots = 4,
+								 	degree_sep = 4,
+								 	degree_poly_tiling = 4,
+								 	poly_n_tilings = 5,
+								 	poly_n_tiles = 4,
 								 	n_tilings = 1,
 								 	n_tiles = 8
 								 ),
-								 features_by = "poly",								 
+								 features_by = "poly_tiling",								 
 								 td_error_method = "discounted",
 								 dutch_traces = TRUE,
 								 policy = "greedy",
 								 convergence_chunk_length = 100,
 								 convergence_cycle_length = 10,
-								 convergence_check_frequency = 1000,
+								 convergence_check_frequency = 100,
 								 c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 
 
-single_simulation_outcomes <- single_res$outcomes
+# single_simulation_outcomes <- single_res$outcomes
 
-0.3 * exp(- 1.5 * 10^-5 * c(1, 1000, 10000, 50000, 100000, 150000, 200000, 300000, 500000))
+0.7 * exp(- 9 * 10^-6 * c(1, 1000, 10000, 50000, 100000, 150000, 200000, 300000, 1000000))
 
 # retrieve number of cores and specify required number of runs
 (no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))
@@ -280,41 +291,45 @@ run_ids <- 1:no_of_cores
 
 # run simulations on cluster with specified number of cores
 plan(strategy = cluster, workers = no_of_cores)
-meta_res <- future_lapply(X = c("poly_normalized", "splines" ,"poly", "tiling"),
+meta_res <- future_lapply(X = 1 * 10^-(4:7),
 								  FUN = single_run,
 								  future.seed = 123456,
 								  Algorithm = "expected",
 								  n = 2,
 								  zeta = 1,
 								  rounding_precision = 8,
-								  m = 25,
-								  TT = 6000,
+								  m = 22,
+								  TT = 1000000,
 								  TT_intervention = 7,
-								  Alpha =  5*10^-6,
-								  Beta = 2*10^-5,
+								  # Alpha =  4*10^-5,
+								  Beta = 9*10^-6,
 								  Gamma = 0.05,
 								  Delta = 0.95,
 								  Lambda = 0.5,
 								  Epsilon_constant = NA,
-								  Psi = 0.3,
+								  Psi = 0.7,
 								  w_init = 0,
 								  r_adjust = 0.2229272,
 								  seed = NA,
 								  run_id = NA,
 								  specifications = list(
-								  	degree = 5,
+								  	degree = 4,
 								  	splines_degree = 3,
 								  	n_knots = 4,
-								  	n_tilings = 10,
-								  	n_tiles = 15
+								  	degree_sep = 4,
+								  	degree_poly_tiling = 4,
+								  	poly_n_tilings = 5,
+								  	poly_n_tiles = 5,
+								  	n_tilings = 1,
+								  	n_tiles = 8
 								  ),
-								  # features_by = "poly",
+								  features_by = "poly_separated",
 								  td_error_method = "discounted",
 								  dutch_traces = TRUE,
 								  policy = "greedy",
 								  convergence_chunk_length = 5000,
 								  convergence_cycle_length = 10,
-								  convergence_check_frequency = 2000,
+								  convergence_check_frequency = 5000,
 								  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 
 
@@ -333,10 +348,10 @@ shinyApp(ui, server)
 map(meta_res, ~.$convergence$convergence_t)
 
 specifications <- list(
-	list(raw = TRUE, n_tilings = 1, n_tiles = 15, splines_degree = 3, n_knots = 1),
-	list(raw = TRUE, n_tilings = 2, n_tiles = 10, splines_degree = 3, n_knots = 2),
-	list(raw = FALSE, n_tilings = 3, n_tiles = 10, splines_degree = 3, n_knots = 3),
-	list(raw = FALSE, n_tilings = 4, n_tiles = 10, splines_degree = 3, n_knots = 4)
+	list(degree_sep = 2, degree_poly_tiling = 4, poly_n_tilings = 6, poly_n_tiles = 4, n_tilings = 1, n_tiles = 15, splines_degree = 3, n_knots = 1),
+	list(degree_sep = 3, degree_poly_tiling = 4, poly_n_tilings = 4, poly_n_tiles = 5, n_tilings = 2, n_tiles = 10, splines_degree = 3, n_knots = 2),
+	list(degree_sep = 4, degree_poly_tiling = 3, poly_n_tilings = 6, poly_n_tiles = 5, n_tilings = 3, n_tiles = 10, splines_degree = 3, n_knots = 3),
+	list(degree_sep = 5, degree_poly_tiling = 3, poly_n_tilings = 4, poly_n_tiles = 6, n_tilings = 4, n_tiles = 10, splines_degree = 3, n_knots = 4)
 	)
 
 

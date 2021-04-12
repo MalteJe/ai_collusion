@@ -265,6 +265,8 @@ meta_meta_res <- map(.x = experiment_specs,
 							m = 11,
 							TT = 100000)
 
+names(meta_meta_res) <- features_extraction_methods
+
 res_varied_alpha <- meta_meta_res
 	
 save(res_varied_alpha, file = "simulation_results/res_varied_alpha.RData")

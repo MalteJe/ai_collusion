@@ -294,7 +294,7 @@ meta_res_lambda <- map(.x = experiment_lambda_specs,
 							  m = 11,
 							  TT = 100000)
 
-names(meta_res_lambda) <- feature_extraction_methods
+names(meta_res_lambda) <- features_extraction_methods
 
 
 save(meta_res_lambda, file = "simulation_results/res_varied_lambda.RData")

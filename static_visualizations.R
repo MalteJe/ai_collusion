@@ -177,20 +177,20 @@ experiment_avg_profits <- function(experiment_res) {
 }
 
 
-alpha_avg_profits <- map_dbl(.x = meta_meta_res[[4]],
-										.f = experiment_avg_profits)
+# alpha_avg_profits <- map_dbl(.x = meta_meta_res[[4]],
+# 										.f = experiment_avg_profits)
 
 
 feature_avg_profits <- function(feature_res) {
 	 map_dbl(.x = feature_res,
-								  .f = experiment_avg_profits)
+	 		  .f = experiment_avg_profits)
 }
 
 
 # feature_avg_profits(meta_meta_res[[1]])
 
 
-avg_profits_varied_alpha <- map_dfc(.x = meta_meta_res,
+avg_profits_varied_alpha <- map_dfc(.x = meta_res_alpha,
 												.f = feature_avg_profits) %>%
 	mutate(alphas_tiling, alphas_poly) %>%
 	pivot_longer(cols = features_extraction_methods, names_to = "feature_method", values_to = "avg_profit") %>%
@@ -207,3 +207,17 @@ ggplot(avg_profits_varied_alpha, aes(x = alpha, y = Delta, col = feature_method)
 
 
 
+# Varying Lambda ----------------------------------------------------------
+
+avg_profits_varied_lambda <- map_dfc(.x = meta_res_lambda,
+												 .f = feature_avg_profits) %>%
+	mutate(lambda = lambdas) %>%
+	pivot_longer(cols = features_extraction_methods, names_to = "feature_method", values_to = "avg_profit") %>%
+	mutate(Delta = get_delta(avg_profit))
+
+
+ggplot(avg_profits_varied_lambda, aes(x = lambda, y = Delta, col = feature_method)) +
+	geom_line(size = 1) +
+	geom_point( size = 3) +
+	geom_hline(yintercept = c(0, 1)) +
+	theme_tq()

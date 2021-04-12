@@ -197,10 +197,6 @@ expected_SARSA <- function(passed_environment) {
 		# adjust profit
 		r <- r - r_adjust
 		
-		
-		# # move to next time stage
-		t <- t + 1
-		
 		# past actions become today's status
 		s_t2 <- selected_actions$value
 		
@@ -241,11 +237,15 @@ expected_SARSA <- function(passed_environment) {
 		if (t %% convergence_check_frequency == 0 && t >= convergence_chunk_length) {
 			
 			convergence <- detect_pattern(outcomes = outcomes,
-													current_t = t - 1,
+													current_t = t,
 													chunk_size = convergence_chunk_length,
 													cycle_length = convergence_cycle_length)
 		}
 	}
+	
+	
+	# # move to next time stage
+	t <- t + 1
 	
 	
 	return(mget(ls()))

@@ -25,11 +25,11 @@ single_res <- single_run(Algorithm = "expected",
 								 seed = 1234567,
 								 zeta = 1,
 								 rounding_precision = 8,
-								 m = 30,
-								 TT = 400,
-								 TT_intervention = 2,
-								 Alpha = 5*10^-5,
-								 Beta = 1*10^-3,
+								 m = 11,
+								 TT = 1000,
+								 TT_intervention = 10,
+								 Alpha = 0.02,
+								 Beta = 1*10^-4,
 								 Gamma = 0.05,
 								 Delta = 0.95,
 								 Lambda = 0.5,
@@ -243,53 +243,38 @@ shinyApp(ui, server)
 
 # For Finalization --------------------------------------------------------
 
-# determine number of prices
-m <- 30
 
-# retrieve number of cores and specify requested number of runs
-(no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))
-run_ids <- 1:40
 
-# run simulations on cluster with specified number of cores
-plan(strategy = cluster, workers = no_of_cores)   #THIS MAY BE ADJUSTED
+0.7 * exp(- 1 * 10^-4 * c(1, 1000, 10000, 50000, 100000, 150000, 200000, 300000, 1000000))
 
 
 
-res_tabular <- future_lapply(X = run_ids,
-									  FUN = single_run,
-									  future.seed = 123456,
-									  Algorithm = "expected",
-									  n = 2,
-									  zeta = 1,
-									  rounding_precision = 8,
-									  m = m,
-									  TT = 100,
-									  TT_intervention = 7,
-									  Alpha =  1*10^-6,
-									  Beta = 1*10^-6,
-									  Gamma = 0.05,
-									  Delta = 0.95,
-									  Lambda = 0.3,
-									  Epsilon_constant = NA,
-									  Psi = 0.7,
-									  w_init = 0,
-									  r_adjust = 0.2229272,
-									  seed = NA,
-									  # run_id = NA,
-									  features_by = "tiling",
-									  specifications = list(
-									  	n_tilings = 1,
-									  	n_tiles = m
-									  ),
-									  td_error_method = "discounted",
-									  dutch_traces = TRUE,
-									  policy = "greedy",
-									  convergence_chunk_length = 50,
-									  convergence_cycle_length = 10,
-									  convergence_check_frequency = 50,
-									  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+
+# methods
+features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_separated")
+alphas_tiling <- seq(from = 0.12, to = 0.3, length.out = 5)
+alphas_poly <- seq(from = 2 * 10^-6, to = 2* 10^-5, length.out = 5)
+alphas <- list(alphas_tiling, alphas_tiling, alphas_poly, alphas_poly)
+
+experiment_specs <- list(features = features_extraction_methods, alphas = alphas) %>% transpose()
+
+
+meta_meta_res <- map(.x = experiment_specs,
+							.f = vary_alpha,
+							runs = 4,
+							m = 11,
+							TT = 100000)
+
+res_varied_alpha <- meta_meta_res
+	
+save(res_varied_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 
 
-source("shiny/visualize_outcomes.R")
-shinyApp(ui, server)
+str(alphas_res[[1]])
+
+
+map(alphas_res[[10]], ~.$convergence)
+
+
+meta_res <- alphas_res[[10]]

@@ -30,7 +30,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  ... # further arguments passed to economic environment
 ) {
 	
-	print("hey")
+	print(run_id)
 	# source(str_c(getwd(), "/selection_methods_and_td.R"))
 	
 	# workaround to ensure all required functions are loaded on workers
@@ -39,7 +39,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	
 	
 	#print(as.list(match.call()))
-	
+
 	# calculate discrete set of prices
 	
 	# p_n <- nash_prices(n, ...)
@@ -60,6 +60,16 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	
 	if (features_by == "tiling") {
 		get_x <<- get_x_tiling
+		
+		feature_specs <- set_up_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
+		
+		length_w <- specifications$n_tiles^3 * specifications$n_tilings
+	} else if (features_by == "tabular") {
+		
+		get_x <<- get_x_tiling
+		
+		specifications$n_tilings <- 1
+		specifications$n_tiles <- m
 		
 		feature_specs <- set_up_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
 		
@@ -182,7 +192,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 
 # execute simulation with learning algorithm ------------------------------
 	
-	print("before")
+	# print("before")
 	
 	environment_initialization <- mget(ls())
 	
@@ -196,7 +206,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	
 	list2env(x = environment_convergence, envir = environment())
 	
-	print("intervention")
+	# print("intervention")
 
 # Manual Intervention ------------------------------------------------------
 
@@ -210,7 +220,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	outcomes <- na.omit(outcomes)
 	
 	if(is.na(run_id)) {run_id <- sample.int(1000000, size = 1)}
-	print("before return")
+	# print("before return")
 	return(list(outcomes = outcomes, w = w, timestamp = Sys.time(),
 					available_prices = available_prices, run_id = run_id,
 					specs = as.list(match.call()),

@@ -252,31 +252,49 @@ shinyApp(ui, server)
 
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_separated")
+
+
+
+# Alpha -------------------------------------------------------------------
+
+
 alphas_tiling <- seq(from = 0.12, to = 0.3, length.out = 5)
 alphas_poly <- seq(from = 2 * 10^-6, to = 2* 10^-5, length.out = 5)
 alphas <- list(alphas_tiling, alphas_tiling, alphas_poly, alphas_poly)
 
-experiment_specs <- list(features = features_extraction_methods, alphas = alphas) %>% transpose()
+experiment_alpha_specs <- list(features = features_extraction_methods, alphas = alphas) %>% transpose()
 
 
-meta_meta_res <- map(.x = experiment_specs,
+meta_res_alpha <- map(.x = experiment_alpha_specs,
 							.f = vary_alpha,
 							runs = 4,
 							m = 11,
 							TT = 100000)
 
-names(meta_meta_res) <- features_extraction_methods
-
-res_varied_alpha <- meta_meta_res
+names(meta_res_alpha) <- features_extraction_methods
 	
-save(res_varied_alpha, file = "simulation_results/res_varied_alpha.RData")
+save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 
 
-str(alphas_res[[1]])
+
+# Lambda ------------------------------------------------------------------
+
+lambdas <- seq(from = 0, to = 0.8, by = 0.2)
+alphas_manually_optimized <- c(0.25, 0.02, 1 * 10^-6, 1 * 10^-4)
+
+experiment_lambda_specs <- list(features = features_extraction_methods, alpha = alphas_manually_optimized) %>%
+	transpose() %>%
+	map(.f = ~list.append(., lambdas = lambdas))
 
 
-map(alphas_res[[10]], ~.$convergence)
+meta_res_lambda <- map(.x = experiment_lambda_specs,
+							  .f = vary_lambda,
+							  runs = 4,
+							  m = 11,
+							  TT = 100000)
+
+names(meta_res_lambda) <- feature_extraction_methods
 
 
-meta_res <- alphas_res[[10]]
+save(meta_res_lambda, file = "simulation_results/res_varied_lambda.RData")

@@ -170,7 +170,7 @@ expected_SARSA <- function(passed_environment) {
 	rm(passed_environment)
 
 
-	while (convergence$converged == FALSE && t < TT) {
+	while (convergence$converged == FALSE && t <= TT) {
 		
 		
 # 		if (t %in% c(25000, 50000, 74500)) { browser()}
@@ -241,11 +241,13 @@ expected_SARSA <- function(passed_environment) {
 													chunk_size = convergence_chunk_length,
 													cycle_length = convergence_cycle_length)
 		}
+		
+		# # move to next time stage
+		t <- t + 1
 	}
 	
 	
-	# # move to next time stage
-	t <- t + 1
+	
 	
 	
 	return(mget(ls()))

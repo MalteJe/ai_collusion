@@ -63,7 +63,7 @@ is_recurring <- function(cycle_length, chunk) {
 
 
 detect_pattern <- function(outcomes, current_t, chunk_size, cycle_length) {
-	
+
 	# extract price columns of the considered time period to check for convergence
 	chunk <- outcomes[((current_t-chunk_size + 1):current_t),1:2]
 	
@@ -77,9 +77,9 @@ detect_pattern <- function(outcomes, current_t, chunk_size, cycle_length) {
 		cycle_length <- which(patterns_by_cycle_length, TRUE) %>%
 			min()
 		
-		return(list(converged = TRUE, cycle_length = cycle_length, convergence_t = current_t + 1))
+		return(list(converged = TRUE, cycle_length = cycle_length, convergence_t = current_t))
 	} else {
-		return(list(converged = FALSE, cycle_length = NA, convergence_t = current_t + 1))
+		return(list(converged = FALSE, cycle_length = NA, convergence_t = current_t))
 	}
 }
 
@@ -92,6 +92,13 @@ detect_pattern <- function(outcomes, current_t, chunk_size, cycle_length) {
 
 
 
+# Error Recovery
+
+single_run_with_recovery <- function(...) {
+	try(single_run(...))
+}
+
+
 # Alpha -------------------------------------------------------------------
 
 experiment_alpha <- function(alpha, features_by, runs, m, TT) {
@@ -102,42 +109,46 @@ experiment_alpha <- function(alpha, features_by, runs, m, TT) {
 	(no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))
 	plan(strategy = cluster, workers = no_of_cores)   #THIS MAY BE ADJUSTED
 	
-	future_lapply(X = 1:runs,
-					  FUN = single_run,
-					  future.seed = 123456,
-					  Algorithm = "expected",
-					  n = 2,
-					  zeta = 1,
-					  rounding_precision = 8,
-					  m = m,
-					  TT = TT,
-					  TT_intervention = 10,
-					  Alpha =  alpha,
-					  Beta = 1*10^-4,
-					  Gamma = 0.05,
-					  Delta = 0.95,
-					  Lambda = 0.3,
-					  Epsilon_constant = NA,
-					  Psi = 0.7,
-					  w_init = 0,
-					  r_adjust = 0.2229272,
-					  seed = NA,
-					  features_by = features_by,
-					  specifications = list(
-					  	degree_sep = 4,
-					  	degree_poly_tiling = 4,
-					  	poly_n_tilings = 4,
-					  	poly_n_tiles = 3,
-					  	n_tilings = 5,
-					  	n_tiles = 5
-					  ),
-					  td_error_method = "discounted",
-					  dutch_traces = TRUE,
-					  policy = "greedy",
-					  convergence_chunk_length = 1000,
-					  convergence_cycle_length = 10,
-					  convergence_check_frequency = 1000,
-					  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+	res <- future_lapply(X = 1:runs,
+								FUN = single_run_with_recovery,
+								future.seed = 123456,
+								Algorithm = "expected",
+								n = 2,
+								zeta = 1,
+								rounding_precision = 8,
+								m = m,
+								TT = TT,
+								TT_intervention = 10,
+								Alpha =  alpha,
+								Beta = 1*10^-4,
+								Gamma = 0.05,
+								Delta = 0.95,
+								Lambda = 0.3,
+								Epsilon_constant = NA,
+								Psi = 0.7,
+								w_init = 0,
+								r_adjust = 0.2229272,
+								seed = NA,
+								features_by = features_by,
+								specifications = list(
+									degree_sep = 4,
+									degree_poly_tiling = 4,
+									poly_n_tilings = 4,
+									poly_n_tiles = 3,
+									n_tilings = 5,
+									n_tiles = 5
+								),
+								td_error_method = "discounted",
+								dutch_traces = TRUE,
+								policy = "greedy",
+								convergence_chunk_length = 1000,
+								convergence_cycle_length = 10,
+								convergence_check_frequency = 1000,
+								c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+	
+	# save and return results
+	save(res, file = str_c("simulation_results/separarate/alpha_", features_by, "_", str_replace(as.character(alpha), "\\.", "_"), ".RData"))
+	return(res)
 }
 
 
@@ -175,42 +186,47 @@ experiment_lambda <- function(lambda, alpha, features_by, runs, m, TT) {
 	(no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))
 	plan(strategy = cluster, workers = no_of_cores)   #THIS MAY BE ADJUSTED
 	
-	future_lapply(X = 1:runs,
-					  FUN = single_run,
-					  future.seed = 123456,
-					  Algorithm = "expected",
-					  n = 2,
-					  zeta = 1,
-					  rounding_precision = 8,
-					  m = m,
-					  TT = TT,
-					  TT_intervention = 10,
-					  Alpha =  alpha,
-					  Beta = 1*10^-4,
-					  Gamma = 0.05,
-					  Delta = 0.95,
-					  Lambda = lambda,
-					  Epsilon_constant = NA,
-					  Psi = 0.7,
-					  w_init = 0,
-					  r_adjust = 0.2229272,
-					  seed = NA,
-					  features_by = features_by,
-					  specifications = list(
-					  	degree_sep = 4,
-					  	degree_poly_tiling = 4,
-					  	poly_n_tilings = 4,
-					  	poly_n_tiles = 3,
-					  	n_tilings = 5,
-					  	n_tiles = 5
-					  ),
-					  td_error_method = "discounted",
-					  dutch_traces = TRUE,
-					  policy = "greedy",
-					  convergence_chunk_length = 1000,
-					  convergence_cycle_length = 10,
-					  convergence_check_frequency = 1000,
-					  c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+	
+	res <- future_lapply(X = 1:runs,
+								FUN = single_run_with_recovery,
+								future.seed = 123456,
+								Algorithm = "expected",
+								n = 2,
+								zeta = 1,
+								rounding_precision = 8,
+								m = m,
+								TT = TT,
+								TT_intervention = 10,
+								Alpha =  alpha,
+								Beta = 1*10^-4,
+								Gamma = 0.05,
+								Delta = 0.95,
+								Lambda = lambda,
+								Epsilon_constant = NA,
+								Psi = 0.7,
+								w_init = 0,
+								r_adjust = 0.2229272,
+								seed = NA,
+								features_by = features_by,
+								specifications = list(
+									degree_sep = 4,
+									degree_poly_tiling = 4,
+									poly_n_tilings = 4,
+									poly_n_tiles = 3,
+									n_tilings = 5,
+									n_tiles = 5
+								),
+								td_error_method = "discounted",
+								dutch_traces = TRUE,
+								policy = "greedy",
+								convergence_chunk_length = 1000,
+								convergence_cycle_length = 10,
+								convergence_check_frequency = 1000,
+								c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+	
+	# save and return results
+	save(res, file = str_c("simulation_results/separarate/lambda_", features_by, "_", str_replace(as.character(lambda), "\\.", "_"), ".RData"))
+	return(res)
 }
 
 

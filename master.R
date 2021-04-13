@@ -1,3 +1,4 @@
+library(rlist)
 library(purrr)
 library(tidyquant)
 library(tidyverse)
@@ -9,7 +10,7 @@ library(viridis)
 getwd() %>%
 	list.files(full.names = TRUE) %>%
 	str_subset("^(?!.*master.R$)") %>% 
-	str_subset("^(?!.*static_visualization.R$)") %>% 
+	str_subset("^(?!.*static_visualizations.R$)") %>% 
 	str_subset(".R$") %>%
 	walk(source)
 
@@ -49,13 +50,13 @@ single_res <- single_run(Algorithm = "expected",
 								 	n_tilings = 1,
 								 	n_tiles = 8
 								 ),
-								 features_by = "poly_tiling",								 
+								 features_by = "tiling",								 
 								 td_error_method = "discounted",
 								 dutch_traces = TRUE,
 								 policy = "greedy",
 								 convergence_chunk_length = 100,
 								 convergence_cycle_length = 10,
-								 convergence_check_frequency = 100,
+								 convergence_check_frequency = 200,
 								 c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 
 
@@ -262,18 +263,24 @@ alphas_tiling <- seq(from = 0.12, to = 0.3, length.out = 5)
 alphas_poly <- seq(from = 2 * 10^-6, to = 2* 10^-5, length.out = 5)
 alphas <- list(alphas_tiling, alphas_tiling, alphas_poly, alphas_poly)
 
-experiment_alpha_specs <- list(features = features_extraction_methods, alphas = alphas) %>% transpose()
+alphas <- c(0.2 * 10^-(0:9))
+
+experiment_alpha_specs <- map(features_extraction_methods,
+										.f = ~list(features = .,alphas = alphas))
+
+
+# experiment_alpha_specs <- list(features = features_extraction_methods, alphas = alphas) %>% transpose()
 
 
 meta_res_alpha <- map(.x = experiment_alpha_specs,
 							.f = vary_alpha,
 							runs = 4,
 							m = 11,
-							TT = 100000)
+							TT = 1000)
 
 names(meta_res_alpha) <- features_extraction_methods
 	
-save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
+# save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 
 

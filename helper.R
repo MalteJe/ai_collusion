@@ -147,9 +147,11 @@ experiment_alpha <- function(alpha, features_by, runs, m, TT) {
 								c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 	
 	# save and return results
-	save(res, file = str_c("simulation_results/separarate/alpha_", features_by, "_", str_replace(as.character(alpha), "\\.", "_"), ".RData"))
+	save(res, file = str_c("simulation_results/separate/alpha_", features_by, "_", str_replace(as.character(alpha), "\\.", "_"), ".RData"))
 	return(res)
 }
+
+
 
 
 vary_alpha <- function(experiment_specs, runs, m, TT) {
@@ -225,7 +227,7 @@ experiment_lambda <- function(lambda, alpha, features_by, runs, m, TT) {
 								c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 	
 	# save and return results
-	save(res, file = str_c("simulation_results/separarate/lambda_", features_by, "_", str_replace(as.character(lambda), "\\.", "_"), ".RData"))
+	save(res, file = str_c("simulation_results/separate/lambda_", features_by, "_", str_replace(as.character(lambda), "\\.", "_"), ".RData"))
 	return(res)
 }
 

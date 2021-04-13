@@ -1,5 +1,49 @@
-# trajectory of "main" specifications -------------------------------------
+# replace runs with error recoveries with dummy run -----------------------
 
+
+
+dummy_run <- list(
+	outcomes = matrix(rep(NA_real_, 400), ncol = 4, dimnames = list(NULL, c("price_1", "price_2", "profit_1", "profit_2"))),
+	convergence = list(
+		converged = TRUE,
+		convergence_t = 2),
+	run_id = NA,
+	specs = list(
+		TT_intervention = 10,
+		convergence_cycle_length = 1
+	)
+)
+
+
+
+replace_errors <- function(run) {
+	if(class(run) == "try-error") {
+		return(dummy_run)
+	} else {
+		return(run)
+	}
+}
+
+replace_errors_experiment <- function(experiment) {
+	map(experiment,
+		 replace_errors)
+}
+
+replace_errors_feature <- function(features_by) {
+	map(features_by,
+		 replace_errors_experiment)
+}
+
+
+meta_meta_res <- map(meta_res_alpha,
+							replace_errors_feature)
+
+
+
+str(meta_meta_res[[1]][[3]][[1]])
+
+
+# trajectory of "main" specifications -------------------------------------
 
 get_convergence_t <- function(run) {
 	if (run$convergence$converged) {
@@ -14,8 +58,9 @@ get_delta <- function(profit) {
 }
 
 run_trajectory <- function(run, t_group) {
+	
 	conv_t <- get_convergence_t(run)
-
+	
 	run$outcomes[1:conv_t,] %>%
 		as_tibble() %>%
 		transmute(t = row_number(),
@@ -51,6 +96,11 @@ average_trajectories <- function(feature_res, experiment_id, t_group) {
 		group_by(t_group, metric) %>%
 		summarize(value = mean(value))
 }
+
+
+
+
+
 
 map_dfr(meta_meta_res,
 	 average_trajectories,
@@ -116,7 +166,7 @@ intervention_avg_prices <- function(feature_res, experiment_id, t_before_interve
 
 map_dfr(meta_meta_res,
 	 .f = intervention_avg_prices,
-	 experiment_id = 5,
+	 experiment_id = 2,
 	 t_before_intervention = 8,
 	 .id = "feature_method") %>%
 	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
@@ -136,13 +186,9 @@ map_dfr(meta_meta_res,
 
 
 
-
-intervention_prices(this_run, 2)
-intervention_experiment(meta_meta_res[[1]], 4, 2)
-
 map_dfr(meta_meta_res,
 		 	.f = intervention_experiment,
-		 	experiment_id = 4,
+		 	experiment_id = 2,
 		 	t_before_intervention = 2, .id = "feature_method") %>%
 	group_by(feature_method, run_id) %>%
 	mutate(price_change_1 = price_1 - first(price_1),
@@ -190,12 +236,11 @@ feature_avg_profits <- function(feature_res) {
 # feature_avg_profits(meta_meta_res[[1]])
 
 
-avg_profits_varied_alpha <- map_dfc(.x = meta_res_alpha,
+avg_profits_varied_alpha <- map_dfc(.x = meta_meta_res,
 												.f = feature_avg_profits) %>%
-	mutate(alphas_tiling, alphas_poly) %>%
+	mutate(alpha = alphas) %>%
 	pivot_longer(cols = features_extraction_methods, names_to = "feature_method", values_to = "avg_profit") %>%
-	mutate(alpha = ifelse(feature_method %in% c("tabular", "tiling"), alphas_tiling, alphas_poly),
-			 Delta = get_delta(avg_profit))
+	mutate(Delta = get_delta(avg_profit))
 
 
 ggplot(avg_profits_varied_alpha, aes(x = alpha, y = Delta, col = feature_method)) +

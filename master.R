@@ -283,8 +283,6 @@ names(meta_res_alpha) <- features_extraction_methods
 # save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 
-
-
 # Lambda ------------------------------------------------------------------
 
 lambdas <- seq(from = 0, to = 0.8, by = 0.2)

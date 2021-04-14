@@ -240,15 +240,9 @@ shinyApp(ui, server)
 
 
 
-
-
 # For Finalization --------------------------------------------------------
 
-
-
 0.7 * exp(- 1 * 10^-4 * c(1, 1000, 10000, 50000, 100000, 150000, 200000, 300000, 1000000))
-
-
 
 
 # methods
@@ -304,24 +298,9 @@ baseline <- list(
 # Alpha -------------------------------------------------------------------
 
 
-# alphas_tiling <- seq(from = 0.12, to = 0.3, length.out = 5)
-# alphas_poly <- seq(from = 2 * 10^-6, to = 2* 10^-5, length.out = 5)
-# alphas <- list(alphas_tiling, alphas_tiling, alphas_poly, alphas_poly)
-
 alphas <- c(0.2 * 10^-(0:9))
 alpha_input <- list_modify(baseline, Alpha = alphas)
-# experiment_alpha_specs <- map(features_extraction_methods,
-# 										.f = ~list(features = .,alphas = alphas))
 
-
-# experiment_alpha_specs <- list(features = features_extraction_methods, alphas = alphas) %>% transpose()
-
-
-# meta_res_alpha <- map(.x = experiment_alpha_specs,
-# 							.f = vary_alpha,
-# 							runs = 4,
-# 							m = 11,
-# 							TT = 1000000)
 
 meta_res_alpha <- map(.x = features_extraction_methods,
 								  .f = vary_alpha,
@@ -340,16 +319,6 @@ lambdas <- seq(from = 0, to = 0.8, by = 0.2)
 lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
 alphas_manually_optimized <- c(0.25, 0.02, 1 * 10^-6, 1 * 10^-4)
 
-# experiment_lambda_specs <- list(features = features_extraction_methods, alpha = alphas_manually_optimized) %>%
-# 	transpose() %>%
-# 	map(.f = ~list.append(., lambdas = lambdas))
-# 
-# 
-# meta_res_lambda <- map(.x = experiment_lambda_specs,
-# 							  .f = vary_lambda,
-# 							  runs = 4,
-# 							  m = 11,
-# 							  TT = 100000)
 
 meta_res_lambda <- map2(.x = features_extraction_methods,
 								.y = alphas_manually_optimized,

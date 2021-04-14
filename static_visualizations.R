@@ -40,8 +40,6 @@ meta_meta_res <- map(meta_res_alpha,
 
 
 
-str(meta_meta_res[[1]][[3]][[1]])
-
 
 # trajectory of "main" specifications -------------------------------------
 
@@ -101,41 +99,6 @@ average_trajectories <- function(feature_res, experiment_id, t_group) {
 
 
 
-
-map_dfr(meta_meta_res,
-	 average_trajectories,
-	 experiment_id = 2,
-	 t_group = 1000, .id = "feature_method") %>%
-	ungroup() %>%
-	complete(feature_method, t_group, metric) %>%
-	group_by(feature_method, metric) %>%
-	fill(value, .direction = "down") %>%
-	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
-			 p_m = ifelse(metric == "Delta", 1, 1.97 )) %>%
-	ggplot(aes(x = t_group * 1000, y = value, color = feature_method)) +
-	geom_hline(aes(yintercept = p_n)) +	
-	geom_hline(aes(yintercept = p_m)) +	
-	geom_line(size = 1) +
-		facet_wrap(~ metric, ncol = 1, scales = "free_y") +
-		theme_tq()
-
-
-# experiment_trajectories(meta_meta_res[[1]], 2, t_group = 10000) %>%
-# 	ggplot(aes(x = as.factor(t_group * 10000), y = value)) +
-# 	geom_boxplot() +
-# 	facet_wrap(~metric, ncol = 1, scales = "free_y")
-
-map_dfr(meta_meta_res, experiment_trajectories, 3, t_group = 10000, .id = "feature_method") %>%
-	ggplot(aes(x = as.factor(t_group * 10000), y = value, fill = feature_method)) +
-	geom_boxplot(position = "dodge") +
-	facet_wrap(~metric, ncol = 1, scales = "free_y") +
-	theme_tq()
-
-
-
-
-
-
 # Intervention ------------------------------------------------------------
 
 
@@ -145,8 +108,12 @@ intervention_prices <- function(run, t_before_intervention) {
 		as_tibble() %>%
 		select(price_1, price_2) %>%
 		mutate(run_id = run$run_id,
-				 tau = row_number() - t_before_intervention + 1)
+				 tau = row_number() - t_before_intervention)
 }
+
+
+# intervention_prices(meta_meta_res[[3]][[3]][[2]], 10)
+
 
 intervention_experiment <- function(feature_res, experiment_id, t_before_intervention) {
 	map_dfr(feature_res[[experiment_id]],
@@ -164,20 +131,59 @@ intervention_avg_prices <- function(feature_res, experiment_id, t_before_interve
 }
 
 
-map_dfr(meta_meta_res,
-	 .f = intervention_avg_prices,
-	 experiment_id = 2,
-	 t_before_intervention = 8,
-	 .id = "feature_method") %>%
-	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
-		geom_hline(yintercept = c(1.47, 1.97)) +
-		geom_vline(xintercept = 0, linetype = 2) +
-		geom_point(size = 3) +
-		geom_line(size = 1) +
-		theme_tq() +
-		facet_wrap(~feature_method)
 
-# intervention_avg_prices(meta_meta_res[[1]], 5, 10) %>%
+
+
+
+
+experiment_id <- 7
+
+
+map_dfr(meta_meta_res,
+		  average_trajectories,
+		  experiment_id = experiment_id,
+		  t_group = 1000, .id = "feature_method") %>%
+	ungroup() %>%
+	complete(feature_method, t_group, metric) %>%
+	group_by(feature_method, metric) %>%
+	fill(value, .direction = "down") %>%
+	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
+			 p_m = ifelse(metric == "Delta", 1, 1.97 )) %>%
+	ggplot(aes(x = t_group * 1000, y = value, color = feature_method)) +
+	geom_hline(aes(yintercept = p_n)) +	
+	geom_hline(aes(yintercept = p_m)) +	
+	geom_line(size = 1) +
+	facet_wrap(~ metric, ncol = 1, scales = "free_y") +
+	theme_tq()
+
+
+# experiment_trajectories(meta_meta_res[[1]], 2, t_group = 10000) %>%
+# 	ggplot(aes(x = as.factor(t_group * 10000), y = value)) +
+# 	geom_boxplot() +
+# 	facet_wrap(~metric, ncol = 1, scales = "free_y")
+
+map_dfr(meta_meta_res, experiment_trajectories, experiment_id, t_group = 10000, .id = "feature_method") %>%
+	filter(t_group <= 10) %>%
+	ggplot(aes(x = as.factor(t_group), y = value, fill = feature_method)) +
+	geom_boxplot(position = "dodge") +
+	facet_wrap(~metric, ncol = 1, scales = "free_y") +
+	theme_tq()
+
+
+map_dfr(meta_meta_res,
+		  .f = intervention_avg_prices,
+		  experiment_id = experiment_id,
+		  t_before_intervention = 8,
+		  .id = "feature_method") %>%
+	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
+	geom_hline(yintercept = c(1.47, 1.97)) +
+	geom_vline(xintercept = 0, linetype = 2) +
+	geom_point(size = 3) +
+	geom_line(size = 1) +
+	theme_tq() +
+	facet_wrap(~feature_method)
+
+# intervention_avg_prices(meta_meta_res[[1]], 4, 7) %>%
 # 	ggplot(aes(x = tau, y = value, linetype = price, shape = price)) +
 # 	geom_hline(yintercept = c(1.47, 1.97)) +
 # 	geom_point(size = 3) +
@@ -187,9 +193,9 @@ map_dfr(meta_meta_res,
 
 
 map_dfr(meta_meta_res,
-		 	.f = intervention_experiment,
-		 	experiment_id = 2,
-		 	t_before_intervention = 2, .id = "feature_method") %>%
+		  .f = intervention_experiment,
+		  experiment_id = experiment_id,
+		  t_before_intervention = 1, .id = "feature_method") %>%
 	group_by(feature_method, run_id) %>%
 	mutate(price_change_1 = price_1 - first(price_1),
 			 price_change_2 = price_2 - first(price_2)) %>%
@@ -197,11 +203,6 @@ map_dfr(meta_meta_res,
 	ggplot(aes(x = as.factor(tau), y = value)) +
 	geom_boxplot() +
 	facet_grid(feature_method~price)
-
-
-
-
-
 
 
 

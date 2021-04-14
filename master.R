@@ -287,7 +287,7 @@ baseline <- list(
 	Lambda = 0.5,
 	Psi = 0.7,
 	m = 11,
-	TT = 1000
+	TT = 100000
 )
 
 
@@ -317,7 +317,7 @@ save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 lambdas <- seq(from = 0, to = 0.8, by = 0.2)
 lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
-alphas_manually_optimized <- c(0.25, 0.02, 1 * 10^-6, 1 * 10^-4)
+alphas_manually_optimized <- c(0.25, 1 * 10^-4, 1 * 10^-6, 1 * 10^-6)
 
 
 meta_res_lambda <- map2(.x = features_extraction_methods,

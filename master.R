@@ -254,52 +254,136 @@ shinyApp(ui, server)
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_separated")
 
+# static specs (no variation in study whatsoever)
+static_specs <- list(
+	Algorithm = "expected",
+	n = 2,
+	zeta = 1,
+	rounding_precision = 8,
+	TT_intervention = 10,
+	Epsilon_constant = NA,
+	w_init = 0,
+	r_adjust = 0.2229272,
+	seed = NA,
+	specifications = list(
+		degree_sep = 4,
+		degree_poly_tiling = 4,
+		poly_n_tilings = 4,
+		poly_n_tiles = 3,
+		n_tilings = 5,
+		n_tiles = 5
+	),
+	td_error_method = "discounted",
+	dutch_traces = TRUE,
+	policy = "greedy",
+	convergence_chunk_length = 1000,
+	convergence_cycle_length = 10,
+	convergence_check_frequency = 1000,
+	c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25
+)
+
+
+# some sort of variation throughout study
+
+baseline <- list(
+	Alpha = 1*10^-5,
+	Beta = 1*10^-4,
+	Gamma = 0.05,
+	Delta = 0.95,
+	Lambda = 0.5,
+	Psi = 0.7,
+	m = 11,
+	TT = 1000
+)
+
+
+
+
 
 
 # Alpha -------------------------------------------------------------------
 
 
-alphas_tiling <- seq(from = 0.12, to = 0.3, length.out = 5)
-alphas_poly <- seq(from = 2 * 10^-6, to = 2* 10^-5, length.out = 5)
-alphas <- list(alphas_tiling, alphas_tiling, alphas_poly, alphas_poly)
+# alphas_tiling <- seq(from = 0.12, to = 0.3, length.out = 5)
+# alphas_poly <- seq(from = 2 * 10^-6, to = 2* 10^-5, length.out = 5)
+# alphas <- list(alphas_tiling, alphas_tiling, alphas_poly, alphas_poly)
 
 alphas <- c(0.2 * 10^-(0:9))
-
-experiment_alpha_specs <- map(features_extraction_methods,
-										.f = ~list(features = .,alphas = alphas))
+alpha_input <- list_modify(baseline, Alpha = alphas)
+# experiment_alpha_specs <- map(features_extraction_methods,
+# 										.f = ~list(features = .,alphas = alphas))
 
 
 # experiment_alpha_specs <- list(features = features_extraction_methods, alphas = alphas) %>% transpose()
 
 
-meta_res_alpha <- map(.x = experiment_alpha_specs,
-							.f = vary_alpha,
-							runs = 4,
-							m = 11,
-							TT = 1000000)
+# meta_res_alpha <- map(.x = experiment_alpha_specs,
+# 							.f = vary_alpha,
+# 							runs = 4,
+# 							m = 11,
+# 							TT = 1000000)
+
+meta_res_alpha <- map(.x = features_extraction_methods,
+								  .f = vary_alpha,
+								  variable_specs = alpha_input,
+								  static_specs = static_specs,
+								  runs = 4)
 
 names(meta_res_alpha) <- features_extraction_methods
 	
-# save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
+save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 
 # Lambda ------------------------------------------------------------------
 
 lambdas <- seq(from = 0, to = 0.8, by = 0.2)
+lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
 alphas_manually_optimized <- c(0.25, 0.02, 1 * 10^-6, 1 * 10^-4)
 
-experiment_lambda_specs <- list(features = features_extraction_methods, alpha = alphas_manually_optimized) %>%
-	transpose() %>%
-	map(.f = ~list.append(., lambdas = lambdas))
+# experiment_lambda_specs <- list(features = features_extraction_methods, alpha = alphas_manually_optimized) %>%
+# 	transpose() %>%
+# 	map(.f = ~list.append(., lambdas = lambdas))
+# 
+# 
+# meta_res_lambda <- map(.x = experiment_lambda_specs,
+# 							  .f = vary_lambda,
+# 							  runs = 4,
+# 							  m = 11,
+# 							  TT = 100000)
+
+meta_res_lambda <- map2(.x = features_extraction_methods,
+								.y = alphas_manually_optimized,
+								.f = vary_parameter,
+								variable_specs = lambda_input,
+								static_specs = static_specs,
+								runs = 4)
 
 
-meta_res_lambda <- map(.x = experiment_lambda_specs,
-							  .f = vary_lambda,
-							  runs = 4,
-							  m = 11,
-							  TT = 100000)
 
 names(meta_res_lambda) <- features_extraction_methods
 
 
 save(meta_res_lambda, file = "simulation_results/res_varied_lambda.RData")
+
+
+
+# Delta -------------------------------------------------------------------
+
+deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 0.95, 1)
+delta_input <- list_modify(baseline, Alpha = c(0.1, 0.001, 0.000001, 0.00001),
+									Delta = deltas)
+
+
+meta_res_delta <- map2(.x = features_extraction_methods,
+								.y = alphas_manually_optimized,
+								.f = vary_parameter,
+								variable_specs = delta_input,
+								static_specs = static_specs,
+								runs = 4)
+
+
+
+names(meta_res_delta) <- features_extraction_methods
+
+
+save(meta_res_delta, file = "simulation_results/res_varied_delta.RData")

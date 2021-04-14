@@ -276,7 +276,7 @@ meta_res_alpha <- map(.x = experiment_alpha_specs,
 							.f = vary_alpha,
 							runs = 4,
 							m = 11,
-							TT = 1000)
+							TT = 1000000)
 
 names(meta_res_alpha) <- features_extraction_methods
 	

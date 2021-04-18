@@ -35,7 +35,7 @@ replace_errors_feature <- function(features_by) {
 }
 
 
-meta_meta_res <- map(meta_res_alpha,
+meta_meta_res <- map(meta_res_psi,
 							replace_errors_feature)
 
 
@@ -47,9 +47,12 @@ get_convergence_t <- function(run) {
 	if (run$convergence$converged) {
 		return(run$convergence$convergence_t)
 	} else {
-		return(run$specs$TT)
+		# return(run$specs$TT)
+		return(100000)
 	}
 }
+
+
 
 get_delta <- function(profit) {
 	(profit - 0.2229272) / (0.3374905 - 0.2229272)
@@ -58,6 +61,8 @@ get_delta <- function(profit) {
 run_trajectory <- function(run, t_group) {
 	
 	conv_t <- get_convergence_t(run)
+	
+	if(is.na(conv_t)) {browser()}
 	
 	run$outcomes[1:conv_t,] %>%
 		as_tibble() %>%
@@ -68,6 +73,7 @@ run_trajectory <- function(run, t_group) {
 		group_by(t_group) %>%
 		summarize_at(c("price", "Delta"), mean) %>%
 		mutate(run_id = run$run_id)
+	
 }
 
 
@@ -133,10 +139,7 @@ intervention_avg_prices <- function(feature_res, experiment_id, t_before_interve
 
 
 
-
-
-
-experiment_id <- 7
+experiment_id <- 5
 
 
 map_dfr(meta_meta_res,
@@ -263,6 +266,40 @@ avg_profits_varied_lambda <- map_dfc(.x = meta_res_lambda,
 
 
 ggplot(avg_profits_varied_lambda, aes(x = lambda, y = Delta, col = feature_method)) +
+	geom_line(size = 1) +
+	geom_point( size = 3) +
+	geom_hline(yintercept = c(0, 1)) +
+	theme_tq()
+
+
+
+# Varying Delta -----------------------------------------------------------
+
+avg_profits_varied_delta <- map_dfc(.x = meta_res_delta,
+											 .f = feature_avg_profits) %>%
+	mutate(delta = delta_input$Delta) %>%
+	pivot_longer(cols = features_extraction_methods, names_to = "feature_method", values_to = "avg_profit") %>%
+	mutate(Delta = get_delta(avg_profit))
+
+
+ggplot(avg_profits_varied_delta, aes(x = delta, y = Delta, col = feature_method)) +
+	geom_line(size = 1) +
+	geom_point( size = 3) +
+	geom_hline(yintercept = c(0, 1)) +
+	theme_tq()
+
+
+
+# Varying Psi -------------------------------------------------------------
+
+avg_profits_varied_psi <- map_dfc(.x = meta_res_psi,
+												.f = feature_avg_profits) %>%
+	mutate(psi = psi_input$Psi) %>%
+	pivot_longer(cols = features_extraction_methods, names_to = "feature_method", values_to = "avg_profit") %>%
+	mutate(Delta = get_delta(avg_profit))
+
+
+ggplot(avg_profits_varied_psi, aes(x = psi, y = Delta, col = feature_method)) +
 	geom_line(size = 1) +
 	geom_point( size = 3) +
 	geom_hline(yintercept = c(0, 1)) +

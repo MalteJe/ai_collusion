@@ -1,22 +1,22 @@
-[1] Config.pm:304> INFO - This is Biber 2.14
-[1] Config.pm:307> INFO - Logfile is 'master.blg'
-[227] biber-MSWIN64:322> INFO - === 
-[286] Biber.pm:415> INFO - Reading 'master.bcf'
-[573] Biber.pm:943> INFO - Found 11 citekeys in bib section 0
-[622] Biber.pm:4256> INFO - Processing section 0
-[623] Utils.pm:75> INFO - Globbing data source 'zotero_refs.bib'
-[672] Utils.pm:91> INFO - Globbed data source 'zotero_refs.bib' to zotero_refs.bib
-[725] Biber.pm:4455> INFO - Looking for bibtex format file 'zotero_refs.bib' for section 0
-[764] bibtex.pm:1653> INFO - LaTeX decoding ...
-[1700] bibtex.pm:1471> INFO - Found BibTeX data source 'zotero_refs.bib'
-[2002] Utils.pm:304> WARN - I didn't find a database entry for 'demo_art' (section 0)
-[2003] Utils.pm:304> WARN - I didn't find a database entry for 'demo_book' (section 0)
-[2003] Utils.pm:304> WARN - I didn't find a database entry for 'demo_source' (section 0)
-[2004] Utils.pm:304> WARN - I didn't find a database entry for 'grapov2018rise' (section 0)
-[2058] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[2058] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[2058] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[2058] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[2100] bbl.pm:652> INFO - Writing 'master.bbl' with encoding 'UTF-8'
-[2123] bbl.pm:755> INFO - Output to master.bbl
-[2124] Biber.pm:128> INFO - WARNINGS: 4
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'master.blg'
+[116] biber-MSWIN64:322> INFO - === 
+[152] Biber.pm:415> INFO - Reading 'master.bcf'
+[290] Biber.pm:943> INFO - Found 14 citekeys in bib section 0
+[314] Biber.pm:4256> INFO - Processing section 0
+[314] Utils.pm:75> INFO - Globbing data source 'zotero_refs.bib'
+[326] Utils.pm:91> INFO - Globbed data source 'zotero_refs.bib' to zotero_refs.bib
+[347] Biber.pm:4455> INFO - Looking for bibtex format file 'zotero_refs.bib' for section 0
+[363] bibtex.pm:1653> INFO - LaTeX decoding ...
+[783] bibtex.pm:1471> INFO - Found BibTeX data source 'zotero_refs.bib'
+[898] Utils.pm:304> WARN - I didn't find a database entry for 'demo_art' (section 0)
+[898] Utils.pm:304> WARN - I didn't find a database entry for 'demo_book' (section 0)
+[898] Utils.pm:304> WARN - I didn't find a database entry for 'demo_source' (section 0)
+[898] Utils.pm:304> WARN - I didn't find a database entry for 'grapov2018rise' (section 0)
+[922] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[922] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[922] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[922] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[944] bbl.pm:652> INFO - Writing 'master.bbl' with encoding 'UTF-8'
+[954] bbl.pm:755> INFO - Output to master.bbl
+[954] Biber.pm:128> INFO - WARNINGS: 4

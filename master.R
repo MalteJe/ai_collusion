@@ -252,7 +252,6 @@ features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_separ
 static_specs <- list(
 	Algorithm = "expected",
 	n = 2,
-	zeta = 1,
 	rounding_precision = 8,
 	TT_intervention = 10,
 	Epsilon_constant = NA,
@@ -260,12 +259,12 @@ static_specs <- list(
 	r_adjust = 0.2229272,
 	seed = NA,
 	specifications = list(
-		degree_sep = 4,
-		degree_poly_tiling = 4,
-		poly_n_tilings = 4,
-		poly_n_tiles = 3,
+		degree_sep = 5,
+		degree_poly_tiling = 5,
+		poly_n_tilings = 5,
+		poly_n_tiles = 4,
 		n_tilings = 5,
-		n_tiles = 5
+		n_tiles = 7
 	),
 	td_error_method = "discounted",
 	dutch_traces = TRUE,
@@ -286,6 +285,7 @@ baseline <- list(
 	Delta = 0.95,
 	Lambda = 0.5,
 	Psi = 0.7,
+	zeta = 1,
 	m = 11,
 	TT = 100000
 )
@@ -339,7 +339,7 @@ save(meta_res_lambda, file = "simulation_results/res_varied_lambda.RData")
 # Delta -------------------------------------------------------------------
 
 deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 0.95, 1)
-delta_input <- list_modify(baseline, Alpha = c(0.1, 0.001, 0.000001, 0.00001),
+delta_input <- list_modify(baseline, Alpha = NULL,
 									Delta = deltas)
 
 
@@ -356,3 +356,47 @@ names(meta_res_delta) <- features_extraction_methods
 
 
 save(meta_res_delta, file = "simulation_results/res_varied_delta.RData")
+
+
+# Psi -------------------------------------------------------------------
+
+psis <- c(1, 0.8, 0.6, 0.4, 0.2)
+psi_input <- list_modify(baseline, Alpha = NULL,
+									Psi = psis)
+
+
+meta_res_psi <- map2(.x = features_extraction_methods,
+							  .y = alphas_manually_optimized,
+							  .f = vary_parameter,
+							  variable_specs = psi_input,
+							  static_specs = static_specs,
+							  runs = 4)
+
+
+
+names(meta_res_psi) <- features_extraction_methods
+
+
+save(meta_res_psi, file = "simulation_results/res_varied_psi.RData")
+
+
+
+# Zeta --------------------------------------------------------------------
+
+zetas <- c(0.1, 0.5, 1, 2)
+psi_input <- list_modify(baseline, Alpha = NULL,
+								 zeta = zetas)
+
+
+meta_res_zeta <- map2(.x = features_extraction_methods,
+							.y = alphas_manually_optimized,
+							.f = vary_parameter,
+							variable_specs = zeta_input,
+							static_specs = static_specs,
+							runs = 4)
+
+
+
+names(meta_res_zeta) <- features_extraction_methods
+
+save(meta_res_zeta, file = "simulation_results/res_varied_psi.RData")

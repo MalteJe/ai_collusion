@@ -144,6 +144,53 @@
       \endverb
       \keyw{Artificial Intelligence,Collusion,Pricing-Algorithms,Q-Learning.,Reinforcement Learning}
     \endentry
+    \entry{ezrachi_algorithmic_2017}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=bdfeb85ba61b8ef0634724326682078c}{%
+           family={Ezrachi},
+           familyi={E\bibinitperiod},
+           given={Ariel},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c7351bb095fd64d31ed898faa84dae1}{%
+           family={Stucke},
+           familyi={S\bibinitperiod},
+           given={Maurice\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {EN}%
+      }
+      \strng{namehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{fullhash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{bibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{authorbibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{authornamehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{authorfullhash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \field{sortinit}{E}
+      \field{sortinithash}{c554bd1a0b76ea92b9f105fe36d9c7b0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{title}{Algorithmic {Collusion}: {Problems} and {Counter} {Measures}}
+      \field{urlday}{17}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\6KCC9ILX\\view.html:text/html;algorithmic collusion problems and counter measure.pdf:C\:\\Users\\psymo\\Zotero\\storage\\Y4XHFK45\\algorithmic collusion problems and counter measure.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://saiexam.nta.ac.in/cgi-bin/content/view.php?data=algorithmic_collusion_problems_and_counter_measures&filetype=pdf&id=58dd2c85905cd7515329353735c621eb
+      \endverb
+      \verb{url}
+      \verb http://saiexam.nta.ac.in/cgi-bin/content/view.php?data=algorithmic_collusion_problems_and_counter_measures&filetype=pdf&id=58dd2c85905cd7515329353735c621eb
+      \endverb
+    \endentry
     \entry{ittoo_algorithmic_2017}{report}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=022281daa38a949268ce8cd19108b04f}{%
@@ -260,6 +307,58 @@
       \endverb
       \keyw{algorithmic collusion,artificial intelligence,machine learning,pricing algorithms,Q-learning,reinforcement learning,sequential pricing}
     \endentry
+    \entry{mehra_antitrust_2015}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=20b4ceb461aee7703fc2e397f131ab31}{%
+           family={Mehra},
+           familyi={M\bibinitperiod},
+           given={Salil\bibnamedelima K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Social Science Research Network}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Rochester, NY}%
+      }
+      \strng{namehash}{20b4ceb461aee7703fc2e397f131ab31}
+      \strng{fullhash}{20b4ceb461aee7703fc2e397f131ab31}
+      \strng{bibnamehash}{20b4ceb461aee7703fc2e397f131ab31}
+      \strng{authorbibnamehash}{20b4ceb461aee7703fc2e397f131ab31}
+      \strng{authornamehash}{20b4ceb461aee7703fc2e397f131ab31}
+      \strng{authorfullhash}{20b4ceb461aee7703fc2e397f131ab31}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Increasingly, firms are knitting together newly available mass data collection, Internet-driven interconnective power, and automated algorithmic selling with their traditional supply-chain and sales functions. Traditional sales functions such as competitive intelligence gathering and pricing are being delegated to software “robo-sellers.” This Article offers the first descriptive and normative study of the implications of this shift away from humans to machines (the “robo-sellers”) for antitrust law. This change is a critical challenge for antitrust law – both in how it is currently applied and in highlighting and exacerbating its existing weaknesses.}
+      \field{month}{3}
+      \field{number}{ID 2576341}
+      \field{shorttitle}{Antitrust and the {Robo}-{Seller}}
+      \field{title}{Antitrust and the {Robo}-{Seller}: {Competition} in the {Time} of {Algorithms}}
+      \field{type}{{SSRN} {Scholarly} {Paper}}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\LQDU7N79\\papers.html:text/html;Mehra - 2015 - Antitrust and the Robo-Seller Competition in the .pdf:C\:\\Users\\psymo\\Zotero\\storage\\79Z6ULA4\\Mehra - 2015 - Antitrust and the Robo-Seller Competition in the .pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/abstract=2576341
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/abstract=2576341
+      \endverb
+      \keyw{competition,antitrust,automation,computers,cyberlaw,oligopoly}
+    \endentry
     \entry{naik_discounted_2019}{article}{}
       \name{author}{5}{}{%
         {{un=0,uniquepart=base,hash=3f00c53e13e0a727532280d48b4df5ce}{%
@@ -306,7 +405,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Discounted reinforcement learning is fundamentally incompatible with function approximation for control in continuing tasks. It is not an optimization problem in its usual formulation, so when using function approximation there is no optimal policy. We substantiate these claims, then go on to address some misconceptions about discounting and its connection to the average reward formulation. We encourage researchers to adopt rigorous optimization approaches, such as maximizing average reward, for reinforcement learning in continuing tasks.}
-      \field{annotation}{Comment: Accepted for presentation at the Optimization Foundations of Reinforcement Learning Workshop at NeurIPS 2019}
       \field{journaltitle}{arXiv:1910.02140 [cs]}
       \field{month}{11}
       \field{note}{arXiv: 1910.02140}
@@ -326,6 +424,46 @@
       \verb http://arxiv.org/abs/1910.02140
       \endverb
       \keyw{Computer Science - Artificial Intelligence}
+    \endentry
+    \entry{oecd_price_2016}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bdbed435a416a918aa494017fda4c7fb}{%
+           family={OECD},
+           familyi={O\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {OECD}%
+      }
+      \strng{namehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{fullhash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{bibnamehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{authorbibnamehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{authornamehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{authorfullhash}{bdbed435a416a918aa494017fda4c7fb}
+      \field{sortinit}{O}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In recent years the scope for near perfect price discrimination, particularly in the digital economy, appears to have grown. This raises a question over how those jurisdictions in which exploitative price discrimination is an offence will respond. In contrast, the risk of price discrimination distorting downstream markets does not appear to have changed, and instead the debate has been on whether the rules and case law have an economic basis, and if not, how agencies might prioritise cases. In this paper, we set out the benefits of price discrimination as well as the concerns over its potential exploitative, distortionary, and exclusionary effects and describe analytical frameworks for assessing these, as well as possible remedies. We distinguish these cases from those investigations where there is a different policy rationale, such as fairness or another policy goal.}
+      \field{month}{11}
+      \field{title}{Price discrimination - {Background} {Note} by the {Secretariat}}
+      \field{type}{techreport}
+      \field{urlday}{17}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\DHGFCCUC\\price-discrimination.html:text/html;DAF-COMP-M(2016)2-ANN5-FINAL.en.pdf:C\:\\Users\\psymo\\Zotero\\storage\\UFBY2E7B\\DAF-COMP-M(2016)2-ANN5-FINAL.en.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.oecd.org/daf/competition/price-discrimination.htm
+      \endverb
+      \verb{url}
+      \verb https://www.oecd.org/daf/competition/price-discrimination.htm
+      \endverb
     \endentry
     \entry{seijen_true_2014}{inproceedings}{}
       \name{author}{2}{}{%

@@ -2,15 +2,42 @@
 This study is related to three literature streams: (i) the scholarly debate on how competition law is supposed to manage autonomous pricing software, (ii)  repeated games in the realm of algorithms, and (iii) an increasing number of simulation studies that empirically examine the behavior of algorithms in simplified economic environments. I will provide a brief summary of the recent developments in each of these fields.
 
 \subsection{Competition Policy and pricing algorithms}
-As algorithms increasingly take over pricing authority from humans in a number of industries, some scholars have voiced concerns about the adequacy of current competition laws and practices. \textcite{mehra_antitrust_2015} points out that the traditional distinction between explicit and tacit collusion emerged with \emph{human sellers} in mind who differ from \emph{robo-sellers}. He argues that the latter is more likely to achieve cartel solutions in an oligopolistic setting due to superior speed, accuracy and even rationality when analyzing and adjusting prices. He concludes that the increasing prevalence of automated pricing software warrants a reassessment of current competition law and enforcement. 
+As algorithms increasingly take over pricing authority from humans in a number of industries, some scholars have voiced concerns about the adequacy of current competition laws and practices. \textcite{mehra_antitrust_2015} points out that the traditional distinction between explicit and tacit collusion emerged with \emph{human sellers} in mind who differ from \emph{robo-sellers}. He argues that the latter are more likely to achieve cartel solutions in an oligopolistic setting due to superior speed, accuracy and even rationality when analyzing and adjusting prices. He concludes that the increasing prevalence of automated pricing software warrants a reassessment of current competition law and enforcement. 
 
 * no human intent to achieve supracompetitive prices
 	* but employed algorithms achieved that anyway. 
 	* outcome eludes explicit agreement, still detrimental
- light of recent development 
 
-Whereas \emph{human pricing} 
-
+\textcite{ezrachi_sustainable_2018} claim academic consensus that algorithms could at the very least be utilized to facilitate \emph{existing} collusive agreements. For instance, cartel members could automate the detection and even punishment of deviations from an agreement through an automated algorithm. Other conceivable schemes include facilitated market segmentation \parencite{oefgen_decision_2019} and price \emph{signaling} \parencite{oecd_price_2016}. While these scenarios may alter the operational scope of market investigations to account for the role of deployed algorithms, they are well covered by contemporary competition laws.  \footnote{see e.g.\ statements by \cite{bundeskartellamt_bundeskartellamt_nodate}. See \textcite{cma_case_2016} \textcite{oefgen_decision_2019}for two exemplary cases}. 
 
 
-\textcite{calvano_artificial_2019} simulate two Q-Learning agents that not only achieve collusive outcomes, but also sustain their tacit agreement through a \emph{reward-punishment} scheme. \textcite{klein_autonomous_2019} shows that Q-Learning algorithms converge faster in a sequential price setting environment.
+
+
+\textcite{noa}
+
+
+\textcite{bundeskartellamt_bundeskartellamt_nodate} also note that the specifics of the algorithms are not highly important because the mere \emph{intention} to collude suffices to invoke competition laws.
+
+
+\subsection{Algorithms in Game Theory}
+
+something moer
+
+\subsection{Simulation Studies}
+
+While there are numerous studies on the behavior of algorithms in cooperative and competitive games, their application in industrial economics has been a little scarcer. A seminal study by \textcite{waltman_q-learning_2008} examines two \emph{Q-Learning} pricing agents in a \emph{Cournot} environment.\footnote{i.e.\ firms compete in quantities.} Their simulations result in supra-competitive equilibria, but even \emph{memoryless} agents without knowledge of past outcomes manage to attain quantities below the one-shot Nash equilibrium.  This casts doubt on the viability of the learned strategies vis-à-vis rational agents. Truly memoryless agents can't pursue \emph{trigger strategies} in the sense that they are unable to punish deviations as they fail to even detect them. Thus, constantly playing the one-shot solution \emph{should} be the only rational strategy. To that end, the agents seem to \emph{fail to learn how to compete} rather than to \emph{learn how to collude} \parencite{cooper_learning_2015}. 
+
+
+
+
+
+
+More recently, \textcite{calvano_artificial_2019} simulate two Q-Learning agents that not only achieve collusive outcomes, but also sustain their tacit agreement through a \emph{reward-punishment} scheme. \textcite{klein_autonomous_2019} shows that Q-Learning algorithms converge faster in a sequential price setting environment.
+
+
+
+
+
+
+
+Unfortunately, there is a lack of empirical studies assessing the workings and effects of autonomous pricing software in the real world. To my knowledge, a notable study of the German retail gasoline market by \textcite{assad_algorithmic_2020} remains the only exception. They document that margins in duopoly markets increased substantially if both actors switched from manual pricing to algorithmic-pricing software. Further field studies could prove instrumental to confirm and refine these results.

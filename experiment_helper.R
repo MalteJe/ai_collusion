@@ -10,7 +10,9 @@ single_run_with_recovery <- function(...) {
 # Single Experiment -------------------------------------------------------
 
 
-single_experiment <- function(experiment, static_specs, runs) {
+
+
+single_experiment <- function(experiment, static_specs, runs, sequential_execution) {
 	
 	
 	experiment_specs <- map(experiment,
@@ -26,8 +28,14 @@ single_experiment <- function(experiment, static_specs, runs) {
 					"   | Lambda = ", experiment$Lambda))
 	
 	# retrieve number of cores and specify requested number of runs
-	(no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))
-	plan(strategy = cluster, workers = no_of_cores)   # THIS MAY BE ADJUSTED
+	
+	if (sequential_execution) {
+		plan(strategy = sequential)
+	} else {
+		no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE)
+		plan(strategy = cluster, workers = no_of_cores) 
+	}
+	
 	
 	res <- future_.mapply(
 		FUN = single_run_with_recovery,
@@ -47,7 +55,7 @@ single_experiment <- function(experiment, static_specs, runs) {
 # Varying Parameters --------------------------------------------------
 
 
-vary_alpha <- function(feature_by, variable_specs, no_vary = NULL, static_specs, runs) {
+vary_alpha <- function(feature_by, variable_specs, no_vary = NULL, static_specs, runs, sequential_execution = TRUE) {
 	
 	experiment_sequence <- c(features_by = feature_by, variable_specs)
 	
@@ -60,16 +68,19 @@ vary_alpha <- function(feature_by, variable_specs, no_vary = NULL, static_specs,
 												.f = rep,
 												length.out = l) %>% transpose()
 	
+	
+	
 	map(.x = experiment_sequence_specs,
 		 .f = single_experiment,
 		 static_specs = static_specs,
-		 runs = runs)
+		 runs = runs,
+		 sequential_execution = sequential_execution)
 }
 
 
 
 
-vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, static_specs, runs) {
+vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, static_specs, runs, sequential_execution = TRUE) {
 	
 	cleaned_variable_specs <- discard(variable_specs, names(variable_specs) == "Alpha")
 	
@@ -87,5 +98,6 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, s
 	map(.x = experiment_sequence_specs,
 		 .f = single_experiment,
 		 static_specs = static_specs,
-		 runs = runs)
+		 runs = runs,
+		 sequential_execution = sequential_execution)
 }

@@ -30,13 +30,12 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  ... # further arguments passed to economic environment
 ) {
 	
-	print(run_id)
+	# print(run_id)
 	# source(str_c(getwd(), "/selection_methods_and_td.R"))
 	
 	# workaround to ensure all required functions are loaded on workers
 	a <- select_action_on_policy_greedy;a <-  select_action_on_policy_boltzmann;a <-  select_action_expected_greedy; a <-  select_action_tree_backup_greedy; a <-  td_error_on_policy_differential; a <-  td_error_on_policy_discounted; a <- td_error_on_policy_discounted; a <- td_error_expected_discounted; a <-  td_error_expected_differential; a <- td_error_tree_backup_discounted; a <- td_error_tree_backup_differential
 
-	
 	
 	#print(as.list(match.call()))
 

@@ -72,6 +72,108 @@
       \verb https://www.jstor.org/stable/2663424
       \endverb
     \endentry
+    \entry{assad_algorithmic_2020}{report}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=e71e4e9c0a4f93740834e6a70a85b086}{%
+           family={Assad},
+           familyi={A\bibinitperiod},
+           given={Stephanie},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=308f72bf65f623c29e158d8a4f275be1}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3e3be2a302ce1d9f1e797332b9dd6c8c}{%
+           family={Ershov},
+           familyi={E\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8988e4206730ffa0ecb54886c691cb99}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Social Science Research Network}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Rochester, NY}%
+      }
+      \strng{namehash}{8562e1796a879668a6b6e19cb43d3d55}
+      \strng{fullhash}{ebb45952c7403b2e1c7ad07a07644117}
+      \strng{bibnamehash}{8562e1796a879668a6b6e19cb43d3d55}
+      \strng{authorbibnamehash}{8562e1796a879668a6b6e19cb43d3d55}
+      \strng{authornamehash}{8562e1796a879668a6b6e19cb43d3d55}
+      \strng{authorfullhash}{ebb45952c7403b2e1c7ad07a07644117}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Economic theory provides ambiguous and conflicting predictions about the association between algorithmic pricing and competition. In this paper we provide the first empirical analysis of this relationship. We study Germany’s retail gasoline market where algorithmic-pricing software became widely available by mid-2017, and for which we have access to comprehensive, highfrequency price data. Because adoption dates are unknown, we identify gas stations that adopt algorithmic-pricing software by testing for structural breaks in markers associated with algorithmic pricing. We find a large number of station-level structural breaks around the suspected time of large-scale adoption. Using this information we investigate the impact of adoption on outcomes linked to competition. Because station-level adoption is endogenous, we use brand headquarter-level adoption decisions as instruments. Our IV results show that adoption increases margins by 9\%, but only in non-monopoly markets. Restricting attention to duopoly markets, we find that market-level margins do not change when only one of the two stations adopts, but increase by 28\% in markets where both do. These results suggest that AI adoption has a significant effect on competition.}
+      \field{number}{ID 3682021}
+      \field{shorttitle}{Algorithmic {Pricing} and {Competition}}
+      \field{title}{Algorithmic {Pricing} and {Competition}: {Empirical} {Evidence} from the {German} {Retail} {Gasoline} {Market}}
+      \field{type}{{SSRN} {Scholarly} {Paper}}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\U7XNKCDV\\papers.html:text/html;Assad et al. - 2020 - Algorithmic Pricing and Competition Empirical Evi.pdf:C\:\\Users\\psymo\\Zotero\\storage\\26SBZKQZ\\Assad et al. - 2020 - Algorithmic Pricing and Competition Empirical Evi.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/abstract=3682021
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/abstract=3682021
+      \endverb
+      \keyw{artificial intelligence,collusion,pricing-algorithms,retail gasoline}
+    \endentry
+    \entry{bundeskartellamt_bundeskartellamt_nodate}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c17765d4927d5c4f57c0b3837468849f}{%
+           family={Bundeskartellamt},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{c17765d4927d5c4f57c0b3837468849f}
+      \strng{fullhash}{c17765d4927d5c4f57c0b3837468849f}
+      \strng{bibnamehash}{c17765d4927d5c4f57c0b3837468849f}
+      \strng{authorbibnamehash}{c17765d4927d5c4f57c0b3837468849f}
+      \strng{authornamehash}{c17765d4927d5c4f57c0b3837468849f}
+      \strng{authorfullhash}{c17765d4927d5c4f57c0b3837468849f}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Bundeskartellamt - {Homepage} - {Working} {Paper} - {Algorithms} and {Competition}}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Bundeskartellamt - Homepage - Working Paper - Algorithms and Competition:C\:\\Users\\psymo\\Zotero\\storage\\BRRVQNGX\\Algorithms_and_Competition_Working-Paper.html\;jsessionid=839547DE0AC4D5F41DECA09740F7A4E9.html:text/html;Bundeskartellamt - Bundeskartellamt - Homepage - Working Paper - Algo.pdf:C\:\\Users\\psymo\\Zotero\\storage\\QH9733VQ\\Bundeskartellamt - Bundeskartellamt - Homepage - Working Paper - Algo.pdf:application/pdf;summary.html:C\:\\Users\\psymo\\Zotero\\storage\\9ITY7MKR\\summary.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Berichte/Algorithms_and_Competition_Working-Paper.html;jsessionid=839547DE0AC4D5F41DECA09740F7A4E9.2_cid362?nn=3591568
+      \endverb
+      \verb{url}
+      \verb https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Berichte/Algorithms_and_Competition_Working-Paper.html;jsessionid=839547DE0AC4D5F41DECA09740F7A4E9.2_cid362?nn=3591568
+      \endverb
+    \endentry
     \entry{calvano_artificial_2019}{report}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=251159e14bbd3cf5d61777ead5d463a5}{%
@@ -144,6 +246,106 @@
       \endverb
       \keyw{Artificial Intelligence,Collusion,Pricing-Algorithms,Q-Learning.,Reinforcement Learning}
     \endentry
+    \entry{cma_case_2016}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5be953486a32da5b2aff5a7b8f8833d1}{%
+           family={CMA},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{5be953486a32da5b2aff5a7b8f8833d1}
+      \strng{fullhash}{5be953486a32da5b2aff5a7b8f8833d1}
+      \strng{bibnamehash}{5be953486a32da5b2aff5a7b8f8833d1}
+      \strng{authorbibnamehash}{5be953486a32da5b2aff5a7b8f8833d1}
+      \strng{authornamehash}{5be953486a32da5b2aff5a7b8f8833d1}
+      \strng{authorfullhash}{5be953486a32da5b2aff5a7b8f8833d1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The CMA investigated a cartel relating to sales of posters and frames by 2 competing online sellers on Amazon’s UK website.}
+      \field{month}{9}
+      \field{title}{Case 50223}
+      \field{urlday}{18}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\2KC6J3VJ\\online-sales-of-discretionary-consumer-products.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.gov.uk/cma-cases/online-sales-of-discretionary-consumer-products
+      \endverb
+      \verb{url}
+      \verb https://www.gov.uk/cma-cases/online-sales-of-discretionary-consumer-products
+      \endverb
+    \endentry
+    \entry{cooper_learning_2015}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=18013d22b2b2e0a17e7d68c268321d12}{%
+           family={Cooper},
+           familyi={C\bibinitperiod},
+           given={William\bibnamedelima L.},
+           giveni={W\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ff76dc6206d64a1afab17ef6452fbfa6}{%
+           family={Homem-de-Mello},
+           familyi={H\bibinithyphendelim M\bibinitperiod},
+           given={Tito},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=52ec314ca774889b226931986605c5e2}{%
+           family={Kleywegt},
+           familyi={K\bibinitperiod},
+           given={Anton\bibnamedelima J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dfac529fdf1dc4990a93c1b04317390d}
+      \strng{fullhash}{dfac529fdf1dc4990a93c1b04317390d}
+      \strng{bibnamehash}{dfac529fdf1dc4990a93c1b04317390d}
+      \strng{authorbibnamehash}{dfac529fdf1dc4990a93c1b04317390d}
+      \strng{authornamehash}{dfac529fdf1dc4990a93c1b04317390d}
+      \strng{authorfullhash}{dfac529fdf1dc4990a93c1b04317390d}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In revenue management research and practice, demand models are used that describe how demand for a seller’s products depends on the decisions, such as prices, of that seller. Even in settings where the demand for a seller’s products also depends on decisions of other sellers, the models often do not explicitly account for such decisions. It has been conjectured in the revenue management literature that such monopoly models may incorporate the effects of competition, because the parameter estimates of the monopoly models are based on data collected in the presence of competition. In this paper we take a closer look at such a setting to investigate the behavior of parameter estimates and decisions if monopoly models are used in the presence of competition. We consider repeated pricing games in which two competing sellers use mathematical models to choose the prices of their products. Over the sequence of games, each seller attempts to estimate the values of the parameters of a demand model that expresses demand as a function only of its own price using data comprised only of its own past prices and demand realizations. We analyze the behavior of the sellers’ parameter estimates and prices under various assumptions regarding the sellers’ knowledge and estimation procedures, and we identify situations in which (a) the sellers’ prices converge to the Nash equilibrium associated with knowledge of the correct demand model, (b) the sellers’ prices converge to the cooperative solution, and (c) the sellers’ prices have many potential limit points that are neither the Nash equilibrium nor the cooperative solution and that depend on the initial conditions. We compare the sellers’ revenues at potential limit prices with their revenues at the Nash equilibrium and the cooperative solution, and we show that it is possible for sellers to be better off when using a monopoly model than at the Nash equilibrium.}
+      \field{issn}{0030-364X}
+      \field{journaltitle}{Operations Research}
+      \field{month}{2}
+      \field{note}{Publisher: INFORMS}
+      \field{number}{1}
+      \field{title}{Learning and {Pricing} with {Models} {That} {Do} {Not} {Explicitly} {Incorporate} {Competition}}
+      \field{urlday}{18}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{volume}{63}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{86\bibrangedash 103}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1287/opre.2014.1341
+      \endverb
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\PYAB5SQD\\opre.2014.html:text/html;Cooper et al. - 2015 - Learning and Pricing with Models That Do Not Expli.pdf:C\:\\Users\\psymo\\Zotero\\storage\\46KBC36R\\Cooper et al. - 2015 - Learning and Pricing with Models That Do Not Expli.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://pubsonline.informs.org/doi/10.1287/opre.2014.1341
+      \endverb
+      \verb{url}
+      \verb https://pubsonline.informs.org/doi/10.1287/opre.2014.1341
+      \endverb
+    \endentry
     \entry{ezrachi_algorithmic_2017}{inproceedings}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=bdfeb85ba61b8ef0634724326682078c}{%
@@ -168,6 +370,7 @@
       \strng{authorbibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
       \strng{authornamehash}{5a532b512c1f33ca8b642d48e0822b4f}
       \strng{authorfullhash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \field{extraname}{1}
       \field{sortinit}{E}
       \field{sortinithash}{c554bd1a0b76ea92b9f105fe36d9c7b0}
       \field{extradatescope}{labelyear}
@@ -190,6 +393,67 @@
       \verb{url}
       \verb http://saiexam.nta.ac.in/cgi-bin/content/view.php?data=algorithmic_collusion_problems_and_counter_measures&filetype=pdf&id=58dd2c85905cd7515329353735c621eb
       \endverb
+    \endentry
+    \entry{ezrachi_sustainable_2018}{report}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=bdfeb85ba61b8ef0634724326682078c}{%
+           family={Ezrachi},
+           familyi={E\bibinitperiod},
+           given={Ariel},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c7351bb095fd64d31ed898faa84dae1}{%
+           family={Stucke},
+           familyi={S\bibinitperiod},
+           given={Maurice\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Social Science Research Network}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Rochester, NY}%
+      }
+      \strng{namehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{fullhash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{bibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{authorbibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{authornamehash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{authorfullhash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \field{extraname}{2}
+      \field{sortinit}{E}
+      \field{sortinithash}{c554bd1a0b76ea92b9f105fe36d9c7b0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Algorithmic collusion is a hot topic within antitrust circles in Europe, US and beyond. But some economists downplay algorithmic collusion as unlikely, if not impossible. This paper responds to these criticisms by pointing to new emerging evidence and the gap between law and this particular economic theory. We explain why algorithmic tacit collusion isn’t only possible, but warrants the increasing concerns of many enforcers.}
+      \field{month}{11}
+      \field{number}{ID 3282235}
+      \field{title}{Sustainable and {Unchallenged} {Algorithmic} {Tacit} {Collusion}}
+      \field{type}{{SSRN} {Scholarly} {Paper}}
+      \field{urlday}{18}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.2139/ssrn.3282235
+      \endverb
+      \verb{file}
+      \verb Full Text:C\:\\Users\\psymo\\Zotero\\storage\\JLZKNXEY\\Ezrachi and Stucke - 2018 - Sustainable and Unchallenged Algorithmic Tacit Col.pdf:application/pdf;Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\4TGH5W66\\papers.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/abstract=3282235
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/abstract=3282235
+      \endverb
+      \keyw{Algorithmic Tacit Collusion,Algorithms,Antitrust,Collusion,Competition Law,Hub and Spoke,Tacit Collusion}
     \endentry
     \entry{ittoo_algorithmic_2017}{report}{}
       \name{author}{2}{}{%
@@ -465,6 +729,45 @@
       \verb https://www.oecd.org/daf/competition/price-discrimination.htm
       \endverb
     \endentry
+    \entry{oefgen_decision_2019}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3dd66ba50c822ae25007951669a35d1f}{%
+           family={oefgen},
+           familyi={o\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en-gb}%
+      }
+      \strng{namehash}{3dd66ba50c822ae25007951669a35d1f}
+      \strng{fullhash}{3dd66ba50c822ae25007951669a35d1f}
+      \strng{bibnamehash}{3dd66ba50c822ae25007951669a35d1f}
+      \strng{authorbibnamehash}{3dd66ba50c822ae25007951669a35d1f}
+      \strng{authornamehash}{3dd66ba50c822ae25007951669a35d1f}
+      \strng{authorfullhash}{3dd66ba50c822ae25007951669a35d1f}
+      \field{sortinit}{o}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Authority has found that Economy Energy, E (Gas and Electricity) Ltd and Dyball Associates have committed an infringement of the Competition Act 1998.}
+      \field{month}{7}
+      \field{title}{Decision of 26.07.2019}
+      \field{urlday}{18}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\BW72AII8\\investigation-whether-economy-energy-e-gas-and-electricity-and-dyball-associates-have-infringed.html:text/html;ofgem - 2019 - Decision of 26.07.2019.pdf:C\:\\Users\\psymo\\Zotero\\storage\\IYKF3S9B\\ofgem - 2019 - Decision of 26.07.2019.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ofgem.gov.uk/publications-and-updates/investigation-whether-economy-energy-e-gas-and-electricity-and-dyball-associates-have-infringed-chapter-i-competition-act-1998-respect-suspected-anti-competitive-agreement
+      \endverb
+      \verb{url}
+      \verb https://www.ofgem.gov.uk/publications-and-updates/investigation-whether-economy-energy-e-gas-and-electricity-and-dyball-associates-have-infringed-chapter-i-competition-act-1998-respect-suspected-anti-competitive-agreement
+      \endverb
+    \endentry
     \entry{seijen_true_2014}{inproceedings}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=5f41c43aea184b1ebb935b32cad851f9}{%
@@ -565,11 +868,62 @@
       \endverb
       \keyw{Computers / Intelligence (AI) \& Semantics}
     \endentry
+    \entry{waltman_q-learning_2008}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=783af1eb97144feb275a9c50368af326}{%
+           family={Waltman},
+           familyi={W\bibinitperiod},
+           given={Ludo},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=142d8d19220de00d7acfdcb7c2e8f3bb}{%
+           family={Kaymak},
+           familyi={K\bibinitperiod},
+           given={Uzay},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0d586e85c2a286f6460afd0cbf9b586c}
+      \strng{fullhash}{0d586e85c2a286f6460afd0cbf9b586c}
+      \strng{bibnamehash}{0d586e85c2a286f6460afd0cbf9b586c}
+      \strng{authorbibnamehash}{0d586e85c2a286f6460afd0cbf9b586c}
+      \strng{authornamehash}{0d586e85c2a286f6460afd0cbf9b586c}
+      \strng{authorfullhash}{0d586e85c2a286f6460afd0cbf9b586c}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0165-1889}
+      \field{journaltitle}{Journal of Economic Dynamics and Control}
+      \field{note}{Publisher: Elsevier}
+      \field{number}{10}
+      \field{title}{Q-learning agents in a {Cournot} oligopoly model}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{volume}{32}
+      \field{year}{2008}
+      \field{urldateera}{ce}
+      \field{pages}{3275\bibrangedash 3293}
+      \range{pages}{19}
+      \verb{file}
+      \verb RePEc Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\PLR46KCF\\v_3a32_3ay_3a2008_3ai_3a10_3ap_3a3275-3293.html:text/html;Waltman and Kaymak - 2008 - Q-learning agents in a Cournot oligopoly model.pdf:C\:\\Users\\psymo\\Zotero\\storage\\9TVZX8S5\\Waltman and Kaymak - 2008 - Q-learning agents in a Cournot oligopoly model.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://econpapers.repec.org/article/eeedyncon/v_3a32_3ay_3a2008_3ai_3a10_3ap_3a3275-3293.htm
+      \endverb
+      \verb{url}
+      \verb https://econpapers.repec.org/article/eeedyncon/v_3a32_3ay_3a2008_3ai_3a10_3ap_3a3275-3293.htm
+      \endverb
+    \endentry
   \enddatalist
   \missing{demo_art}
   \missing{demo_book}
   \missing{demo_source}
   \missing{grapov2018rise}
+  \missing{noa}
 \endrefsection
 \endinput
 

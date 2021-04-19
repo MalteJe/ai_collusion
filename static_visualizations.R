@@ -35,7 +35,7 @@ replace_errors_feature <- function(features_by) {
 }
 
 
-meta_meta_res <- map(meta_res_psi,
+meta_meta_res <- map(meta_res_m,
 							replace_errors_feature)
 
 
@@ -95,11 +95,14 @@ experiment_trajectories <- function(feature_res, experiment_id, t_group) {
 # 	facet_wrap(~metric, ncol = 1, scales = "free_y") +
 # 	theme_tq()
 
+
+
 average_trajectories <- function(feature_res, experiment_id, t_group) {
 	experiment_trajectories(feature_res, experiment_id, t_group) %>%
 		group_by(t_group, metric) %>%
 		summarize(value = mean(value))
 }
+
 
 
 
@@ -139,7 +142,17 @@ intervention_avg_prices <- function(feature_res, experiment_id, t_before_interve
 
 
 
-experiment_id <- 5
+experiment_id <- 4
+
+map_dfr(.x = meta_meta_res,
+		  .f = experiment_trajectories,
+		  experiment_id = experiment_id,
+		  t_group = 1000,
+		  .id = "feature_method") %>%
+	ggplot(aes(x = t_group, y = value, group = interaction(feature_method, run_id), col = feature_method)) +
+	geom_line() +
+	facet_wrap(~metric, ncol =1, scales = "free_y") +
+	theme_tq()
 
 
 map_dfr(meta_meta_res,
@@ -300,6 +313,39 @@ avg_profits_varied_psi <- map_dfc(.x = meta_res_psi,
 
 
 ggplot(avg_profits_varied_psi, aes(x = psi, y = Delta, col = feature_method)) +
+	geom_line(size = 1) +
+	geom_point( size = 3) +
+	geom_hline(yintercept = c(0, 1)) +
+	theme_tq()
+
+
+
+# Varying Zeta -------------------------------------------------------------
+
+avg_profits_varied_zeta <- map_dfc(.x = meta_res_zeta,
+											 .f = feature_avg_profits) %>%
+	mutate(zeta = zeta_input$zeta) %>%
+	pivot_longer(cols = features_extraction_methods, names_to = "feature_method", values_to = "avg_profit") %>%
+	mutate(Delta = get_delta(avg_profit))
+
+
+ggplot(avg_profits_varied_zeta, aes(x = zeta, y = Delta, col = feature_method)) +
+	geom_line(size = 1) +
+	geom_point( size = 3) +
+	geom_hline(yintercept = c(0, 1)) +
+	theme_tq()
+
+
+# Varying m -------------------------------------------------------------
+
+avg_profits_varied_m <- map_dfc(.x = meta_res_m,
+											  .f = feature_avg_profits) %>%
+	mutate(m = m_input$m) %>%
+	pivot_longer(cols = features_extraction_methods, names_to = "feature_method", values_to = "avg_profit") %>%
+	mutate(Delta = get_delta(avg_profit))
+
+
+ggplot(avg_profits_varied_m, aes(x = m, y = Delta, col = feature_method)) +
 	geom_line(size = 1) +
 	geom_point( size = 3) +
 	geom_hline(yintercept = c(0, 1)) +

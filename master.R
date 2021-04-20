@@ -1,11 +1,8 @@
 library(rlist)
-library(purrr)
-library(tidyquant)
 library(tidyverse)
 library(parallel)
 library(future.apply)
 library(nnet)
-library(viridis)
 
 getwd() %>%
 	list.files(full.names = TRUE) %>%
@@ -14,10 +11,6 @@ getwd() %>%
 	str_subset("^(?!.*playground.R$)") %>% 
 	str_subset(".R$") %>%
 	walk(source)
-
-
-
-
 
 
 

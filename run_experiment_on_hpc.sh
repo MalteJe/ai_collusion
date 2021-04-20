@@ -36,11 +36,13 @@ cp -r $PBS_O_WORKDIR/* $SCRATCHDIR/.
 cd $SCRATCHDIR
 rm $PBS_JOBNAME"."$PBS_JOBID".log"
  
-echo "copied to scratch, invoking R script (master)" >> $LOGFILE
+echo "copied to scratch, R home directory is" >> $LOGFILE
 ##R-Aufruf
+R HOME >> $LOGFILE
+
+echo "invoking R script (master)" >> $LOGFILE
 R CMD BATCH --slave master.R R-Output.Rout
  
-echo "ran R script, copying from scratch to working directory (?)"
 echo "ran R script, copying from scratch to working directory (?)" >> $LOGFILE
  
 ##Daten zurück kopieren

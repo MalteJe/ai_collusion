@@ -1,8 +1,13 @@
+print("first line, loading libraries")
+
 library(rlist)
 library(tidyverse)
 library(parallel)
 library(future.apply)
 library(nnet)
+
+
+print(str_c("loading other scripts from ", getwd()))
 
 getwd() %>%
 	list.files(full.names = TRUE) %>%
@@ -16,6 +21,7 @@ getwd() %>%
 
 # For Finalization --------------------------------------------------------
 
+print("defining specs")
 
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_separated")
@@ -74,6 +80,7 @@ runs_per_experiment <- 4
 alphas <- c(2 * 10^-(1:10))
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
+print("defined specs, starting simulations")
 
 meta_res_alpha <- map(.x = features_extraction_methods,
 								  .f = vary_alpha,
@@ -86,6 +93,7 @@ names(meta_res_alpha) <- features_extraction_methods
 	
 save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
+print("script over")
 
 # 
 # # Lambda ------------------------------------------------------------------

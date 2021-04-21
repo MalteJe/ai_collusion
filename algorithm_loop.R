@@ -173,7 +173,7 @@ expected_SARSA <- function(passed_environment) {
 	while (convergence$converged == FALSE && t <= TT) {
 		
 		
-# 		if (t %in% c(25000, 50000, 74500)) { browser()}
+ 		# if (t %% 500 == 0) { print(t)}
 		# compute action
 		selected_actions <- map(.x = w,
 										.f = select_action,

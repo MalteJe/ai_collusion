@@ -27,6 +27,8 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  convergence_chunk_length = 10000, # length of block that is checked against convergence
 							  convergence_cycle_length = 10, # what is the maximum cycle length considered
 							  convergence_check_frequency = 2000, # how often should convergence be checked
+							  save_single_runs = FALSE,
+							  varied_parameter = character(0),
 							  ... # further arguments passed to economic environment
 ) {
 	
@@ -219,11 +221,29 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	outcomes <- na.omit(outcomes)
 	
 	if(is.na(run_id)) {run_id <- sample.int(1000000, size = 1)}
-	# print("before return")
-	return(list(outcomes = outcomes, w = w, timestamp = Sys.time(),
+	
+	
+	# summarize run in 'res'
+	
+	res <- list(outcomes = outcomes, w = w, timestamp = Sys.time(),
 					available_prices = available_prices, run_id = run_id,
 					specs = as.list(match.call()),
 					feature_specs = feature_specs,
 					convergence = convergence,
-					get_x = get_x))
+					get_x = get_x)
+	
+	
+	# save if specified
+	if (save_single_runs) {
+		save(res, file = str_c("simulation_results/separate/",
+									  varied_parameter, "_",
+									  features_by, "_",
+									  get(varied_parameter), "_",
+									  run_id,
+									  ".RData"),
+			  compress = TRUE)
+	}
+	
+	# return results
+	return(res)
 }

@@ -5,15 +5,12 @@ single_run_with_recovery <- function(...) {
 	try(single_run(...))
 }
 
-
-
 # Single Experiment -------------------------------------------------------
 
 
 
 
-single_experiment <- function(experiment, static_specs, runs, sequential_execution) {
-	
+single_experiment <- function(experiment, static_specs, runs, sequential_execution, varied_parameter) {
 	
 	experiment_specs <- map(experiment,
 									.f = rep,
@@ -22,6 +19,7 @@ single_experiment <- function(experiment, static_specs, runs, sequential_executi
 	
 	
 	print(str_c("Starting Experiment. Features_by = ", experiment$features_by,
+					"   | Runs: ", runs,
 					"   | Alpha = ", experiment$Alpha,
 					"   | Beta = ", experiment$Beta,
 					"   | Delta = ", experiment$Delta,
@@ -36,17 +34,16 @@ single_experiment <- function(experiment, static_specs, runs, sequential_executi
 		plan(strategy = cluster, workers = no_of_cores) 
 	}
 	
-	
-	res <- future_.mapply(
+	future_.mapply(
 		FUN = single_run_with_recovery,
 		dots = experiment_specs,
-		MoreArgs = static_specs,
+		MoreArgs = c(static_specs, varied_parameter = varied_parameter),
 		future.seed = 123456
 	)
 	
 	# # save and return results
-	save(res, file = str_c("simulation_results/separate/", str_replace_all(as.character(now()), "[[:blank:]|[:punct]]", "_") , ".RData"))
-	return(res)
+	# save(res, file = str_c("simulation_results/separate/", str_replace_all(as.character(now()), "[[:blank:]|[:punct]]", "_") , ".RData"))
+	# return(res)
 	
 }
 
@@ -55,10 +52,9 @@ single_experiment <- function(experiment, static_specs, runs, sequential_executi
 # Varying Parameters --------------------------------------------------
 
 
-vary_alpha <- function(feature_by, variable_specs, no_vary = NULL, static_specs, runs, sequential_execution = TRUE) {
+vary_alpha <- function(feature_by, variable_specs, static_specs, runs, sequential_execution = TRUE) {
 	
 	experiment_sequence <- c(features_by = feature_by, variable_specs)
-	
 	
 	l <- map_int(experiment_sequence,
 					 .f = length) %>%
@@ -74,7 +70,8 @@ vary_alpha <- function(feature_by, variable_specs, no_vary = NULL, static_specs,
 		 .f = single_experiment,
 		 static_specs = static_specs,
 		 runs = runs,
-		 sequential_execution = sequential_execution)
+		 sequential_execution = sequential_execution,
+		 varied_parameter = names(keep(variable_specs, .p = ~length(.) > 1)))
 }
 
 
@@ -99,5 +96,6 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, s
 		 .f = single_experiment,
 		 static_specs = static_specs,
 		 runs = runs,
-		 sequential_execution = sequential_execution)
+		 sequential_execution = sequential_execution,
+		 varied_parameter = names(keep(variable_specs, .p = ~length(.) > 1)))
 }

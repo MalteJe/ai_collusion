@@ -37,8 +37,9 @@ cd $SCRATCHDIR
 rm $PBS_JOBNAME"."$PBS_JOBID".log"
  
 echo "copied to scratch, R home directory is" >> $LOGFILE
+
+
 ##R-Aufruf
-R HOME >> $LOGFILE
 
 echo "invoking R script (master)" >> $LOGFILE
 R CMD BATCH --slave master.R R-Output.Rout

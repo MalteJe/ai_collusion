@@ -6,7 +6,7 @@ library(parallel)
 library(future.apply)
 library(nnet)
 
-print(str_c("Number of phsyical cores available: ", detectCores(all.tests = TRUE, logical = FALSE)))
+print(str_c("Number of detected phsyical cores: ", detectCores(all.tests = TRUE, logical = FALSE)))
 
 print(str_c("loading other scripts from ", getwd()))
 
@@ -18,7 +18,6 @@ getwd() %>%
 	str_subset("^(?!.*playground.R$)") %>% 
 	str_subset(".R$") %>%
 	walk(source)
-
 
 
 # For Finalization --------------------------------------------------------
@@ -49,7 +48,7 @@ static_specs <- list(
 	),
 	dutch_traces = TRUE,
 	policy = "greedy",
-	convergence_chunk_length = 1000,
+	convergence_chunk_length = 5000,
 	convergence_cycle_length = 10,
 	convergence_check_frequency = 1000,
 	save_single_runs = TRUE,
@@ -61,7 +60,7 @@ static_specs <- list(
 
 baseline <- list(
 	Alpha = NA,
-	Beta = 1*10^-3,
+	Beta = 1*10^-4,
 	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
@@ -69,11 +68,11 @@ baseline <- list(
 	Psi = 1,
 	zeta = 1,
 	m = 10,
-	TT = 10000
+	TT = 100000
 )
 
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 4
+runs_per_experiment <- 10
 
 
 
@@ -81,7 +80,7 @@ runs_per_experiment <- 4
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- c(2 * 10^-c(3, 10))
+alphas <- c(2 * 10^-c(1,3,5,7,9))
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")
@@ -91,7 +90,7 @@ walk(.x = features_extraction_methods,
 								  variable_specs = alpha_input,
 								  static_specs = static_specs,
 								  runs = runs_per_experiment,
-							 sequential_execution = TRUE)
+							 sequential_execution = FALSE)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

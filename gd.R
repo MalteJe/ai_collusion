@@ -240,7 +240,11 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		
 		folder <- str_c("simulation_results/", varied_parameter, "/")
 		
-		if(!dir.exists(folder)) dir.create(folder)
+		if(!dir.exists(folder)) {
+			print(str_c("creating folder here: ", folder))
+			folder_success <- dir.create(folder, recursive = TRUE)
+			print(str_c("Success: ", folder_success))
+		}
 		
 		save(res, file = str_c(folder,
 									  features_by, "_",

@@ -34,6 +34,7 @@ single_experiment <- function(experiment, static_specs, runs, sequential_executi
 		plan(strategy = sequential)
 	} else {
 		no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE)
+		no_of_cores <- 5
 		plan(strategy = cluster, workers = no_of_cores) 
 	}
 	

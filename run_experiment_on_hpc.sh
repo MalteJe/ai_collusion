@@ -1,6 +1,6 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=1:mem=5gb
-#PBS -l walltime=01:00:00
+#PBS -l select=1:ncpus=5:mem=2gb
+#PBS -l walltime=10:00:00
 #PBS -A "ai_collusion"
 
 
@@ -29,29 +29,37 @@ echo "loading R module" >> $LOGFILE
 ##Software-Umgebung laden
 module load R/4.0.3
  
-echo "loaded R module, copying to scratch" >> $LOGFILE
+echo "copying to scratch" >> $LOGFILE
  
 ##Daten vom Arbeitsverzeichnis auf das Scratch-Laufwerk kopieren
 cp -r $PBS_O_WORKDIR/* $SCRATCHDIR/.
 cd $SCRATCHDIR
 rm $PBS_JOBNAME"."$PBS_JOBID".log"
- 
-echo "copied to scratch, R home directory is" >> $LOGFILE
-
 
 ##R-Aufruf
 
 echo "invoking R script (master)" >> $LOGFILE
 R CMD BATCH --slave master.R R-Output.Rout
  
-echo "ran R script, copying from scratch to working directory (?)" >> $LOGFILE
+echo "ran R script" >> $LOGFILE
  
 ##Daten zurück kopieren
-cp -r "$SCRATCHDIR"/* $PBS_O_WORKDIR/.
-cd $PBS_O_WORKDIR
- 
-echo "copied from scratch, writing echo in logfile"
-echo "copied from scratch, writing echo in logfile" >> $LOGFILE
+## cp -r "$SCRATCHDIR"/* $PBS_O_WORKDIR/.
+## cd $PBS_O_WORKDIR
+
+##Daten auf personal gpfs kopieren
+echo "creating path to perssonal gpfs directory" >> $LOGFILE
+
+GPFSDIR=/gpfs/project/majes102/$PBS_JOBID
+
+echo "attempting to create directory: $GPFSDIR" >> $LOGFILE
+
+mkdir -p "$GPFSDIR" 
+
+echo "copying to newly created gpfs directory" >> $LOGFILE
+
+cp -r "$SCRATCHDIR"/* $GPFSDIR/.
+cd $GPFSDIR
 
 ##Verfügbare Informationen zum Auftrag in das Log-File schreiben
 echo >> $LOGFILE

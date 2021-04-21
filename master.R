@@ -14,6 +14,7 @@ getwd() %>%
 	list.files(full.names = TRUE) %>%
 	str_subset("^(?!.*master.R$)") %>% 
 	str_subset("^(?!.*static_visualizations.R$)") %>% 
+	str_subset("^(?!.*aggregate_files.R$)") %>% 
 	str_subset("^(?!.*playground.R$)") %>% 
 	str_subset(".R$") %>%
 	walk(source)
@@ -85,16 +86,16 @@ alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")
 
-meta_res_alpha <- map(.x = features_extraction_methods,
+walk(.x = features_extraction_methods,
 								  .f = vary_alpha,
 								  variable_specs = alpha_input,
 								  static_specs = static_specs,
 								  runs = runs_per_experiment,
 							 sequential_execution = TRUE)
 
-names(meta_res_alpha) <- features_extraction_methods
-	
-save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
+# names(meta_res_alpha) <- features_extraction_methods
+# 	
+# save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 print("script over")
 

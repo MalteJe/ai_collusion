@@ -1,6 +1,8 @@
+library(tidyquant)
+
 # replace runs with error recoveries with dummy run -----------------------
 
-
+load("simulation_results/res_varied_alpha.RData")
 
 dummy_run <- list(
 	outcomes = matrix(rep(NA_real_, 400), ncol = 4, dimnames = list(NULL, c("price_1", "price_2", "profit_1", "profit_2"))),
@@ -35,7 +37,7 @@ replace_errors_feature <- function(features_by) {
 }
 
 
-meta_meta_res <- map(meta_res_m,
+meta_meta_res <- map(meta_res_alpha,
 							replace_errors_feature)
 
 
@@ -48,7 +50,7 @@ get_convergence_t <- function(run) {
 		return(run$convergence$convergence_t)
 	} else {
 		# return(run$specs$TT)
-		return(100000)
+		return(10000)
 	}
 }
 
@@ -142,7 +144,7 @@ intervention_avg_prices <- function(feature_res, experiment_id, t_before_interve
 
 
 
-experiment_id <- 4
+experiment_id <- 2
 
 map_dfr(.x = meta_meta_res,
 		  .f = experiment_trajectories,
@@ -172,13 +174,14 @@ map_dfr(meta_meta_res,
 	facet_wrap(~ metric, ncol = 1, scales = "free_y") +
 	theme_tq()
 
+meta_meta_res[[3]][[2]][[1]]$outcomes
 
 # experiment_trajectories(meta_meta_res[[1]], 2, t_group = 10000) %>%
 # 	ggplot(aes(x = as.factor(t_group * 10000), y = value)) +
 # 	geom_boxplot() +
 # 	facet_wrap(~metric, ncol = 1, scales = "free_y")
 
-map_dfr(meta_meta_res, experiment_trajectories, experiment_id, t_group = 10000, .id = "feature_method") %>%
+map_dfr(meta_meta_res, experiment_trajectories, experiment_id, t_group = 1000, .id = "feature_method") %>%
 	filter(t_group <= 10) %>%
 	ggplot(aes(x = as.factor(t_group), y = value, fill = feature_method)) +
 	geom_boxplot(position = "dodge") +

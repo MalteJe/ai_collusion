@@ -33,7 +33,9 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 ) {
 	
 	# print(run_id)
-	# source(str_c(getwd(), "/selection_methods_and_td.R"))
+	
+	# Garbage collection
+	gc()
 	
 	# workaround to ensure all required functions are loaded on workers
 	a <- select_action_on_policy_greedy;a <-  select_action_on_policy_boltzmann;a <-  select_action_expected_greedy; a <-  select_action_tree_backup_greedy; a <-  td_error_on_policy_differential; a <-  td_error_on_policy_discounted; a <- td_error_on_policy_discounted; a <- td_error_expected_discounted; a <-  td_error_expected_differential; a <- td_error_tree_backup_discounted; a <- td_error_tree_backup_differential
@@ -235,8 +237,12 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	
 	# save if specified
 	if (save_single_runs) {
-		save(res, file = str_c("simulation_results/separate/",
-									  varied_parameter, "_",
+		
+		folder <- str_c("simulation_results/", varied_parameter, "/")
+		
+		if(!dir.exists(folder)) dir.create(folder)
+		
+		save(res, file = str_c(folder,
 									  features_by, "_",
 									  get(varied_parameter), "_",
 									  run_id,

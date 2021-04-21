@@ -12,6 +12,9 @@ single_run_with_recovery <- function(...) {
 
 single_experiment <- function(experiment, static_specs, runs, sequential_execution, varied_parameter) {
 	
+	# garbage collection
+	gc()
+	
 	experiment_specs <- map(experiment,
 									.f = rep,
 									length.out = runs) %>%

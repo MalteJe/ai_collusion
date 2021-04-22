@@ -39,10 +39,8 @@ load_return <- function(path) {
 # specify path, list single runs in directory and adjust names
 
 experiment_job <- "Alpha"
-
-path <- str_c("simulation_results/", experiment_job, "/")
-
-filenames <- list.files(path)
+(path <- str_c("simulation_results/", experiment_job, "/"))
+filenames <- list.files(path); print(head(filenames))
 
 adjusted_files <- str_replace(filenames, "poly_tiling", "poly-tiling")  %>%
 	str_replace("poly_separate", "poly-separate") %>%
@@ -55,9 +53,15 @@ meta_overview <- tibble(filename = adjusted_files) %>%
 
 (variations <- unique(meta_overview$varied_parameter))
 
-data <- meta_overview %>%
+data_nested <- meta_overview %>%
 	mutate(sim = map(path, load_return)) %>%
-	select(-path) %>%
+	select(-path)
+
+data_nested %>%
+	group_by(feature_method, varied_parameter) %>%
+	summarize(mean(successful))
+
+data <- data_nested %>%
 	unnest_wider(sim) %>%
 	unnest(outcomes) %>%
 	group_by(feature_method, varied_parameter, run_id) %>%
@@ -67,13 +71,13 @@ data <- meta_overview %>%
 
 # Learning Phase Trajectory  ----------------------------------------------------------
 
-t_group <- 1000
-experiment_ids <- 2
+t_grouping <- 10000
+experiment_ids <- 5
 
 learning_phase <- data %>%
 	group_by( feature_method, varied_parameter, run_id) %>%
 	transmute(t = t,
-				 t_group = (t-1) %/% t_group + 1,
+				 t_group = (t-1) %/% t_grouping + 1,
 				 price = (price_1 + price_2)/2,
 				 Delta = get_delta((profit_1 + profit_2)/2),
 				 convergence = convergence) %>%
@@ -98,8 +102,8 @@ learning_phase %>%
 	group_by(feature_method, varied_parameter, t_group, metric) %>%
 	summarize(value = mean(value)) %>%
 	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
-			 p_m = ifelse(metric == "Delta", 1, 1.97 )) %>%
-	ggplot(aes(x = t_group * 1000, y = value, color = feature_method)) +
+			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
+	ggplot(aes(x = t_group * t_grouping, y = value, color = feature_method)) +
 	geom_hline(aes(yintercept = p_n)) +	
 	geom_hline(aes(yintercept = p_m)) +	
 	geom_line(size = 1) +
@@ -108,7 +112,7 @@ learning_phase %>%
 
 
 learning_phase %>%
-	ggplot(aes(x = as.factor(t_group), y = value, fill = feature_method)) +
+	ggplot(aes(x = as.factor(t_group * t_grouping), y = value, fill = feature_method)) +
 	geom_boxplot(position = "dodge") +
 	facet_wrap(~metric, ncol = 1, scales = "free_y") +
 	theme_tq()
@@ -130,7 +134,7 @@ intervention %>%
 				 price_2 = mean(price_2)) %>%
 	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
 	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
-	geom_hline(yintercept = c(1.47, 1.97)) +
+	geom_hline(yintercept = c(1.47, 1.93)) +
 	geom_vline(xintercept = 0, linetype = 2) +
 	geom_point(size = 3) +
 	geom_line(size = 1) +

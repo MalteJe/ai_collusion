@@ -26,7 +26,6 @@ print("defining specs")
 
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_separated")
-features_extraction_methods <- c("tabular", "tiling", "poly_tiling")
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(
@@ -60,19 +59,20 @@ static_specs <- list(
 
 baseline <- list(
 	Alpha = NA,
-	Beta = 1*10^-4,
+	Beta = 5*10^-4,
 	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
 	td_error_method = "discounted",
 	Psi = 1,
 	zeta = 1,
-	m = 10,
-	TT = 100000
+	m = 19,
+	TT = 1000000
 )
 
+
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 10
+runs_per_experiment <- 5
 
 
 
@@ -80,23 +80,24 @@ runs_per_experiment <- 10
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- c(2 * 10^-c(1,3,5,7,9))
+alphas <- c(1 * 10^-c(1,3,5,7,9))
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")
 
 walk(.x = features_extraction_methods,
-								  .f = vary_alpha,
-								  variable_specs = alpha_input,
-								  static_specs = static_specs,
-								  runs = runs_per_experiment,
-							 sequential_execution = FALSE)
+	  .f = vary_alpha,
+	  variable_specs = alpha_input,
+	  static_specs = static_specs,
+	  runs = runs_per_experiment,
+	  no_of_cores = 5)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	
 # save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
 print("script over")
+
 
 # 
 # # Lambda ------------------------------------------------------------------

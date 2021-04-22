@@ -10,7 +10,7 @@ single_run_with_recovery <- function(...) {
 
 
 
-single_experiment <- function(experiment, static_specs, runs, sequential_execution, varied_parameter) {
+single_experiment <- function(experiment, static_specs, runs, no_of_cores, varied_parameter) {
 	
 	# garbage collection
 	gc()
@@ -21,20 +21,17 @@ single_experiment <- function(experiment, static_specs, runs, sequential_executi
 		c(list(run_id = 1:runs))
 	
 	
-	print(str_c("Starting Experiment. Features_by = ", experiment$features_by,
-					"   | Runs: ", runs,
-					"   | Alpha = ", experiment$Alpha,
-					"   | Beta = ", experiment$Beta,
-					"   | Delta = ", experiment$Delta,
-					"   | Lambda = ", experiment$Lambda))
+	print(str_c(Sys.time(),
+					" - Starting Experiment. Features_by = ", experiment$features_by,
+					"  | Varied Parameter: ", varied_parameter, 
+					"  | Value: ", experiment[varied_parameter],
+					"   | Runs: ", runs))
 	
 	# retrieve number of cores and specify requested number of runs
 	
-	if (sequential_execution) {
+	if (no_of_cores == 1) {
 		plan(strategy = sequential)
 	} else {
-		no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE)
-		no_of_cores <- 5
 		plan(strategy = cluster, workers = no_of_cores) 
 	}
 	
@@ -56,7 +53,7 @@ single_experiment <- function(experiment, static_specs, runs, sequential_executi
 # Varying Parameters --------------------------------------------------
 
 
-vary_alpha <- function(feature_by, variable_specs, static_specs, runs, sequential_execution = TRUE) {
+vary_alpha <- function(feature_by, variable_specs, static_specs, runs, no_of_cores = 1) {
 	
 	experiment_sequence <- c(features_by = feature_by, variable_specs)
 	
@@ -74,14 +71,14 @@ vary_alpha <- function(feature_by, variable_specs, static_specs, runs, sequentia
 		 .f = single_experiment,
 		 static_specs = static_specs,
 		 runs = runs,
-		 sequential_execution = sequential_execution,
+		 no_of_cores = no_of_cores,
 		 varied_parameter = names(keep(variable_specs, .p = ~length(.) > 1)))
 }
 
 
 
 
-vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, static_specs, runs, sequential_execution = TRUE) {
+vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, static_specs, runs, no_of_cores = 1) {
 	
 	cleaned_variable_specs <- discard(variable_specs, names(variable_specs) == "Alpha")
 	
@@ -100,6 +97,6 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, s
 		 .f = single_experiment,
 		 static_specs = static_specs,
 		 runs = runs,
-		 sequential_execution = sequential_execution,
+		 no_of_cores = no_of_cores,
 		 varied_parameter = names(keep(variable_specs, .p = ~length(.) > 1)))
 }

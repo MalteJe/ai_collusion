@@ -25,7 +25,7 @@ getwd() %>%
 print("defining specs")
 
 # methods
-features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_separated")
+features_extraction_methods <- c("tabular", "tiling", "poly_tiling")
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(
@@ -47,7 +47,7 @@ static_specs <- list(
 	),
 	dutch_traces = TRUE,
 	policy = "greedy",
-	convergence_chunk_length = 5000,
+	convergence_chunk_length = 1000,
 	convergence_cycle_length = 10,
 	convergence_check_frequency = 1000,
 	save_single_runs = TRUE,
@@ -59,20 +59,20 @@ static_specs <- list(
 
 baseline <- list(
 	Alpha = NA,
-	Beta = 5*10^-4,
+	Beta = 1*10^-4,
 	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
 	td_error_method = "discounted",
 	Psi = 1,
 	zeta = 1,
-	m = 19,
-	TT = 1000000
+	m = 10,
+	TT = 10000
 )
 
 
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 5
+runs_per_experiment <- 4
 
 
 
@@ -80,7 +80,7 @@ runs_per_experiment <- 5
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- c(1 * 10^-c(1,3,5,7,9))
+alphas <- 2 * 10^-c(3,10)
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")
@@ -90,7 +90,7 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 5)
+	  no_of_cores = 4)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

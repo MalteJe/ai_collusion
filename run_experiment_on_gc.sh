@@ -17,12 +17,12 @@ SIM=`ls -d simulation_results/*/`
 echo "$SIM" >> $LOGFILE
 
 # move log files to results
-echo "moving R-Log and copying shell log to simulation results"
+echo "moving R-Log and copying shell log to simulation results" >> $LOGFILE
 mv R-Output.Rout $SIM
 cp $LOGFILE $SIM
 
 # upload simulation results to bucket
-echo "uploading to project bucket"
+echo "uploading to project bucket" >> $LOGFILE
 gsutil -m cp -r simulation_results/* gs://ai_collusion/
 
 # shutdown VM

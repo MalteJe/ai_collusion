@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=5:mem=3gb:arch=skylake
+#PBS -l select=1:ncpus=8:mem=4gb:arch=skylake
 #PBS -l walltime=11:00:00
 #PBS -A "ai_collusion"
 

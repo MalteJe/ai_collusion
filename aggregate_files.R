@@ -10,6 +10,8 @@ get_convergence_t <- function(run) {
 	}
 }
 
+
+
 get_delta <- function(profit) {
 	(profit - 0.2229272) / (0.3374905 - 0.2229272)
 }
@@ -38,9 +40,10 @@ load_return <- function(path) {
 
 # specify path, list single runs in directory and adjust names
 
-experiment_job <- "Alpha"
+experiment_job <- "Alpha_10h"
 (path <- str_c("simulation_results/", experiment_job, "/"))
-filenames <- list.files(path); print(head(filenames))
+filenames <- list.files(path) %>%
+	str_subset("RData$"); print(head(filenames))
 
 adjusted_files <- str_replace(filenames, "poly_tiling", "poly-tiling")  %>%
 	str_replace("poly_separate", "poly-separate") %>%
@@ -59,7 +62,8 @@ data_nested <- meta_overview %>%
 
 data_nested %>%
 	group_by(feature_method, varied_parameter) %>%
-	summarize(mean(successful))
+	summarize(finished_runs_perc = mean(successful)) %>%
+	arrange(finished_runs_perc)
 
 data <- data_nested %>%
 	unnest_wider(sim) %>%
@@ -68,13 +72,13 @@ data <- data_nested %>%
 	mutate(t = row_number())
 
 
-
 # Learning Phase Trajectory  ----------------------------------------------------------
 
 t_grouping <- 10000
-experiment_ids <- 5
+experiment_ids <- 1
 
 learning_phase <- data %>%
+	filter(t <= 100000) %>%
 	group_by( feature_method, varied_parameter, run_id) %>%
 	transmute(t = t,
 				 t_group = (t-1) %/% t_grouping + 1,
@@ -90,6 +94,7 @@ learning_phase <- data %>%
 	fill(price, Delta, .direction = "down") %>%
 	pivot_longer(cols = c(price, Delta), names_to = "metric") %>%
 	filter(varied_parameter %in% variations[experiment_ids])
+	
 
 
 learning_phase %>%

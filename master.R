@@ -25,7 +25,7 @@ getwd() %>%
 print("defining specs")
 
 # methods
-features_extraction_methods <- c("tabular", "tiling", "poly_tiling")
+features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly")
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(
@@ -38,7 +38,8 @@ static_specs <- list(
 	r_adjust = 0.2229272,
 	seed = NA,
 	specifications = list(
-		degree_sep = 4,
+		degree = 6,
+		# degree_sep = 4,
 		degree_poly_tiling = 4,
 		poly_n_tilings = 5,
 		poly_n_tiles = 4,
@@ -47,9 +48,9 @@ static_specs <- list(
 	),
 	dutch_traces = TRUE,
 	policy = "greedy",
-	convergence_chunk_length = 1000,
+	convergence_chunk_length = 10000,
 	convergence_cycle_length = 10,
-	convergence_check_frequency = 1000,
+	convergence_check_frequency = 10000,
 	save_single_runs = TRUE,
 	c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25
 )
@@ -59,20 +60,20 @@ static_specs <- list(
 
 baseline <- list(
 	Alpha = NA,
-	Beta = 1*10^-4,
+	Beta = 5*10^-6,
 	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
 	td_error_method = "discounted",
 	Psi = 1,
 	zeta = 1,
-	m = 10,
-	TT = 10000
+	m = 19,
+	TT = 1000000
 )
 
 
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 4
+runs_per_experiment <- 8
 
 
 
@@ -80,7 +81,7 @@ runs_per_experiment <- 4
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- 2 * 10^-c(3,10)
+alphas <- 1 * 10^-c(1, 3, 5, 7, 9)
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")
@@ -90,13 +91,13 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 4)
+	  no_of_cores = 8)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	
 # save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
 
-print("script over")
+
 
 
 # 
@@ -240,3 +241,6 @@ print("script over")
 # names(meta_res_m) <- features_extraction_methods
 # 
 # save(meta_res_m, file = "simulation_results/res_varied_m.RData")
+
+
+print("script over")

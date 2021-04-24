@@ -11,12 +11,12 @@ mkdir -p "simulation_results"
 # invoke R script
 echo "invoking R script, writing R log file" >> $LOGFILE
 echo "invoking R script, writing R log file"
-R CMD BATCH --slave master.R R-Output.Rout
+R CMD BATCH --slave master.R R-Output.Rout &
 
 # move log files into simulation results
 echo "Rscript completed, retrieving lowest hierarchy folder for results" >> $LOGFILE
 echo "Rscript completed, retrieving lowest hierarchy folder for results"
-SIM=`ls -d simulation_results/*/` &
+SIM=`ls -d simulation_results/*/`
 echo "$SIM" >> $LOGFILE
 echo "$SIM"
 

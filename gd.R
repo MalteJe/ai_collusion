@@ -237,8 +237,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	# save if specified
 	if (save_single_runs) {
 		
-		print("saving to folder")
-		
 		folder <- str_c("simulation_results/", varied_parameter, "/")
 		
 		if(!dir.exists(folder)) {
@@ -256,7 +254,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		
 		return(NULL)
 	} else {
-		print("returning results")
 		return(res)
 	}
 	

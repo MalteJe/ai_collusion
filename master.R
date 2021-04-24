@@ -49,9 +49,9 @@ static_specs <- list(
 	),
 	dutch_traces = TRUE,
 	policy = "greedy",
-	convergence_chunk_length = 1000,
+	convergence_chunk_length = 10000,
 	convergence_cycle_length = 10,
-	convergence_check_frequency = 1000,
+	convergence_check_frequency = 10000,
 	save_single_runs = TRUE,
 	c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25
 )
@@ -61,7 +61,7 @@ static_specs <- list(
 
 baseline <- list(
 	Alpha = NA,
-	Beta = 1*10^-3,
+	Beta = 4*10^-5,
 	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
@@ -69,12 +69,12 @@ baseline <- list(
 	Psi = 1,
 	zeta = 1,
 	m = 19,
-	TT = 10000
+	TT = 500000
 )
 
 
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 4
+runs_per_experiment <- 8
 
 
 
@@ -82,7 +82,7 @@ runs_per_experiment <- 4
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- 1 * 10^-c(3, 9)
+alphas <- 1 * 10^-c(1, 4, 7, 10)
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")
@@ -92,7 +92,7 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 4)
+	  no_of_cores = 8)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

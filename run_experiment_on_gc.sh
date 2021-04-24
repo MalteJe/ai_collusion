@@ -1,6 +1,7 @@
 # create log file
 export LOGFILE=shell.log
 
+ts=$(date +%s)
 
 # make directory for simulation results
 echo "creating shell log file" >> $LOGFILE
@@ -29,7 +30,7 @@ cp $LOGFILE $SIM
 # upload simulation results to bucket
 echo "uploading to project bucket" >> $LOGFILE
 echo "uploading to project bucket"
-gsutil -m cp -r simulation_results/* gs://ai_collusion/
+gsutil -m cp -r simulation_results/* gs://ai_collusion/$ts
 
 # shutdown VM
 # sudo poweroff

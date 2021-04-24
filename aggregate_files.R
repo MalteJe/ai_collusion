@@ -17,6 +17,7 @@ get_delta <- function(profit) {
 }
 
 load_return <- function(path) {
+	
 	if(is.na(path)) {
 		return(list(
 			outcomes = NA,
@@ -40,7 +41,10 @@ load_return <- function(path) {
 
 # specify path, list single runs in directory and adjust names
 
-experiment_job <- "Alpha_10h"
+
+
+
+experiment_job <- "Alpha_gpc"
 (path <- str_c("simulation_results/", experiment_job, "/"))
 filenames <- list.files(path) %>%
 	str_subset("RData$"); print(head(filenames))
@@ -72,13 +76,16 @@ data <- data_nested %>%
 	mutate(t = row_number())
 
 
+
+data_home == data
+mean(data_home == data, na.rm = TRUE)
+
 # Learning Phase Trajectory  ----------------------------------------------------------
 
-t_grouping <- 10000
-experiment_ids <- 1
+t_grouping <- 1000
+experiment_ids <- 2
 
 learning_phase <- data %>%
-	filter(t <= 100000) %>%
 	group_by( feature_method, varied_parameter, run_id) %>%
 	transmute(t = t,
 				 t_group = (t-1) %/% t_grouping + 1,
@@ -98,7 +105,7 @@ learning_phase <- data %>%
 
 
 learning_phase %>%
-	ggplot(aes(x = t_group, y = value, group = interaction(feature_method, run_id, varied_parameter), col = feature_method)) +
+	ggplot(aes(x = t_group * t_grouping, y = value, group = interaction(feature_method, run_id, varied_parameter), col = feature_method)) +
 	geom_line() +
 	facet_wrap(~metric, ncol =1, scales = "free_y") +
 	theme_tq()

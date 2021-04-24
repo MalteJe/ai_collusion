@@ -28,10 +28,10 @@ profvis::profvis(
 									 zeta = 1,
 									 rounding_precision = 8,
 									 m = 19,
-									 TT = 10000,
+									 TT = 20000,
 									 TT_intervention = 10,
-									 Alpha = 0.2,
-									 Beta = 1*10^-3,
+									 Alpha = 0.00001,
+									 Beta = 8*10^-4,
 									 Gamma = 0.05,
 									 Delta = 0.95,
 									 Lambda = 0.5,
@@ -41,6 +41,7 @@ profvis::profvis(
 									 r_adjust = 0.2229272,
 									 run_id = NA,
 									 specifications = list(
+									 	degree = 6,
 									 	degree_sep = 5,
 									 	degree_poly_tiling = 5,
 									 	poly_n_tilings = 5,
@@ -48,7 +49,7 @@ profvis::profvis(
 									 	n_tilings = 5,
 									 	n_tiles = 10
 									 ),
-									 features_by = "tabular",								 
+									 features_by = "poly_tiling",								 
 									 td_error_method = "discounted",
 									 dutch_traces = TRUE,
 									 policy = "greedy",
@@ -57,6 +58,8 @@ profvis::profvis(
 									 convergence_check_frequency = 5000,
 									 c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 )
+
+
 
 single_res <- single_run(Algorithm = "expected",
 								 n = 2,
@@ -97,7 +100,8 @@ single_res <- single_run(Algorithm = "expected",
 
 # single_simulation_outcomes <- single_res$outcomes
 
-0.7 * exp(- 9 * 10^-6 * c(1, 1000, 10000, 50000, 100000, 150000, 200000, 300000, 1000000))
+1 * exp(- 4 * 10^-5 * c(1, 10000, 100000, 300000, 500000))
+exp(- Beta * c(1, 10000, 100000, 300000, 500000))
 
 # retrieve number of cores and specify required number of runs
 (no_of_cores <- detectCores(all.tests = TRUE, logical = FALSE))

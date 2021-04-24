@@ -234,14 +234,10 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 					convergence = convergence,
 					get_x = get_x)
 	
-	# release cache
-	if(is.memoised(get_x)) {
-		print(str_c("run ", run_id, "executed. Releasing cache"))
-		forget(run_x)
-	}
-	
 	# save if specified
 	if (save_single_runs) {
+		
+		print("saving to folder")
 		
 		folder <- str_c("simulation_results/", varied_parameter, "/")
 		
@@ -257,8 +253,18 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 									  run_id,
 									  ".RData"),
 			  compress = TRUE)
+		
+		return(NULL)
+	} else {
+		print("returning results")
+		return(res)
+	}
+	
+	# release cache
+	if(is.memoised(get_x)) {
+		forget(get_x)
 	}
 	
 	# return results
-	return(res)
+	
 }

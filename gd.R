@@ -79,7 +79,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		length_w <- specifications$n_tiles^3 * specifications$n_tilings
 	} else if (features_by == "splines") {
 		
-		get_x <<- get_x_splines
+		get_x <<- memoise(get_x_splines)
 		# get_x <<- get_x_splines2
 		
 		feature_specs <- set_up_splines(specifications = specifications, min_price = mc, max_price = max_price, rounding_precision = rounding_precision, vars = 3)
@@ -87,26 +87,26 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		length_w <- 6 * (specifications$splines_degree + specifications$n_knots)
 		#length_w <- (specifications$splines_degree + specifications$n_knots)^3
 	} else if (features_by == "poly") {
-		get_x <<- get_x_poly
+		get_x <<- memoise(get_x_poly)
 		
 		feature_specs <- set_up_poly(specifications = specifications, vars = 3)
 		
 		length_states <- n + 1  # '+1' reflects action undertaken
 		length_w <- choose(specifications$degree + length_states, length_states) - 1
 	} else if (features_by == "poly_normalized") {
-		get_x <<- get_x_poly_normalized
+		get_x <<- memoise(get_x_poly_normalized)
 		
 		feature_specs <- set_up_poly_normalized(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
 		
 		length_states <- n + 1  # '+1' reflects action undertaken
 		length_w <- choose(specifications$degree + length_states, length_states) - 1
 	} else if (features_by == "poly_separated"){
-		get_x <<- get_x_poly_separate
+		get_x <<- memoise(get_x_poly_separate)
 		
 		feature_specs <- set_up_poly_separate(specifications = specifications, available_prices, vars = 2)
 		length_w <- (choose(specifications$degree_sep + n, n) - 1) * m
 	} else if (features_by == "poly_tiling") {
-		get_x <<- get_x_poly_tilings
+		get_x <<- memoise(get_x_poly_tilings)
 		
 		feature_specs <- set_up_poly_tilings(specifications = specifications, min_price = mc, max_price = max_price, vars = 3)
 		

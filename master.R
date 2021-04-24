@@ -5,6 +5,7 @@ library(tidyverse)
 library(parallel)
 library(future.apply)
 library(nnet)
+library(memoise)
 
 print(str_c("Number of detected phsyical cores: ", detectCores(all.tests = TRUE, logical = FALSE)))
 
@@ -60,7 +61,7 @@ static_specs <- list(
 
 baseline <- list(
 	Alpha = NA,
-	Beta = 5*10^-6,
+	Beta = 5*10^-5,
 	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
@@ -73,7 +74,7 @@ baseline <- list(
 
 
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 8
+runs_per_experiment <- 4
 
 
 
@@ -91,7 +92,7 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 8)
+	  no_of_cores = 4)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

@@ -234,6 +234,11 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 					convergence = convergence,
 					get_x = get_x)
 	
+	# release cache
+	if(is.memoised(get_x)) {
+		print(str_c("run ", run_id, "executed. Releasing cache"))
+		forget(run_x)
+	}
 	
 	# save if specified
 	if (save_single_runs) {

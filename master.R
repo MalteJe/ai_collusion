@@ -244,4 +244,5 @@ walk(.x = features_extraction_methods,
 # save(meta_res_m, file = "simulation_results/res_varied_m.RData")
 
 
-print("script over")
+print(str_c(Sys.time(), " | script over"))
+		

@@ -26,10 +26,11 @@ get_x_poly <- function(state_set, action, feature_specs) {
 }
 
 
-# fs_poly <- set_up_poly(list(degree = 5), vars = 3)
+# fs_poly <- set_up_poly(list(degree = 7), vars = 3)
 # get_x_poly(c(1,2), 1.8, fs_poly)
 
-  # A2 - Polynomial into normalization
+
+# A2 - Polynomial into normalization
 
 set_up_poly_normalized <- function(specifications,    # list with named element: polynomial degree,
 											  min_price,         # minimum price

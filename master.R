@@ -49,9 +49,9 @@ static_specs <- list(
 	),
 	dutch_traces = TRUE,
 	policy = "greedy",
-	convergence_chunk_length = 10000,
+	convergence_chunk_length = 1000,
 	convergence_cycle_length = 10,
-	convergence_check_frequency = 10000,
+	convergence_check_frequency = 1000,
 	save_single_runs = TRUE,
 	c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25
 )
@@ -61,7 +61,7 @@ static_specs <- list(
 
 baseline <- list(
 	Alpha = NA,
-	Beta = 5*10^-5,
+	Beta = 1*10^-3,
 	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
@@ -69,7 +69,7 @@ baseline <- list(
 	Psi = 1,
 	zeta = 1,
 	m = 19,
-	TT = 1000000
+	TT = 10000
 )
 
 

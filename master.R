@@ -74,7 +74,7 @@ baseline <- list(
 
 
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 96
+runs_per_experiment <- 48
 
 
 
@@ -82,7 +82,7 @@ runs_per_experiment <- 96
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- 1 * 10^-c(3:4)
+alphas <- 1 * 10^-c(1:2)
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")
@@ -92,7 +92,7 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 24)
+	  no_of_cores = 16)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

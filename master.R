@@ -82,7 +82,7 @@ runs_per_experiment <- 96
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- 1 * 10^-c(1:2)
+alphas <- 1 * 10^-c(3:4)
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")

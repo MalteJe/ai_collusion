@@ -16,35 +16,67 @@ get_delta <- function(profit) {
 	(profit - 0.2229272) / (0.3374905 - 0.2229272)
 }
 
-load_return <- function(path) {
+
+load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 100) {
 	
 	if(is.na(path)) {
 		return(list(
 			outcomes = NA,
+			avg_profits = NA,
+			intervention = NA,
 			convergence = NA
 		))
 	} else {
+		
 		load(path)
 		
-		# browser()
 		conv_t <- get_convergence_t(res)
 		
+		intervention <- res$outcomes[(conv_t-t_before_intervention):nrow(res$outcomes),] %>%
+			as_tibble() %>%
+			mutate(tau = row_number() - t_before_intervention - 1)
+		
+		outcomes <- as_tibble(res$outcomes) %>%
+			mutate(t = row_number(),
+			t_group = (t-1) %/% t_grouping + 1,
+			price = (price_1 + price_2)/2,
+			# Delta = get_delta((profit_1 + profit_2)/2),
+			profit = (profit_1 + profit_2)/2
+			) %>%
+			filter(t <= conv_t) %>%
+			group_by(t_group) %>%
+			summarize_at(c("price", "profit"), mean) %>%
+			mutate(Delta = get_delta(profit)) %>%
+			select(-profit)
+		
+		# browser()
+		avg_profits <- tail(res$outcomes, t_profit + res$specs$TT_intervention)[, c("profit_1", "profit_2")] %>%
+			head(t_profit) %>%
+			mean()
 		
 		return(list(
-			outcomes = as_tibble(res$outcomes),
+			outcomes = outcomes,
+			avg_profits = avg_profits,
+			intervention = intervention,
 			convergence = conv_t))
 		
 		rm(res)
+		rm(outcomes)
 		gc()
 	}
 }
+
+
+# load_return("simulation_results/comparison_gpc/tiling_0.1_5.RData", t_grouping = 50000)
+
 
 # specify path, list single runs in directory and adjust names
 
 
 
+t_grouping <- 5000
 
-experiment_job <- "Alpha_gpc"
+experiment_job <- "Alpha_home"
 (path <- str_c("simulation_results/", experiment_job, "/"))
 filenames <- list.files(path) %>%
 	str_subset("RData$"); print(head(filenames))
@@ -58,51 +90,57 @@ meta_overview <- tibble(filename = adjusted_files) %>%
 	mutate(path = str_c(path, filenames), successful = TRUE) %>%
 	complete(feature_method, varied_parameter, run_id, fill = list(successful = FALSE))
 
-(variations <- unique(meta_overview$varied_parameter))
+(variations <- unique(as.numeric(meta_overview$varied_parameter)))
 
 data_nested <- meta_overview %>%
-	mutate(sim = map(path, load_return)) %>%
+	mutate(sim = map(path, load_return, t_grouping = t_grouping)) %>%
 	select(-path)
+
 
 data_nested %>%
 	group_by(feature_method, varied_parameter) %>%
 	summarize(finished_runs_perc = mean(successful)) %>%
 	arrange(finished_runs_perc)
 
+
 data <- data_nested %>%
-	unnest_wider(sim) %>%
-	unnest(outcomes) %>%
-	group_by(feature_method, varied_parameter, run_id) %>%
-	mutate(t = row_number())
+	unnest_wider(sim)
+
+
+# Vary Alpha --------------------------------------------------------------
+
+data %>%
+	group_by(feature_method, varied_parameter) %>%
+	summarize(avg_profits = mean(avg_profits)) %>%
+	mutate(Delta = get_delta(avg_profits)) %>%
+	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
+	geom_line(size = 1) +
+	geom_point( size = 3) +
+	geom_hline(yintercept = c(0, 1)) +
+	theme_tq() +
+	scale_x_log10() +
+	xlab(experiment_job)
 
 
 
-data_home == data
-mean(data_home == data, na.rm = TRUE)
 
 # Learning Phase Trajectory  ----------------------------------------------------------
 
-t_grouping <- 1000
-experiment_ids <- 2
+experiment_ids <- 1
 
-learning_phase <- data %>%
-	group_by( feature_method, varied_parameter, run_id) %>%
-	transmute(t = t,
-				 t_group = (t-1) %/% t_grouping + 1,
-				 price = (price_1 + price_2)/2,
-				 Delta = get_delta((profit_1 + profit_2)/2),
-				 convergence = convergence) %>%
-	filter(t <= convergence) %>%
-	group_by(feature_method, varied_parameter, run_id, t_group) %>%
-	summarize_at(c("price", "Delta"), mean) %>%
-	ungroup() %>%
+
+outcomes <- data %>%
+	select(-intervention, -avg_profits) %>%
+	unnest(outcomes) %>%
+	filter(!is.na(t_group))
+
+
+learning_phase <- outcomes %>%
 	complete(feature_method, varied_parameter, run_id, t_group) %>%
 	group_by(feature_method, varied_parameter, run_id) %>%
 	fill(price, Delta, .direction = "down") %>%
 	pivot_longer(cols = c(price, Delta), names_to = "metric") %>%
 	filter(varied_parameter %in% variations[experiment_ids])
-	
-
 
 learning_phase %>%
 	ggplot(aes(x = t_group * t_grouping, y = value, group = interaction(feature_method, run_id, varied_parameter), col = feature_method)) +
@@ -133,10 +171,11 @@ learning_phase %>%
 # Intervention
 
 
+
 intervention <- data %>%
-	filter(t > (convergence - 8)) %>%
-	mutate(tau = t - convergence) %>%
-	filter(varied_parameter %in% variations[experiment_ids])
+	select(-outcomes, -avg_profits) %>%
+	unnest(intervention) %>%
+	filter(varied_parameter %in% variations[experiment_ids], !is.na(price_1))
 
 
 
@@ -151,12 +190,11 @@ intervention %>%
 	geom_point(size = 3) +
 	geom_line(size = 1) +
 	theme_tq() +
-	facet_wrap(~feature_method)
+	facet_wrap(~feature_method, nrow = 2)
 	
 
-
 intervention %>%
-	filter(t > (convergence - 1)) %>%
+	filter(tau > -1) %>%
 	group_by(feature_method, varied_parameter, run_id) %>%
 	transmute(price_change_1 = price_1 - first(price_1),
 			 price_change_2 = price_2 - first(price_2),
@@ -169,20 +207,3 @@ intervention %>%
 
 
 
-# Vary Alpha --------------------------------------------------------------
-
-data %>%
-	filter(t <= convergence, t > convergence - 100) %>%
-	mutate(avg_profits = (profit_1 + profit_2) / 2) %>%
-	group_by(feature_method, varied_parameter) %>%
-	summarize(avg_profit = mean(avg_profits)) %>%
-	mutate(Delta = get_delta(avg_profit)) %>%
-	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
-	geom_line(size = 1) +
-	geom_point( size = 3) +
-	geom_hline(yintercept = c(0, 1)) +
-	theme_tq() +
-	scale_x_log10() +
-	xlab(experiment_job)
-	
-				 

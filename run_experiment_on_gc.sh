@@ -33,4 +33,4 @@ echo "uploading to project bucket"
 gsutil -m cp -r simulation_results/* gs://ai_collusion
 
 # shutdown VM
-# sudo poweroff
+sudo poweroff

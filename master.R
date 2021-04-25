@@ -74,7 +74,7 @@ baseline <- list(
 
 
 # repetitions per experiment (same set of specifications)
-runs_per_experiment <- 100
+runs_per_experiment <- 96
 
 
 
@@ -92,7 +92,7 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 50)
+	  no_of_cores = 24)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

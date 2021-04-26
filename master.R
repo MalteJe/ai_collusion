@@ -26,7 +26,7 @@ getwd() %>%
 print("defining specs")
 
 # methods
-features_extraction_methods <- c("tabular", "tiling", "poly_tiling", "poly_sep")
+features_extraction_methods <- c("poly_tiling")
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(
@@ -82,7 +82,7 @@ runs_per_experiment <- 48
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- 1 * 10^-c(3:4)
+alphas <- 1 * 10^-c(6, 8, 10, 12)
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")

@@ -26,7 +26,7 @@ getwd() %>%
 print("defining specs")
 
 # methods
-features_extraction_methods <- c("poly_tiling")
+features_extraction_methods <- c("poly_sep")
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(

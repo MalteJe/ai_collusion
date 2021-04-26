@@ -67,7 +67,7 @@ single_res <- single_run(Algorithm = "expected",
 								 zeta = 1,
 								 rounding_precision = 8,
 								 m = 19,
-								 TT = 10000,
+								 TT = 1000,
 								 TT_intervention = 10,
 								 Alpha = 0.2,
 								 Beta = 1*10^-3,
@@ -80,6 +80,7 @@ single_res <- single_run(Algorithm = "expected",
 								 r_adjust = 0.2229272,
 								 run_id = NA,
 								 specifications = list(
+								 	degree = 5,
 								 	degree_sep = 5,
 								 	degree_poly_tiling = 5,
 								 	poly_n_tilings = 5,
@@ -87,16 +88,23 @@ single_res <- single_run(Algorithm = "expected",
 								 	n_tilings = 5,
 								 	n_tiles = 10
 								 ),
-								 features_by = "tabular",								 
+								 features_by = "tiling",								 
 								 td_error_method = "discounted",
 								 dutch_traces = TRUE,
 								 policy = "greedy",
-								 convergence_chunk_length = 5000,
+								 convergence_chunk_length = 500,
 								 convergence_cycle_length = 10,
-								 convergence_check_frequency = 5000,
+								 convergence_check_frequency = 500,
 								 c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 
 
+
+
+
+
+
+
+mean(single_res$outcomes == single_re_bc$outcomes)
 
 # single_simulation_outcomes <- single_res$outcomes
 

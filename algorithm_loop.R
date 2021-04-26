@@ -14,7 +14,7 @@ SARSA <- function(passed_environment) {
 									m = m,
 									feature_specs = feature_specs,
 									available_prices = available_prices) %>%
-		transpose() %>% map(unlist)
+		purrr::transpose() %>% map(unlist)
 	
 	# selected_actions$id[2] <- m-1
 	# selected_actions$value[2] <- available_prices[m-1]
@@ -54,7 +54,7 @@ SARSA <- function(passed_environment) {
 										 m = m,
 										 feature_specs = feature_specs,
 										 available_prices = available_prices) %>%
-			transpose() %>%
+			purrr::transpose() %>%
 			map(unlist)
 		
 		selected_actions2$id[2] <- m-1
@@ -169,7 +169,6 @@ expected_SARSA <- function(passed_environment) {
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
 
-
 	while (convergence$converged == FALSE && t <= TT) {
 		
 		
@@ -182,7 +181,7 @@ expected_SARSA <- function(passed_environment) {
 										m = m,
 										feature_specs = feature_specs,
 										available_prices = available_prices) %>%
-			transpose() %>% map(unlist, recursive = FALSE)
+			purrr::transpose() %>% map(unlist, recursive = FALSE)
 		
 		# selected_actions$id[2] <- m-1
 		# selected_actions$value[2] <- available_prices[m-1]
@@ -304,7 +303,7 @@ intervention <- function(passed_environment) {
 										m = m,
 										feature_specs = feature_specs,
 										available_prices = available_prices) %>%
-			transpose() %>%
+			purrr::transpose() %>%
 			map(unlist)
 		
 		# retrieve profits from list

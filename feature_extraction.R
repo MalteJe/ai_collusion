@@ -1,9 +1,32 @@
 # A - Polynomial ----------------------------------------------------------
 
+# library(Rfast)
+# 
+# v <- iris$Sepal.Length          # A numeric vector
+# f <- iris$Species               # A factor
+# dat <- num_vars(iris)           # Numeric columns
+# m <- qM(dat)                    # Matrix of numeric data
+# 
+# 
+# TRA(m, fsd(m, f), "/", f)
+# 
+# eachrow()
+# expm
+# 
+# x <- rnorm(100)
+# y <- rnorm(100)
+# 
+# 
+# x*y
+# eachrow(matrix(x), y)
+# collapse::TRA(matrix(x),y, "*")
+
 
 set_up_poly <- function(specifications,    # list with named element: polynomial degree
 								vars               # number of variables to enter the feature vector
-								) {
+) {
+	
+	# browser()
 	
 	expon <- expand.grid(rep(list(0:specifications$degree), vars)) %>%
 		filter(between(rowSums(.), 1, specifications$degree))
@@ -16,18 +39,22 @@ set_up_poly <- function(specifications,    # list with named element: polynomial
 	# 	arrange(z,y,x) %>%
 	# 	as.matrix()
 	
-	exponents[exponents == 0] <- NA
-	return(list(exponents = exponents))
+	# exponents[exponents == 0] <- NA
+	return(list(exponents = exponents, nrow = nrow(exponents)))
 }
 
 
-get_x_poly <- function(state_set, action, feature_specs) {
-	apply(feature_specs$exponents, 1, function(x) prod((c(state_set, action))^x, na.rm = TRUE))
+get_x_poly  <- function(state_set, action, feature_specs) {
+	s_a_t <- c(state_set, action)
+	intermediate <- matrix(s_a_t, nrow = feature_specs$nrow, ncol = 3, byrow = T)^feature_specs$exponents
+	
+	return(rowprods(intermediate))
 }
 
-
-# fs_poly <- set_up_poly(list(degree = 7), vars = 3)
+# fs_poly <- set_up_poly(list(degree = 6), vars = 3)
 # get_x_poly(c(1,2), 1.8, fs_poly)
+
+
 
 
 # A2 - Polynomial into normalization

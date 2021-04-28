@@ -49,9 +49,9 @@ static_specs <- list(
 	),
 	dutch_traces = TRUE,
 	policy = "greedy",
-	convergence_chunk_length = 1000,
+	convergence_chunk_length = 10000,
 	convergence_cycle_length = 10,
-	convergence_check_frequency = 200,
+	convergence_check_frequency = 2000,
 	save_single_runs = TRUE,
 	c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25
 )
@@ -69,7 +69,7 @@ baseline <- list(
 	Psi = 1,
 	zeta = 1,
 	m = 19,
-	TT = 5000
+	TT = 500000
 )
 
 
@@ -92,7 +92,7 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 4)
+	  no_of_cores = 16)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

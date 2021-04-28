@@ -30,10 +30,8 @@ single_experiment <- function(experiment, static_specs, runs, no_of_cores, varie
 	# retrieve number of cores and specify requested number of runs
 	
 	if (no_of_cores == 1) {
-		print("executing sequential")
 		plan(strategy = sequential)
 	} else {
-		print("executing parallel")
 		plan(strategy = cluster, workers = no_of_cores) 
 	}
 	

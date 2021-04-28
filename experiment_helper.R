@@ -63,7 +63,7 @@ vary_alpha <- function(feature_by, variable_specs, static_specs, runs, no_of_cor
 	
 	experiment_sequence_specs <- map(experiment_sequence,
 												.f = rep,
-												length.out = l) %>% transpose()
+												length.out = l) %>% purrr::transpose()
 	
 	
 	
@@ -91,7 +91,7 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, s
 	
 	experiment_sequence_specs <- map(experiment_sequence,
 												.f = rep,
-												length.out = l) %>% transpose()
+												length.out = l) %>% purrr::transpose()
 	
 	map(.x = experiment_sequence_specs,
 		 .f = single_experiment,

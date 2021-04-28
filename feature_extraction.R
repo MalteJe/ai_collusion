@@ -22,16 +22,18 @@ set_up_poly <- function(specifications,    # list with named element: polynomial
 }
 
 
+
 get_x_poly  <- function(state_set, action, feature_specs) {
 	s_a_t <- c(state_set, action)
 	intermediate <- matrix(s_a_t, nrow = feature_specs$nrow, ncol = 3, byrow = T)^feature_specs$exponents
 	
-	return(rowprods(intermediate))
+	return(apply(X = intermediate, MARGIN = 1, FUN = prod))
 }
+
+
 
 # fs_poly <- set_up_poly(list(degree = 6), vars = 3)
 # get_x_poly(c(1,2), 1.8, fs_poly)
-
 
 
 

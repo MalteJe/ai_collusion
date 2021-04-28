@@ -6,7 +6,6 @@ library(parallel)
 library(future.apply)
 library(nnet)
 library(memoise)
-library(Rfast)
 
 print(str_c("Number of detected phsyical cores: ", detectCores(all.tests = TRUE, logical = FALSE)))
 

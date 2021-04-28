@@ -6,6 +6,7 @@ library(parallel)
 library(future.apply)
 library(nnet)
 library(memoise)
+library(Rfast)
 
 print(str_c("Number of detected phsyical cores: ", detectCores(all.tests = TRUE, logical = FALSE)))
 
@@ -26,7 +27,7 @@ getwd() %>%
 print("defining specs")
 
 # methods
-features_extraction_methods <- c("poly_separated")
+features_extraction_methods <- c("tiling", "tabular")
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(
@@ -82,7 +83,7 @@ runs_per_experiment <- 48
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- 1 * 10^-c(6, 8, 10, 12)
+alphas <- 1 * 10^-c(5, 7)
 alpha_input <- list_modify(baseline, Alpha = alphas)
 
 print("defined specs, starting simulations")

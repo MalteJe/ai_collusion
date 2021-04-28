@@ -165,6 +165,7 @@ SARSA <- function(passed_environment) {
 
 
 expected_SARSA <- function(passed_environment) {
+	print("starting while loop")
 	
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
@@ -201,6 +202,7 @@ expected_SARSA <- function(passed_environment) {
 		
 		
 		# if(t %% 200 == 0) {browser()}
+		if(t %% 200 == 0) {print(t); print(Cstack_info())}
 		
 		# update weights and average reward
 		for (a in seq_along(w)) {

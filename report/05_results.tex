@@ -1,1 +1,32 @@
 \section{Results}
+
+Starting, with the baseline specification, this section reports on the simulation results. \textbf{TBD}.
+
+To foreshadow the results, profits exceed Nash-predictions mostly to remain below monopoly profits. While agents learn to charge supra-competitive prices, they fail to incorporate \emph{reward-punishment} schemes consistently.  Overall, the results crucially hinge on the combination of feature extraction method and selected parameters. In order to assess the simulation results in more detail, I normalize profits similar to \textcite{calvano_algorithmic_2018}:
+
+\begin{gather}
+\Delta = \frac{\bar{\pi} - p_n}{p_m - p_n}.
+\end{gather}
+
+$\bar{\pi}$ represents profits averaged over the last 100 time steps upon convergence and over both firms in a single run\footnote{Instead of looking just at the convergence profits, I average over the last 100 time steps to account for price cycles}. The normalization implies that $\Delta = 0$ and $\Delta = 1$ respectively reference the Nash and monopoly solution. Note that it is possible to obtain a $\Delta$ below $0$ (e.g. if both agents charge prices equal to marginal costs), but not above $1$. \autoref{alpha} displays the convergence profits as a function of the feature extraction method and $\alpha$. Every data point represents one experiment, more specifically the mean of $\Delta$ across all runs.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/alpha.png}
+	\caption{average $\Delta$ for various combinations of the feature selection method and $\alpha$. Beware the logarithmic x-scale.}
+	\label{alpha}
+\end{figure}
+
+It is noteworthy that average profits consistently remain between both benchmarks $p_m$ and $p_n$ across specifications.
+
+\textbf{TBD}
+
+
+
+
+
+
+\textbf{Figure X} will show that this is not just an artifact of averaging between runs.
+
+
+
+

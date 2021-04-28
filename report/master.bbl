@@ -174,6 +174,80 @@
       \verb https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Berichte/Algorithms_and_Competition_Working-Paper.html;jsessionid=839547DE0AC4D5F41DECA09740F7A4E9.2_cid362?nn=3591568
       \endverb
     \endentry
+    \entry{calvano_algorithmic_2018}{report}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=251159e14bbd3cf5d61777ead5d463a5}{%
+           family={Calvano},
+           familyi={C\bibinitperiod},
+           given={Emilio},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5f94b7504494f666a2b2eebedab0368d}{%
+           family={Calzolari},
+           familyi={C\bibinitperiod},
+           given={Giacomo},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f80e1192ff1e3bb1c3bd7c962aa511d7}{%
+           family={Denicolò},
+           familyi={D\bibinitperiod},
+           given={Vincenzo},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=990b7ca7771e7a800d292dd804707ebd}{%
+           family={Pastorello},
+           familyi={P\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Social Science Research Network}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Rochester, NY}%
+      }
+      \strng{namehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{fullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
+      \strng{bibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{authorbibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{authornamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
+      \strng{authorfullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
+      \field{extraname}{1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Pricing decisions are increasingly in the “hands” of artificial algorithms. Scholars and competition authorities have voiced concerns that those algorithms are capable of sustaining collusive outcomes more effectively than human decision makers. If this is so, then our traditional policy tools for fighting collusion may have to be reconsidered. We discuss these issues by critically surveying the relevant law, economics and computer science literatures.}
+      \field{month}{7}
+      \field{number}{ID 3209781}
+      \field{shorttitle}{Algorithmic {Pricing}}
+      \field{title}{Algorithmic {Pricing}: {What} {Implications} for {Competition} {Policy}?}
+      \field{type}{{SSRN} {Scholarly} {Paper}}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.2139/ssrn.3209781
+      \endverb
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\2I2BUY77\\papers.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://papers.ssrn.com/abstract=3209781
+      \endverb
+      \verb{url}
+      \verb https://papers.ssrn.com/abstract=3209781
+      \endverb
+      \keyw{Collusion,Algorithmic Pricing,Artifical Intellicence,Competition Policy,Machine Learning}
+    \endentry
     \entry{calvano_artificial_2019}{report}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=251159e14bbd3cf5d61777ead5d463a5}{%
@@ -216,6 +290,7 @@
       \strng{authorbibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
       \strng{authornamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
       \strng{authorfullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
+      \field{extraname}{2}
       \field{sortinit}{C}
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{extradatescope}{labelyear}

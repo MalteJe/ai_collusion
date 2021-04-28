@@ -74,9 +74,9 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 
 
 
-t_grouping <- 5000
+t_grouping <- 50000
 
-experiment_job <- "Alpha_home"
+experiment_job <- "Alpha"
 (path <- str_c("simulation_results/", experiment_job, "/"))
 filenames <- list.files(path) %>%
 	str_subset("RData$"); print(head(filenames))
@@ -87,31 +87,78 @@ adjusted_files <- str_replace(filenames, "poly_tiling", "poly-tiling")  %>%
 
 meta_overview <- tibble(filename = adjusted_files) %>%
 	separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
+	mutate(path = str_c(path, filenames), successful = TRUE)
+
+meta_overview %>%
+	group_by(feature_method, varied_parameter) %>%
+	count() %>%
+	arrange(n)
+
+
+meta_overview <- tibble(filename = adjusted_files) %>%
+	separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
 	mutate(path = str_c(path, filenames), successful = TRUE) %>%
 	complete(feature_method, varied_parameter, run_id, fill = list(successful = FALSE))
 
-(variations <- unique(as.numeric(meta_overview$varied_parameter)))
+(variations <- sort(unique(as.numeric(meta_overview$varied_parameter)), decreasing = TRUE))
 
 data_nested <- meta_overview %>%
 	mutate(sim = map(path, load_return, t_grouping = t_grouping)) %>%
 	select(-path)
 
+save(data_nested, file = str_c(path, "aggregated.RData"))
 
 data_nested %>%
 	group_by(feature_method, varied_parameter) %>%
 	summarize(finished_runs_perc = mean(successful)) %>%
-	arrange(finished_runs_perc)
+	arrange(finished_runs_perc) %>%
+	ungroup() %>%
+	ggplot(aes(x = as.numeric(varied_parameter), y = finished_runs_perc, col = feature_method)) +
+	geom_line(size = 1) +
+	geom_point( size = 3, position = "dodge") +
+	theme_tq() +
+	scale_x_log10()
+
 
 
 data <- data_nested %>%
 	unnest_wider(sim)
 
 
+
+
+theme_tq
+
+ai_theme <- theme(
+	axis.title = element_text(size = 18, margin = margin(0.3, 0.3, -1, 0, unit = "mm")),
+	axis.title.y = element_text(angle = 0, vjust = 0.5),
+	axis.text = element_text(size = 11),
+	legend.title = element_blank(),
+	legend.key = element_rect(fill = "white", color = NA),
+	legend.position = "bottom",
+	panel.background = element_rect(fill = "white", color = NA),
+	panel.border = element_rect(fill = NA, size = 0.2),
+	# panel.spacing = unit(4.75, "cm"),
+	# panel.border = element_blank(),
+	panel.grid.major.x = element_line(color = "grey85", size = 0.2),
+	panel.grid.major.y = element_line(color = NA),
+	panel.grid.minor.x = element_line(color = NA),
+	panel.grid.minor.y = element_line(color = NA),
+	plot.margin = margin(1, 0.5,0.5,0.5, "cm"),
+	legend.margin = margin(0, 0,0,0, "mm"),
+	legend.box.margin = unit(rep(0, 4), "mm")
+)
+
+
+
+
+
 # Vary Alpha --------------------------------------------------------------
+
 
 data %>%
 	group_by(feature_method, varied_parameter) %>%
-	summarize(avg_profits = mean(avg_profits)) %>%
+	summarize(avg_profits = mean(avg_profits, na.rm = TRUE)) %>%
 	mutate(Delta = get_delta(avg_profits)) %>%
 	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
 	geom_line(size = 1) +
@@ -119,14 +166,42 @@ data %>%
 	geom_hline(yintercept = c(0, 1)) +
 	theme_tq() +
 	scale_x_log10() +
-	xlab(experiment_job)
+	labs(x = expression(alpha), y = expression(Delta))
+
+filter(data, !is.na(avg_profits)) %>%
+	group_by(feature_method, varied_parameter) %>%
+	summarize(avg_profits = mean(avg_profits)) %>%
+	mutate(Delta = get_delta(avg_profits)) %>%
+	filter(Delta > 0) %>%
+	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
+	geom_hline(yintercept = c(0, 1)) +
+	geom_line(size = 1) +
+	geom_point( size = 3) +
+	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+	# theme_tq() +
+	scale_x_log10(minor_breaks = variations, breaks = variations) +
+	labs(x = expression(alpha), y = expression(Delta)) +
+	ai_theme
+ggsave("report/plots/alpha.png", width = 25, height = 15, units = "cm")
 
 
+filter(data, !is.na(avg_profits)) %>%
+	mutate(Delta = get_delta(avg_profits)) %>%
+	filter(Delta > 0) %>%
+	ggplot(aes(x = as.factor(varied_parameter), y = Delta, fill = feature_method)) +
+	geom_boxplot(position = "dodge") +
+	geom_hline(yintercept = c(0, 1)) +
+	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+	# theme_tq() +
+	# scale_x_continuous(minor_breaks = variations, breaks = variations) +
+	xlab(experiment_job) +
+	labs(x = expression(alpha), y = expression(Delta)) +
+	ai_theme
 
 
 # Learning Phase Trajectory  ----------------------------------------------------------
 
-experiment_ids <- 1
+experiment_ids <- 8; variations[experiment_ids]
 
 
 outcomes <- data %>%
@@ -150,7 +225,7 @@ learning_phase %>%
 
 learning_phase %>%
 	group_by(feature_method, varied_parameter, t_group, metric) %>%
-	summarize(value = mean(value)) %>%
+	summarize(value = mean(value, na.rm = TRUE)) %>%
 	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
 			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
 	ggplot(aes(x = t_group * t_grouping, y = value, color = feature_method)) +
@@ -163,7 +238,8 @@ learning_phase %>%
 
 learning_phase %>%
 	ggplot(aes(x = as.factor(t_group * t_grouping), y = value, fill = feature_method)) +
-	geom_boxplot(position = "dodge") +
+	geom_violin(position = "dodge", scale = "width") +
+	# geom_boxplot(position = "dodge") +
 	facet_wrap(~metric, ncol = 1, scales = "free_y") +
 	theme_tq()
 	
@@ -201,6 +277,7 @@ intervention %>%
 			 tau = tau) %>%
 	pivot_longer(cols = c("price_change_1", "price_change_2"), names_to = "price") %>%
 	ggplot(aes(x = as.factor(tau), y = value)) +
+	# geom_violin(scale = "width") +
 	geom_boxplot() +
 	facet_grid(feature_method~price)
 

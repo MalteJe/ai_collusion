@@ -67,7 +67,7 @@ single_res <- single_run(Algorithm = "expected",
 								 zeta = 1,
 								 rounding_precision = 8,
 								 m = 19,
-								 TT = 1000,
+								 TT = 1000000,
 								 TT_intervention = 10,
 								 Alpha = 0.2,
 								 Beta = 1*10^-3,
@@ -98,13 +98,6 @@ single_res <- single_run(Algorithm = "expected",
 								 c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
 
 
-
-
-
-
-
-
-mean(single_res$outcomes == single_re_bc$outcomes)
 
 # single_simulation_outcomes <- single_res$outcomes
 

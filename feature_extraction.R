@@ -1,27 +1,5 @@
 # A - Polynomial ----------------------------------------------------------
 
-# library(Rfast)
-# 
-# v <- iris$Sepal.Length          # A numeric vector
-# f <- iris$Species               # A factor
-# dat <- num_vars(iris)           # Numeric columns
-# m <- qM(dat)                    # Matrix of numeric data
-# 
-# 
-# TRA(m, fsd(m, f), "/", f)
-# 
-# eachrow()
-# expm
-# 
-# x <- rnorm(100)
-# y <- rnorm(100)
-# 
-# 
-# x*y
-# eachrow(matrix(x), y)
-# collapse::TRA(matrix(x),y, "*")
-
-
 set_up_poly <- function(specifications,    # list with named element: polynomial degree
 								vars               # number of variables to enter the feature vector
 ) {

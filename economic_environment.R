@@ -1,22 +1,6 @@
 # Economic model (simultaneous, differentiated Bertrand) ----------------------------------------------------------
 
-# enumerator_i <- function(p, a, mu) {
-# 	exp((a-p)/mu)
-# }
-# 
-# outside <- function(a_0, mu) {exp(a_0/mu)}
-# 
-# calculate_demands <- function(p, a, a_0, mu) {
-# 	en <- map2_dbl(.x = p,
-# 						.y = a,
-# 						.f = enumerator_i,
-# 						mu = mu)
-# 	out <- outside(a_0, mu)
-# 	den <- sum(en, out)
-# 	q <- en/den
-# 	return(q)
-# }
-
+# calculate_demands calculates the multinominal logit demand as a function of prices and parameters (a, a_0, mu)
 calculate_demands <- function(p, a, a_0, mu) {
 	enumerator <- exp((a-p)/mu)
 	outside <- exp(a_0/mu)
@@ -24,73 +8,55 @@ calculate_demands <- function(p, a, a_0, mu) {
 	return(enumerator/denominator)
 }
 
-
-
-# calculate_profits <- function(p, c, ...) {
-# 	q <- calculate_demands(p, ...)
-# 	pi <- (p - c) * q
-# 	return(pi)
-# }
-
+# calculate_profits calculates the profits in the multinominal logit demand model as a function of prices and parameters
 calculate_profits <- function(p, c, ...) {
 	q <- calculate_demands(p, ...)
 	return((p - c) * q)
 }
 
 
-# helpers to calculate initial Q matrix
+# Optimize joint profits --------------------------------------------------
 
-# init_profits <- function(p1, p2, ...) {
-# 	calculate_profits(p = c(p1,p2), ...)[1]
-# }
-# 
-# init_Q_entry <- function(i, delta, available_prices, ...) {
-# 	pis <- map_dbl(available_prices, init_profits, p1 = available_prices[i], ...)
-# 	sum(pis)/((1-delta) * length(available_prices))
-# }
-# 
-
-
-# numerically optimize joint profits with respect to both prices
+# joint_profits_helper calculates (the negative of) joint profits assuming both firms charge the same price
 joint_profits_helper <- function(p, ...) {
-	res <- calculate_profits(p = p, ...)
+	res <- calculate_profits(p = rep(p, 2), ...)
 	-sum(res)
 }
 
+# optimize_joint_profits numerically optimizes price with respect to joint profits 
 optimize_joint_profits <- function(...) {
-	optim(par = rep(0, 2), fn = joint_profits_helper,
+	suppressWarnings(optim(par = 0, fn = joint_profits_helper,
 		...,
-		control = list(reltol = 1e-12))$par %>%
-		mean()
+		control = list(reltol = 1e-12))$par)
 }
 
 
-# numerically optimize best response to fixed competitor price
+# Best response -----------------------------------------------------------
+
+# best_response_helper calculates the (negative of the) profits of firm 1 given a price in response to firm 2's price
 best_response_helper <- function(p, p_, ...) {
 	res <- calculate_profits(p = c(p, p_), ...)
 	-res[1]
 }
 
-
-best_response <- function(p_, n, ...) {
+# best_response numerically optimizes (with respect to profits) the price of firm 1 given a price of firm 2
+best_response <- function(p_, ...) {
 	suppressWarnings(optim(par = 0, fn = best_response_helper,
 			p_ = p_,
 			...,
 			control = list(reltol = 1e-12))$par)
 }
 
-# numerically obtain (mututally best responses) to obtain Nash equilibrium
 
-# nash_helper <- function(p, ...) {
-# 	res <- best_response(p_ = p, ...)
-# 	abs(res - p)
-# }
+# Nash equilibrium --------------------------------------------------------
 
+# nash_helper checks the distance of p to the unique equilibrium, where the result of the formula is equal to the input price. (see Anderson, de Palma 1992)
 nash_helper <- function(p, c, a, a_0, mu) {
-	br <- c + mu/(1 - (2 + exp((a_0 + p - a)/mu))^-1)
-	return(abs(br - p))
+	res <- c + mu/(1 - (2 + exp((a_0 + p - a)/mu))^-1)   # n is hard-coded as '2' for this simulation
+	return(abs(res - p))
 }
 
+# nash_prices numerically optimizes p such that the condition for a unique equilbrium is (approximately) satisfied
 nash_prices <- function(...) {
 	suppressWarnings(optim(par = 0, nash_helper,
 			...,

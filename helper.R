@@ -3,46 +3,46 @@
 
 estimate_state_action_value <- function(state_set, action, feature_specs, w) {
 	x <- get_x(state_set = state_set, action = action, feature_specs = feature_specs)
-	sum(x * w)
+	sum(x * w) # surprisingly, benchmarking suggested that this tends to be faster than crossprod(x, w)
 }
 
 
-optimize_action <- function(state_set, available_prices, feature_specs, w) {
-	opt_id <- map_dbl(.x = available_prices,
-							.f = estimate_state_action_value,
-							state_set = state_set,
-							feature_specs,
-							w = w) %>%
-		which.is.max()
-	
-	available_prices[opt_id]
-}
-
-
-optimize_grid <- function(w, price_grid, available_prices, feature_specs, get_x_run) {
-	
-	get_x <<- get_x_run
-	
-	map_dbl(.x = price_grid,
-			  .f = optimize_action,
-			  available_prices = available_prices,
-			  feature_specs = feature_specs, 
-			  w = w)
-}
+# optimize_action <- function(state_set, available_prices, feature_specs, w) {
+# 	opt_id <- map_dbl(.x = available_prices,
+# 							.f = estimate_state_action_value,
+# 							state_set = state_set,
+# 							feature_specs,
+# 							w = w) %>%
+# 		which.is.max()
+# 	
+# 	available_prices[opt_id]
+# }
+# 
+# 
+# optimize_grid <- function(w, price_grid, available_prices, feature_specs, get_x_run) {
+# 	
+# 	get_x <<- get_x_run
+# 	
+# 	map_dbl(.x = price_grid,
+# 			  .f = optimize_action,
+# 			  available_prices = available_prices,
+# 			  feature_specs = feature_specs, 
+# 			  w = w)
+# }
 
 
 
 
 
 # shifts positions of a vector by x steps
-shifter <- function(n = 1, x) {
-	if (n == 0) x else c(tail(x, -n), head(x, n))
-}
-
-# maps action id to state id
-get_state_id <- function(action_ids, m) {   # needs to be adjusted for n > 3!!!
-	(action_ids[1] - 1) * m + action_ids[2]
-}
+# shifter <- function(n = 1, x) {
+# 	if (n == 0) x else c(tail(x, -n), head(x, n))
+# }
+# 
+# # maps action id to state id
+# get_state_id <- function(action_ids, m) {   # needs to be adjusted for n > 3!!!
+# 	(action_ids[1] - 1) * m + action_ids[2]
+# }
 
 
 

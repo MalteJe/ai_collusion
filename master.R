@@ -53,7 +53,7 @@ static_specs <- list(
 	convergence_cycle_length = 10,
 	convergence_check_frequency = 2000,
 	save_single_runs = TRUE,
-	c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25
+	c = 1, a = 2, a_0 = 0, mu = 0.25
 )
 
 
@@ -92,7 +92,7 @@ walk(.x = features_extraction_methods,
 	  variable_specs = alpha_input,
 	  static_specs = static_specs,
 	  runs = runs_per_experiment,
-	  no_of_cores = 16)
+	  no_of_cores = 4)
 
 # names(meta_res_alpha) <- features_extraction_methods
 # 	

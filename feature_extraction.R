@@ -17,7 +17,7 @@ set_up_poly <- function(specifications,    # list with named element: degree
 	return(list(
 		exponents = exponents,   # matrix of exponents
 		le = nrow(exponents),  # number of features
-		x_default <- numeric(nrow(exponents)))  
+		x_default = numeric(nrow(exponents)))  
 		)
 }
 

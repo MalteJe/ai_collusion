@@ -1,22 +1,30 @@
 \section{Environment}\label{enironment}
 
-This section presents the simulated economic environment that the autonomous pricing agents interact with. I consider an infinitely repeated pricing game with a logit demand as in \textcite{calvano_artificial_2019}. Restricting the analysis to the oligopoly case with $n=2$ agents (where $i = 1,2$), the market comprises \emph{2} differentiated products and an outside option. In every period $t$, both agents simultaneously pick a price $p_i$. Demand for agent $i$ is then determined\footnote{Generalization to a model with \emph{n} agents is straightforward. In fact, the demand formula remains the same. The limitation to 2 agents is merely chosen for computational efficiency and the (intuitive) conjecture that the simulation results generalize to more players provided learning time is sufficiently high.}:
+This section presents the simulated economic environment that the autonomous pricing agents interact with. I consider an infinitely repeated pricing game with a multinominal logit demand as in \textcite{calvano_artificial_2019}. Restricting the analysis to the oligopoly case with $n=2$ agents (where $i = 1,2$), the market comprises \emph{2} differentiated products and an outside option. In every period $t$, both agents simultaneously pick a price $p_i$. Demand for agent $i$ is then determined\footnote{Generalization to a model with \emph{n} agents is straightforward. In fact, the demand formula remains the same. The limitation to 2 agents is merely chosen for computational efficiency and the (intuitive) conjecture that the simulation results generalize to more players provided learning time is sufficiently high.}:
 
 \begin{gather}\label{quantity}
-q_{i,t}=\frac{e^{\frac{a_i - p_{i,t}}{\mu}}}{\sum_{j=1}^{n}~ e^{\frac{a_j-p_{j,t}}{\mu}}+e^{\frac{a_0}{\mu}}}
+q_{i,t}=\frac{e^{\frac{a - p_{i,t}}{\mu}}}{\sum_{j=1}^{n}~ e^{\frac{a-p_{j,t}}{\mu}}+e^{\frac{a_0}{\mu}}}
 \end{gather}
 
 \textbf{Citations needed}
-$\mu$ controls the degree of horizontal differentiation, where $\mu \rightarrow 0$ approximates perfect substitutability. Vertical differentiation is incorporated through the quality parameters $a_i$. $a_0$ reflects the appeal of the outside good. It diminishes as $a_0 \rightarrow -\infty$ \parencite{anderson_logit_1992}. 
+$\mu$ controls the degree of horizontal differentiation, where $\mu \rightarrow 0$ approximates perfect substitutability. While I forego to incorporate vertical differentiation throughout this study, it may be incorporated by choosing firm-specific quality parameters $a$. $a_0$ reflects the appeal of the outside good. It diminishes as $a_0 \rightarrow -\infty$ \parencite{anderson_logit_1992}. 
 
 Profits of both agents $\pi_i$ are simply calculated as
 
 \begin{gather}\label{profit}
-\pi_{i,t} = (p_{i,t} - c_i) q_{i,t},
+\pi_{i,t} = (p_{i,t} - c) q_{i,t},
 \end{gather}
 
-where $c_i$ is a firm-specific marginal cost. Market entry and exit are not considered. The baseline parametrization emulates \textcite{calvano_artificial_2019}:
-$c_i = 1$,
-$a_i = 2$,
+where $c$ is the marginal cost.\footnote{Again, $c$ could be varied by adding suffixes accordingly.} \textcite{anderson_logit_1992} show that the multinominal logit demand model with symmetric firms entails a unqique equilibrium with best responses that solve:
+
+\begin{gather}\label{best_response}
+	p_n = p^* = c + \frac{\mu}{1 - (n + e^{\frac{a_0 - a + p^*}{\mu}})^{-1}}
+\end{gather}
+
+Naturally, the other extreme, a collusive or monopoly solution, is obtained by maximizing joint profits.\footnote{For this study, I approximate both cases using numerical optimization.} Both, the Nash outcomes characterized by $p_n$ and $\pi_n$ \emph{and} the monopoly solution ($p_m$ and $\pi_m$) shall serve as benchmarks for the simulations.
+
+Market entry and exit are not considered. The baseline parametrization is identical to \textcite{calvano_artificial_2019}:
+$c = 1$,
+$a = 2$,
 $a_0 = 0$ and
 $\mu = \frac{1}{4}$. These parameters give rise to a static Nash equilibrium with $p_n \approx 1.47$ and $\pi_n \approx 0.23$ per agent. The monopolist solution entails $p_m \approx 1.92$ with $\pi_m \approx 0.34$ for each product. Nevertheless, the following section covers the applied reinforcement learning methods for general parameters.

@@ -1,8 +1,71 @@
+
+
+\pagebreak
+\begin{algorithm}
+	\caption{Gradient Descend Expected SARSA}
+	\begin{algorithmic}[]
+		\small
+		\STATE Initialize state S
+		\WHILE{convergence is not achieved,}
+		\STATE Choose action A \~{} $\pi(.|S)$
+		\STATE observe profit $\pi$, adjust to reward $R$
+		\STATE observe next state: $S_{t+1} = A_t$
+		\STATE calculate TD-error: $\delta \leftarrow R +  \gamma \bar{V}(S_{t+1}) - q(S_t)$
+		\STATE update eligibility trace: $\boldsymbol{z} \leftarrow \gamma \lambda \rho \boldsymbol{z} + \boldsymbol{x} $
+		\STATE update parameter vector: $\boldsymbol{w} \leftarrow \boldsymbol{w} + \alpha  \delta  \boldsymbol{z}$
+		\STATE $S \leftarrow S_{t+1}$
+		\STATE $t \leftarrow t+1$
+		\ENDWHILE
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Results}
 
-Starting, with the baseline specification, this section reports on the simulation results. \textbf{TBD}.
+Starting, with the baseline specification, this section reports on the simulation results. \textbf{TBD}. To foreshadow the results, profits exceed Nash-predictions mostly to remain below monopoly profits. While agents learn to charge supra-competitive prices, they fail to incorporate \emph{reward-punishment} schemes consistently.  Overall, the results crucially hinge on the combination of feature extraction method and selected parameters.
 
-To foreshadow the results, profits exceed Nash-predictions mostly to remain below monopoly profits. While agents learn to charge supra-competitive prices, they fail to incorporate \emph{reward-punishment} schemes consistently.  Overall, the results crucially hinge on the combination of feature extraction method and selected parameters. In order to assess the simulation results in more detail, I normalize profits similar to \textcite{calvano_algorithmic_2018}:
+\subsection{Convergence}
+
+\textbf{TBD: describe definition of convergence}
+
+\autoref{converged} displays the share of runs that, respectively, converged successfully, didn't converge until the simulation's end or \emph{failed to complete}. The last category refers to runs, where the simulation crashed before all episodes were completed. Unsurprisingly, this happens mainly in the polynomial settings in combination with a low $\alpha$. The problem is that, due to large feature values, the algorithm \emph{overshoots} the estimates of $\boldsymbol{\theta}$ early in the simulation and causes the software to crash.
+
+\textbf{TBD: description of differences between extraction methods}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/converged.png}
+	\caption{number of runs that achieved convergence per experiment.}
+	\label{converged}
+\end{figure}
+
+As \autoref{convergence_at} shows, among the runs that achieved convergence, the distribution of when that happened is fairly uniform. This is an artifact of the decay in exploration as dictated by $\beta$. Due to the definition of convergence, agents probabilistically experiment before the focal point of 200,000. Thereafter, it becomes increasingly likely that both agents keep \emph{exploiting} their current knowledge and continuously play the same strategy for a long enough time.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/convergence_at.png}
+	\caption{timing of convergence, runs that did not converge or failed to complete are excluded.}
+	\label{convergence_at}
+\end{figure}
+
+\textbf{disrtibution of cycle length}
+
+\clearpage
+\subsection{Profits}
+
+In order to assess the simulation results in more detail, I normalize profits similar to \textcite{calvano_algorithmic_2018}:
 
 \begin{gather}
 \Delta = \frac{\bar{\pi} - p_n}{p_m - p_n}.
@@ -18,15 +81,54 @@ $\bar{\pi}$ represents profits averaged over the last 100 time steps upon conver
 
 It is noteworthy that average profits consistently remain between both benchmarks $p_m$ and $p_n$ across specifications.
 
+
+As choosing a sensible $alpha$ clearly depends on the feature extraction method, I will choose a different \emph{optimized} $\alpha$ to present the further results. Specifically, the considered experiments are:
+
+\begin{enumerate}
+	\item tabular: $\alpha = 0.1$
+	\item tiling: $\alpha = 0.001$
+	\item poly-separated: $\alpha = 10^{-6}$
+	\item poly-tiling: $\alpha = 10^{-8}$
+\end{enumerate}
+
+\textbf{TBD: explanation why exactly these values?}
+
+\autoref{all_runs} displays the development of profits and prices of all runs for the 'optimized' $\alpha$'s. Both metrics are averaged over 50,000 episodes apiece and over both players. Again, note that, by and large, prices and profits remain within the benchmarks of Nash competition and the cartel case.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/all_runs.png}
+	\caption{all runs for manually optimized $\alpha$}
+	\label{all_runs}
+\end{figure}
+
+
+
+\clearpage
+\subsection{Deviations}
+
+This section examines whether the learned strategies are stable in the face of deviations. As outlined before, collusion requires a \emph{reward punishment scheme} and it seems instructive to assess whether the agents learned to punish deviations. In order to scrutinize that, I had one agent deviate from the stable price cycle by playing the short-term best response to maximize own profits \emph{after} convergence was detected. Subsequently, both agents played the learned strategies again for 10 episodes. For the period of that intervention, learning and exploration was turned off.
+
+\autoref{average_intervention} displays the average price trajectory around the manually imposed deviation. It exhibits clear differences between the considered feature extraction methods. 
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/average_intervention.png}
+	\caption{average price trajectory around deviation}
+	\label{average_intervention}
+\end{figure}
+
+As the average price trajectory might hide subtle differences between runs even within the same experiment, \autoref{intervention_violin} displays the distribution of at and after the deviation.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/intervention_violin.png}
+	\caption{distribution of prices at and after deviation relative to prior equilibrium. Every violin has the same maximum width, i.e.\ width between violins are not comparable. Tails are trimmed}
+	\label{intervention_violin}
+\end{figure}
+
+\pagebreak
+\subsection{responses off equilibrium}
+
 \textbf{TBD}
-
-
-
-
-
-
-\textbf{Figure X} will show that this is not just an artifact of averaging between runs.
-
 
 
 

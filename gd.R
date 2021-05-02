@@ -101,7 +101,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	} else if (features_by == "poly_separated"){
 		get_x <<- memoise(get_x_poly_separate)
 		
-		feature_specs <- set_up_poly_separate(specifications = specifications, available_prices, vars = 2)
+		feature_specs <- set_up_poly_separate(specifications = specifications, available_prices)
 		length_w <- (choose(specifications$degree_sep + n, n) - 1) * m
 	} else if (features_by == "poly_tiling") {
 		get_x <<- memoise(get_x_poly_tilings)

@@ -234,7 +234,6 @@ expected_SARSA <- function(passed_environment) {
 		# check for convergence
 		
 		if (t %% convergence_check_frequency == 0 && t >= convergence_chunk_length) {
-			
 			convergence <- detect_pattern(outcomes = outcomes,
 													current_t = t,
 													chunk_size = convergence_chunk_length,

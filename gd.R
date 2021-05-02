@@ -42,13 +42,11 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 
 	
 	#print(as.list(match.call()))
-
 	# calculate discrete set of prices
-	
-	# p_n <- nash_prices(n, ...)
-	# p_m <- optimize_joint_profits(n, ...) %>% mean()
-	p_n <- 1.472928
-	p_m <- 1.924981
+	p_n <- nash_prices(...)
+	p_m <- optimize_joint_profits(...)
+	# p_n <- 1.472928
+	# p_m <- 1.924981
 	
 	# determine feasibe prices
 	mc <- list(...)$c[1]

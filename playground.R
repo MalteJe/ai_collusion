@@ -61,44 +61,49 @@ profvis::profvis(
 
 
 
+
 single_res <- single_run(Algorithm = "expected",
-								 n = 2,
-								 seed = 1234567,
-								 zeta = 1,
-								 rounding_precision = 8,
-								 m = 19,
-								 TT = 1000000,
-								 TT_intervention = 10,
-								 Alpha = 0.2,
-								 Beta = 1*10^-3,
-								 Gamma = 0.05,
-								 Delta = 0.95,
-								 Lambda = 0.5,
-								 Epsilon_constant = NA,
-								 Psi = 1,
-								 w_init = 0,
-								 r_adjust = 0.2229272,
-								 run_id = NA,
-								 specifications = list(
-								 	degree = 5,
-								 	degree_sep = 5,
-								 	degree_poly_tiling = 5,
-								 	poly_n_tilings = 5,
-								 	poly_n_tiles = 4,
-								 	n_tilings = 5,
-								 	n_tiles = 10
-								 ),
-								 features_by = "tiling",								 
-								 td_error_method = "discounted",
-								 dutch_traces = TRUE,
-								 policy = "greedy",
-								 convergence_chunk_length = 500,
-								 convergence_cycle_length = 10,
-								 convergence_check_frequency = 500,
-								 c = c(1,1), a = c(2,2), a_0 = 0, mu = 0.25)
+			  n = 2,
+			  seed = 1234567,
+			  zeta = 1,
+			  rounding_precision = 8,
+			  m = 19,
+			  TT = 100000,
+			  TT_intervention = 10,
+			  Alpha = 0.2,
+			  Beta = 1*10^-3,
+			  Gamma = 0.05,
+			  Delta = 0.95,
+			  Lambda = 0.5,
+			  Epsilon_constant = NA,
+			  Psi = 1,
+			  w_init = 0,
+			  r_adjust = 0.2229272,
+			  run_id = NA,
+			  specifications = list(
+			  	degree = 5,
+			  	degree_sep = 5,
+			  	degree_poly_tiling = 5,
+			  	poly_n_tilings = 5,
+			  	poly_n_tiles = 4,
+			  	n_tilings = 5,
+			  	n_tiles = 10
+			  ),
+			  features_by = "tiling",								 
+			  td_error_method = "discounted",
+			  dutch_traces = TRUE,
+			  policy = "greedy",
+			  convergence_chunk_length = 500,
+			  convergence_cycle_length = 10,
+			  convergence_check_frequency = 500,
+			  c = 1, a = 2, a_0 = 0, mu = 0.25)
 
 
+dim(old_res$outcomes)
+dim(new_res$outcomes)
 
+(old_res$outcomes == new_res$outcomes)
+mean(old_res$outcomes == new_res$outcomes)
 # single_simulation_outcomes <- single_res$outcomes
 
 1 * exp(- 4 * 10^-5 * c(1, 10000, 100000, 300000, 500000))

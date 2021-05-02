@@ -66,7 +66,6 @@ detect_pattern <- function(outcomes, current_t, chunk_size, cycle_length) {
 
 	# extract price columns of the considered time period to check for convergence
 	chunk <- outcomes[((current_t-chunk_size + 1):current_t),1:2]
-	
 	# checks for cycles of all provided lengths
 	patterns_by_cycle_length <- map_lgl(.x = 1:cycle_length,
 													.f = is_recurring,

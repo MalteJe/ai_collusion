@@ -76,10 +76,11 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 
 t_grouping <- 50000
 
-experiment_job <- "Alpha"
+experiment_job <- "Alpha_final"
 (path <- str_c("simulation_results/", experiment_job, "/"))
 filenames <- list.files(path) %>%
-	str_subset("RData$"); print(head(filenames))
+	str_subset("RData$") %>%
+	str_subset("aggregated", negate = TRUE); print(head(filenames))
 
 adjusted_files <- str_replace(filenames, "poly_tiling", "poly-tiling")  %>%
 	str_replace("poly_separate", "poly-separate") %>%
@@ -95,10 +96,10 @@ meta_overview %>%
 	arrange(n)
 
 
-meta_overview <- tibble(filename = adjusted_files) %>%
-	separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
-	mutate(path = str_c(path, filenames), successful = TRUE) %>%
-	complete(feature_method, varied_parameter, run_id, fill = list(successful = FALSE))
+# meta_overview <- tibble(filename = adjusted_files) %>%
+# 	separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
+# 	mutate(path = str_c(path, filenames), successful = TRUE) %>%
+# 	complete(feature_method, varied_parameter, run_id, fill = list(successful = FALSE))
 
 (variations <- sort(unique(as.numeric(meta_overview$varied_parameter)), decreasing = TRUE))
 
@@ -106,32 +107,21 @@ data_nested <- meta_overview %>%
 	mutate(sim = map(path, load_return, t_grouping = t_grouping)) %>%
 	select(-path)
 
+
 save(data_nested, file = str_c(path, "aggregated.RData"))
 
-data_nested %>%
-	group_by(feature_method, varied_parameter) %>%
-	summarize(finished_runs_perc = mean(successful)) %>%
-	arrange(finished_runs_perc) %>%
-	ungroup() %>%
-	ggplot(aes(x = as.numeric(varied_parameter), y = finished_runs_perc, col = feature_method)) +
-	geom_line(size = 1) +
-	geom_point( size = 3, position = "dodge") +
-	theme_tq() +
-	scale_x_log10()
 
 
+# Graphs ------------------------------------------------------------------
 
 data <- data_nested %>%
-	unnest_wider(sim)
-
-
-
+	unnest_wider(sim) %>%
+	mutate(feature_method = fct_relevel(feature_method, "tabular", "tiling", "poly-separated", "poly-tiling"))
 
 theme_tq
 
 ai_theme <- theme(
-	axis.title = element_text(size = 18, margin = margin(0.3, 0.3, -1, 0, unit = "mm")),
-	axis.title.y = element_text(angle = 0, vjust = 0.5),
+	axis.title = element_text(size = 14, margin = margin(0.3, 0.3, -1, 0, unit = "mm")),
 	axis.text = element_text(size = 11),
 	legend.title = element_blank(),
 	legend.key = element_rect(fill = "white", color = NA),
@@ -150,6 +140,77 @@ ai_theme <- theme(
 )
 
 
+color_dictionary <- c(
+	"converged" = "palegreen",
+	"not_converged" = "gray",
+	"failed" = "tomato4",
+	"tabular" = "black",
+	"tiling" = "#4DBBD5",
+	"poly-tiling" = "#E64B35",
+	"poly-separated" = "#F39B7FFF"
+)
+
+fill_dictionary <- scale_fill_manual(values = color_dictionary)
+color_dictionary <- scale_color_manual(values = color_dictionary)
+
+
+# data %>%
+# 	mutate(converged = (convergence < 500000)) %>%
+# 	group_by(feature_method, varied_parameter) %>%
+# 	summarize(converged_fraction = mean(converged)) %>%
+# 	ggplot(aes(x = varied_parameter, y = converged_fraction, fill = feature_method)) +
+# 	geom_col(position = "dodge") +
+# 	# facet_wrap(~feature_method) +
+# 	# coord_flip() +
+# 	theme_tq()
+	
+	
+convergence_info <- data %>%
+	mutate(converged = (convergence < 500000)) %>%
+	complete(feature_method, varied_parameter) %>%
+	filter(!(feature_method == "tabular" & varied_parameter %in% c("1e-06", "1e-08", "1e-10", "1e-12"))) %>%
+	group_by(feature_method, varied_parameter) %>%
+	summarize(failed = 48 - n(),
+				 converged = sum(converged)) %>%
+	ungroup() %>%
+	mutate(not_converged = 48 - failed - converged) %>%
+	pivot_longer(cols = c("converged", "not_converged" ,"failed"), names_to = "status") %>%
+	mutate(status = forcats::fct_rev(status))
+
+
+convergence_info %>%
+	ggplot(aes(x = as_factor(as.numeric(varied_parameter)), y = value, fill = status)) +
+	geom_col(position = "stack") +
+	facet_wrap(~feature_method) +
+	theme_tq() +
+	fill_dictionary +
+	coord_flip() +
+	labs(y = "runs", x = expression(alpha)) +
+	ai_theme +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+ggsave("report/plots/converged.png", width = 25, height = 15, units = "cm")
+
+
+data %>%
+	filter(convergence < 500000) %>%
+	#group_by(feature_method) %>%
+	ggplot(aes(x = convergence, y = stat(density), col = feature_method)) +
+	# geom_freqpoly() +
+	geom_freqpoly(size = 1, binwidth = 10000) +
+	scale_x_continuous(limits = c(0, 500000), labels = scales::comma) +
+	theme_tq() +
+	color_dictionary +
+	labs(x = "t") +
+	ai_theme
+ggsave("report/plots/convergence_at.png", width = 25, height = 15, units = "cm")	
+	
+	
+
+
+
+
+
+
 
 
 
@@ -166,7 +227,8 @@ data %>%
 	geom_hline(yintercept = c(0, 1)) +
 	theme_tq() +
 	scale_x_log10() +
-	labs(x = expression(alpha), y = expression(Delta))
+	labs(x = expression(alpha), y = expression(Delta)) +
+	color_dictionary
 
 filter(data, !is.na(avg_profits)) %>%
 	group_by(feature_method, varied_parameter) %>%
@@ -181,7 +243,9 @@ filter(data, !is.na(avg_profits)) %>%
 	# theme_tq() +
 	scale_x_log10(minor_breaks = variations, breaks = variations) +
 	labs(x = expression(alpha), y = expression(Delta)) +
-	ai_theme
+	ai_theme +
+	color_dictionary +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
 ggsave("report/plots/alpha.png", width = 25, height = 15, units = "cm")
 
 
@@ -201,27 +265,52 @@ filter(data, !is.na(avg_profits)) %>%
 
 # Learning Phase Trajectory  ----------------------------------------------------------
 
-experiment_ids <- 8; variations[experiment_ids]
+# experiment_ids <- 8; variations[experiment_ids]
+# 
+# 
+# 
+# outcomes <- data %>%
+# 	select(-intervention, -avg_profits) %>%
+# 	unnest(outcomes) %>%
+# 	filter(!is.na(t_group))
 
+manually_optimized_alpha <- data %>%
+	filter(
+		(feature_method == "poly-separated" & varied_parameter == "1e-06") |
+		(feature_method == "poly-tiling" & varied_parameter == "1e-12") |
+		(feature_method == "tiling" & varied_parameter == "0.001")  |
+		(feature_method == "tabular" & varied_parameter == "0.1")
+) 
 
-outcomes <- data %>%
+outcomes <- manually_optimized_alpha %>%
 	select(-intervention, -avg_profits) %>%
-	unnest(outcomes) %>%
-	filter(!is.na(t_group))
+	unnest(outcomes)
+
+
 
 
 learning_phase <- outcomes %>%
-	complete(feature_method, varied_parameter, run_id, t_group) %>%
-	group_by(feature_method, varied_parameter, run_id) %>%
-	fill(price, Delta, .direction = "down") %>%
-	pivot_longer(cols = c(price, Delta), names_to = "metric") %>%
-	filter(varied_parameter %in% variations[experiment_ids])
+	# complete(feature_method, varied_parameter, run_id, t_group) %>%
+	# group_by(feature_method, varied_parameter, run_id) %>%
+	# fill(price, Delta, .direction = "down") %>%
+	pivot_longer(cols = c(price, Delta), names_to = "metric") # %>%
+	# filter(varied_parameter %in% variations[experiment_ids])
 
 learning_phase %>%
+	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
+			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
 	ggplot(aes(x = t_group * t_grouping, y = value, group = interaction(feature_method, run_id, varied_parameter), col = feature_method)) +
+	geom_hline(aes(yintercept = p_n), linetype = "dashed") +	
+	geom_hline(aes(yintercept = p_m), linetype = "dashed") +	
 	geom_line() +
 	facet_wrap(~metric, ncol =1, scales = "free_y") +
-	theme_tq()
+	theme_tq() +
+	ai_theme +
+	scale_x_continuous(labels = scales::comma) +
+	color_dictionary +
+	labs(x = "t", y = " ")
+ggsave("report/plots/all_runs.png", width = 25, height = 20, units = "cm")
+	
 
 learning_phase %>%
 	group_by(feature_method, varied_parameter, t_group, metric) %>%
@@ -241,17 +330,17 @@ learning_phase %>%
 	geom_violin(position = "dodge", scale = "width") +
 	# geom_boxplot(position = "dodge") +
 	facet_wrap(~metric, ncol = 1, scales = "free_y") +
-	theme_tq()
+	theme_tq() +
+	fill_dictionary
 	
 
 # Intervention
 
 
 
-intervention <- data %>%
+intervention <- manually_optimized_alpha %>%
 	select(-outcomes, -avg_profits) %>%
-	unnest(intervention) %>%
-	filter(varied_parameter %in% variations[experiment_ids], !is.na(price_1))
+	unnest(intervention)
 
 
 
@@ -266,8 +355,9 @@ intervention %>%
 	geom_point(size = 3) +
 	geom_line(size = 1) +
 	theme_tq() +
+	color_dictionary +
 	facet_wrap(~feature_method, nrow = 2)
-	
+ggsave("report/plots/average_intervention.png", width = 25, height = 20, units = "cm")
 
 intervention %>%
 	filter(tau > -1) %>%
@@ -276,11 +366,15 @@ intervention %>%
 			 price_change_2 = price_2 - first(price_2),
 			 tau = tau) %>%
 	pivot_longer(cols = c("price_change_1", "price_change_2"), names_to = "price") %>%
-	ggplot(aes(x = as.factor(tau), y = value)) +
-	# geom_violin(scale = "width") +
-	geom_boxplot() +
-	facet_grid(feature_method~price)
-
+	ggplot(aes(x = as.factor(tau), y = value, fill = feature_method)) +
+	geom_violin(scale = "width", trim = TRUE) +
+	# geom_boxplot() +
+	fill_dictionary +
+	facet_grid(feature_method~price) +
+	theme_tq() +
+	ai_theme +
+	labs(x = expression(tau))
+ggsave("report/plots/intervention_violin.png", width = 25, height = 25, units = "cm")
 
 
 

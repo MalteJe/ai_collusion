@@ -119,8 +119,6 @@ select_action_expected_greedy <- function(state_set, w, epsilon, m, available_pr
 # calculates expected value of upcoming state-action combination by weighting possible actions with their probabilities.
 calculate_expected_value <- function(r, s_t2, w, epsilon, m, available_prices, feature_specs) {
 	
-	browser()
-	
 	# calculate estimated qualities of all actions in upcoming episode
 	qualities <- map_dbl(.x = available_prices,
 								.f = estimate_state_action_value,

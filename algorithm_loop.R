@@ -185,7 +185,7 @@ expected_SARSA <- function(passed_environment) {
 			map(unlist, recursive = FALSE)
 		
 		# retrieve profits from list
-		r <- R[[selected_actions$id[1] + (selected_actions$id[2] - 1) * m]]
+		r <- R[[selected_actions$id[1L] + (selected_actions$id[2L] - 1L) * m]]
 		
 		# record prices and profits
 		outcomes[t,] <- c(selected_actions$value, r)
@@ -202,7 +202,7 @@ expected_SARSA <- function(passed_environment) {
 			
 			# calculate TD-error 
 			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
-									w = w[[a]], epsilon = epsilon[t], m = m, available_prices = available_prices,
+									w = w[[a]], epsilon = epsilon[t+1L], m = m, available_prices = available_prices,
 									feature_specs = feature_specs, TD = TDs[[a]])
 			
 			# update eligbility trace
@@ -227,7 +227,7 @@ expected_SARSA <- function(passed_environment) {
 		
 		# move to next time stage
 		s_t <- s_t2
-		t <- t + 1
+		t <- t + 1L
 	}
 	
 	# return entire environment as list

@@ -32,30 +32,6 @@ select_action_on_policy_greedy <- function(state_set, w, epsilon, m, available_p
 		greedy = greedy))
 }
 
-# 
-# select_action_on_policy_boltzmann <- function(state_set, w, epsilon, m, available_prices, feature_specs) {
-# 	estimated_values <- map_dbl(.x = available_prices,
-# 										 .f = estimate_state_action_value,
-# 										 state_set = state_set,
-# 										 feature_specs = feature_specs,
-# 										 w = w)
-# 	
-# 	if(epsilon == 0) {
-# 		res <- which.is.max(estimated_values)
-# 	} else {
-# 		enum <- exp(estimated_values/epsilon)
-# 		denom <- sum(enum)
-# 		prob <- enum/denom
-# 		
-# 		res <- sample.int(n = m,
-# 								size = 1,
-# 								prob = prob)
-# 		
-# 	}
-# 	return(res)
-# 	
-# }
-
 
 # TD-Errors
 

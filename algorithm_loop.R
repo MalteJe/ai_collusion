@@ -163,17 +163,17 @@ SARSA <- function(passed_environment) {
 
 # Expected SARSA ----------------------------------------------------------
 
-
+# expected_SARSA simulates two agents continuously interacting with the environment and learning from the observed rewards.
 expected_SARSA <- function(passed_environment) {
 	
+	# unpack the passed environment to make variables accessible
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
-
+	
+	# start while loop until convergence OR maximum number of periods is achieved
 	while (convergence$converged == FALSE && t <= TT) {
 		
-		
- 		# if (t %% 5000 == 0) { print(t)}
-		# compute action
+		# compute both players actions and wrangle into preferred format
 		selected_actions <- map(.x = w,
 										.f = select_action,
 										state_set = s_t,
@@ -181,11 +181,8 @@ expected_SARSA <- function(passed_environment) {
 										m = m,
 										feature_specs = feature_specs,
 										available_prices = available_prices) %>%
-			purrr::transpose() %>% map(unlist, recursive = FALSE)
-		
-		# selected_actions$id[2] <- m-1
-		# selected_actions$value[2] <- available_prices[m-1]
-		
+			purrr::transpose() %>%
+			map(unlist, recursive = FALSE)
 		
 		# retrieve profits from list
 		r <- R[[selected_actions$id[1] + (selected_actions$id[2] - 1) * m]]
@@ -193,24 +190,20 @@ expected_SARSA <- function(passed_environment) {
 		# record prices and profits
 		outcomes[t,] <- c(selected_actions$value, r)
 		
-		# adjust profit
+		# adjust profit to reward
 		r <- r - r_adjust
 		
-		# past actions become today's status
+		# today's actions become tomorrow's state
 		s_t2 <- selected_actions$value
 		
+		# update weights and average reward for both players
 		
-		# if(t %% 200 == 0) {browser()}
-		
-		# update weights and average reward
 		for (a in seq_along(w)) {
-			
 			
 			# calculate TD-error 
 			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
 									w = w[[a]], epsilon = epsilon[t], m = m, available_prices = available_prices,
 									feature_specs = feature_specs, TD = TDs[[a]])
-			
 			
 			# update eligbility trace
 			if (Algorithm == "expected") {
@@ -219,20 +212,12 @@ expected_SARSA <- function(passed_environment) {
 				z[[a]] <- Delta * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
 			}
 			
-			
-			
 			# update w
 			w[[a]] <- w[[a]] + Alpha * TDs[[a]]$Error * z[[a]]
 			
 		}
 		
-		
-		# update state set
-		s_t <- s_t2
-		
-		
-		# check for convergence
-		
+		# check for convergence every other episode
 		if (t %% convergence_check_frequency == 0 && t >= convergence_chunk_length) {
 			convergence <- detect_pattern(outcomes = outcomes,
 													current_t = t,
@@ -240,36 +225,30 @@ expected_SARSA <- function(passed_environment) {
 													cycle_length = convergence_cycle_length)
 		}
 		
-		# # move to next time stage
+		# move to next time stage
+		s_t <- s_t2
 		t <- t + 1
 	}
 	
-	
-	
-	
-	
+	# return entire environment as list
 	return(mget(ls()))
 	
 }
 
 
 
-
-
-
-
 # Intervention ------------------------------------------------------------
 
+# intervention has one agent deviating from the learned strategy to play the best response to the opponent once.
+# Then, both agents revert to the learned strategies for a couple of periods
 intervention <- function(passed_environment) {
 
+	# unpack the passed environment to make variables accessible
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
 	
 	# second agent adheres to learned value approximation (strategy now: full exploitation)
 	selected_actions$id[2] <- select_action(state_set = s_t, w = w[[2]], epsilon = 0, m = m, feature_specs = feature_specs, available_prices = available_prices)$id
-	
-	# selected_actions$id[2] <- m-1
-	# selected_actions$value[2] <- available_prices[m-1]
 	
 	# first agent examines direct rewards and chooses maximum
 	R_available <- (selected_actions$id[2]-1) * m + 1:m
@@ -285,16 +264,14 @@ intervention <- function(passed_environment) {
 	# record prices and profits of deviation episode
 	outcomes[t,] <- c(selected_actions$value, r)
 	
-	# update timer
+	# move to next time stage
 	t <- t + 1
-	
-	# observe next stage status (i.e. collect price choice id's)
 	s_t <- selected_actions$value
 	
-	### after manual intervention
+	# start loop for a couple of iterations to examine behavior AFTER deviation
 	while(t <= convergence$convergence_t + TT_intervention) {
 		
-		# both players fully exploit learned strategy
+		# compute both players actions with disabled exploration and wrangle into preferred format
 		selected_actions <- map(.x = w,
 										.f = select_action,
 										state_set = s_t,
@@ -311,11 +288,9 @@ intervention <- function(passed_environment) {
 		# record prices and profits
 		outcomes[t,] <- c(selected_actions$value, r)
 		
-		# observe next stage status (i.e. collect price choice id's)
-		s_t <- selected_actions$value
-		
-		# update timer
+		# # move to next time stage
 		t <- t + 1
+		s_t <- selected_actions$value
 		
 	}
 	

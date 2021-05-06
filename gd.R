@@ -159,7 +159,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							 dimnames = list(NULL, map(c("price", "profit"), ~str_c(., 1:2, sep = "_")) %>% unlist()))
 	convergence <- list(converged = FALSE)
 	
-	browser()
 
 # Sample Initial State ----------------------------------------------------
 

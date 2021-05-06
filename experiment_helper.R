@@ -78,23 +78,25 @@ vary_alpha <- function(feature_by, variable_specs, static_specs, runs, no_of_cor
 
 
 
-vary_parameter <-  function(feature_by, alpha, variable_specs, no_vary = NULL, static_specs, runs, no_of_cores = 1) {
+vary_parameter <-  function(feature_by, alpha, variable_specs, static_specs, runs, no_of_cores = 1) {
 	
-	browser()
-	
+	# remove alpha specification if exists
 	cleaned_variable_specs <- discard(variable_specs, names(variable_specs) == "Alpha")
 	
+	# concatenate full specifications with optimized alpha
 	experiment_sequence <- c(features_by = feature_by, Alpha = alpha, cleaned_variable_specs)
 	
-	
+	# determine number of experiments (i.e. various alphas)
 	l <- map_int(experiment_sequence,
 					 .f = length) %>%
 		prod()
 	
+	# wrangle specifications in usable format (one element per experiment)
 	experiment_sequence_specs <- map(experiment_sequence,
 												.f = rep,
 												length.out = l) %>% purrr::transpose()
 	
+	# map every requested experiment to single_experiment where all experiment's runs are executed. Return results (if any)
 	map(.x = experiment_sequence_specs,
 		 .f = single_experiment,
 		 static_specs = static_specs,

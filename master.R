@@ -1,14 +1,23 @@
-print("first line, loading libraries")
+print("first line, specifying no_of_cores and total runs per experiment")
+
+# High Level simulation specifications ------------------------------------
+
+runs_per_experiment <- 48 # repetitions per experiment (same set of specifications)
+no_of_cores <- 16
+
+
+print("loading libraries")
 
 library(rlist)
 library(tidyverse)
 library(parallel)
 library(future.apply)
-library(nnet)
 library(memoise)
+library(nnet)
+
 
 print(str_c("Number of detected phsyical cores: ", detectCores(all.tests = TRUE, logical = FALSE)))
-
+print(str_c("running simulation on ", no_of_cores, " core(s)"))
 print(str_c("loading other scripts from ", getwd()))
 
 getwd() %>%
@@ -26,12 +35,11 @@ getwd() %>%
 print("defining specs")
 
 # methods
-features_extraction_methods <- c("poly_tiling", "poly_separated")
+features_extraction_methods <- c("tabular", "tiling", "poly_separated", "poly_tiling")
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(
 	Algorithm = "expected",
-	n = 2,
 	rounding_precision = 8,
 	TT_intervention = 10,
 	Epsilon_constant = NA,
@@ -47,8 +55,6 @@ static_specs <- list(
 		n_tilings = 5,
 		n_tiles = 8
 	),
-	dutch_traces = TRUE,
-	policy = "greedy",
 	convergence_chunk_length = 10000,
 	convergence_cycle_length = 10,
 	convergence_check_frequency = 2000,
@@ -73,8 +79,7 @@ baseline <- list(
 )
 
 
-# repetitions per experiment (same set of specifications)
-runs_per_experiment <- 48
+
 
 
 
@@ -82,49 +87,45 @@ runs_per_experiment <- 48
 # Alpha -------------------------------------------------------------------
 
 
-alphas <- 1 * 10^-c(5, 7)
-alpha_input <- list_modify(baseline, Alpha = alphas)
-
-print("defined specs, starting simulations")
-
-walk(.x = features_extraction_methods,
-	  .f = vary_alpha,
-	  variable_specs = alpha_input,
-	  static_specs = static_specs,
-	  runs = runs_per_experiment,
-	  no_of_cores = 4)
-
-# names(meta_res_alpha) <- features_extraction_methods
-# 	
-# save(meta_res_alpha, file = "simulation_results/res_varied_alpha.RData")
+# alphas <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
+# alpha_input <- list_modify(baseline, Alpha = alphas)
+# 
+# print("defined specs, starting simulations")
+# 
+# walk(.x = features_extraction_methods,
+# 	  .f = vary_alpha,
+# 	  variable_specs = alpha_input,
+# 	  static_specs = static_specs,
+# 	  runs = runs_per_experiment,
+# 	  no_of_cores = no_of_cores)
 
 
 
+# Lambda ------------------------------------------------------------------
 
-# 
-# # Lambda ------------------------------------------------------------------
-# 
-# lambdas <- seq(from = 0, to = 0.8, by = 0.2)
-# lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
-# alphas_manually_optimized <- c(0.25, 1 * 10^-4, 1 * 10^-6, 1 * 10^-6)
-# 
-# 
-# meta_res_lambda <- map2(.x = features_extraction_methods,
-# 								.y = alphas_manually_optimized,
-# 								.f = vary_parameter,
-# 								variable_specs = lambda_input,
-# 								static_specs = static_specs,
-# 								runs = runs_per_experiment,
-# 								sequential_execution = TRUE)
-# 
-# 
-# 
+lambdas <- c(seq(from = 0, to = 0.8, by = 0.2), 0.9)
+lambdas <- c(0, 0.2, 0.4)
+lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
+alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = lambda_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
+
+
+
+
+
 # names(meta_res_lambda) <- features_extraction_methods
 # 
-# 
 # save(meta_res_lambda, file = "simulation_results/res_varied_lambda.RData")
-# 
-# 
+
+
+
 # 
 # # Delta -------------------------------------------------------------------
 # 

@@ -142,12 +142,12 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	if(is.na(Epsilon_constant)) {
 		
 		# time declining exploration rate controled by psi and beta
-		epsilon <- Psi * exp(-Beta * 1:TT)
+		epsilon <- Psi * exp(-Beta * 1:(TT+1))
 		
 	} else {
 		
 		# constant exploration rate
-		epsilon <- rep(Epsilon_constant, TT)
+		epsilon <- rep(Epsilon_constant, TT + 1)
 	}
 	
 	
@@ -179,10 +179,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	} else if (Algorithm %in% c("expected", "tree_backup")) {
 		environment_convergence <- expected_SARSA(passed_environment = environment_initialization)
 	}
-	
-	# list2env(x = environment_convergence, envir = environment())
-	
-	# print("intervention")
 
 # Manual Intervention ------------------------------------------------------
 
@@ -212,7 +208,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	
 	# if save is requested...
 	if (save_single_runs) {
-		
 		folder <- str_c("simulation_results/", varied_parameter, "/")
 		
 		# ... create directory, if non-existent, ...

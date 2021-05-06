@@ -223,6 +223,7 @@ expected_SARSA <- function(passed_environment) {
 													current_t = t,
 													chunk_size = convergence_chunk_length,
 													cycle_length = convergence_cycle_length)
+			
 		}
 		
 		# move to next time stage

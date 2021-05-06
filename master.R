@@ -104,7 +104,7 @@ baseline <- list(
 # Lambda ------------------------------------------------------------------
 
 lambdas <- c(seq(from = 0, to = 0.8, by = 0.2), 0.9)
-lambdas <- c(0, 0.2, 0.4)
+lambdas <- c(0.6, 0.8, 0.9)
 lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 

@@ -1,21 +1,100 @@
-load("simulation_results/Alpha_final/aggregated.RData")
+library(tidyverse)
+library(tidyquant)
+
+# function to obtain profits relative to monopoly and Nash benchmarks
+get_delta <- function(profit) {
+	(profit - 0.2229272) / (0.3374905 - 0.2229272)
+}
+
+
+# Theme ------------------------------------------------------------------
+# visual specifications
+theme_tq
+
+ai_theme <- theme(
+	axis.title = element_text(size = 14, margin = margin(0.3, 0.3, -1, 0, unit = "mm")),
+	axis.text = element_text(size = 11),
+	legend.title = element_blank(),
+	legend.key = element_rect(fill = "white", color = NA),
+	legend.position = "bottom",
+	panel.background = element_rect(fill = "white", color = NA),
+	panel.border = element_rect(fill = NA, size = 0.2),
+	# panel.spacing = unit(4.75, "cm"),
+	# panel.border = element_blank(),
+	panel.grid.major.x = element_line(color = "grey85", size = 0.2),
+	panel.grid.major.y = element_line(color = NA),
+	panel.grid.minor.x = element_line(color = NA),
+	panel.grid.minor.y = element_line(color = NA),
+	plot.margin = margin(1, 0.5,0.5,0.5, "cm"),
+	legend.margin = margin(0, 0,0,0, "mm"),
+	legend.box.margin = unit(rep(0, 4), "mm")
+)
+
+# consistently map factors to colors and apply to fill and color scales
+color_dictionary <- c(
+	"converged" = "palegreen",
+	"not_converged" = "gray",
+	"failed" = "tomato4",
+	"tabular" = "black",
+	"tiling" = "#4DBBD5",
+	"poly-tiling" = "#E64B35",
+	"poly-separated" = "#F39B7FFF"
+)
+
+fill_dictionary <- scale_fill_manual(values = color_dictionary)
+color_dictionary <- scale_color_manual(values = color_dictionary)
 
 
 # Vary Alpha --------------------------------------------------------------
+load("simulation_results/Alpha_final/aggregated.RData")
+
+
+convergence_info <- data %>%
+	mutate(converged = (convergence < 500000)) %>%
+	complete(feature_method, varied_parameter) %>%
+	filter(!(feature_method == "tabular" & varied_parameter %in% c("1e-06", "1e-07", "1e-08", "1e-10", "1e-12"))) %>%
+	filter(!(feature_method == "tiling" & varied_parameter == "1e-12")) %>%
+	group_by(feature_method, varied_parameter) %>%
+	summarize(failed = 48 - n(),
+				 converged = sum(converged)) %>%
+	ungroup() %>%
+	mutate(not_converged = 48 - failed - converged) %>%
+	pivot_longer(cols = c("converged", "not_converged" ,"failed"), names_to = "status") %>%
+	mutate(status = forcats::fct_rev(status))
+
+
+convergence_info %>%
+	ggplot(aes(x = as_factor(as.numeric(varied_parameter)), y = value, fill = status)) +
+	geom_col(position = "stack") +
+	facet_wrap(~feature_method) +
+	theme_tq() +
+	fill_dictionary +
+	coord_flip() +
+	labs(y = "runs", x = expression(alpha)) +
+	ai_theme +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+ggsave("report/plots/converged.png", width = 25, height = 15, units = "cm")
 
 
 data %>%
-	group_by(feature_method, varied_parameter) %>%
-	summarize(avg_profits = mean(avg_profits, na.rm = TRUE)) %>%
-	mutate(Delta = get_delta(avg_profits)) %>%
-	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
-	geom_line(size = 1) +
-	geom_point( size = 3) +
-	geom_hline(yintercept = c(0, 1)) +
+	filter(convergence < 500000) %>%
+	ggplot(aes(x = convergence, y = stat(density), col = feature_method)) +
+	geom_freqpoly(size = 1, binwidth = 10000) +
+	scale_x_continuous(limits = c(0, 500000), labels = scales::comma) +
 	theme_tq() +
-	scale_x_log10() +
-	labs(x = expression(alpha), y = expression(Delta)) +
-	color_dictionary
+	color_dictionary +
+	labs(x = "t") +
+	ai_theme
+ggsave("report/plots/convergence_at.png", width = 25, height = 15, units = "cm")	
+
+
+
+
+
+
+
+
+variations <- sort(unique(data$varied_parameter %>% as.numeric()))
 
 filter(data, !is.na(avg_profits)) %>%
 	group_by(feature_method, varied_parameter) %>%
@@ -27,7 +106,7 @@ filter(data, !is.na(avg_profits)) %>%
 	geom_line(size = 1) +
 	geom_point( size = 3) +
 	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
-	# theme_tq() +
+	# scale_x_log10() +
 	scale_x_log10(minor_breaks = variations, breaks = variations) +
 	labs(x = expression(alpha), y = expression(Delta)) +
 	ai_theme +
@@ -39,13 +118,12 @@ ggsave("report/plots/alpha.png", width = 25, height = 15, units = "cm")
 filter(data, !is.na(avg_profits)) %>%
 	mutate(Delta = get_delta(avg_profits)) %>%
 	filter(Delta > 0) %>%
-	ggplot(aes(x = as.factor(varied_parameter), y = Delta, fill = feature_method)) +
+	ggplot(aes(x = fct_rev(varied_parameter_fct), y = Delta, fill = feature_method)) +
 	geom_boxplot(position = "dodge") +
 	geom_hline(yintercept = c(0, 1)) +
 	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
 	# theme_tq() +
 	# scale_x_continuous(minor_breaks = variations, breaks = variations) +
-	xlab(experiment_job) +
 	labs(x = expression(alpha), y = expression(Delta)) +
 	ai_theme
 
@@ -61,13 +139,16 @@ filter(data, !is.na(avg_profits)) %>%
 # 	unnest(outcomes) %>%
 # 	filter(!is.na(t_group))
 
+t_grouping <- 50000
+
 manually_optimized_alpha <- data %>%
 	filter(
 		(feature_method == "poly-separated" & varied_parameter == "1e-06") |
-			(feature_method == "poly-tiling" & varied_parameter == "1e-12") |
+			(feature_method == "poly-tiling" & varied_parameter == "1e-08") |
 			(feature_method == "tiling" & varied_parameter == "0.001")  |
 			(feature_method == "tabular" & varied_parameter == "0.1")
-	) 
+	)
+
 
 outcomes <- manually_optimized_alpha %>%
 	select(-intervention, -avg_profits) %>%
@@ -109,7 +190,8 @@ learning_phase %>%
 	geom_hline(aes(yintercept = p_m)) +	
 	geom_line(size = 1) +
 	facet_wrap(~ metric, ncol = 1, scales = "free_y") +
-	theme_tq()
+	theme_tq() +
+	color_dictionary
 
 
 learning_phase %>%
@@ -162,6 +244,3 @@ intervention %>%
 	ai_theme +
 	labs(x = expression(tau))
 ggsave("report/plots/intervention_violin.png", width = 25, height = 25, units = "cm")
-
-
-

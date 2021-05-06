@@ -1,6 +1,7 @@
 library(tidyverse)
 library(janitor)
 library(tidyquant)
+library(future.apply)
 
 get_convergence_t <- function(run) {
 	if (run$convergence$converged) {
@@ -27,8 +28,6 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 			convergence = NA
 		))
 	} else {
-		print(path)
-		
 		load(path)
 		
 		conv_t <- get_convergence_t(res)
@@ -104,113 +103,18 @@ meta_overview %>%
 
 (variations <- sort(unique(as.numeric(meta_overview$varied_parameter)), decreasing = TRUE))
 
+# data_nested <- meta_overview %>%
+# 	mutate(sim = map(path, load_return, t_grouping = t_grouping)) %>%
+# 	select(-path)
+
+plan(strategy = cluster, workers = 4)
 data_nested <- meta_overview %>%
-	mutate(sim = map(path, load_return, t_grouping = t_grouping)) %>%
+	mutate(sim = future_lapply(X = path, FUN = load_return, t_grouping = t_grouping)) %>%
 	select(-path)
-
-
-save(data_nested, file = str_c(path, "aggregated.RData"))
-
-
-
-# Graphs ------------------------------------------------------------------
 
 data <- data_nested %>%
 	unnest_wider(sim) %>%
-	mutate(feature_method = fct_relevel(feature_method, "tabular", "tiling", "poly-separated", "poly-tiling"))
+	mutate(feature_method = fct_relevel(feature_method, "tabular", "tiling", "poly-separated", "poly-tiling"),
+			 varied_parameter_fct = fct_relevel(as_factor(varied_parameter), as.character(variations)))
 
-theme_tq
-
-ai_theme <- theme(
-	axis.title = element_text(size = 14, margin = margin(0.3, 0.3, -1, 0, unit = "mm")),
-	axis.text = element_text(size = 11),
-	legend.title = element_blank(),
-	legend.key = element_rect(fill = "white", color = NA),
-	legend.position = "bottom",
-	panel.background = element_rect(fill = "white", color = NA),
-	panel.border = element_rect(fill = NA, size = 0.2),
-	# panel.spacing = unit(4.75, "cm"),
-	# panel.border = element_blank(),
-	panel.grid.major.x = element_line(color = "grey85", size = 0.2),
-	panel.grid.major.y = element_line(color = NA),
-	panel.grid.minor.x = element_line(color = NA),
-	panel.grid.minor.y = element_line(color = NA),
-	plot.margin = margin(1, 0.5,0.5,0.5, "cm"),
-	legend.margin = margin(0, 0,0,0, "mm"),
-	legend.box.margin = unit(rep(0, 4), "mm")
-)
-
-
-color_dictionary <- c(
-	"converged" = "palegreen",
-	"not_converged" = "gray",
-	"failed" = "tomato4",
-	"tabular" = "black",
-	"tiling" = "#4DBBD5",
-	"poly-tiling" = "#E64B35",
-	"poly-separated" = "#F39B7FFF"
-)
-
-fill_dictionary <- scale_fill_manual(values = color_dictionary)
-color_dictionary <- scale_color_manual(values = color_dictionary)
-
-
-# data %>%
-# 	mutate(converged = (convergence < 500000)) %>%
-# 	group_by(feature_method, varied_parameter) %>%
-# 	summarize(converged_fraction = mean(converged)) %>%
-# 	ggplot(aes(x = varied_parameter, y = converged_fraction, fill = feature_method)) +
-# 	geom_col(position = "dodge") +
-# 	# facet_wrap(~feature_method) +
-# 	# coord_flip() +
-# 	theme_tq()
-	
-	
-convergence_info <- data %>%
-	mutate(converged = (convergence < 500000)) %>%
-	complete(feature_method, varied_parameter) %>%
-	filter(!(feature_method == "tabular" & varied_parameter %in% c("1e-06", "1e-08", "1e-10", "1e-12"))) %>%
-	group_by(feature_method, varied_parameter) %>%
-	summarize(failed = 48 - n(),
-				 converged = sum(converged)) %>%
-	ungroup() %>%
-	mutate(not_converged = 48 - failed - converged) %>%
-	pivot_longer(cols = c("converged", "not_converged" ,"failed"), names_to = "status") %>%
-	mutate(status = forcats::fct_rev(status))
-
-
-convergence_info %>%
-	ggplot(aes(x = as_factor(as.numeric(varied_parameter)), y = value, fill = status)) +
-	geom_col(position = "stack") +
-	facet_wrap(~feature_method) +
-	theme_tq() +
-	fill_dictionary +
-	coord_flip() +
-	labs(y = "runs", x = expression(alpha)) +
-	ai_theme +
-	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
-ggsave("report/plots/converged.png", width = 25, height = 15, units = "cm")
-
-
-data %>%
-	filter(convergence < 500000) %>%
-	#group_by(feature_method) %>%
-	ggplot(aes(x = convergence, y = stat(density), col = feature_method)) +
-	# geom_freqpoly() +
-	geom_freqpoly(size = 1, binwidth = 10000) +
-	scale_x_continuous(limits = c(0, 500000), labels = scales::comma) +
-	theme_tq() +
-	color_dictionary +
-	labs(x = "t") +
-	ai_theme
-ggsave("report/plots/convergence_at.png", width = 25, height = 15, units = "cm")	
-	
-	
-
-
-
-
-
-
-
-
+save(data, file = str_c(path, "aggregated.RData"))

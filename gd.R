@@ -27,6 +27,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  convergence_chunk_length = 10000, # length of block that is checked against convergence
 							  convergence_cycle_length = 10, # what is the maximum cycle length considered
 							  convergence_check_frequency = 2000, # how often should convergence be checked
+							  length_prolonged_intervention = FALSE, # length of deviation, if FALSE, prolonged deviation is not executed
 							  save_single_runs = FALSE,            # logical, TRUE: save simulation results to disk, FALSE: return as list
 							  varied_parameter = character(0),     # helper for file management
 							  ... # further arguments passed to economic environment
@@ -155,7 +156,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 # Set up trackers ---------------------------------------------------------
 
 	t <- 1  # tracks time
-	outcomes <- matrix(NA, nrow = TT + TT_intervention + 1, ncol = 4,
+	outcomes <- matrix(NA, nrow = TT + max(length_prolonged_intervention) + TT_intervention + 1, ncol = 4,
 							 dimnames = list(NULL, map(c("price", "profit"), ~str_c(., 1:2, sep = "_")) %>% unlist()))
 	convergence <- list(converged = FALSE)
 	
@@ -181,9 +182,23 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	}
 
 # Manual Intervention ------------------------------------------------------
-
+	
 	# pass convergence environment (list) to intervention loop where one agent deviates
 	environment_intervention <- intervention(passed_environment = environment_convergence)
+	
+	# if requested, pass convergence environment (list) to alternative intervention loop with prolonged learning and prolonged deviations
+	if (!isFALSE(length_prolonged_intervention)) {
+		
+		names(length_prolonged_intervention) <- as.character(length_prolonged_intervention)
+		
+		intervention_prolonged <- map_dfr(.x = length_prolonged_intervention,
+													 .f = intervention_prolonged,
+													 passed_environment = environment_convergence,
+													 .id = "intervention_length")
+	} else {
+		intervention_prolonged <- NULL
+	}
+	
 	
 	# unpack list to environment
 	list2env(x = environment_intervention, envir = environment())
@@ -203,6 +218,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 					available_prices = available_prices, run_id = run_id,
 					specs = as.list(match.call()),
 					feature_specs = feature_specs,
+					intervention_prolonged = intervention_prolonged,
 					convergence = convergence,
 					get_x = get_x)
 	
@@ -220,7 +236,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		# ...save compressed file in directory
 		save(res, file = str_c(folder,
 									  features_by, "_",
-									  get(varied_parameter), "_",
+									  dynGet(varied_parameter, ifnotfound = "optimized"), "_",
 									  run_id,
 									  ".RData"),
 			  compress = TRUE)

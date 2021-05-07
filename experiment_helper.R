@@ -32,7 +32,7 @@ single_experiment <- function(experiment, static_specs, runs, no_of_cores, varie
 	print(str_c(Sys.time(),
 					" - Starting Experiment. Features_by = ", experiment$features_by,
 					"  | Varied Parameter: ", varied_parameter, 
-					"  | Value: ", experiment[varied_parameter],
+					"  | Value: ", experiment$varied_parameter,
 					"   | Runs: ", runs))
 	
 	# map every runs specification to single_run_with recovery.
@@ -103,4 +103,19 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, static_specs, run
 		 runs = runs,
 		 no_of_cores = no_of_cores,
 		 varied_parameter = names(keep(variable_specs, .p = ~length(.) > 1)))
+}
+
+prolonged_intervention <- function(feature_by, alpha, variable_specs, static_specs, runs, no_of_cores =1) {
+	
+	# remove other alpha specification if exists
+	cleaned_variable_specs <- discard(variable_specs, names(variable_specs) == "Alpha")
+	
+	# concatenate full specifications with optimized alpha
+	experiment_sequence <- c(features_by = feature_by, Alpha = alpha, cleaned_variable_specs)
+	
+	single_experiment(experiment_sequence,
+							static_specs,
+							runs = runs,
+							no_of_cores = no_of_cores,
+							varied_parameter = "Alpha_optimized")
 }

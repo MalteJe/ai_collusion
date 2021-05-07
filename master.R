@@ -3,7 +3,7 @@ print("first line, specifying no_of_cores and total runs per experiment")
 # High Level simulation specifications ------------------------------------
 
 runs_per_experiment <- 48 # repetitions per experiment (same set of specifications)
-no_of_cores <- 16
+no_of_cores <- 8
 
 
 print("loading libraries")
@@ -75,7 +75,8 @@ baseline <- list(
 	Psi = 1,
 	zeta = 1,
 	m = 19,
-	TT = 500000
+	TT = 500000,
+	length_prolonged_intervention = FALSE
 )
 
 
@@ -90,8 +91,6 @@ baseline <- list(
 # alphas <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
 # alpha_input <- list_modify(baseline, Alpha = alphas)
 # 
-# print("defined specs, starting simulations")
-# 
 # walk(.x = features_extraction_methods,
 # 	  .f = vary_alpha,
 # 	  variable_specs = alpha_input,
@@ -100,21 +99,38 @@ baseline <- list(
 # 	  no_of_cores = no_of_cores)
 
 
-
-# Lambda ------------------------------------------------------------------
-
-lambdas <- c(seq(from = 0, to = 0.8, by = 0.2), 0.9)
-lambdas <- c(0.6, 0.8, 0.9)
-lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
+
+
+
+# prolonged deviation with optimized Alphas ----------------------------
+
+prolonged_intervention_input <- list_modify(baseline, Alpha = NULL, length_prolonged_intervention = list(1:10))
+
 
 walk2(.x = features_extraction_methods,
 		.y = alphas_manually_optimized,
-		.f = vary_parameter,
-		variable_specs = lambda_input,
+		.f = prolonged_intervention,
+		variable_specs = prolonged_intervention_input,
 		static_specs = static_specs,
 		runs = runs_per_experiment,
 		no_of_cores = no_of_cores)
+
+
+
+# Lambda ------------------------------------------------------------------
+
+# lambdas <- c(seq(from = 0, to = 0.8, by = 0.2), 0.9)
+# lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
+# 
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_parameter,
+# 		variable_specs = lambda_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
 
 

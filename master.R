@@ -3,7 +3,7 @@ print("first line, specifying no_of_cores and total runs per experiment")
 # High Level simulation specifications ------------------------------------
 
 runs_per_experiment <- 48 # repetitions per experiment (same set of specifications)
-no_of_cores <- 8
+no_of_cores <- 16
 
 
 print("loading libraries")

@@ -63,7 +63,7 @@ static_specs <- list(
 )
 
 
-# variable_specs (some sort of variation throughout study, the baseline will be adjusted throughout simulations)
+# variable parameters (some sort of variation throughout study, the baseline will be adjusted throughout simulations)
 
 baseline <- list(
 	Alpha = NA,
@@ -105,16 +105,16 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 
 # prolonged deviation with optimized Alphas ----------------------------
 
-prolonged_intervention_input <- list_modify(baseline, Alpha = NULL, length_prolonged_intervention = list(1:10))
-
-
-walk2(.x = features_extraction_methods,
-		.y = alphas_manually_optimized,
-		.f = prolonged_intervention,
-		variable_specs = prolonged_intervention_input,
-		static_specs = static_specs,
-		runs = runs_per_experiment,
-		no_of_cores = no_of_cores)
+# prolonged_intervention_input <- list_modify(baseline, Alpha = NULL, length_prolonged_intervention = list(1:10))
+# 
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = prolonged_intervention,
+# 		variable_specs = prolonged_intervention_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
 
 
@@ -133,39 +133,23 @@ walk2(.x = features_extraction_methods,
 # 		no_of_cores = no_of_cores)
 
 
-
-
-
-# names(meta_res_lambda) <- features_extraction_methods
-# 
-# save(meta_res_lambda, file = "simulation_results/res_varied_lambda.RData")
-
-
-
-# 
 # # Delta -------------------------------------------------------------------
-# 
-# deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 0.95, 1)
-# delta_input <- list_modify(baseline, Alpha = NULL,
-# 									Delta = deltas)
-# 
-# 
-# meta_res_delta <- map2(.x = features_extraction_methods,
-# 								.y = alphas_manually_optimized,
-# 								.f = vary_parameter,
-# 								variable_specs = delta_input,
-# 								static_specs = static_specs,
-# 								runs = runs_per_experiment,
-# 								sequential_execution = TRUE)
-# 
-# 
-# 
-# names(meta_res_delta) <- features_extraction_methods
-# 
-# 
-# save(meta_res_delta, file = "simulation_results/res_varied_delta.RData")
-# 
-# 
+
+deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
+deltas <- c(0L, 0.25, 0.5)
+delta_input <- list_modify(baseline, Alpha = NULL, Delta = deltas)
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = delta_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
+
+
+
+ 
 # # Psi -------------------------------------------------------------------
 # 
 # psis <- c(1, 0.8, 0.6, 0.4, 0.2)

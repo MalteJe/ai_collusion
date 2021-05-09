@@ -136,7 +136,7 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # # Delta -------------------------------------------------------------------
 
 deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
-deltas <- c(0L, 0.25, 0.5)
+deltas <- c(0.75, 0.9, 1L)
 delta_input <- list_modify(baseline, Alpha = NULL, Delta = deltas)
 
 walk2(.x = features_extraction_methods,

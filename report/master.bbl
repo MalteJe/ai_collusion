@@ -530,6 +530,63 @@
       \endverb
       \keyw{Algorithmic Tacit Collusion,Algorithms,Antitrust,Collusion,Competition Law,Hub and Spoke,Tacit Collusion}
     \endentry
+    \entry{fischer_collusion_2019}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2ae8b825424bb4146ee68e7247449025}{%
+           family={Fischer},
+           familyi={F\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=81105a69865da8e5c1a37998c2df35ee}{%
+           family={Normann},
+           familyi={N\bibinitperiod},
+           given={Hans-Theo},
+           giveni={H\bibinithyphendelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{712dd6d74dc99fc9c2ef8e12bad89637}
+      \strng{fullhash}{712dd6d74dc99fc9c2ef8e12bad89637}
+      \strng{bibnamehash}{712dd6d74dc99fc9c2ef8e12bad89637}
+      \strng{authorbibnamehash}{712dd6d74dc99fc9c2ef8e12bad89637}
+      \strng{authornamehash}{712dd6d74dc99fc9c2ef8e12bad89637}
+      \strng{authorfullhash}{712dd6d74dc99fc9c2ef8e12bad89637}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In asymmetric dilemma games without side payments, players face involved cooperation and bargaining problems. The maximization of joint profits is implausible, players disagree on the collusive action, and the outcome is often inefficient. For the example of a Cournot duopoly with asymmetric cost, we investigate experimentally how players cooperate (collude implicitly and explicitly), if at all, in such games. In our treatments without communication, players fail to cooperate and essentially play the static Nash equilibrium (consistent with previous results). With communication, inefficient firms gain at the expense of efficient ones. When the role of the efficient firm is earned in a contest, the efficient firm earns higher profits than when this role is randomly allocated. Bargaining solutions do not satisfactorily predict outcomes.}
+      \field{issn}{0014-2921}
+      \field{journaltitle}{European Economic Review}
+      \field{month}{1}
+      \field{title}{Collusion and bargaining in asymmetric {Cournot} duopoly—{An} experiment}
+      \field{urlday}{25}
+      \field{urlmonth}{1}
+      \field{urlyear}{2021}
+      \field{volume}{111}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \field{pages}{360\bibrangedash 379}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1016/j.euroecorev.2018.10.005
+      \endverb
+      \verb{file}
+      \verb Full Text:C\:\\Users\\psymo\\Zotero\\storage\\LLKTF74A\\Fischer and Normann - 2019 - Collusion and bargaining in asymmetric Cournot duo.pdf:application/pdf;ScienceDirect Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\PMIJSAVN\\S0014292118301806.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S0014292118301806
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0014292118301806
+      \endverb
+      \keyw{Cartels,Asymmetries,Bargaining,Communication,Cournot,Earned role,Experiments}
+    \endentry
     \entry{ittoo_algorithmic_2017}{report}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=022281daa38a949268ce8cd19108b04f}{%
@@ -998,6 +1055,7 @@
   \missing{demo_book}
   \missing{demo_source}
   \missing{grapov2018rise}
+  \missing{maskine-tirole}
   \missing{noa}
 \endrefsection
 \endinput

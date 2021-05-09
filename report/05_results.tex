@@ -35,34 +35,39 @@
 
 
 \section{Results}
+Starting, with the baseline specification, this section reports on the simulation results. \textbf{TBD}. To foreshadow the results, profits mostly exceed Nash-predictions, but remain below monopoly profits. While agents learn to charge supra-competitive prices, they fail to incorporate \emph{reward-punishment} schemes consistently. Overall, the results crucially hinge on the combination of feature extraction method and selected parameters. Only tabular learning exhibits a clear tendency to punish deviations with lower prices in subsequent periods.
 
-Starting, with the baseline specification, this section reports on the simulation results. \textbf{TBD}. To foreshadow the results, profits exceed Nash-predictions mostly to remain below monopoly profits. While agents learn to charge supra-competitive prices, they fail to incorporate \emph{reward-punishment} schemes consistently.  Overall, the results crucially hinge on the combination of feature extraction method and selected parameters.
+I report results for various specifications and will refer to every unique combination of feature extraction method and parameters as an \emph{experiment}. Every experiment consists of 48 \emph{runs}, i.e. repeated simulations with the exact same set of starting conditions. Lastly, within the scope of a particular \emph{run}, time steps are called \emph{periods}.
 
 \subsection{Convergence}
 
-\textbf{TBD: describe definition of convergence}
+\textbf{TBD: As indicated,} convergence is not guaranteed in a non-stationary environment, much less so with function approximation. Notwithstanding the lack of a theoretical convergence guarantee, prior experiments have shown that simulation runs tend to approach a stable equilibrium in practice (\cite{calvano_artificial_2019} \textbf{and others}). Note that \emph{stability} simply refers to the observation that the same set of prices continuously recur over a longer time interval. The strategies upon convergence need not coincide with economic theory. In fact, at times the observed outcomes contradict predictions from game theory. For instance, despite symmetric profit functions, the converged outcomes may display asymmetric prices. Moreover, price cycles, i.e.\ a recurring sequence of price combinations, occur frequently.\footnote{The model from \autoref{quantity} predicts symmetric outcomes without cycles. This is typical for simultaneous pricing games, but not universal across economic models. For instance, collusive outcomes in quantity competition (i.e.\ Cournot) may exhibit price asymmetries. The relevance of that prediction has been fortified in experimental settings, e.g.\ in \textcite{fischer_collusion_2019}. \textcite{maskine-tirole} pioneer a sequential pricing game that predicts \emph{Edgeworth price cycles} where agents successively undercut each other until one firm prefers to reset the cycle and increases its price. Based on their model, \textcite{klein_autonomous_2019} shows that \emph{Q-Learning} agents are indeed capable of learning those dynamic strategies.}
 
-\autoref{converged} displays the share of runs that, respectively, converged successfully, didn't converge until the simulation's end or \emph{failed to complete}. The last category refers to runs, where the simulation crashed before all episodes were completed. Unsurprisingly, this happens mainly in the polynomial settings in combination with a low $\alpha$. The problem is that, due to large feature values, the algorithm \emph{overshoots} the estimates of $\boldsymbol{\theta}$ early in the simulation and causes the software to crash.
 
-\textbf{TBD: description of differences between extraction methods}
+The following, arbitrary but practical, convergence rule was employed. If a price cycle recurred for the last 10,000 episodes, the algorithm is considered \emph{converged}. For efficiency reasons, a check for convergence is undertaken only every 2,000 episodes. Price cycles up to a length of 10 are considered. If no convergence is achieved until 500,000 episodes, the simulation stops and the run is deemed \emph{not converged}. There are a number of runs that \emph{failed to complete} as a consequence of the program running into an error. Unfortunately, the program code does not allow to examine the exact cause of such occurrences in retrospect. However, by and large, the failed runs occurred with unsuitable specifications (see below for a detailed discussion).
+
+In accordance with the outlined convergence criteria above, \autoref{converged} displays the share of runs that, respectively, converged successfully, did not converge until the end of the simulation or failed to complete. Two main conclusions emerge. First, failed runs are mainly prevalent in specifications with a high value of $\alpha$ in conjunction with a polynomial feature method. Second, the tiling methods are more likely to converge.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/converged.png}
-	\caption{number of runs that achieved convergence per experiment.}
+	\caption{Number of runs that achieved convergence per experiment.}
 	\label{converged}
 \end{figure}
 
-As \autoref{convergence_at} shows, among the runs that achieved convergence, the distribution of when that happened is fairly uniform. This is an artifact of the decay in exploration as dictated by $\beta$. Due to the definition of convergence, agents probabilistically experiment before the focal point of 200,000. Thereafter, it becomes increasingly likely that both agents keep \emph{exploiting} their current knowledge and continuously play the same strategy for a long enough time.
+Regarding the failed runs, \textbf{recall} from \autoref{feature_extraction} that features of polynomial extraction are not binary and warrant cautious adjustments of the coefficient vector. I suspect that with unreasonably large values of $\alpha$, the estimates of $\boldsymbol{\theta}$ overshoot early in the simulation, don't recover and at some point exceed the software's numerical limits.\footnote{Controlled runs where I could carefully monitor the development of the coefficient vector $\boldsymbol{w}$ seem to confirm the hypothesis. However, isolated errors \emph{with} reasonable parameter settings remain unexplained.} While imoportant to acknowledge, the failed runs are largely an artifact of unreasonable specifications and I will \textbf{disregard them for the remainder of this chapter}. For instance, the percentages in the subsequent paragraph don't account for the failed runs.
+
+Focusing on the completed runs, 95.4\% of runs did converge. But there are subtle differences between feature extraction methods. With only one exception, both tiling methods converged consistently for various $\alpha$. With 85.4\% of converged runs, separate polynomials constitute the other extreme. The figure indicates that convergence becomes less likely for low values of $\alpha$. With tabular learning method, 92.9\% of runs converged. No clear patterns for different values of $\alpha$ emerge.
+
+\autoref{convergence_at} displays a frequency polygon of the runs that achieved convergence within 500,000 episodes. Clearly, the distribution is fairly uniform across feature extraction methods. Most runs converged between 200,000 and 300,000 runs. This is an artifact of the decay in exploration as dictated by $\beta$. Before the focal point of 200,000 is reached, agents probabilistically experiment too frequently to observe 10,000 consecutive episodes without any deviation from the learned strategies. Thereafter, it becomes increasingly likely that both agents keep \emph{exploiting} their current knowledge and continuously play the same strategy for a sufficiently long time to trigger the convergence criteria. Note that the low quantity of runs converging between 300,000 and 500,000 suggests that increasing the maximum of allowed episodes would not necessarily entail a significantly higher portion of converged runs.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/convergence_at.png}
-	\caption{timing of convergence, runs that did not converge or failed to complete are excluded.}
+	\caption{timing of convergence, runs that did not converge or failed to complete are excluded. Width of bins: 8,000}
 	\label{convergence_at}
 \end{figure}
 
-\textbf{disrtibution of cycle length}
+\textbf{distribution of cycle length}
 
-\clearpage
 \subsection{Profits}
 
 In order to assess the simulation results in more detail, I normalize profits similar to \textcite{calvano_algorithmic_2018}:

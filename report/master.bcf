@@ -2210,11 +2210,15 @@
     <bcf:citekey order="25">seijen_true_2014</bcf:citekey>
     <bcf:citekey order="26">ittoo_algorithmic_2017</bcf:citekey>
     <bcf:citekey order="27">sutton_reinforcement_2018</bcf:citekey>
-    <bcf:citekey order="28">calvano_algorithmic_2018</bcf:citekey>
-    <bcf:citekey order="29">demo_art</bcf:citekey>
-    <bcf:citekey order="30">demo_book</bcf:citekey>
-    <bcf:citekey order="31">demo_source</bcf:citekey>
-    <bcf:citekey order="32">grapov2018rise</bcf:citekey>
+    <bcf:citekey order="28">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="29">fischer_collusion_2019</bcf:citekey>
+    <bcf:citekey order="30">maskine-tirole</bcf:citekey>
+    <bcf:citekey order="31">klein_autonomous_2019</bcf:citekey>
+    <bcf:citekey order="32">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="33">demo_art</bcf:citekey>
+    <bcf:citekey order="34">demo_book</bcf:citekey>
+    <bcf:citekey order="35">demo_source</bcf:citekey>
+    <bcf:citekey order="36">grapov2018rise</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

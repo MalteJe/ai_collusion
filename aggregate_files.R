@@ -2,6 +2,8 @@ library(tidyverse)
 library(janitor)
 library(tidyquant)
 library(future.apply)
+library(glue)
+library(parallel)
 
 get_convergence_t <- function(run) {
 	if (run$convergence$converged) {
@@ -25,7 +27,8 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 			outcomes = NA,
 			avg_profits = NA,
 			intervention = NA,
-			convergence = NA
+			convergence = NA,
+			cycle_length = NA
 		))
 	} else {
 		load(path)
@@ -40,7 +43,6 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 			mutate(t = row_number(),
 			t_group = (t-1) %/% t_grouping + 1,
 			price = (price_1 + price_2)/2,
-			# Delta = get_delta((profit_1 + profit_2)/2),
 			profit = (profit_1 + profit_2)/2
 			) %>%
 			filter(t <= conv_t) %>%
@@ -49,7 +51,6 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 			mutate(Delta = get_delta(profit)) %>%
 			select(-profit)
 		
-		# browser()
 		avg_profits <- tail(res$outcomes, t_profit + res$specs$TT_intervention)[, c("profit_1", "profit_2")] %>%
 			head(t_profit) %>%
 			mean()
@@ -58,7 +59,8 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 			outcomes = outcomes,
 			avg_profits = avg_profits,
 			intervention = intervention,
-			convergence = conv_t))
+			convergence = conv_t,
+			cycle_length = res$convergence$cycle_length))
 		
 		rm(res)
 		rm(outcomes)
@@ -67,54 +69,66 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 }
 
 
-# load_return("simulation_results/comparison_gpc/tiling_0.1_5.RData", t_grouping = 50000)
+# load_return("simulation_results/Alpha_final/tiling_0.1_5.RData", t_grouping = 50000)
 
 
 # specify path, list single runs in directory and adjust names
 
+# load aggregate_save loads single runs in parallel, aggregates the data as necessary, saves them to the directory and returns a summary
+load_aggregate_save <- function(experiment_job, t_grouping) {
+	
+	# concatenate path
+	path <- str_c("simulation_results/", experiment_job, "/")
+	
+	# extract filenames
+	filenames <- list.files(path) %>%
+		str_subset("RData$") %>%
+		str_subset("aggregated", negate = TRUE)
+	
+	print(glue("detected {length(filenames)} files."))
+	
+	# wrangle filenames into 'nicer' names
+	adjusted_files <- str_replace(filenames, "poly_tiling", "poly-tiling")  %>%
+		str_replace("poly_separate", "poly-separate") %>%
+		str_sub(end = -7L)
+	
+	# extract meta_overview
+	meta_overview <- tibble(filename = adjusted_files) %>%
+		separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
+		mutate(path = str_c(path, filenames), successful = TRUE)
+	
+	# count runs per experiment (this will be returned)
+	out <- meta_overview %>%
+		group_by(feature_method, varied_parameter) %>%
+		count() %>%
+		arrange(n)
+	
+	# extract unique values of varied parameter
+	variations <- sort(unique(as.numeric(meta_overview$varied_parameter)), decreasing = TRUE)
+	print(glue("The following variations have been detected: {str_flatten(variations, collapse = ', ')}"))
+	
+	# load simulations in parallel
+	plan(strategy = cluster, workers = detectCores(all.tests = TRUE, logical = FALSE))
+	print("Loading in parallel. This may take quite a bit of time!")
+	data_nested <- meta_overview %>%
+		mutate(sim = future_lapply(X = path, FUN = load_return, t_grouping = t_grouping)) %>%
+		select(-path)
+	
+	# unnest data
+	print("unnesting data")
+	data <- data_nested %>%
+		unnest_wider(sim) %>%
+		mutate(feature_method = fct_relevel(feature_method, "tabular", "tiling", "poly-separated", "poly-tiling"),
+				 varied_parameter_fct = fct_relevel(as_factor(varied_parameter), as.character(variations)))
+	
+	print("saving data in directory")
+	# save aggregated data in same directory, return summary
+	save(data, file = str_c(path, "aggregated.RData"))
+	
+	return(out)
+}
 
+# load simulation results
+load_aggregate_save("Alpha_final", t_grouping = 50000)
+load_aggregate_save("Lambda", t_grouping = 50000)
 
-t_grouping <- 50000
-
-experiment_job <- "Alpha_final"
-(path <- str_c("simulation_results/", experiment_job, "/"))
-filenames <- list.files(path) %>%
-	str_subset("RData$") %>%
-	str_subset("aggregated", negate = TRUE); print(head(filenames)); print(length(filenames))
-
-adjusted_files <- str_replace(filenames, "poly_tiling", "poly-tiling")  %>%
-	str_replace("poly_separate", "poly-separate") %>%
-	str_sub(end = -7L)
-
-meta_overview <- tibble(filename = adjusted_files) %>%
-	separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
-	mutate(path = str_c(path, filenames), successful = TRUE)
-
-meta_overview %>%
-	group_by(feature_method, varied_parameter) %>%
-	count() %>%
-	arrange(n)
-
-
-# meta_overview <- tibble(filename = adjusted_files) %>%
-# 	separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
-# 	mutate(path = str_c(path, filenames), successful = TRUE) %>%
-# 	complete(feature_method, varied_parameter, run_id, fill = list(successful = FALSE))
-
-(variations <- sort(unique(as.numeric(meta_overview$varied_parameter)), decreasing = TRUE))
-
-# data_nested <- meta_overview %>%
-# 	mutate(sim = map(path, load_return, t_grouping = t_grouping)) %>%
-# 	select(-path)
-
-plan(strategy = cluster, workers = 4)
-data_nested <- meta_overview %>%
-	mutate(sim = future_lapply(X = path, FUN = load_return, t_grouping = t_grouping)) %>%
-	select(-path)
-
-data <- data_nested %>%
-	unnest_wider(sim) %>%
-	mutate(feature_method = fct_relevel(feature_method, "tabular", "tiling", "poly-separated", "poly-tiling"),
-			 varied_parameter_fct = fct_relevel(as_factor(varied_parameter), as.character(variations)))
-
-save(data, file = str_c(path, "aggregated.RData"))

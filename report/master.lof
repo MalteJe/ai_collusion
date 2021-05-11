@@ -5,10 +5,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {2}{\ignorespaces timing of convergence, runs that did not converge or failed to complete are excluded. Width of bins: 8,000}}{24}{figure.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3}{\ignorespaces average $\Delta $ for various combinations of the feature selection method and $\alpha $. Beware the logarithmic x-scale.}}{25}{figure.3}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Number of converged runs with particular cycle length.}}{25}{figure.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4}{\ignorespaces all runs for manually optimized $\alpha $}}{27}{figure.4}%
+\contentsline {figure}{\numberline {4}{\ignorespaces average $\Delta $ for various combinations of the feature selection method and $\alpha $. Beware the logarithmic x-scale.}}{26}{figure.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5}{\ignorespaces average price trajectory around deviation}}{28}{figure.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces all runs for manually optimized $\alpha $}}{28}{figure.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6}{\ignorespaces distribution of prices at and after deviation relative to prior equilibrium. Every violin has the same maximum width, i.e.\ width between violins are not comparable. Tails are trimmed}}{30}{figure.6}%
+\contentsline {figure}{\numberline {6}{\ignorespaces average price trajectory around deviation}}{29}{figure.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7}{\ignorespaces distribution of prices at and after deviation relative to prior equilibrium. Every violin has the same maximum width, i.e.\ width between violins are not comparable. Tails are trimmed}}{31}{figure.7}%

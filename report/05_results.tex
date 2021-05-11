@@ -56,7 +56,7 @@ In accordance with the outlined convergence criteria above, \autoref{converged} 
 
 Regarding the failed runs, \textbf{recall} from \autoref{feature_extraction} that features of polynomial extraction are not binary and warrant cautious adjustments of the coefficient vector. I suspect that with unreasonably large values of $\alpha$, the estimates of $\boldsymbol{\theta}$ overshoot early in the simulation, don't recover and at some point exceed the software's numerical limits.\footnote{Controlled runs where I could carefully monitor the development of the coefficient vector $\boldsymbol{w}$ seem to confirm the hypothesis. However, isolated errors \emph{with} reasonable parameter settings remain unexplained.} While imoportant to acknowledge, the failed runs are largely an artifact of unreasonable specifications and I will \textbf{disregard them for the remainder of this chapter}. For instance, the percentages in the subsequent paragraph don't account for the failed runs.
 
-Focusing on the completed runs, 95.4\% of runs did converge. But there are subtle differences between feature extraction methods. With only one exception, both tiling methods converged consistently for various $\alpha$. With 85.4\% of converged runs, separate polynomials constitute the other extreme. The figure indicates that convergence becomes less likely for low values of $\alpha$. With tabular learning method, 92.9\% of runs converged. No clear patterns for different values of $\alpha$ emerge.
+Focusing on the completed runs, 95.4\% of runs did converge. But there are subtle differences between feature extraction methods. With only one exception, both tiling methods converged consistently for various $\alpha$. With 85.4\% of converged runs, separate polynomials constitute the other extreme. The figure indicates that convergence becomes less likely for low values of $\alpha$. With tabular learning, 92.9\% of runs converged without clear relation to different values of $\alpha$.
 
 \autoref{convergence_at} displays a frequency polygon of the runs that achieved convergence within 500,000 episodes. Clearly, the distribution is fairly uniform across feature extraction methods. Most runs converged between 200,000 and 300,000 runs. This is an artifact of the decay in exploration as dictated by $\beta$. Before the focal point of 200,000 is reached, agents probabilistically experiment too frequently to observe 10,000 consecutive episodes without any deviation from the learned strategies. Thereafter, it becomes increasingly likely that both agents keep \emph{exploiting} their current knowledge and continuously play the same strategy for a sufficiently long time to trigger the convergence criteria. Note that the low quantity of runs converging between 300,000 and 500,000 suggests that increasing the maximum of allowed episodes would not necessarily entail a significantly higher portion of converged runs.
 
@@ -66,7 +66,18 @@ Focusing on the completed runs, 95.4\% of runs did converge. But there are subtl
 	\label{convergence_at}
 \end{figure}
 
-\textbf{distribution of cycle length}
+\autoref{cycle_length} visualizes the distribution of cycle length and offers some interesting insights. Unsurprisingly, a first glance suggests that the frequency of runs decreases with cycle length. Not accounting for differences between selection methods, the bars appear similar to a geometric distribution with the largest bar corresponding to a 'cycle length of 1' (i.e.\ no cycle at all). Moving towards the right, the frequency of observed runs decreases with cycle length, though at a decreasing pace. In fact, there are even 7 runs with the maximum cycle length of 10. Interestingly, there are substantial differences between the different feature extraction methods. Polynomial tiling follows the described decaying pattern. Similarly, simple tile coding rarely converges in long cycles, though its spike of 194 runs corresponds to a cycle length of 2. Contrary, almost all runs of the separated polynomials converged without cycles.\footnote{Though barely visible with the naked eye, there are 2 runs with a cycle length of 2.}. Lastly, the frequency of cycle length of converged tabular runs is distributed almost uniformly. This observation also suggests that the employed convergence rule may well have misclassified some of the runs in the top left panel of \autoref{converged} as \emph{not converged} where in reality the convergence cycle length simply exceeded the arbitrary threshold of 10. 
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/cycle_length.png}
+	\caption{Number of converged runs with particular cycle length.}
+	\label{cycle_length}
+\end{figure}
+
+\textbf{price range of cycles}
+* price range 
+* price changes within a cycle?
+* profits as a function of cycle length
 
 \subsection{Profits}
 

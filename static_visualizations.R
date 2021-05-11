@@ -108,32 +108,76 @@ data %>%
 	guides(colour = guide_legend(override.aes = list(alpha = 1)))
 ggsave("report/plots/convergence_at.png", width = 25, height = 15, units = "cm")	
 
-data
+data %>%
+	ggplot(aes(x = as.factor(cycle_length), fill = feature_method)) +
+	geom_bar(position = "stack", na.rm = TRUE) +
+	scale_x_discrete(na.translate = FALSE) +
+	ai_theme +
+	fill_dictionary +
+	labs(x = "cycle length", y = "")
+
+data %>%
+	group_by(feature_method) %>%
+	count(cycle_length) %>%
+	filter(
+		(feature_method == "poly-separated") |
+		(feature_method == "tabular" & cycle_length == 10) |
+		(feature_method == "tiling" & cycle_length == 2)
+	)
+
+
+ggsave("report/plots/cycle_length.png", width = 25, height = 15, units = "cm")
 
 
 
+point_line_plot <- function(data, x_lab,  x_log10 = FALSE) {
+	variations <- sort(unique(data$varied_parameter %>% as.numeric()))
+	
+	res <- filter(data, !is.na(avg_profits)) %>%
+		group_by(feature_method, varied_parameter) %>%
+		summarize(avg_profits = mean(avg_profits)) %>%
+		mutate(Delta = get_delta(avg_profits)) %>%
+		filter(Delta > 0) %>%
+		ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
+		geom_hline(yintercept = c(0, 1)) +
+		geom_line(size = 1) +
+		geom_point( size = 3) +
+		scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+		labs(x = x_lab, y = expression(Delta)) +
+		ai_theme +
+		color_dictionary +
+		theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+	
+	if (x_log10) {
+		res <- res + scale_x_log10(minor_breaks = variations, breaks = variations)
+	} else {
+		res <- res + scale_x_log10(minor_breaks = variations, breaks = variations)
+	}
+	return(res)
+}
 
+point_line_plot(data = data, x_lab = expression(alpha), x_log10 = TRUE)
+ggsave("report/plots/alpha.png", width = 25, height = 15, units = "cm")
 
 
 variations <- sort(unique(data$varied_parameter %>% as.numeric()))
 
-filter(data, !is.na(avg_profits)) %>%
-	group_by(feature_method, varied_parameter) %>%
-	summarize(avg_profits = mean(avg_profits)) %>%
-	mutate(Delta = get_delta(avg_profits)) %>%
-	filter(Delta > 0) %>%
-	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
-	geom_hline(yintercept = c(0, 1)) +
-	geom_line(size = 1) +
-	geom_point( size = 3) +
-	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
-	# scale_x_log10() +
-	scale_x_log10(minor_breaks = variations, breaks = variations) +
-	labs(x = expression(alpha), y = expression(Delta)) +
-	ai_theme +
-	color_dictionary +
-	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
-ggsave("report/plots/alpha.png", width = 25, height = 15, units = "cm")
+# filter(data, !is.na(avg_profits)) %>%
+# 	group_by(feature_method, varied_parameter) %>%
+# 	summarize(avg_profits = mean(avg_profits)) %>%
+# 	mutate(Delta = get_delta(avg_profits)) %>%
+# 	filter(Delta > 0) %>%
+# 	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
+# 	geom_hline(yintercept = c(0, 1)) +
+# 	geom_line(size = 1) +
+# 	geom_point( size = 3) +
+# 	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+# 	scale_x_log10(minor_breaks = variations, breaks = variations) +
+# 	labs(x = expression(alpha), y = expression(Delta)) +
+# 	ai_theme +
+# 	color_dictionary +
+# 	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+
 
 
 filter(data, !is.na(avg_profits)) %>%

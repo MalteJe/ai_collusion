@@ -138,16 +138,16 @@ alphas_manually_optimized <- 10^-8
 
 # # Delta -------------------------------------------------------------------
 
-# deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
-# delta_input <- list_modify(baseline, Alpha = NULL, Delta = deltas)
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = delta_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
+delta_input <- list_modify(baseline, Alpha = NULL, Delta = deltas)
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = delta_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 

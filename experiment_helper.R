@@ -13,7 +13,6 @@ single_experiment <- function(experiment, static_specs, runs, no_of_cores, varie
 	
 	# garbage collection
 	gc()
-	
 	# replicate experiment specifications and append run id 
 	experiment_specs <- map(experiment,
 									.f = rep,
@@ -32,7 +31,7 @@ single_experiment <- function(experiment, static_specs, runs, no_of_cores, varie
 	print(str_c(Sys.time(),
 					" - Starting Experiment. Features_by = ", experiment$features_by,
 					"  | Varied Parameter: ", varied_parameter, 
-					"  | Value: ", experiment$varied_parameter,
+					"  | Value: ", experiment[varied_parameter],
 					"   | Runs: ", runs))
 	
 	# map every runs specification to single_run_with recovery.

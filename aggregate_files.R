@@ -27,6 +27,7 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 			outcomes = NA,
 			avg_profits = NA,
 			intervention = NA,
+			intervention_prolonged = NA,
 			convergence = NA,
 			cycle_length = NA
 		))
@@ -59,6 +60,7 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 			outcomes = outcomes,
 			avg_profits = avg_profits,
 			intervention = intervention,
+			intervention_prolonged = res$intervention_prolonged,
 			convergence = conv_t,
 			cycle_length = res$convergence$cycle_length))
 		
@@ -68,8 +70,9 @@ load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 
 	}
 }
 
-
-# load_return("simulation_results/Alpha_final/tiling_0.1_5.RData", t_grouping = 50000)
+# load("simulation_results/prolonged_deviation/tiling_optimized_6.RData")
+# load_return("simulation_results/prolonged_deviation/tiling_optimized_6.RData", t_grouping = 50000)
+# load_return("simulation_results/Alpha_final/tabular_0.001_1.RData", t_grouping = 50000)
 
 
 # specify path, list single runs in directory and adjust names
@@ -130,5 +133,6 @@ load_aggregate_save <- function(experiment_job, t_grouping) {
 
 # load simulation results
 load_aggregate_save("Alpha_final", t_grouping = 50000)
+load_aggregate_save("prolonged_deviation", t_grouping = 50000)
 load_aggregate_save("Lambda", t_grouping = 50000)
 

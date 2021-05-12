@@ -1,9 +1,18 @@
 library(tidyverse)
 library(tidyquant)
+library(rlang)
 
+source("economic_environment.R")
 # function to obtain profits relative to monopoly and Nash benchmarks
 get_delta <- function(profit) {
-	(profit - 0.2229272) / (0.3374905 - 0.2229272)
+	pars <- list(c = 1, a = 2, a_0 = 0, mu = 0.25)
+	p_m <- do.call(optimize_joint_profits, pars)
+	p_n <- do.call(nash_prices, pars)
+
+	pi_m <- do.call(calculate_profits, c(list(p = rep(p_m, 2)), pars))[1]
+	pi_n <- do.call(calculate_profits, c(list(p = rep(p_n, 2)), pars))[1]
+	
+	(profit - pi_n) / (pi_m - pi_n)
 }
 
 
@@ -51,9 +60,53 @@ fill_dictionary <- scale_fill_manual(values = color_dictionary)
 color_dictionary <- scale_color_manual(values = color_dictionary)
 
 
-# Vary Alpha --------------------------------------------------------------
-load("simulation_results/Alpha_final/aggregated.RData")
+# function to line & scatter-plot with Delta on the y-axis as a function of feature extraction method and specified x-axis
+point_line_plot <- function(data, varied, filter_cond = "TRUE", x_lab, x_log10 = FALSE) {
+	
+	
+	variations <- sort(unique(data[eval(varied)] %>%
+									  	pull(varied) %>%
+									  	as.numeric()))
 
+	res <- filter(data, !is.na(avg_profits)) %>%
+		group_by_at(vars(all_of(c("feature_method", varied)))) %>%
+		summarize(avg_profits = mean(avg_profits)) %>%
+		mutate(Delta = get_delta(avg_profits)) %>%
+		filter(!! parse_expr(filter_cond))
+	
+	out <- res %>%
+		ggplot(aes(x = as.double(!!sym(varied)), y = Delta, col = feature_method)) +
+			geom_hline(yintercept = c(0, 1)) +
+			geom_line(size = 1) +
+			geom_point( size = 3) +
+			scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25),
+									 labels = c(expression(Delta[n]), "0.25", "0.5", "0.75",
+									 			  expression(Delta[m]))) +
+			labs(x = x_lab, y = expression(Delta)) +
+			ai_theme +
+			color_dictionary +
+			theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+	
+	if (x_log10) {
+		out <- out + scale_x_log10(minor_breaks = variations, breaks = variations)
+	} else {
+		out <- out + scale_x_continuous(minor_breaks = variations, breaks = variations)
+	}
+	print(out)
+	return(res)
+}
+
+
+
+
+
+
+
+
+
+# Convergence --------------------------------------------------------
+
+load("simulation_results/Alpha_final/aggregated.RData")
 
 convergence_info <- data %>%
 
@@ -101,12 +154,15 @@ data %>%
 	ggplot(aes(x = convergence, y = stat(density), col = feature_method)) +
 	geom_freqpoly(size = 1.5, binwidth = 8000, alpha = 0.6) +
 	scale_x_continuous(limits = c(0, 500000), labels = scales::comma) +
-	theme_tq() +
 	color_dictionary +
 	labs(x = "t") +
 	ai_theme +
 	guides(colour = guide_legend(override.aes = list(alpha = 1)))
 ggsave("report/plots/convergence_at.png", width = 25, height = 15, units = "cm")	
+
+
+
+# Price Cycles ------------------------------------------------------------
 
 data %>%
 	ggplot(aes(x = as.factor(cycle_length), fill = feature_method)) +
@@ -115,6 +171,8 @@ data %>%
 	ai_theme +
 	fill_dictionary +
 	labs(x = "cycle length", y = "")
+ggsave("report/plots/cycle_length.png", width = 25, height = 15, units = "cm")
+
 
 data %>%
 	group_by(feature_method) %>%
@@ -126,58 +184,24 @@ data %>%
 	)
 
 
-ggsave("report/plots/cycle_length.png", width = 25, height = 15, units = "cm")
+# Delta as function of cycle length (filtered for Delta > 0)
+point_line_plot(data, "cycle_length", x_lab = "cycle length", filter_cond = "Delta >= 0")
 
 
+# Vary Alpha --------------------------------------------------------------
 
-point_line_plot <- function(data, x_lab,  x_log10 = FALSE) {
-	variations <- sort(unique(data$varied_parameter %>% as.numeric()))
-	
-	res <- filter(data, !is.na(avg_profits)) %>%
-		group_by(feature_method, varied_parameter) %>%
-		summarize(avg_profits = mean(avg_profits)) %>%
-		mutate(Delta = get_delta(avg_profits)) %>%
-		filter(Delta > 0) %>%
-		ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
-		geom_hline(yintercept = c(0, 1)) +
-		geom_line(size = 1) +
-		geom_point( size = 3) +
-		scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
-		labs(x = x_lab, y = expression(Delta)) +
-		ai_theme +
-		color_dictionary +
-		theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
-	
-	if (x_log10) {
-		res <- res + scale_x_log10(minor_breaks = variations, breaks = variations)
-	} else {
-		res <- res + scale_x_log10(minor_breaks = variations, breaks = variations)
-	}
-	return(res)
-}
 
-point_line_plot(data = data, x_lab = expression(alpha), x_log10 = TRUE)
+alpha_delta <- point_line_plot(data = data, varied = "varied_parameter", filter_cond = "Delta >= 0", x_lab = expression(alpha), x_log10 = TRUE)
 ggsave("report/plots/alpha.png", width = 25, height = 15, units = "cm")
 
+alpha_delta %>%
+	group_by(feature_method) %>%
+	summarize(max = max(Delta))
 
-variations <- sort(unique(data$varied_parameter %>% as.numeric()))
-
-# filter(data, !is.na(avg_profits)) %>%
-# 	group_by(feature_method, varied_parameter) %>%
-# 	summarize(avg_profits = mean(avg_profits)) %>%
-# 	mutate(Delta = get_delta(avg_profits)) %>%
-# 	filter(Delta > 0) %>%
-# 	ggplot(aes(x = as.double(varied_parameter), y = Delta, col = feature_method)) +
-# 	geom_hline(yintercept = c(0, 1)) +
-# 	geom_line(size = 1) +
-# 	geom_point( size = 3) +
-# 	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
-# 	scale_x_log10(minor_breaks = variations, breaks = variations) +
-# 	labs(x = expression(alpha), y = expression(Delta)) +
-# 	ai_theme +
-# 	color_dictionary +
-# 	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
-
+data %>%
+	filter(feature_method == "poly-tiling", varied_parameter == "1e-04") %>%
+	summarize(avg_profits = mean(avg_profits)) %>%
+	mutate(Delta = get_delta(avg_profits))
 
 
 filter(data, !is.na(avg_profits)) %>%
@@ -218,8 +242,6 @@ manually_optimized_alpha <- data %>%
 outcomes <- manually_optimized_alpha %>%
 	select(-intervention, -avg_profits) %>%
 	unnest(outcomes)
-
-
 
 
 learning_phase <- outcomes %>%
@@ -268,6 +290,32 @@ learning_phase %>%
 	fill_dictionary
 
 
+# Price Range -------------------------------------------------------------
+
+manually_optimized_alpha %>%
+	filter(convergence < 500000) %>%
+	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
+	unnest(intervention) %>%
+	filter(tau <= 0) %>%
+	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
+	group_by(feature_method, varied_parameter, run_id, price) %>%
+	summarize(min = min(value),
+				 max = max(value),
+				 range = max - min,
+				 cycle_length = unique(cycle_length)) %>%
+	ggplot(aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
+	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
+	geom_boxplot(varwidth = TRUE) +
+	facet_wrap(~feature_method, scales = "free_x") +
+	ai_theme +
+	fill_dictionary +
+	labs(x = "cycle length", y = " ")
+	ggsave("report/plots/price_range.png", width = 25, height = 20, units = "cm")
+
+
+
+
+
 # Intervention
 
 intervention <- manually_optimized_alpha %>%
@@ -312,6 +360,20 @@ ggsave("report/plots/intervention_violin.png", width = 25, height = 25, units = 
 
 # Prolonged Intervention - TBD --------------------------------------------
 
+load("simulation_results/prolonged_deviation/aggregated.RData")
+
+data %>%
+	select(feature_method, varied_parameter, run_id, intervention_prolonged) %>%
+	unnest(intervention_prolonged) %>%
+	filter(run_id == 1, intervention_length == 10, tau > -4) %>%
+	pivot_longer(c("price_1", "price_2", "profit_1", "profit_2"), names_to = "temp") %>%
+	separate(temp, into = c("metric", "player"), sep = "_") %>%
+	ggplot(aes(x = tau, y = value, col = feature_method, shape = player, linetype = player)) +
+	geom_line() +
+	geom_point() +
+	facet_grid(metric~feature_method, scales = "free_y") +
+	ai_theme +
+	color_dictionary
 
 
 

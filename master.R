@@ -36,7 +36,7 @@ print("defining specs")
 
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_separated", "poly_tiling")
-features_extraction_methods <- "poly_tiling"
+features_extraction_methods <- c("tabular", "tiling", "poly_separated")
 
 
 # static specs (no variation in study whatsoever)
@@ -102,8 +102,7 @@ baseline <- list(
 
 
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
-alphas_manually_optimized <- 10^-8
-
+alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6)
 
 
 # prolonged deviation with optimized Alphas ----------------------------
@@ -138,16 +137,16 @@ alphas_manually_optimized <- 10^-8
 
 # # Delta -------------------------------------------------------------------
 
-deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
-delta_input <- list_modify(baseline, Alpha = NULL, Delta = deltas)
-
-walk2(.x = features_extraction_methods,
-		.y = alphas_manually_optimized,
-		.f = vary_parameter,
-		variable_specs = delta_input,
-		static_specs = static_specs,
-		runs = runs_per_experiment,
-		no_of_cores = no_of_cores)
+# deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
+# delta_input <- list_modify(baseline, Alpha = NULL, Delta = deltas)
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_parameter,
+# 		variable_specs = delta_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
 
 
@@ -227,24 +226,19 @@ walk2(.x = features_extraction_methods,
 # 
 # # Vary m (number of feasible prices) -----------------------------------------------
 # 
-# number_of_prices <- c(4, 10, 25, 39, 63)
-# number_of_prices <- c(4, 10, 25, 39)
-# 
-# m_input <- list_modify(baseline, Alpha = NULL,
-# 									 m = number_of_prices)
-# 
-# 
-# meta_res_m <- map2(.x = features_extraction_methods,
-# 						 .y = alphas_manually_optimized,
-# 						 .f = vary_parameter,
-# 						 variable_specs = m_input,
-# 						 static_specs = static_specs,
-# 						 runs = runs_per_experiment,
-# 						 sequential_execution = TRUE)
-# 
-# names(meta_res_m) <- features_extraction_methods
-# 
-# save(meta_res_m, file = "simulation_results/res_varied_m.RData")
+number_of_prices <- c(10, 39, 63)
+
+m_input <- list_modify(baseline, Alpha = NULL,
+									 m = number_of_prices)
+
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = m_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 print(str_c(Sys.time(), " | script over"))

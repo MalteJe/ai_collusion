@@ -36,7 +36,7 @@ print("defining specs")
 
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_separated", "poly_tiling")
-features_extraction_methods <- c("tiling", "poly_separated")
+features_extraction_methods <- "poly_tiling"
 
 
 # static specs (no variation in study whatsoever)
@@ -102,7 +102,7 @@ baseline <- list(
 
 
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
-alphas_manually_optimized <- c(0.001, 1 * 10^-6)
+alphas_manually_optimized <- 1 * 10^-8
 
 
 # prolonged deviation with optimized Alphas ----------------------------

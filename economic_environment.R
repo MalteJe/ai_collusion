@@ -62,3 +62,19 @@ nash_prices <- function(...) {
 			...,
 			control = list(reltol = 1e-12))$par)
 }
+
+
+
+# Delta -------------------------------------------------------------------
+
+# function to obtain profits relative to monopoly and Nash benchmarks
+get_delta <- function(profit) {
+	pars <- list(c = 1, a = 2, a_0 = 0, mu = 0.25)
+	p_m <- do.call(optimize_joint_profits, pars)
+	p_n <- do.call(nash_prices, pars)
+	
+	pi_m <- do.call(calculate_profits, c(list(p = rep(p_m, 2)), pars))[1]
+	pi_n <- do.call(calculate_profits, c(list(p = rep(p_n, 2)), pars))[1]
+	
+	(profit - pi_n) / (pi_m - pi_n)
+}

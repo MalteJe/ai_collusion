@@ -3,17 +3,6 @@ library(tidyquant)
 library(rlang)
 
 source("economic_environment.R")
-# function to obtain profits relative to monopoly and Nash benchmarks
-get_delta <- function(profit) {
-	pars <- list(c = 1, a = 2, a_0 = 0, mu = 0.25)
-	p_m <- do.call(optimize_joint_profits, pars)
-	p_n <- do.call(nash_prices, pars)
-
-	pi_m <- do.call(calculate_profits, c(list(p = rep(p_m, 2)), pars))[1]
-	pi_n <- do.call(calculate_profits, c(list(p = rep(p_n, 2)), pars))[1]
-	
-	(profit - pi_n) / (pi_m - pi_n)
-}
 
 
 # Theme ------------------------------------------------------------------
@@ -185,7 +174,7 @@ data %>%
 
 
 # Delta as function of cycle length (filtered for Delta > 0)
-point_line_plot(data, "cycle_length", x_lab = "cycle length", filter_cond = "Delta >= 0")
+# point_line_plot(data, "cycle_length", x_lab = "cycle length", filter_cond = "Delta >= 0")
 
 
 # Vary Alpha --------------------------------------------------------------
@@ -204,17 +193,33 @@ data %>%
 	mutate(Delta = get_delta(avg_profits))
 
 
-filter(data, !is.na(avg_profits)) %>%
+all_runs <- filter(data, !is.na(avg_profits)) %>%
 	mutate(Delta = get_delta(avg_profits)) %>%
-	filter(Delta > 0) %>%
+	filter(!(feature_method == "poly-tiling" & varied_parameter == "1e-04"))
+
+all_runs %>%	
 	ggplot(aes(x = fct_rev(varied_parameter_fct), y = Delta, fill = feature_method)) +
-	geom_boxplot(position = "dodge") +
-	geom_hline(yintercept = c(0, 1)) +
-	scale_y_continuous(expand = c(0, 0), breaks = seq(0,1, by = 0.25), labels = c(expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
-	# theme_tq() +
-	# scale_x_continuous(minor_breaks = variations, breaks = variations) +
+	geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+	scale_y_continuous(expand = c(0, 0), breaks = seq(-0.5,1, by = 0.25), labels = c("-0.5", "-0,25", expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
 	labs(x = expression(alpha), y = expression(Delta)) +
-	ai_theme
+	ai_theme +
+	facet_wrap(~feature_method) +
+	fill_dictionary
+ggsave("report/plots/alpha_violin.png", width = 25, height = 15, units = "cm")
+
+
+poly_sep <- filter(all_runs, feature_method == "poly-separated")
+
+poly_sep %>%
+	count(sub_nash = (Delta <= 0)) %>%
+	mutate(perc = n / sum(n))
+	
+poly_sep %>%
+	group_by(varied_parameter) %>%
+	count(sub_nash = (Delta <= 0)) %>%
+	mutate(perc = n / sum(n)) %>%
+	arrange(sub_nash, perc)
 
 
 # Learning Phase Trajectory  ----------------------------------------------------------
@@ -267,30 +272,64 @@ learning_phase %>%
 ggsave("report/plots/all_runs.png", width = 25, height = 20, units = "cm")
 
 
-learning_phase %>%
-	group_by(feature_method, varied_parameter, t_group, metric) %>%
-	summarize(value = mean(value, na.rm = TRUE)) %>%
-	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
-			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
-	ggplot(aes(x = t_group * t_grouping, y = value, color = feature_method)) +
-	geom_hline(aes(yintercept = p_n)) +	
-	geom_hline(aes(yintercept = p_m)) +	
-	geom_line(size = 1) +
-	facet_wrap(~ metric, ncol = 1, scales = "free_y") +
-	theme_tq() +
-	color_dictionary
+# learning_phase %>%
+# 	group_by(feature_method, varied_parameter, t_group, metric) %>%
+# 	summarize(value = mean(value, na.rm = TRUE)) %>%
+# 	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
+# 			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
+# 	ggplot(aes(x = t_group * t_grouping, y = value, color = feature_method)) +
+# 	geom_hline(aes(yintercept = p_n)) +	
+# 	geom_hline(aes(yintercept = p_m)) +	
+# 	geom_line(size = 1) +
+# 	facet_wrap(~ metric, ncol = 1, scales = "free_y") +
+# 	theme_tq() +
+# 	color_dictionary
 
 
 learning_phase %>%
-	ggplot(aes(x = as.factor(t_group * t_grouping), y = value, fill = feature_method)) +
-	geom_violin(position = "dodge", scale = "width") +
-	# geom_boxplot(position = "dodge") +
-	facet_wrap(~metric, ncol = 1, scales = "free_y") +
+	filter(metric == "Delta") %>%
+	mutate(t = as_factor(format(t_group * t_grouping, scientific = FALSE))) %>%
+	ggplot(aes(x = t, y = value, fill = feature_method)) +
+	geom_hline(yintercept = c(0,1), linetype = "dashed") +	
+	geom_violin(position = "dodge", scale = "count", draw_quantiles = 0.5) +
+	facet_grid(metric~feature_method, scales = "free_y") +
+	facet_wrap(~feature_method, nrow = 4, scales = "free_y") +
 	theme_tq() +
+	labs(y = "") +
 	fill_dictionary
+ggsave("report/plots/trajectory_Delta.png", width = 25, height = 20, units = "cm")
+
+learning_phase %>%
+	filter(metric == "price") %>%
+	mutate(t = as_factor(format(t_group * t_grouping, scientific = FALSE))) %>%
+	ggplot(aes(x = t, y = value, fill = feature_method)) +
+	geom_hline(yintercept = c(1.472927,1.92498), linetype = "dashed") +	
+	geom_violin(position = "dodge", scale = "count", draw_quantiles = 0.5) +
+	facet_grid(metric~feature_method, scales = "free_y") +
+	facet_wrap(~feature_method, nrow = 4, scales = "free_y") +
+	theme_tq() +
+	labs(y = "") +
+	fill_dictionary
+ggsave("report/plots/trajectory_price.png", width = 25, height = 20, units = "cm")
+
 
 
 # Price Range -------------------------------------------------------------
+
+# learning_phase %>%
+# 	filter(metric == "price") %>%
+# 	mutate(t = as_factor(format(t_group * t_grouping, scientific = FALSE))) %>%
+# 	ggplot(aes(x = t, y = value, fill = feature_method)) +
+# 	geom_hline(yintercept = c(0,1), linetype = "dashed") +	
+# 	geom_violin(position = "dodge", scale = "count") +
+# 	facet_grid(metric~feature_method, scales = "free_y") +
+# 	facet_wrap(~feature_method, nrow = 4, scales = "free_y") +
+# 	theme_tq() +
+# 	fill_dictionary
+# ggsave("report/plots/trajectory_Delta.png", width = 25, height = 20, units = "cm")
+
+
+
 
 manually_optimized_alpha %>%
 	filter(convergence < 500000) %>%
@@ -305,14 +344,65 @@ manually_optimized_alpha %>%
 				 cycle_length = unique(cycle_length)) %>%
 	ggplot(aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
 	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
-	geom_boxplot(varwidth = TRUE) +
+	geom_boxplot(varwidth = TRUE, col = "grey35") +
+	# geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
 	facet_wrap(~feature_method, scales = "free_x") +
 	ai_theme +
 	fill_dictionary +
 	labs(x = "cycle length", y = " ")
-	ggsave("report/plots/price_range.png", width = 25, height = 20, units = "cm")
+ggsave("report/plots/price_range.png", width = 25, height = 20, units = "cm")
 
 
+
+
+o <- function(x) {
+	subset(x, x == max(x) | x == min(x))
+}
+
+f <- function(x) {
+	r <- quantile(x, probs = c(0.00, 0.25, 0.5, 0.75, 1))
+	names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
+	r
+}
+
+manually_optimized_alpha %>%
+	filter(convergence < 500000) %>%
+	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
+	unnest(intervention) %>%
+	filter(tau <= 0) %>%
+	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
+	group_by(feature_method, varied_parameter, run_id, price) %>%
+	summarize(min = min(value),
+				 max = max(value),
+				 range = max - min,
+				 cycle_length = unique(cycle_length)) %>%
+	ggplot(aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
+	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
+	stat_summary(fun.data = f, geom = "boxplot") +
+	stat_summary(fun.y = o, geom = "point") +
+	stat_boxplot(geom = "errorbar", color = "gray35", coef = 1) +
+	# geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	facet_wrap(~feature_method, scales = "free_x") +
+	ai_theme +
+	fill_dictionary +
+	labs(x = "cycle length", y = " ")
+
+
+manually_optimized_alpha %>%
+	filter(convergence < 500000) %>%
+	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
+	unnest(intervention) %>%
+	filter(tau <= 0) %>%
+	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
+	group_by(feature_method, varied_parameter, run_id, price) %>%
+	summarize(min = min(value),
+				 max = max(value),
+				 range = max - min,
+				 cycle_length = unique(cycle_length)) %>%
+	group_by(feature_method, cycle_length) %>%
+	summarize(min = min(abs(max-min)),
+				 max = max(abs(max-min)),
+				 med = median(abs(max-min)))
 
 
 

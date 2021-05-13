@@ -1,16 +1,24 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Number of runs that achieved convergence per experiment.}}{23}{figure.1}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Number of runs that achieved convergence per experiment.}}{24}{figure.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2}{\ignorespaces timing of convergence, runs that did not converge or failed to complete are excluded. Width of bins: 8,000}}{24}{figure.2}%
+\contentsline {figure}{\numberline {2}{\ignorespaces timing of convergence, runs that did not converge or failed to complete are excluded. Width of bins: 8,000}}{25}{figure.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3}{\ignorespaces Number of converged runs with particular cycle length.}}{25}{figure.3}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Number of converged runs with particular cycle length.}}{26}{figure.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4}{\ignorespaces average $\Delta $ for various combinations of the feature selection method and $\alpha $. Beware the logarithmic x-scale.}}{26}{figure.4}%
+\contentsline {figure}{\numberline {4}{\ignorespaces average $\Delta $ for various experiments. Includes converged and non-converged runs. One data point (poly tiling, $\alpha = 0.0004$) is excluded for better presentability. Beware the logarithmic x-scale.}}{28}{figure.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5}{\ignorespaces all runs for manually optimized $\alpha $}}{28}{figure.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces distribution of $\Delta $ for various experiments. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. One violin (poly tiling, $\alpha = 0.0004$) is excluded for better presentability. Horizontal lines represent the median. Beware the logarithmic x-scale.}}{29}{figure.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6}{\ignorespaces average price trajectory around deviation}}{29}{figure.6}%
+\contentsline {figure}{\numberline {6}{\ignorespaces distribution of $\Delta $ over time in 'optimized' experiments. For individual runs, $\Delta $ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 episodes, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}}{31}{figure.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {7}{\ignorespaces distribution of prices at and after deviation relative to prior equilibrium. Every violin has the same maximum width, i.e.\ width between violins are not comparable. Tails are trimmed}}{31}{figure.7}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Distribution of price ranges as a function of feature extraction method and cycle length. Price range is defined as the range of prices \emph {one} agent charges upon convergence. Relationships to the opponent's prices are not examined. Only converged runs are considered (as cycle length is unavailable for other runs). Dashed line represents the difference between both collusive and Nash outcome (i.e.\ $p_m - p_n$). Box widths are scaled proportionally to the square-roots of number of observations within each group.}}{32}{figure.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {8}{\ignorespaces average price trajectory around deviation}}{33}{figure.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {9}{\ignorespaces distribution of prices at and after deviation relative to prior equilibrium. Every violin has the same maximum width, i.e.\ width between violins are not comparable. Tails are trimmed}}{35}{figure.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10}{\ignorespaces distribution of $p$ over time of 'optimized' experiments. For individual runs, $p$ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 episodes, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}}{53}{figure.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {11}{\ignorespaces all runs for manually optimized $\alpha $}}{54}{figure.11}%

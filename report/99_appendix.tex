@@ -1,0 +1,14 @@
+\autoref{trajectory_price} displays the distribution of average prices in various runs of the optimized experiments. \autoref{all_runs} displays the price and profit trajectory of single runs over time. Only runs of the \emph{optimal} runs are printed, as explained in \autoref{justifications}. Both metrics are averaged over 50,000 episodes apiece and over both players. Again, note that, by and large, prices and profits remain within the benchmarks of Nash competition and the cartel case.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/trajectory_price.png}
+	\caption{distribution of $p$ over time of 'optimized' experiments. For individual runs, $p$ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 episodes, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{trajectory_price}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/all_runs.png}
+	\caption{all runs for manually optimized $\alpha$}
+	\label{all_runs}
+\end{figure}

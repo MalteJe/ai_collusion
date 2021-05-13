@@ -39,14 +39,14 @@ Starting, with the baseline specification, this section reports on the simulatio
 
 I report results for various specifications and will refer to every unique combination of feature extraction method and parameters as an \emph{experiment}. Every experiment consists of 48 \emph{runs}, i.e. repeated simulations with the exact same set of starting conditions. Lastly, within the scope of a particular \emph{run}, time steps are called \emph{periods}.
 
-\subsection{Convergence}
+\subsection{Convergence}\label{convergence}
 
-\textbf{TBD: As indicated,} convergence is not guaranteed in a non-stationary environment, much less so with function approximation. Notwithstanding the lack of a theoretical convergence guarantee, prior experiments have shown that simulation runs tend to approach a stable equilibrium in practice (\cite{calvano_artificial_2019} \textbf{and others}). Note that \emph{stability} simply refers to the observation that the same set of prices continuously recur over a longer time interval. The strategies upon convergence need not coincide with economic theory. In fact, at times the observed outcomes contradict predictions from game theory. For instance, despite symmetric profit functions, the converged outcomes may display asymmetric prices. Moreover, price cycles, i.e.\ a recurring sequence of price combinations, occur frequently.\footnote{The model from \autoref{quantity} predicts symmetric outcomes without cycles. This is typical for simultaneous pricing games, but not universal across economic models. For instance, collusive outcomes in quantity competition (i.e.\ Cournot) may exhibit price asymmetries. The relevance of that prediction has been fortified in experimental settings, e.g.\ in \textcite{fischer_collusion_2019}. \textcite{maskine-tirole} pioneer a sequential pricing game that predicts \emph{Edgeworth price cycles} where agents successively undercut each other until one firm prefers to reset the cycle and increases its price. Based on their model, \textcite{klein_autonomous_2019} shows that \emph{Q-Learning} agents are indeed capable of learning those dynamic strategies.}
+\textbf{TBD: As indicated,} convergence is not guaranteed in a non-stationary environment, much less so with function approximation. Notwithstanding the lack of a theoretical convergence guarantee, prior experiments have shown that simulation runs tend to approach a stable equilibrium in practice (\cite{calvano_artificial_2019} \textbf{and others}). Note that \emph{stability} simply refers to the observation that the same set of prices continuously recur over a longer time interval. The strategies upon convergence need not coincide with economic theory. In fact, at times the observed outcomes in this study contradict predictions from game theory. For instance, despite symmetric profit functions, the converged outcomes may display asymmetric prices. Moreover, price cycles, i.e.\ a recurring sequence of price combinations, occur frequently.\footnote{The model from \autoref{quantity} predicts symmetric outcomes without cycles. This is typical for simultaneous pricing games, but not universal across economic models. For instance, collusive outcomes in quantity competition (i.e.\ Cournot) may exhibit price asymmetries. The relevance of that prediction has been fortified in experimental settings, e.g.\ in \textcite{fischer_collusion_2019}. \textcite{maskine-tirole} pioneer a sequential pricing game that predicts \emph{Edgeworth price cycles} where agents successively undercut each other until one firm prefers to reset the cycle and increases its price. Based on their model, \textcite{klein_autonomous_2019} shows that \emph{Q-Learning} agents are indeed capable of learning those dynamic strategies.}
 
 
-The following, arbitrary but practical, convergence rule was employed. If a price cycle recurred for the last 10,000 episodes, the algorithm is considered \emph{converged}. For efficiency reasons, a check for convergence is undertaken only every 2,000 episodes. Price cycles up to a length of 10 are considered. If no convergence is achieved until 500,000 episodes, the simulation stops and the run is deemed \emph{not converged}. There are a number of runs that \emph{failed to complete} as a consequence of the program running into an error. Unfortunately, the program code does not allow to examine the exact cause of such occurrences in retrospect. However, by and large, the failed runs occurred with unsuitable specifications (see below for a detailed discussion).
+The following, arbitrary but practical, convergence rule was employed. If a price cycle recurred for 10,000 consecutive episodes, the algorithm is considered \emph{converged}. A price cycle requires both agents' adherence.\footnote{Of course it is possible that the cycle length differs between agents. For instance, one agent may continuously play the same price while the opponent keeps alternating between two prices. In this case, the cycle length is $1*2=2$.}
 
-In accordance with the outlined convergence criteria above, \autoref{converged} displays the share of runs that, respectively, converged successfully, did not converge until the end of the simulation or failed to complete. Two main conclusions emerge. First, failed runs are mainly prevalent in specifications with a high value of $\alpha$ in conjunction with a polynomial feature method. Second, the tiling methods are more likely to converge.
+For efficiency reasons, price cycles up to a length of 10 are considered and a check for convergence is undertaken only every 2,000 episodes. If no convergence is achieved until 500,000 episodes, the simulation stops and the run is deemed \emph{not converged}. Furthermore, there are a number of runs that \emph{failed to complete} as a consequence of the program running into an error. Unfortunately, the program code does not allow to examine the exact cause of such occurrences in retrospect. However, by and large, the failed runs occurred with unsuitable specifications (see below for a detailed discussion).
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/converged.png}
@@ -54,9 +54,11 @@ In accordance with the outlined convergence criteria above, \autoref{converged} 
 	\label{converged}
 \end{figure}
 
+In accordance with the outlined convergence criteria above, \autoref{converged} displays the share of runs that, respectively, converged successfully, did not converge until the end of the simulation or failed to complete. Two main conclusions emerge. First, failed runs are mainly prevalent in specifications with a high value of $\alpha$ in conjunction with a polynomial feature method. Second, the tiling methods are more likely to converge. Both points deserve some further exploration.
+
 Regarding the failed runs, \textbf{recall} from \autoref{feature_extraction} that features of polynomial extraction are not binary and warrant cautious adjustments of the coefficient vector. I suspect that with unreasonably large values of $\alpha$, the estimates of $\boldsymbol{\theta}$ overshoot early in the simulation, don't recover and at some point exceed the software's numerical limits.\footnote{Controlled runs where I could carefully monitor the development of the coefficient vector $\boldsymbol{w}$ seem to confirm the hypothesis. However, isolated errors \emph{with} reasonable parameter settings remain unexplained.} While imoportant to acknowledge, the failed runs are largely an artifact of unreasonable specifications and I will \textbf{disregard them for the remainder of this chapter}. For instance, the percentages in the subsequent paragraph don't account for the failed runs.
 
-Focusing on the completed runs, 95.4\% of runs did converge. But there are subtle differences between feature extraction methods. With only one exception, both tiling methods converged consistently for various $\alpha$. With 85.4\% of converged runs, separate polynomials constitute the other extreme. The figure indicates that convergence becomes less likely for low values of $\alpha$. With tabular learning, 92.9\% of runs converged without clear relation to different values of $\alpha$.
+Out of thecompleted runs without program failure, 95.4\% did converge. Though there are subtle differences between feature extraction methods. With only one exception, both tiling methods converged consistently for various $\alpha$. With only 85.4\% of runs converging, separate polynomials constitute the other extreme. The figure also indicates that convergence becomes less likely for low values of $\alpha$. With tabular learning, 92.9\% of runs converged without clear relation to different values of $\alpha$.
 
 \autoref{convergence_at} displays a frequency polygon of the runs that achieved convergence within 500,000 episodes. Clearly, the distribution is fairly uniform across feature extraction methods. Most runs converged between 200,000 and 300,000 runs. This is an artifact of the decay in exploration as dictated by $\beta$. Before the focal point of 200,000 is reached, agents probabilistically experiment too frequently to observe 10,000 consecutive episodes without any deviation from the learned strategies. Thereafter, it becomes increasingly likely that both agents keep \emph{exploiting} their current knowledge and continuously play the same strategy for a sufficiently long time to trigger the convergence criteria. Note that the low quantity of runs converging between 300,000 and 500,000 suggests that increasing the maximum of allowed episodes would not necessarily entail a significantly higher portion of converged runs.
 
@@ -66,7 +68,7 @@ Focusing on the completed runs, 95.4\% of runs did converge. But there are subtl
 	\label{convergence_at}
 \end{figure}
 
-\autoref{cycle_length} visualizes the distribution of cycle length and offers some interesting insights. Unsurprisingly, a first glance suggests that the frequency of runs decreases with cycle length. Not accounting for differences between selection methods, the bars appear similar to a geometric distribution with the largest bar corresponding to a 'cycle length of 1' (i.e.\ no cycle at all). Moving towards the right, the frequency of observed runs decreases with cycle length, though at a decreasing pace. In fact, there are even 7 runs with the maximum cycle length of 10. Interestingly, there are substantial differences between the different feature extraction methods. Polynomial tiling follows the described decaying pattern. Similarly, simple tile coding rarely converges in long cycles, though its spike of 194 runs corresponds to a cycle length of 2. Contrary, almost all runs of the separated polynomials converged without cycles.\footnote{Though barely visible with the naked eye, there are 2 runs with a cycle length of 2.}. Lastly, the frequency of cycle length of converged tabular runs is distributed almost uniformly. This observation also suggests that the employed convergence rule may well have misclassified some of the runs in the top left panel of \autoref{converged} as \emph{not converged} where in reality the convergence cycle length simply exceeded the arbitrary threshold of 10. 
+\autoref{cycle_length} visualizes the distribution of cycle length and offers some interesting insights. Unsurprisingly, a first glance suggests that the frequency of runs decreases with cycle length. Not accounting for differences between selection methods, the bars appear similar to a geometric distribution with the largest bar corresponding to a 'cycle length of 1' (i.e.\ no cycle at all). Moving towards the right, the frequency of observed runs decreases with cycle length, though at a decreasing pace. In fact, there are even 7 runs with the largest considered cycle length of 10. There are substantial differences between the different feature extraction methods. Polynomial tiling follows the described decaying pattern. Similarly, simple tile coding rarely converges in long cycles, though its spike of 194 runs corresponds to a cycle length of 2. Contrary, almost all runs of the separated polynomials converged without cycles.\footnote{Though barely visiblein \autoref{convergence_at}, there are 2 runs with a cycle length of 2.}. Lastly, the frequency of cycle length of converged tabular runs is distributed almost uniformly. This observation also suggests that the employed convergence rule may well have misclassified some of the runs in the top left panel of \autoref{converged} as \emph{not converged} where in reality the convergence cycle length simply exceeded the threshold arbitrarily set at 10. 
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/cycle_length.png}
@@ -74,53 +76,80 @@ Focusing on the completed runs, 95.4\% of runs did converge. But there are subtl
 	\label{cycle_length}
 \end{figure}
 
-\textbf{price range of cycles}
-* price range 
-* price changes within a cycle?
-* profits as a function of cycle length
+\autoref{prices} unveils the ranges of prices within a cycle. For now, I proceed by examining profits upon convergence.
 
 \subsection{Profits}
 
-In order to assess the simulation results in more detail, I normalize profits similar to \textcite{calvano_algorithmic_2018}:
+In order to benchmark the simulation profits, I normalize profits similar to \textcite{calvano_algorithmic_2018}:
 
 \begin{gather}
 \Delta = \frac{\bar{\pi} - p_n}{p_m - p_n}.
 \end{gather}
 
-$\bar{\pi}$ represents profits averaged over the last 100 time steps upon convergence and over both firms in a single run\footnote{Instead of looking just at the convergence profits, I average over the last 100 time steps to account for price cycles}. The normalization implies that $\Delta = 0$ and $\Delta = 1$ respectively reference the Nash and monopoly solution. Note that it is possible to obtain a $\Delta$ below $0$ (e.g. if both agents charge prices equal to marginal costs), but not above $1$. \autoref{alpha} displays the convergence profits as a function of the feature extraction method and $\alpha$. Every data point represents one experiment, more specifically the mean of $\Delta$ across all runs.
+$\bar{\pi}$ represents profits averaged over the last 100 time steps upon convergence and over both firms in a single run\footnote{Instead of looking just at the convergence profits, I average over the last 100 time steps to account for price cycles.}. The normalization implies that $\Delta = 0$ and $\Delta = 1$ respectively reference the Nash and monopoly solution. Note that it is possible to obtain a $\Delta$ below $0$ (e.g. if both agents charge prices equal to marginal costs), but not above $1$.\footnote{Strictly speaking, exactly 1 is not attainable either. Recall that $m$ was chosen to allow for prices very close, but not equal to both benchmark prices. With $m = 19$, the highest feasible $\Delta$ is 0.9997.} \autoref{alpha} displays the convergence profits as a function of the feature extraction method and $\alpha$. Every data point represents one experiment, more specifically the mean of $\Delta$ across all runs making up the experiment.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/alpha.png}
-	\caption{average $\Delta$ for various combinations of the feature selection method and $\alpha$. Beware the logarithmic x-scale.}
+	\caption{average $\Delta$ for various experiments. Includes converged and non-converged runs. One data point (poly tiling, $\alpha = 0.0004$) is excluded for better presentability. Beware the logarithmic x-scale.}
 	\label{alpha}
 \end{figure}
 
-It is noteworthy that average profits consistently remain between both benchmarks $p_m$ and $p_n$ across specifications.
+First of all, note that average profits consistently remain between both benchmarks $p_m$ and $p_n$ across specifications.\footnote{There is one exception. One data point is hidden in the plot to preserve reasonable y axis limits. More specifically, for the polynomial tiles and $\alpha = 0.0001$, the average $\Delta$ is -1.73. This extends the observation in \autoref{convergence}. It appears that this particular $\alpha$ constitutes a critical point. While the program does not crash, agents only learn strategies void of any reasonableness. As \autoref{alpha} displays, outcomes within the benchmarks are obtained by further decreasing $\alpha$.} As with prior results, the plot unveils salient differences between feature extraction methods.  On average, polynomial tiling runs yield the highest profits. The average $\Delta$ peaks at 0.85 for $\alpha = 10^{-8}$. Higher values of $\alpha$ tend to progressively decrease profits. Moving downwards on the y-axis, both the tabular method and tile coding yield similar average values of $\Delta$. Furthermore, the level of $\alpha$ does not seem to impact $\Delta$ much. For both methods $\alpha = 10^{-4}$ induces the highest average $\Delta$ at 0.487 and 0.478 respectively. Similarly for separated polynomials, $\Delta$ does not seem to respond to variations in $\alpha$. The maximum $\Delta$ is 0.35.
 
-
-As choosing a sensible $alpha$ clearly depends on the feature extraction method, I will choose a different \emph{optimized} $\alpha$ to present the further results. Specifically, the considered experiments are:
-
-\begin{enumerate}
-	\item tabular: $\alpha = 0.1$
-	\item tiling: $\alpha = 0.001$
-	\item poly-separated: $\alpha = 10^{-6}$
-	\item poly-tiling: $\alpha = 10^{-8}$
-\end{enumerate}
-
-\textbf{TBD: explanation why exactly these values?}
-
-\autoref{all_runs} displays the development of profits and prices of all runs for the 'optimized' $\alpha$'s. Both metrics are averaged over 50,000 episodes apiece and over both players. Again, note that, by and large, prices and profits remain within the benchmarks of Nash competition and the cartel case.
+Naturally, averaging $\Delta$ over runs as in \autoref{alpha} potentially hides subtleties in the distribution of $\Delta$ per experiment. \autoref{alpha_violin} displays a violin plot that shows the distribution of $\Delta$ per experiment. The distribution largely confirms the conclusion that most runs converge between $\Delta_m$ and $\Delta_n$. The only method with a significant quantity of runs with profits below the Nash benchmark are the separated polynomials. Overall, 19.8\% of runs converged with profits below the Nash equilibrium, though most of them ended up reasonably close. The percentage is largest for the experiment with $\alpha = 10^{-8}$: 27.1\%. While the other methods tend to elicit runs within the set up benchmarks, the variability remains quite high. This indicates a degree of path dependence and suggests that the algorithms are prone to stick to early explored strategies that are \emph{above-average}, but \emph{sub-optimal}. Polynomial tiles exhibit the narrowest $\Delta$ range, in particular for low $\alpha$.
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{plots/all_runs.png}
-	\caption{all runs for manually optimized $\alpha$}
-	\label{all_runs}
+	\includegraphics[width=\linewidth]{plots/alpha_violin.png}
+	\caption{distribution of $\Delta$ for various experiments. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. One violin (poly tiling, $\alpha = 0.0004$) is excluded for better presentability. Horizontal lines represent the median. Beware the logarithmic x-scale.}
+	\label{alpha_violin}
+\end{figure}
+
+
+\autoref{convergence} and \autoref{alpha} established that, what constitutes a sensible value of $\alpha$ clearly depends on the feature extraction method. Hence, for the remainder of this chapter, I will select an \emph{optimal} $\alpha$ for every feature extraction method and present further results only for these combinations. In determining an `optimal` $\alpha$, I don't rely on a single hard criteria, rather I consider a number of factors including the percentage of converged runs, comparability with previous studies and prefer to select experiments with high average $\Delta$ as they are most central to the purpose of this study. \autoref{justifications} provides a justification for every experiment deemed \emph{optimal}. To get a sense of the variability of runs within the experiments and the price trajectory over time, \autoref{trajectory_Delta} displays the development of profits of all runs for the 'optimized' values of $\alpha$. \autoref{appendix} providisues further trajectory valizations of prices and profits.
+
+\begin{table}
+
+	\begin{tabular}{|l|c|l|}
+		\hline
+		\textbf{Feature Extraction Method}&$\boldsymbol{\alpha}$&\textbf{justification} \\
+		\hline
+		Tabular&0.1&- comparability with previous simulation studies \\
+		&&- most pronounced response to price deviations \\
+		&& \ \ (see \autoref{deviations}) \\
+		\hline
+		Tile Coding&0.001&- high $\Delta$ \\
+		&&- most pronounced response to price deviations \\
+		&&\ \ (see \autoref{deviations}) \\
+		\hline
+		Separated Polynomials&$10^{-6}$&- high percentage of converged runs \\
+		\hline
+		Polynomial Tiles&$10^{-8}$&- high $\Delta$ \\
+		\hline
+	\end{tabular}
+	\caption{\emph{Optimized} values of $\alpha$ by feature extraction method}
+	\label{justifications}
+\end{table}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/trajectory_Delta.png}
+	\caption{distribution of $\Delta$ over time in 'optimized' experiments. For individual runs, $\Delta$ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 episodes, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{trajectory_Delta}
 \end{figure}
 
 
 
-\clearpage
-\subsection{Deviations}
+\subsection{Price Ranges}\label{prices}
+
+As established in \autoref{convergence}, many simulations converge in price cycles of various lengths. Recall in particular that some feature extraction methods are more prone to long cycles than others. \autoref{price_range} plots the range between the lowest and highest price a single agent charges in a cycle upon convergence. Naturally, the price range is null if no cycle is present. Perhaps unsurprisingly, the price range then increases with the cycle length.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/price_range.png}
+	\caption{Distribution of price ranges as a function of feature extraction method and cycle length. Price range is defined as the range of prices \emph{one} agent charges upon convergence. Relationships to the opponent's prices are not examined. Only converged runs are considered (as cycle length is unavailable for other runs). Dashed line represents the difference between both collusive and Nash outcome (i.e.\ $p_m - p_n$). Box widths are scaled proportionally to the square-roots of number of observations within each group.}.
+	\label{price_range}
+\end{figure}
+
+
+\subsection{Deviations}\label{deviations}
 
 This section examines whether the learned strategies are stable in the face of deviations. As outlined before, collusion requires a \emph{reward punishment scheme} and it seems instructive to assess whether the agents learned to punish deviations. In order to scrutinize that, I had one agent deviate from the stable price cycle by playing the short-term best response to maximize own profits \emph{after} convergence was detected. Subsequently, both agents played the learned strategies again for 10 episodes. For the period of that intervention, learning and exploration was turned off.
 

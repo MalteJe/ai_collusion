@@ -2,7 +2,7 @@ print("first line, specifying no_of_cores and total runs per experiment")
 
 # High Level simulation specifications ------------------------------------
 
-runs_per_experiment <- 48 # repetitions per experiment (same set of specifications)
+runs_per_experiment <- 16 # repetitions per experiment (same set of specifications)
 no_of_cores <- 16
 
 
@@ -36,7 +36,7 @@ print("defining specs")
 
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_separated", "poly_tiling")
-features_extraction_methods <- c("tabular", "tiling", "poly_separated")
+features_extraction_methods <- c("tiling", "poly_separated")
 
 
 # static specs (no variation in study whatsoever)
@@ -102,7 +102,7 @@ baseline <- list(
 
 
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
-alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6)
+alphas_manually_optimized <- c(0.001, 1 * 10^-6)
 
 
 # prolonged deviation with optimized Alphas ----------------------------
@@ -226,7 +226,7 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6)
 # 
 # # Vary m (number of feasible prices) -----------------------------------------------
 # 
-number_of_prices <- c(10, 39, 63)
+number_of_prices <- c(10, 39)
 
 m_input <- list_modify(baseline, Alpha = NULL,
 									 m = number_of_prices)

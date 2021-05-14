@@ -329,81 +329,85 @@ ggsave("report/plots/trajectory_price.png", width = 25, height = 20, units = "cm
 # ggsave("report/plots/trajectory_Delta.png", width = 25, height = 20, units = "cm")
 
 
+# 
+# 
+# manually_optimized_alpha %>%
+# 	filter(convergence < 500000) %>%
+# 	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
+# 	unnest(intervention) %>%
+# 	filter(tau <= 0) %>%
+# 	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
+# 	group_by(feature_method, varied_parameter, run_id, price) %>%
+# 	summarize(min = min(value),
+# 				 max = max(value),
+# 				 range = max - min,
+# 				 cycle_length = unique(cycle_length)) %>%
+# 	ggplot(aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
+# 	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
+# 	geom_boxplot(varwidth = TRUE, col = "grey35") +
+# 	# geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+# 	facet_wrap(~feature_method, scales = "free_x") +
+# 	ai_theme +
+# 	fill_dictionary +
+# 	labs(x = "cycle length", y = " ")
+# ggsave("report/plots/price_range.png", width = 25, height = 20, units = "cm")
+# 
+# 
+# 
+# 
+# o <- function(x) {
+# 	subset(x, x == max(x) | x == min(x))
+# }
+# 
+# f <- function(x) {
+# 	r <- quantile(x, probs = c(0.00, 0.25, 0.5, 0.75, 1))
+# 	names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
+# 	r
+# }
 
-
-manually_optimized_alpha %>%
+price_range <- manually_optimized_alpha %>%
 	filter(convergence < 500000) %>%
 	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
 	unnest(intervention) %>%
 	filter(tau <= 0) %>%
 	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
-	group_by(feature_method, varied_parameter, run_id, price) %>%
+	group_by(feature_method, run_id, price) %>%
 	summarize(min = min(value),
 				 max = max(value),
 				 range = max - min,
 				 cycle_length = unique(cycle_length)) %>%
-	ggplot(aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
+	group_by(feature_method, cycle_length) %>%
+	mutate(n = n())
+
+price_range_many <- filter(price_range, n() > 2)
+price_range_few <- filter(price_range, n() <= 2)
+
+ggplot(data = price_range_many, aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
 	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
-	geom_boxplot(varwidth = TRUE, col = "grey35") +
-	# geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	geom_point(data = price_range_few, mapping = aes(y = range)) +
 	facet_wrap(~feature_method, scales = "free_x") +
 	ai_theme +
 	fill_dictionary +
 	labs(x = "cycle length", y = " ")
 ggsave("report/plots/price_range.png", width = 25, height = 20, units = "cm")
 
-
-
-
-o <- function(x) {
-	subset(x, x == max(x) | x == min(x))
-}
-
-f <- function(x) {
-	r <- quantile(x, probs = c(0.00, 0.25, 0.5, 0.75, 1))
-	names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
-	r
-}
-
-manually_optimized_alpha %>%
-	filter(convergence < 500000) %>%
-	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
-	unnest(intervention) %>%
-	filter(tau <= 0) %>%
-	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
-	group_by(feature_method, varied_parameter, run_id, price) %>%
-	summarize(min = min(value),
-				 max = max(value),
-				 range = max - min,
-				 cycle_length = unique(cycle_length)) %>%
-	ggplot(aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
-	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
-	stat_summary(fun.data = f, geom = "boxplot") +
-	stat_summary(fun.y = o, geom = "point") +
-	stat_boxplot(geom = "errorbar", color = "gray35", coef = 1) +
-	# geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
-	facet_wrap(~feature_method, scales = "free_x") +
-	ai_theme +
-	fill_dictionary +
-	labs(x = "cycle length", y = " ")
-
-
-manually_optimized_alpha %>%
-	filter(convergence < 500000) %>%
-	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
-	unnest(intervention) %>%
-	filter(tau <= 0) %>%
-	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
-	group_by(feature_method, varied_parameter, run_id, price) %>%
-	summarize(min = min(value),
-				 max = max(value),
-				 range = max - min,
-				 cycle_length = unique(cycle_length)) %>%
-	group_by(feature_method, cycle_length) %>%
-	summarize(min = min(abs(max-min)),
-				 max = max(abs(max-min)),
-				 med = median(abs(max-min)))
-
+# manually_optimized_alpha %>%
+# 	filter(convergence < 500000) %>%
+# 	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
+# 	unnest(intervention) %>%
+# 	filter(tau <= 0) %>%
+# 	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
+# 	group_by(feature_method, varied_parameter, run_id, price) %>%
+# 	summarize(min = min(value),
+# 				 max = max(value),
+# 				 range = max - min,
+# 				 cycle_length = unique(cycle_length)) %>%
+# 	group_by(feature_method, cycle_length) %>%
+# 	summarize(min = min(range),
+# 				 max = max(range),
+# 				 med = median(range))
+# 
 
 
 # Intervention

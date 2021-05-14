@@ -112,7 +112,7 @@ load_aggregate_save <- function(experiment_job, t_grouping) {
 	
 	# load simulations in parallel
 	plan(strategy = cluster, workers = detectCores(all.tests = TRUE, logical = FALSE))
-	print("Loading in parallel. This may take quite a bit of time!")
+	print("Loading and aggregating runs in parallel. This will take a couple of minutes!")
 	data_nested <- meta_overview %>%
 		mutate(sim = future_lapply(X = path, FUN = load_return, t_grouping = t_grouping)) %>%
 		select(-path)
@@ -134,5 +134,5 @@ load_aggregate_save <- function(experiment_job, t_grouping) {
 # load simulation results
 load_aggregate_save("Alpha_final", t_grouping = 50000)
 load_aggregate_save("prolonged_deviation", t_grouping = 50000)
-load_aggregate_save("Lambda", t_grouping = 50000)
-
+load_aggregate_save("Lambda_final", t_grouping = 50000)
+load_aggregate_save("Delta_final", t_grouping = 50000)

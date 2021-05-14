@@ -36,7 +36,7 @@ print("defining specs")
 
 # methods
 features_extraction_methods <- c("tabular", "tiling", "poly_separated", "poly_tiling")
-features_extraction_methods <- "poly_tiling"
+features_extraction_methods <- c("tabular", "tiling")
 
 
 # static specs (no variation in study whatsoever)
@@ -102,7 +102,7 @@ baseline <- list(
 
 
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
-alphas_manually_optimized <- 1 * 10^-8
+alphas_manually_optimized <- c(0.1, 0.001)
 
 
 # prolonged deviation with optimized Alphas ----------------------------
@@ -226,7 +226,8 @@ alphas_manually_optimized <- 1 * 10^-8
 # 
 # # Vary m (number of feasible prices) -----------------------------------------------
 # 
-number_of_prices <- c(10, 39)
+number_of_prices <- c(10, 39, 63)
+number_of_prices <- c(4, 63)
 
 m_input <- list_modify(baseline, Alpha = NULL,
 									 m = number_of_prices)

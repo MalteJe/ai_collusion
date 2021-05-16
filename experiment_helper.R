@@ -13,6 +13,10 @@ single_experiment <- function(experiment, static_specs, runs, no_of_cores, varie
 	
 	# garbage collection
 	gc()
+	
+	# flatten varied_parameter argument (in case more than one parameter is varied)
+	varied_parameter_flattened <- str_flatten(varied_parameter, collapse = "-")
+	
 	# replicate experiment specifications and append run id 
 	experiment_specs <- map(experiment,
 									.f = rep,
@@ -30,8 +34,8 @@ single_experiment <- function(experiment, static_specs, runs, no_of_cores, varie
 	# print informative message to console
 	print(str_c(Sys.time(),
 					" - Starting Experiment. Features_by = ", experiment$features_by,
-					"  | Varied Parameter: ", varied_parameter, 
-					"  | Value: ", experiment[varied_parameter],
+					"  | Varied Parameter: ", varied_parameter_flattened, 
+					"  | Value: ", str_flatten(experiment[varied_parameter], "-"),
 					"   | Runs: ", runs))
 	
 	# map every runs specification to single_run_with recovery.
@@ -39,13 +43,11 @@ single_experiment <- function(experiment, static_specs, runs, no_of_cores, varie
 	future_.mapply(
 		FUN = single_run_with_recovery,
 		dots = experiment_specs,
-		MoreArgs = c(static_specs, varied_parameter = varied_parameter),
+		MoreArgs = c(static_specs, varied_parameter = varied_parameter_flattened),
 		future.seed = 123456
 	)
 	
 }
-
-
 
 # Varying Parameters --------------------------------------------------
 
@@ -88,7 +90,7 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, static_specs, run
 	# determine number of experiments (i.e. various alphas)
 	l <- map_int(experiment_sequence,
 					 .f = length) %>%
-		prod()
+		max()
 	
 	# wrangle specifications in usable format (one element per experiment)
 	experiment_sequence_specs <- map(experiment_sequence,

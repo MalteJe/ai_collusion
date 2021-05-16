@@ -32,7 +32,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  varied_parameter = character(0),     # helper for file management
 							  ... # further arguments passed to economic environment
 ) {
-	
 	# Garbage collection
 	gc()
 	
@@ -234,9 +233,10 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 		}
 		
 		# ...save compressed file in directory
+		
 		save(res, file = str_c(folder,
 									  features_by, "_",
-									  dynGet(varied_parameter, ifnotfound = "optimized"), "_",
+									  dynGet(str_extract(varied_parameter, "^[:alpha:]*"), ifnotfound = "optimized"), "_",
 									  run_id,
 									  ".RData"),
 			  compress = TRUE)

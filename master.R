@@ -162,7 +162,7 @@ walk2(.x = features_extraction_methods,
 		variable_specs = beta_input,
 		static_specs = static_specs,
 		runs = runs_per_experiment,
-		no_of_cores = 1)
+		no_of_cores = no_of_cores)
 
 
 # # Psi -------------------------------------------------------------------

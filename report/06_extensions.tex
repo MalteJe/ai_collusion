@@ -10,4 +10,33 @@
 	\item average reward setting
 \end{enumerate}
 
+\subsection{Algorithm Variations}\label{vary_algorithm}
+
+\subsubsection{On Policy}
+
+Note that $\delta_t$ can only be calculated after the action in the next period has been taken.\footnote{}
+
+\begin{gather}
+	\delta_t^{SARSA} = \pi_t + \gamma \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}) - \hat{q}(S_t, A_t, \boldsymbol{w})
+\end{gather}
+		
+
+\subsection{Differential Reward Setting}
+
+\begin{gather}
+\delta_t = r_t - \widetilde{R}_{t-1} + \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~   \text{,}
+\end{gather}
+
+$\widetilde{R}_{t-1}$ is a (weighted) average reward
+
+\emph{ex post} \emph{differential} profit $\pi_t - \widetilde{R}_{t-1}$ in conjunction with the estimated value of the newly arising state-action combination in $t+1$
+
+While they come with a meaningful economic interpretation, \textcite{sutton_reinforcement_2018} and \textcite{naik_discounted_2019} show that their use is inappropriate in infinite sequences with function approximation settings. Moreover, a policy maximizing average rewards is equivalent to a policy maximizing the average of discounted future values - irrespective of the particular discount factor.
+
+Surprisingly, this system 
+* discount factor can be = 1
+
+
+
+
 \pagebreak

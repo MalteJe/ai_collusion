@@ -31,20 +31,24 @@ S_t = \{ p_{i, t-1}, p_{j, t-1} \}
 \end{gather}
 
 
-Accordingly, for every state variable, the set of possible states is identical to the feasible actions, i.e. $\mathcal{A}$. However, this is not required with function approximation methods. Theoretically, any state variable could be continuous and unbounded. Similarly to actions, $s \in \mathcal{S}$ denotes any possible state set and $S_t$ refers to the actual states at $t$.
+Accordingly, for both state variables, the set of possible states is identical to the feasible actions, i.e. $\mathcal{A}$. However, this is not required with function approximation methods. Theoretically, any state variable could be continuous and unbounded. Similarly to actions, $s \in \mathcal{S}$ denotes any possible state set and $S_t$ refers to the actual states at $t$.
 
 
 
 
 
 
-Lastly, a set of parameters $\boldsymbol{w} = \{w_1, w_2, ..., w_D\}$, where $d \in \{1, 2, ..., D\}$, maps any combination of $S_t$ and $A_t$ to a value estimate $\hat{q-}_t$.\footnote{In the computer science literature, $\boldsymbol{w}$ is typically referred to as \emph{weights}. I will stick to the economic vocabulary and declare $\boldsymbol{w}$ parameters.} Hence:
+Lastly, a set of parameters $\boldsymbol{w}_t = \{w_{t, 1}, w_{t, 2}, ..., w_{t, D}\}$, where $d \in \{1, 2, ..., D\}$,\footnote{Henceforth, the time subscript is implied for individual components of $\boldsymbol{w}_t$, i.e.\ $w_{t,d} = w_d$.} maps any combination of $S_t$ and $A_t$ to a value estimate $\hat{q}_t$.\footnote{In the computer science literature, $\boldsymbol{w}$ is typically referred to as \emph{weights}. I will stick to the economic vocabulary and declare $\boldsymbol{w}$ parameters.} Hence:
 
 \begin{gather}\label{q_estimation}
-	\hat{q-}_t = \hat{q}(S_t,A_t,\boldsymbol{w}_t) = \hat{q}(p_{i, t-1}, p_{j, t-1}, p_{i, t}, \boldsymbol{w}_t)
+	\hat{q}_t = \hat{q}(S_t,A_t,\boldsymbol{w}_t) = \hat{q}(p_{i, t-1}, p_{j, t-1}, p_{i, t}, \boldsymbol{w}_t)
 \end{gather}
 
-More specifically, any state-action combination is represented by a \emph{feature vector} $\boldsymbol{x}_t = \boldsymbol{x}(S_t, A_t) = \{x_1(S_t, A_t), x_2(S_t, A_t), ..., x_D(S_t, A_t)\}$ and every \emph{feature} $x_d = x_d(S_t, A_t)$, where every element is derived from a state, an action or a combination thereof. Moreover each $x_d$ is associated with a counterpart $w_d$. In section \ref{feature_extraction} the mechanisms to extract features are outlined in more detail. For now, note that I will only consider linear functions of $\hat{q}$. In this case, \autoref{q_estimation} can be written as the inner product of the feature vector and the set of parameters, i.e.\ $\boldsymbol{x}_t \top \boldsymbol{w} = \sum_{d=1}^{D} x_d * w_d$
+More specifically, in order to map any state-action combination to a value estimate, each parameter $w_d$ is associated with a counterpart $x_d$, called a \emph{feature}. The value of every feature is derived  from a state variable, the considered action of a combination thereof:\ $x_d = x_d(S_t, A_t)$. Taken together, they form a \emph{feature vector} $\boldsymbol{x}_t = \boldsymbol{x}(S_t, A_t) = \{x_1(S_t, A_t), x_2(S_t, A_t), ..., x_D(S_t, A_t)\}$. Any state-action combination is represented by such a feature vector.\footnote{Tabular learning methods, such as Q-Learning, contain \emph{exactly one} feature per state-action combination. A single feature evaluates to $1$ if its dedicated state-action combination is played (or considered) and $0$ otherwise. Functional approximation methods employ more complicated mechanisms to extract features. \autoref{feature_extraction} outlines the methods utilized in this study in more detail.} It is important to realize that $\boldsymbol{x}_t$ is determined solely by the combination of $s$ and $a$. The mechanism, by which the state-action combinations are mapped to numerical values remains constant over time. Therefore, there is no need to subscript $x_d$. Contrary $\boldsymbol{w}_t$ constitutes the agent's valuation strategy at $t$ which is continuously refined over time. Note that I will only consider linear functions of $\hat{q}$. In this specific case, \autoref{q_estimation} can be written as the inner product of the feature vector and the set of parameters:
+
+\begin{gather}\label{q_estimation_linear}
+\boldsymbol{x}_t \top \boldsymbol{w}_t = \sum_{d=1}^{D} x_d(S_t, A_t) w_d = \sum_{d=1}^{D} x_d(p_{i, t-1}, p_{j, t-1}, p_{i, t}) w_d
+\end{gather}
 
 Two elements are required for the algorithms to work successfully. First, the agents must mix between \emph{exploration and exploitation}. Second, the set of parameters $\boldsymbol{w}$ must be continuously optimized.
 
@@ -72,62 +76,58 @@ Irrespective of the \emph{exploit vs explore} decision, the agent proceeds to le
 
 \paragraph{Update}
 
-After observing the opponent's price and the own profits, the agent exploits this new information to improve $\boldsymbol{w}$. A good starting point to introduce the utilized update rules is the so called \emph{TD error}, denoted $\delta_t$ (\textbf{finalize footnote}).\footnote{Without function approximation, versions of the \emph{TD error} usually encompass a discount factor $gamma$, such as:
-	\begin{center}
-		$\delta_t^{SARSA} = \pi_t + \gamma \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}) - \hat{q}(S_t, A_t, \boldsymbol{w})$
-		
-		$\delta_t^{Q-Learning} = \pi_t + \gamma ~ \underset{a}{max} ~ \hat{q}(S_{t+1}, a, \boldsymbol{w}) - \hat{q}(S_t, A_t, \boldsymbol{w})$
-\end{center}
-While they come with a meaningful economic interpretation, \textcite{sutton_reinforcement_2018} and \textcite{naik_discounted_2019} show that their use is inappropriate in infinite sequences with function approximation settings. Moreover, a policy maximizing average rewards is equivalent to a policy maximizing the average of discounted future values - irrespective of the particular discount factor.}
-
-\textbf{average setting update}
+After observing the opponent's price and own profits, the agent exploits this new information to improve its estimation technique. This study's full system to update the parameter vector $\boldsymbol{w}$ at $t$ comprises the calculation of a \emph{temporal-difference error} $\delta_t$, a vector of eligibility traces $\boldsymbol{z}_t$ tracking the importance of individual coefficients in $\boldsymbol{w}_t$ and the final ultimate update rule to refine $\boldsymbol{w}_t$: The full update system is defined by:
 
 \begin{gather}
-	\delta_t = r_t - \widetilde{R}_{t-1} + \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~   \text{,}
+\delta_t = r_t + \gamma \bar{V}_t(S_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~ \text{,} \label{td_error_expected} \\
+\boldsymbol{z}_{t} = 
+\gamma \lambda \rho_t \boldsymbol{z}_{t-1} + \frac{\Delta \hat{q}}{\Delta \boldsymbol{w}_t} ~~~~~ \text{,} \label{eligibility_trace_update} \\
+\boldsymbol{w}_{t+1} = \boldsymbol{w}_t + \alpha \delta_t	\boldsymbol{z}_t \label{update_rule}
 \end{gather}
 
-where the reward $r_t = \pi_t - p_n$ reflects the profits relative to the Nash solution and $\widetilde{R}_{t-1}$ is a (weighted) average reward.\footnote{Please note that I explicitly distinguish profits and rewards. Profits, $\pi$, represent the monetary remuneration from operating in the environment and can be interpreted economically. However, profits do not enter the learning algorithm directly. Instead, rewards, $r$, immediate successors of profits, constitute the signal that is utilized as feedback by the agents to refine their algorithms.} $\delta_t$ measures the difference between the \emph{ex ante} ascribed value to the selected state-action combination in $t$ and the \emph{ex post} \emph{differential} profit $\pi_t - \widetilde{R}_{t-1}$ in conjunction with the estimated value of the newly arising state-action combination in $t+1$. A positive $\delta_t$ indicates that the actual realization turned out to exceed the original expectation. Likewise, a negative $\delta_t$ suggests that the realization failed short of the expected reward of playing the particular state-action combination. In both instances, $\boldsymbol{w}$ will be adjusted accordingly, such that the state-action combination is valued respectively higher or lower next time. Note that $\delta_t$ can only be calculated after the action in the next period has been taken.\footnote{This is often referred to as \emph{SARSA}, abbreviating a state-action-reward-state-action sequence.}
+I will assess all three of the system's components. Starting with \autoref{td_error_expected}, $\delta_t$ represents the so called \emph{temporal-difference} or \emph{TD error}, i.e.\ the error associated with the estimation of $\hat{q}$.\footnote{The utilized update rule is often referred to as \emph{Expected SARSA}, where \emph{SARSA} abbreviates a state-action-reward-state-action sequence. Q-Learning is similar but evaluates the upcoming state based only on the action that is regarded as optimal:
+	\begin{center}
+		$\delta_t^{Q-Learning} = r_t + \gamma ~ \underset{a}{max} ~ \hat{q}(S_{t+1}, a, \boldsymbol{w}) - \hat{q}(S_t, A_t, \boldsymbol{w})$
+	\end{center}
+	In \autoref{vary_algorithm} I will consider a successor of Q-Learning suitable for function approximation.} It measures the difference between the \emph{ex ante} ascribed value to the selected state-action combination in $t$ on the right-hand side and the \emph{ex post} actual reward in conjunction with the estimated value of the newly arising state-action combination in $t+1$ on the left-hand side. To elaborate on the latter, the reward $r_t = \pi_t - p_n$ reflects the profits relative to the Nash solution.\footnote{Please note that I explicitly distinguish profits and rewards. Profits, $\pi$, represent the monetary remuneration from operating in the environment and can be interpreted economically. However, profits do not enter the learning algorithm directly. Instead, they serve as a precursor of rewards, $r$. Rewards constitute the signal that agents interpret as direct feedback to refine their algorithms.} $\gamma$ is the discount factor and is applied to the expected value of the upcoming state $\bar{V}_t(S_t)$, i.e.\ the average of all state-action estimates weighted by their probability of being played:
 
+\begin{gather}\label{expected_state_value}
+\bar{V}_t(S_t) = \sum_{a} Pr(a|S_{t+1}) ~ \hat{q}(S_{t+1}, a, \boldsymbol{w}_t) ~~   \text{,}
+\end{gather}
 
-Surprisingly, this system 
-* discount factor can be = 1
+where $Pr(a|S_{t+1})$ represents the probability of selecting an action conditional on the next state in accordance with \autoref{action_selection}. A positive $\delta_t$ indicates that the actual realization turned out to exceed the original expectation. Likewise, a negative $\delta_t$ suggests that the realization failed short of the expected reward of playing the particular state-action combination. In both instances, $\boldsymbol{w}$ will be adjusted accordingly, such that the state-action combination is valued respectively higher or lower next time.
 
+The second component, the eligibility trace $\boldsymbol{z}_t$ keeps track on the importance of individual coefficients when $\boldsymbol{w}$ in estimating $\hat{q}$ and ultimately, selecting an action. The idea is that the eligibility trace controls the magnitude by which individual parameters are updated, prioritizing those that contributed to producing an estimate of $hat{q}$. Though there exist various forms, \autoref{eligibility_trace_update} employs the most popular variation, an \emph{accumulating eligibility trace} \textbf{citation needed}.\footnote{\textcite{seijen_true_2014} develop the \emph{Dutch Trace} which has been shown to be a little more powerful. For the sake of simplicity and computational efficiency, it is not used in this study.} Specifically, the update comprises two components: a decay term and the gradient of $\hat{q}$. With respect to the former, note that $\boldsymbol{z}_{t-1}$ is multiplied with the known discount factor $\gamma$, another parameter $\lambda \in [0,1]$ (more on which below) and the \emph{importance sampling ratio} $\rho_t$:
 
+\begin{gather}
+	 \rho_t = \frac{\kappa(A_t|S_{t})}{Pr(A_t|S_t)} ~~  \text{,}
+\end{gather}
 
-
-
-
-\emph{Semi-gradient} methods constitute a basic procedure for such continuous optimization. They serve as a good benchmark before developing more complex algorithms. Essentially, the direction and magnitude of updating parameters is driven by the \emph{TD error} $\delta_t$ and the gradient of $\hat{q}_t(S_t, A_t, \boldsymbol{w})$ with respect to $\boldsymbol{w}$:
-$\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}} =
+where $Pr(A_t|S_t)$ is the probability of having selected $A_t$ given $S_t$ under the utilized $\epsilon$-greedy policy and $\kappa(A_t|S_t)$ is the probability of selecting $A_t$ given $S_t$ under a hypothetical \emph{target policy} without exploration ($\epsilon = 0$). Accordingly, $\rho_t$ is zero if the agent chooses to explore because under the target policy, the probability of choosing a non-greedy action is null. On the other hand, $\rho_t$ exceeds 1 if a greedy action is selected, because under the target policy the selected action is always greedy. Consequently, the left term resets $\boldsymbol{z}$ to $\boldsymbol{0}$ once a non-greedy action is selected. Otherwise, whether the components of $\boldsymbol{z}$ decay towards zero or accumulate depends on the specific combination of $\gamma$, $\lambda$ and $\beta$ (which affects $Pr(A_t|S_t)$). The second term is the gradient of $\hat{q}_t(S_t, A_t, \boldsymbol{w}_t)$ with respect to $\boldsymbol{w}_t$:
+$\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}_t} =
 \{ \frac{\Delta \hat{q}}{\Delta w_1},
 \frac{\Delta \hat{q}}{\Delta w_2},
 ...,
-\frac{\Delta \hat{q}}{\Delta w_d}  \}$. The update rule is:
+\frac{\Delta \hat{q}}{\Delta w_d}  \}$. As indicated earlier, I will only consider approximations that are linear in parameters. Thus, $\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}}$ simplifies to the \emph{feature vector} $\boldsymbol{x}_t = \{x_1, x_2, ..., x_d\}$. This simplification also elucidates the purpose of the eligibility trace. It puts higher weights on coefficients that have been used to decide on $A_t$ and ensures that they can be altered faster and beyond the horizon of a single time period.
 
-\begin{gather}
- \boldsymbol{w}_{t+1} \leftarrow \boldsymbol{w}_t +
- 	\alpha \delta_t
- 	\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}} ~~ \text{,}
-\end{gather}
+To illustrate the benefits of eligibility traces consider the following example. An agent selects an action that yields a good immediate reward, but unexpectedly disappointing outcomes in the subsequent period.\footnote{For instance, a deviation from a collusive price level yields high immediate profits but might be followed by punishment prices.} Without eligibility traces, the action yields a positive $\delta$ and weights are updated accordingly. There is no direct 'negative credit' for the underwhelming outcomes in episodes in the more distant future.\footnote{In the long run, the agent might still end up refraining from playing the myopic action by taking into account the low estimated value of the subsequent state.} On the other hand, with eligibility traces, a similar immediate effect on updating $\boldsymbol{w}$ takes place but the underwhelming results from periods in the more distant future evoke a retrospective readjustment.
 
-where $\alpha$ steers the speed of learning. As indicated earlier, I will only consider approximations that are linear in parameters. Thus, $\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}}$ simplifies to the \emph{feature vector} $\boldsymbol{x}_t = \{x_1, x_2, ..., x_d\}$.
+\textbf{paragraph on lambda}
+* lambda controls the degree of 'retrospective foresight'
+* lambda == 0 -> eq.13 meaningless and more simple algorithm
+* higher lambda -> problems with convergence (\textbf{citation})
 
-\textcite{seijen_true_2014} showed that the performance of that algorithm can be improved by keeping track of an eligibility vector $\boldsymbol{z} = \{z_1, z_2, ..., z_d\}$, called the \emph{Dutch Trace}. Like $\boldsymbol{w}$, this trace vector is updated at every time step. The trick is that the eligibility trace controls the magnitude by which individual parameters are updated, prioritizing those that contributed to producing an estimate of $hat{q}$. The update rule for the eligibility trace is:
 
-\begin{gather}
-\boldsymbol{z}_{t} \leftarrow \boldsymbol{z}_{t-1} \gamma \lambda + \boldsymbol{x_t} (1 - \alpha \gamma \lambda  {  \boldsymbol{x_t} \intercal \boldsymbol{z}_{t-1} }) ~~ \text{,}
-\end{gather}
+Armed with the TD error $\delta_t$ and the eligibility trace $\boldsymbol{z}_t$, the final piece is an update rule to improve the parameter vector $\boldsymbol{w}$ as dictated by \autoref{update_rule}.
+Again, the way $\boldsymbol{z}$ enters \autoref{update_rule} ensures 'important' parameters are prioritized
+$\alpha$ steers the speed of learning. 
 
-where $ \boldsymbol{x}_t \top \boldsymbol{z}_t $ denotes the inner product of $\boldsymbol{x}_t$ and $\boldsymbol{z}_t$, i.e. $ \boldsymbol{x}_t \top \boldsymbol{z}_t  = \sum_{i}^{d} x_i z_i$. $\boldsymbol{z}$ is then used in the refined parameter update:
 
-\begin{gather}
-	\boldsymbol{w}_{t+1} \leftarrow
-		\boldsymbol{w}_{t} +
-		\alpha \delta \boldsymbol{z}_t +
-		\alpha ( \boldsymbol{w}_t \intercal \boldsymbol{x}_t  -
-				 \boldsymbol{w}_{t-1} \intercal \boldsymbol{x}_t)
-				(\boldsymbol{z}_t - \boldsymbol{x}_t)
-\end{gather}
+\emph{Semi-gradient} methods constitute a basic procedure for such continuous optimization. Essentially, the direction and magnitude of updating parameters is driven by $\delta_t$ and the gradient of $\hat{q}$ 
+
+
+
+
 
 
 

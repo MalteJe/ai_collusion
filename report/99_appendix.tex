@@ -12,3 +12,26 @@
 	\caption{all runs for manually optimized $\alpha$}
 	\label{all_runs}
 \end{figure}
+
+
+\autoref{intervention_profit_boxplot} displays the difference between profits agents receive after the forced deviation takes place and profits of the alternative path with no deviation.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/intervention_profit_boxplot.png}
+	\caption{distribution of profits at and after deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the profits at the same $\tau$ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+	\label{intervention_profit_boxplot}
+\end{figure}
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/intervention_profitabiliy_polygon.png}
+	\caption{Distribution of additional profitability due to deviation by agent and feature extraction method. Width of bins: 0.02. 6 extreme data points ($<-0.5$ or $>0.5$) are excluded for better presentability. Deviations are deemed \emph{profitable} if the discounted profits until $\tau = 10$ due to the deviation exceed cash flows from a counterfactual without deviation. Discounting is paramount to $\Delta$ in \textbf{equation X}, i.e.\ 0.95. The spike at zero is due to a significant number of 'deviations' that are neither profitable nor unprofitable. In those runs, the learned strategy of the deviating agent at $\tau = 1$ amounts to the best response and both agents keep following their respective price cycle.}
+	\label{intervention_profitability_polygon}
+\end{figure}
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/intervention_poly_tiling.png}
+	\caption{Prices and profits of 3 individual runs belonging to the \emph{optimal } polynomial tiling experiment. Run \emph{01} shows the common pattern of immediate reversal to pre-deviation prices and profits. Run \emph{06} has the deviating agent continue to cheat and increasing her long-term profits. Run \emph{12} shows the non deviating agent meeting the price cut. This also yields a new equilibrium with lower prices. Since the pre-deviation prices were slightly above the collusive benchmark, the new equilibrium actually improves both agent's profits in this particular example.}
+	\label{intervention_poly_tiling}
+\end{figure}

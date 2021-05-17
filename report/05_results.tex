@@ -58,7 +58,7 @@ In accordance with the outlined convergence criteria above, \autoref{converged} 
 
 Regarding the failed runs, \textbf{recall} from \autoref{feature_extraction} that features of polynomial extraction are not binary and warrant cautious adjustments of the coefficient vector. I suspect that with unreasonably large values of $\alpha$, the estimates of $\boldsymbol{\theta}$ overshoot early in the simulation, don't recover and at some point exceed the software's numerical limits.\footnote{Controlled runs where I could carefully monitor the development of the coefficient vector $\boldsymbol{w}$ seem to confirm the hypothesis. However, isolated errors \emph{with} reasonable parameter settings remain unexplained.} While imoportant to acknowledge, the failed runs are largely an artifact of unreasonable specifications and I will \textbf{disregard them for the remainder of this chapter}. For instance, the percentages in the subsequent paragraph don't account for the failed runs.
 
-Out of thecompleted runs without program failure, 95.4\% did converge. Though there are subtle differences between feature extraction methods. With only one exception, both tiling methods converged consistently for various $\alpha$. With only 85.4\% of runs converging, separate polynomials constitute the other extreme. The figure also indicates that convergence becomes less likely for low values of $\alpha$. With tabular learning, 92.9\% of runs converged without clear relation to different values of $\alpha$.
+Out of the completed runs without program failure, 95.4\% did converge. Though there are subtle differences between feature extraction methods. With only one exception, both tiling methods converged consistently for various $\alpha$. With only 85.4\% of runs converging, separate polynomials constitute the other extreme. The figure also indicates that convergence becomes less likely for low values of $\alpha$. With tabular learning, 92.9\% of runs converged without clear relation to different values of $\alpha$.
 
 \autoref{convergence_at} displays a frequency polygon of the runs that achieved convergence within 500,000 episodes. Clearly, the distribution is fairly uniform across feature extraction methods. Most runs converged between 200,000 and 300,000 runs. This is an artifact of the decay in exploration as dictated by $\beta$. Before the focal point of 200,000 is reached, agents probabilistically experiment too frequently to observe 10,000 consecutive episodes without any deviation from the learned strategies. Thereafter, it becomes increasingly likely that both agents keep \emph{exploiting} their current knowledge and continuously play the same strategy for a sufficiently long time to trigger the convergence criteria. Note that the low quantity of runs converging between 300,000 and 500,000 suggests that increasing the maximum of allowed episodes would not necessarily entail a significantly higher portion of converged runs.
 
@@ -107,28 +107,31 @@ Naturally, averaging $\Delta$ over runs as in \autoref{alpha} potentially hides 
 
 \autoref{convergence} and \autoref{alpha} established that, what constitutes a sensible value of $\alpha$ clearly depends on the feature extraction method. Hence, for the remainder of this chapter, I will select an \emph{optimal} $\alpha$ for every feature extraction method and present further results only for these combinations. In determining an `optimal` $\alpha$, I don't rely on a single hard criteria, rather I consider a number of factors including the percentage of converged runs, comparability with previous studies and prefer to select experiments with high average $\Delta$ as they are most central to the purpose of this study. \autoref{justifications} provides a justification for every experiment deemed \emph{optimal}. To get a sense of the variability of runs within the experiments and the price trajectory over time, \autoref{trajectory_Delta} displays the development of profits of all runs for the 'optimized' values of $\alpha$. \autoref{appendix} providisues further trajectory valizations of prices and profits.
 
-\begin{table}
+\begin{center}
+	\begin{table}
+		
+		\begin{tabular}{|l|c|l|}
+			\hline
+			\textbf{Feature Extraction Method}&$\boldsymbol{\alpha}$&\textbf{justification} \\
+			\hline
+			Tabular&0.1&- comparability with previous simulation studies \\
+			&&- most pronounced response to price deviations \\
+			&& \ \ (see \autoref{deviations}) \\
+			\hline
+			Tile Coding&0.001&- high $\Delta$ \\
+			&&- most pronounced response to price deviations \\
+			&&\ \ (see \autoref{deviations}) \\
+			\hline
+			Separated Polynomials&$10^{-6}$&- high percentage of converged runs \\
+			\hline
+			Polynomial Tiles&$10^{-8}$&- high $\Delta$ \\
+			\hline
+		\end{tabular}
+		\caption{\emph{Optimized} values of $\alpha$ by feature extraction method}
+		\label{justifications}
+	\end{table}
+\end{center}
 
-	\begin{tabular}{|l|c|l|}
-		\hline
-		\textbf{Feature Extraction Method}&$\boldsymbol{\alpha}$&\textbf{justification} \\
-		\hline
-		Tabular&0.1&- comparability with previous simulation studies \\
-		&&- most pronounced response to price deviations \\
-		&& \ \ (see \autoref{deviations}) \\
-		\hline
-		Tile Coding&0.001&- high $\Delta$ \\
-		&&- most pronounced response to price deviations \\
-		&&\ \ (see \autoref{deviations}) \\
-		\hline
-		Separated Polynomials&$10^{-6}$&- high percentage of converged runs \\
-		\hline
-		Polynomial Tiles&$10^{-8}$&- high $\Delta$ \\
-		\hline
-	\end{tabular}
-	\caption{\emph{Optimized} values of $\alpha$ by feature extraction method}
-	\label{justifications}
-\end{table}
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/trajectory_Delta.png}
@@ -136,41 +139,64 @@ Naturally, averaging $\Delta$ over runs as in \autoref{alpha} potentially hides 
 	\label{trajectory_Delta}
 \end{figure}
 
-
+\textbf{paragraph on differences between player profits?}
 
 \subsection{Price Ranges}\label{prices}
 
-As established in \autoref{convergence}, many simulations converge in price cycles of various lengths. Recall in particular that some feature extraction methods are more prone to long cycles than others. \autoref{price_range} plots the range between the lowest and highest price a single agent charges in a cycle upon convergence. Naturally, the price range is null if no cycle is present. Perhaps unsurprisingly, the price range then increases with the cycle length.
+As established in \autoref{convergence}, many simulations converge in price cycles of various lengths. \autoref{price_range} plots the range between the lowest and highest price a single agent charges in a cycle upon convergence. Naturally, the price range is null if no cycle is present. Perhaps unsurprisingly, the price range then tends to increase with cycle length, at times becoming remarkably high. The range of prices due to tabular learning frequently exceeds the range between collusive and Nash prices. This is a clear indication that price setting is occasionally irrational. Irrespective of agents competing or colluding, prices outside this range are not economically optimal. Recall from \autoref{convergence} that other feature extraction methods tend to yield lower cycle lengths. \autoref{price_range} extends that observation with the insight that those methods also produce lower price ranges. However, the inversion of the previous argument is dangerous. One should not deduct that behavior is \emph{closer to optimal} from the mere fact that appear more stable. In fact, the next section shows that the strategies learned with function approximation are often far from optimal and easy to exploit. Potential consequences of frequent price changes of significant magnitude are discussed \textbf{in section X}.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/price_range.png}
-	\caption{Distribution of price ranges as a function of feature extraction method and cycle length. Price range is defined as the range of prices \emph{one} agent charges upon convergence. Relationships to the opponent's prices are not examined. Only converged runs are considered (as cycle length is unavailable for other runs). Dashed line represents the difference between both collusive and Nash outcome (i.e.\ $p_m - p_n$). Box widths are scaled proportionally to the square-roots of number of observations within each group.}.
+	\caption{Price range of individual runs. Every point represents a particular point. Within groups, points are spaced out horizontally. Price range is defined as the difference between the highest and lowest price an agent charges within a cycle. Relationships to the opponent's prices are not examined. Only converged runs are considered (as cycle length is unavailable for other runs). Dashed line represents the difference between collusive and Nash outcome (i.e.\ $p_m - p_n$).}
 	\label{price_range}
 \end{figure}
 
 
 \subsection{Deviations}\label{deviations}
 
-This section examines whether the learned strategies are stable in the face of deviations. As outlined before, collusion requires a \emph{reward punishment scheme} and it seems instructive to assess whether the agents learned to punish deviations. In order to scrutinize that, I had one agent deviate from the stable price cycle by playing the short-term best response to maximize own profits \emph{after} convergence was detected. Subsequently, both agents played the learned strategies again for 10 episodes. For the period of that intervention, learning and exploration was turned off.
+This section examines whether the learned strategies are stable in the face of deviations to the learned behavior. There are at least two explanations for the existence of supra-competitive outcomes. First, agents simply fail to learn to compete effectively and miss out on opportunities to undercut their opponent. Second, agents avoid deviating from the stable strategy because they fear retaliation and lower (discounted) profits in the long run. \textbf{As outlined before}, only the latter cause, some form of a\emph{reward punishment scheme}, allows to label the supra-competitive outcomes as \emph{collusive} and warrants attention from competition policy \parencite{assad_algorithmic_2020}. Therefore, the following \emph{deviation experiment} was conducted to scrutinize whether agents learn to actually punish deviations. Denote the period in which convergence was detected as $\tau = 0$. At this point, both agents played for 10,000 episodes an equilibrium strategy they mutually regard as optimal (on path). At $\tau = 1$, I force one agent to deviate from her learned strategy and play instead the short-term best response that mathematically maximizes profits at $\tau = 1$. Subsequently, she reverts again to the learned strategy. In order to verify whether the non deviating agent proceeds to punish the cheater, he sticks to his learned behavior throughout the deviation experiment. The \emph{deviation experiment} lasts 10 episodes in total ($\tau \in (1, 2, .., 10)$). Learning and exploration are disabled (i.e.\ $\alpha = \epsilon = 0$).\footnote{See \textbf{section TBD} for prolonged deviations and continued learning \emph{after} detected convergence.} In order to evaluate the deviation, it appears useful to define a \emph{counterfactual} situation where both agents stick to their learned strategies. Comparing (discounted) profits between the experiment and the counterfactual allows to assess the profitability of the deviation.
 
-\autoref{average_intervention} displays the average price trajectory around the manually imposed deviation. It exhibits clear differences between the considered feature extraction methods. 
+\textbf{words on punishment strategies: grim trigger vs. slow reversal }
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/average_intervention.png}
-	\caption{average price trajectory around deviation}
+	\caption{Average price trajectory around deviation. }
 	\label{average_intervention}
 \end{figure}
 
-As the average price trajectory might hide subtle differences between runs even within the same experiment, \autoref{intervention_violin} displays the distribution of at and after the deviation.
-
+As the responses to one agent's deviation vastly differ across feature extraction methods, it is natural to discuss them separately at first and contrast differences only thereafter.  It is difficult to summarize all information in a single graph or table, so I will consult \autoref{average_intervention}, \autoref{intervention_boxplot} and \autoref{share_deviation_profitability} simultaneously to describe the deviation and response patterns. Before that, a brief description of the plots is in line. \autoref{average_intervention} displays the price trajectory around the forced deviations averaged over all runs of an experiment.\footnote{To reiterate the result from the previous section, the plot reinforces that the price variation between periods is non-negligible even \emph{before} the deviation takes place - despite averaging over all runs of the optimal experiments.}  Since the average price trajectory might veil important differences between runs, \autoref{intervention_boxplot} illustrates the range of deviation and punishment prices compared to the counterfactual price that would have materialized if no deviation had taken place and agents kept following their learned strategies.\footnote{\autoref{intervention_profit_boxplot} in \autoref{appendix} shows a similar plot for profits.} Note that in the presence of price cycles, part of the variation can be explained by \emph{cycle shifting}, a phenomenon where the agents return to the learned cycle but the intervals are not aligned with the counterfactual path. These differences should even out over runs and thus, not systematically bias the boxes in either direction. Similarly, the average price response in \autoref{average_intervention} is largely unaffected by this phenomenon. Finally, \autoref{share_deviation_profitability} reports the share of deviations that turned out to be profitable compared to the counterfactual.\footnote{\autoref{intervention_profitability_polygon} in \autoref{appendix} displays a more detailed frequency polygon to gauge how much more or less profitable the deviation is compared to the counterfactual of sticking to the learned strategy.}
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{plots/intervention_violin.png}
-	\caption{distribution of prices at and after deviation relative to prior equilibrium. Every violin has the same maximum width, i.e.\ width between violins are not comparable. Tails are trimmed}
-	\label{intervention_violin}
+	\includegraphics[width=\linewidth]{plots/intervention_boxplot.png}
+	\caption{distribution of prices at and after deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the price at the same $\tau$ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+	\label{intervention_boxplot}
 \end{figure}
 
-\pagebreak
+Most importantly, only tabular learning evokes a conspicuous punishment from the non deviating agent. At $\tau = 2$, the non deviating agent tends to match, arguably even undercut, the deviation price whereas the deviating agent already begins reverting to pre-deviation prices. Though this result's general validity is qualified. \autoref{intervention_boxplot} unveils that the non deviating agent does not always reduce prices compared to the counterfactual. Despite the existence of punishment prices in some runs, agents are fairly quick to return to the price levels observed before the deviation was forced upon them. As early as $\tau = 4$ there is no visible difference between average pre- and post-deviation price levels.\footnote{Previous studies showcase a strong deviation is usually followed by a more gradual reversion to pre-deviation behavior (around 5-10 episodes), see in particular Figure 4 in \textcite{calvano_algorithmic_2018} and Figure 3 in \textcite{klein_autonomous_2019}.} This might partly follow from prices being relatively close to the Nash equilibrium in the first place. The punishments ensure that deviating is (strictly) profitable in only 17\% of runs. This suggests that, upon convergence, agents stick to a stable equilibrium, from which deviations tend to be unprofitable due to the cheated agent retaliating.
+
+\begin{center}
+	\begin{table}
+		\input{tables/share_deviation_profitability.tex}
+		\caption{Share of profitable and non-profitable deviations by agent and feature extraction method. Deviations are deemed \emph{profitable} if the discounted profits until $\tau = 10$ due to the deviation exceed cash flows from a counterfactual without deviation. Discounting is paramount to $\Delta$ in \textbf{equation X}, i.e.\ 0.95. A significant number of 'deviations' are neither profitable nor unprofitable. In those runs, the learned strategy of the deviating agent is actually the best response at $\tau = 1$ and both agents keep following their respective price cycle.}
+		\label{share_deviation_profitability}
+	\end{table}
+\end{center}
+
+When examining the outcomes of the other feature extraction methods, different conclusions emerge. Recall from \autoref{alpha} that tile coding yielded convergence profits very similar to tabular learning. Yet, \autoref{average_intervention} and \autoref{share_deviation_profitability} only hint at slight punishments in some runs. In fact, the median of the cheated agent's price at $\tau = 2$ is exactly 0, which amounts to a complete absence of a response. This lack of punishment renders 56\% of the cheater's deviations profitable. In light of that, it is surprising the cheating agent tends to return to pre-intervention price levels instead of continuing to exploit her opponent's failure to punish deviations.
+
+This is even more true for the feature extraction method utilizing separate polynomials. \autoref{convergence} outlined that this method typically did not converge in price cycles but a continuously played single price instead. (In that sense, the opponent's behavior is more predictable and deviations easier to undertake.) The deviation impulse and responses are easy to summarize. In all runs, after the forced intervention at $\tau = 1$, both agents immediately return to the pre-deviation equilibrium. This is remarkable for two reasons. First, the non deviating agent completely fails to punish the cheater's behavior and does not respond to the price cut whatsoever. Consequently, 69\% of the deviations are profitable.\footnote{The remaining 31\% comprise runs where the deviating agent was already playing the short-term best response. Remember that the separated polynomial method tends to result in prices at or close to the Nash equilibrium.} This leads to the second point. Despite the obvious advantage of cheating, the deviating agent returns to the pre-deviation price without exception, thus failing to exploit her opponent's weakness. To be fair, the initial price levels are fairly close to the Nash equilibrium and the deviation's profitability is relatively small compared to the potential gains realizable in other experiments (see also \autoref{intervention_profitability_polygon} in \autoref{appendix}). Still, it is puzzling that such a simple strategy improvement remains consistently untapped. In conclusion, the agents' failure to play economically sound strategies casts doubts on the viability of the feature method in reality.
+
+Finally, turn your attention to the experiment with polynomial tiling. Recall that this experiment generated outcomes closest to perfect collusion. By and large, the deviation experiment for polynomial tiling is similar to the one with separated polynomials, but there are some variations between runs that warrant detailed examination. Consider first the non deviating agent. Again, the majority of runs exhibits a failure to respond to the price cut. However, selected runs show a \emph{matching} strategy where the cheated agent meets the price cut with a similar price. Notably, in those circumstances, agents \emph{do not return} to the previously learned path but quickly establish a new equilibrium. Moreover, note that \autoref{intervention_boxplot} displays a slight bias downwards over all periods. This is indicative of \emph{continued cheating} of the deviating agent. After being forced to undercut the price, she proceeds to set prices below pre-deviation levels without getting punished. This, too, results in a new equilibrium. \autoref{intervention_poly_tiling} in \autoref{appendix} illustrates both phenomena (price matching and continued cheating) through the exact price sequence of exemplary runs. In light of high pre-deviation prices and the lack of retaliatory prices, it is unsurprising that 96\% of deviations are profitable. The conclusions for polynomial tiling are similar to the separated polynomials. Baring a few exceptions, the non deviating agent fails to respond to a price cut and is easy to exploit. On the other hand, the deviating agent tends to leave that weakness unexploited.
+Overall the deviation exercise suggests that while algorithmic agents manage to sustain high prices when playing each other, their strategies are incomplete and easy to exploit.
+
+\textbf{summary of all methods}
+
+Evidently, under the regime of this study's simulations, tabular learning is better in producing stable supra-competitive outcomes than the functional approximation methods. To illustrate the notion of \emph{stability} in this context, consider the following thought experiment of a \emph{superagent}. Upon convergence, a rational player with perfect information on the economic environment and the algorithm's inner workings including their learned best responses enters the game and takes over pricing authority from one of them.\footnote{For the sake of the argument it is irrelevant whether this superagent is human or not.} Importantly, the superagent could anticipate the opponent's price in the next period and calculate the short-term maximizing response as well as the opponent's response to the deviation and so on. When playing against a tabular learning agent, the superagent would deliberately stick to the convergence pricing scheme as a cheating surely evokes a retaliation rendering a deviation unprofitable (see \autoref{share_deviation_profitability}).\footnote{In the long run, the superagent might even increase prices to increase the overall price level.} Contrary, when facing an opponent who learned utilizing a functional approximation method, the superagent could easily cheat on the opponent to increase short-term profits without being punished in subsequent periods.
+
+The evidence also suggests that functional approximation methods create hesitancy in the agents to change best responses. Probabilistically, \emph{exploration} ensures that both agents will undercut the price of their opponent and realize excess profits similar to those in the forced deviation experiment. However, it appears that agents fail to learn (enough) from such \emph{explored cheating}. As evidenced by the undertaken deviation experiment, they typically return to the prior price (cycle) immediately. This rigidity in adjusting strategies potentially points to a problem with the specific algorithm or the tuning of its parameters. For instance, a higher $\alpha$ could enable the cheater to learn faster that an unpunished deviation is more profitable than adhering to the learned strategy. 
+
+Recall that learning and exploration were turned off for the deviation experiment. This enables an objection to the presented results. The non deviating agent, stripped of his ability to adjust his strategy, might only be exploitable for a finite number of episodes until he adjusts his strategy. In fact, a generosity to disregard isolated price cuts might be conducive to establishing high price early in the simulation runs. However, \autoref{prolonged deviation} demonstrates that the lack of punishment in response to a deviation remains ubiquitous in prolonged deviation experiments with enabled learning ($\alpha > 0$).
+
 \subsection{responses off equilibrium}
 
 \textbf{TBD}

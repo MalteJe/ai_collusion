@@ -1,10 +1,14 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces \emph {Optimized} values of $\alpha $ by feature extraction method}}{32}{table.1}%
+\contentsline {table}{\numberline {1}{\ignorespaces Parametrization of learning parameters. Baseline and variations.}}{21}{table.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {2}{\ignorespaces Share of profitable and non-profitable deviations by agent and feature extraction method. Deviations are deemed \emph {profitable} if the discounted profits until $\tau = 10$ due to the deviation exceed cash flows from a counterfactual without deviation. Discounting is paramount to $\Delta $ in \textbf {equation X}, i.e.\ 0.95. A significant number of 'deviations' are neither profitable nor unprofitable. In those runs, the learned strategy of the deviating agent is actually the best response at $\tau = 1$ and both agents keep following their respective price cycle.}}{39}{table.2}%
+\contentsline {table}{\numberline {2}{\ignorespaces Feature extraction methods, number of parameters with $m=19$ and complexity.}}{23}{table.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {3}{\ignorespaces Excellent Songs}}{52}{table.3}%
+\contentsline {table}{\numberline {3}{\ignorespaces \emph {Optimized} values of $\alpha $ by feature extraction method}}{37}{table.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {4}{\ignorespaces Diamonds Linear Regression}}{53}{table.4}%
+\contentsline {table}{\numberline {4}{\ignorespaces Share of profitable and non-profitable deviations by agent and feature extraction method. Deviations are deemed \emph {profitable} if the discounted profits until $\tau = 10$ due to the deviation exceed cash flows from a counterfactual without deviation. Discounting is paramount to $\Delta $ in \textbf {equation X}, i.e.\ 0.95. A significant number of 'deviations' are neither profitable nor unprofitable. In those runs, the learned strategy of the deviating agent is actually the best response at $\tau = 1$ and both agents keep following their respective price cycle.}}{45}{table.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {5}{\ignorespaces Excellent Songs}}{58}{table.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {6}{\ignorespaces Diamonds Linear Regression}}{59}{table.6}%

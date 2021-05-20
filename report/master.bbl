@@ -528,7 +528,7 @@
       \verb{url}
       \verb https://papers.ssrn.com/abstract=3282235
       \endverb
-      \keyw{Algorithmic Tacit Collusion,Algorithms,Antitrust,Collusion,Competition Law,Hub and Spoke,Tacit Collusion}
+      \keyw{Collusion,Algorithms,Antitrust,Competition Law,Tacit Collusion,Algorithmic Tacit Collusion,Hub and Spoke}
     \endentry
     \entry{fischer_collusion_2019}{article}{}
       \name{author}{2}{}{%
@@ -900,6 +900,41 @@
       \verb https://www.ofgem.gov.uk/publications-and-updates/investigation-whether-economy-energy-e-gas-and-electricity-and-dyball-associates-have-infringed-chapter-i-competition-act-1998-respect-suspected-anti-competitive-agreement
       \endverb
     \endentry
+    \entry{schwartz_reinforcement_1993}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=66b090e34ebff790c43d64e6788e90a0}{%
+           family={Schwartz},
+           familyi={S\bibinitperiod},
+           given={Anton},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{66b090e34ebff790c43d64e6788e90a0}
+      \strng{fullhash}{66b090e34ebff790c43d64e6788e90a0}
+      \strng{bibnamehash}{66b090e34ebff790c43d64e6788e90a0}
+      \strng{authorbibnamehash}{66b090e34ebff790c43d64e6788e90a0}
+      \strng{authornamehash}{66b090e34ebff790c43d64e6788e90a0}
+      \strng{authorfullhash}{66b090e34ebff790c43d64e6788e90a0}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{While most Reinforcement Learning work utilizes temporal discounting to evaluate performance, the reasons for this are unclear. Is it out of desire or necessity? We argue that it is not out of desire, and seek to dispel the notion that temporal discounting is necessary by proposing a framework for undiscounted optimization. We present a metric of undiscounted performance and an algorithm for finding action policies that maximize that measure. The technique, which we call R-learning, is modelled after the popular Q-learning algorithm [17]. Initial experimental results are presented which attest to a great improvement over Q-learning in some simple cases.}
+      \field{isbn}{978-1-55860-307-3}
+      \field{month}{12}
+      \field{title}{A {Reinforcement} {Learning} {Method} for {Maximizing} {Undiscounted} {Rewards}}
+      \field{year}{1993}
+      \field{pages}{298\bibrangedash 305}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1016/B978-1-55860-307-3.50045-9
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\psymo\\Zotero\\storage\\NB89DL83\\Schwartz - 1993 - A Reinforcement Learning Method for Maximizing Und.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{seijen_true_2014}{inproceedings}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=5f41c43aea184b1ebb935b32cad851f9}{%
@@ -1057,6 +1092,8 @@
   \missing{grapov2018rise}
   \missing{maskine-tirole}
   \missing{noa}
+  \missing{rummery_niranjan_1994}
+  \missing{sutton_1988}
 \endrefsection
 \endinput
 

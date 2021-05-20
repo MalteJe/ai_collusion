@@ -1,12 +1,12 @@
-\section{Reinforcement Learning with Function Approximation}
+\section{Algorithm}\label{algorithm}
 
 if the system were stationary --> convergence guarantee (e.g. Jaakoola et al. 1994). However, non-stationarity induced by multi-agent learning breaks that guarantee. To my knowledge, no guarantees, but empirically strong results
 
 Though both agents repeatedly face the environment as presented in \autoref{enironment}, I will present this section from the vantage point of a single agent. Accordingly, the subscript {i} is dropped when appropriate.
 
-\subsection{value approximation}\label{value_approximation}
+\subsection{Value approximation}\label{value_approximation}
 
-The agent learns to approximate the value of an action given the available information. The potential actions reflect the available prices in the current period. It is useful to discretize the action space.\footnote{This discretization usually implies that agents will not charge exactly $p_n$ or $p_m$.} Compared to the baseline specification in \textcite{calvano_artificial_2019}, I consider a wider price range confined by a lower bound $A^L$ and an upper bound $A^U$:
+The agent learns to approximate the value of an action given the available information. The potential actions reflect the available prices in the current period. It is useful to discretize the action space.\footnote{This discretization usually implies that agents will not be able charge exactly $p_n$ or $p_m$.} Compared to the baseline specification in \textcite{calvano_artificial_2019}, I consider a wider price range confined by a lower bound $A^L$ and an upper bound $A^U$:
 
 \begin{gather}
 A^{L} = c
@@ -18,7 +18,7 @@ A^{U} = p_m + \zeta (p_n - c)
 
 The lower bound ensures positive margins. It is conceivable that a human manager could implement a sanity restriction like that before ceding pricing authority to an algorithm. The parameter $\zeta$ controls the extent to which the upper bound $A^U$ exceeds the monopoly price. With $\zeta = 1$, the difference between $A^{L}$ and $p_n$ is equal to the difference between $A^{U}$ and $p_m$. The available set of prices $\mathcal{A}$ is then evenly spaced out in the interval $[A^L, A^U]$:
 
-\begin{gather}
+\begin{gather}\label{available_prices}
 	\mathcal{A} = (A^L, A^L + \frac{1(A^U - A^L)}{m-1}, A^L + \frac{2(A^U - A^L)}{m-1}~ , ... , ~ A^L + \frac{(m-2)(A^U - A^L)}{m-1}, A^U)
 \end{gather}
 
@@ -44,7 +44,7 @@ Lastly, a set of parameters $\boldsymbol{w}_t = \{w_{t, 1}, w_{t, 2}, ..., w_{t,
 	\hat{q}_t = \hat{q}(S_t,A_t,\boldsymbol{w}_t) = \hat{q}(p_{i, t-1}, p_{j, t-1}, p_{i, t}, \boldsymbol{w}_t)
 \end{gather}
 
-More specifically, in order to map any state-action combination to a value estimate, each parameter $w_d$ is associated with a counterpart $x_d$, called a \emph{feature}. The value of every feature is derived  from a state variable, the considered action of a combination thereof:\ $x_d = x_d(S_t, A_t)$. Taken together, they form a \emph{feature vector} $\boldsymbol{x}_t = \boldsymbol{x}(S_t, A_t) = \{x_1(S_t, A_t), x_2(S_t, A_t), ..., x_D(S_t, A_t)\}$. Any state-action combination is represented by such a feature vector.\footnote{Tabular learning methods, such as Q-Learning, contain \emph{exactly one} feature per state-action combination. A single feature evaluates to $1$ if its dedicated state-action combination is played (or considered) and $0$ otherwise. Functional approximation methods employ more complicated mechanisms to extract features. \autoref{feature_extraction} outlines the methods utilized in this study in more detail.} It is important to realize that $\boldsymbol{x}_t$ is determined solely by the combination of $s$ and $a$. The mechanism, by which the state-action combinations are mapped to numerical values remains constant over time. Therefore, there is no need to subscript $x_d$. Contrary $\boldsymbol{w}_t$ constitutes the agent's valuation strategy at $t$ which is continuously refined over time. Note that I will only consider linear functions of $\hat{q}$. In this specific case, \autoref{q_estimation} can be written as the inner product of the feature vector and the set of parameters:
+More specifically, in order to map any state-action combination to a value estimate, each parameter $w_d$ is associated with a counterpart $x_d$, called a \emph{feature}. The value of every feature is derived  from a state variable, the considered action of a combination thereof:\ $x_d = x_d(S_t, A_t)$. Taken together, they form a \emph{feature vector} $\boldsymbol{x}_t = \boldsymbol{x}(S_t, A_t) = \{x_1(S_t, A_t), x_2(S_t, A_t), ..., x_D(S_t, A_t)\}$. Any state-action combination is represented by such a feature vector.\footnote{Tabular learning methods, such as Q-Learning, contain \emph{exactly one} feature per state-action combination. A single feature evaluates to $1$ if its dedicated state-action combination is played (or considered) and $0$ otherwise. Functional approximation methods employ more complicated mechanisms to extract features. \autoref{feature_extraction} outlines the methods utilized in this study in more detail.} It is important to realize that $\boldsymbol{x}_t$ is determined solely by the combination of $s$ and $a$. The mechanism, by which the state-action combinations are mapped to numerical values remains constant over time. Consequently, there is no need to subscript $x_d$ with respect to $t$. Contrary $\boldsymbol{w}_t$ constitutes the agent's valuation strategy at $t$ which is continuously refined over time. Note that I will only consider linear functions of $\hat{q}$. In this specific case, \autoref{q_estimation} can be written as the inner product of the feature vector and the set of parameters:
 
 \begin{gather}\label{q_estimation_linear}
 \boldsymbol{x}_t \top \boldsymbol{w}_t = \sum_{d=1}^{D} x_d(S_t, A_t) w_d = \sum_{d=1}^{D} x_d(p_{i, t-1}, p_{j, t-1}, p_{i, t}) w_d
@@ -52,7 +52,7 @@ More specifically, in order to map any state-action combination to a value estim
 
 Two elements are required for the algorithms to work successfully. First, the agents must mix between \emph{exploration and exploitation}. Second, the set of parameters $\boldsymbol{w}$ must be continuously optimized.
 
-\paragraph{Exploration and Exploitation} 
+\subsection{Exploration and exploitation} 
 In every period, the agent chooses either to \emph{exploit} its current knowledge and pick the supposedly optimal action or to \emph{explore} in order to test the merit of alternative choices that are perceived sub-optimal but may turn out to be superior. As is common, I use a simple $\epsilon$-greedy policy to steer this tradeoff:
 
 \begin{gather}\label{action_selection}
@@ -74,7 +74,7 @@ Irrespective of the \emph{exploit vs explore} decision, the agent proceeds to le
 
 
 
-\paragraph{Update}
+\subsection{Parameter update}
 
 After observing the opponent's price and own profits, the agent exploits this new information to improve its estimation technique. This study's full system to update the parameter vector $\boldsymbol{w}$ at $t$ comprises the calculation of a \emph{temporal-difference error} $\delta_t$, a vector of eligibility traces $\boldsymbol{z}_t$ tracking the importance of individual coefficients in $\boldsymbol{w}_t$ and the final ultimate update rule to refine $\boldsymbol{w}_t$: The full update system is defined by:
 
@@ -89,7 +89,7 @@ I will assess all three of the system's components. Starting with \autoref{td_er
 	\begin{center}
 		$\delta_t^{Q-Learning} = r_t + \gamma ~ \underset{a}{max} ~ \hat{q}(S_{t+1}, a, \boldsymbol{w}) - \hat{q}(S_t, A_t, \boldsymbol{w})$
 	\end{center}
-	In \autoref{vary_algorithm} I will consider a successor of Q-Learning suitable for function approximation.} It measures the difference between the \emph{ex ante} ascribed value to the selected state-action combination in $t$ on the right-hand side and the \emph{ex post} actual reward in conjunction with the estimated value of the newly arising state-action combination in $t+1$ on the left-hand side. To elaborate on the latter, the reward $r_t = \pi_t - p_n$ reflects the profits relative to the Nash solution.\footnote{Please note that I explicitly distinguish profits and rewards. Profits, $\pi$, represent the monetary remuneration from operating in the environment and can be interpreted economically. However, profits do not enter the learning algorithm directly. Instead, they serve as a precursor of rewards, $r$. Rewards constitute the signal that agents interpret as direct feedback to refine their algorithms.} $\gamma$ is the discount factor and is applied to the expected value of the upcoming state $\bar{V}_t(S_t)$, i.e.\ the average of all state-action estimates weighted by their probability of being played:
+	In \autoref{vary_algorithm} I will consider a successor of Q-Learning suitable for function approximation.} It measures the difference between the \emph{ex ante} ascribed value to the selected state-action combination in $t$ on the right-hand side and the \emph{ex post} actual reward in conjunction with the estimated value of the newly arising state-action combination in $t+1$ on the left-hand side. To elaborate on the latter, the reward $r_t = \pi_t - p_n$ reflects the profits relative to the Nash solution.\footnote{Please note that I explicitly distinguish profits and rewards. Profits, $\pi$, represent the monetary remuneration from operating in the environment and can be interpreted economically. However, profits do not enter the learning algorithm directly. Instead, they serve as a precursor of rewards, $r$. Rewards constitute the signal that agents interpret as direct feedback to refine their algorithms.} $\gamma$ is the discount factor\footnote{There is a small notational predicament. In the economic literature, $delta$ is usually preserved for the discount factor. However, reinforcement learning texts usually use $\delta$ for the TD error. Here, I will follow the latter convention and settle with $\gamma$ to represent the discount factor.} and is applied to the expected value of the upcoming state $\bar{V}_t(S_t)$, i.e.\ the average of all state-action estimates weighted by their probability of being played:
 
 \begin{gather}\label{expected_state_value}
 \bar{V}_t(S_t) = \sum_{a} Pr(a|S_{t+1}) ~ \hat{q}(S_{t+1}, a, \boldsymbol{w}_t) ~~   \text{,}
@@ -97,7 +97,7 @@ I will assess all three of the system's components. Starting with \autoref{td_er
 
 where $Pr(a|S_{t+1})$ represents the probability of selecting an action conditional on the next state in accordance with \autoref{action_selection}. A positive $\delta_t$ indicates that the actual realization turned out to exceed the original expectation. Likewise, a negative $\delta_t$ suggests that the realization failed short of the expected reward of playing the particular state-action combination. In both instances, $\boldsymbol{w}$ will be adjusted accordingly, such that the state-action combination is valued respectively higher or lower next time.
 
-The second component, the eligibility trace $\boldsymbol{z}_t$ keeps track on the importance of individual coefficients when $\boldsymbol{w}$ in estimating $\hat{q}$ and ultimately, selecting an action. The idea is that the eligibility trace controls the magnitude by which individual parameters are updated, prioritizing those that contributed to producing an estimate of $hat{q}$. Though there exist various forms, \autoref{eligibility_trace_update} employs the most popular variation, an \emph{accumulating eligibility trace} \textbf{citation needed}.\footnote{\textcite{seijen_true_2014} develop the \emph{Dutch Trace} which has been shown to be a little more powerful. For the sake of simplicity and computational efficiency, it is not used in this study.} Specifically, the update comprises two components: a decay term and the gradient of $\hat{q}$. With respect to the former, note that $\boldsymbol{z}_{t-1}$ is multiplied with the known discount factor $\gamma$, another parameter $\lambda \in [0,1]$ (more on which below) and the \emph{importance sampling ratio} $\rho_t$:
+The second component, the eligibility trace $\boldsymbol{z}_t$ keeps track on the importance of individual coefficients when $\boldsymbol{w}$ in estimating $\hat{q}$ and ultimately, selecting an action. The idea is that the eligibility trace controls the magnitude by which individual parameters are updated, prioritizing those that contributed to producing an estimate of $hat{q}$. Though there exist various forms, \autoref{eligibility_trace_update} employs the most popular variation, an \emph{accumulating eligibility trace} \textbf{citation needed}.\footnote{\textcite{seijen_true_2014} develop the \emph{Dutch Trace} which has been shown to be a little more powerful. For the sake of simplicity and computational efficiency, it is not used in this study.} Specifically, the update comprises two components: a decay term and the gradient of $\hat{q}$. With respect to the former, note that $\boldsymbol{z}_{t-1}$ is multiplied with the known discount factor $\gamma$, another parameter $\lambda \in [0,1]$ (more on which in \autoref{parametrization}) and the \emph{importance sampling ratio} $\rho_t$:
 
 \begin{gather}
 	 \rho_t = \frac{\kappa(A_t|S_{t})}{Pr(A_t|S_t)} ~~  \text{,}
@@ -110,26 +110,67 @@ $\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}_t} =
 ...,
 \frac{\Delta \hat{q}}{\Delta w_d}  \}$. As indicated earlier, I will only consider approximations that are linear in parameters. Thus, $\frac{\Delta \hat{q}}{\Delta \boldsymbol{w}}$ simplifies to the \emph{feature vector} $\boldsymbol{x}_t = \{x_1, x_2, ..., x_d\}$. This simplification also elucidates the purpose of the eligibility trace. It puts higher weights on coefficients that have been used to decide on $A_t$ and ensures that they can be altered faster and beyond the horizon of a single time period.
 
-To illustrate the benefits of eligibility traces consider the following example. An agent selects an action that yields a good immediate reward, but unexpectedly disappointing outcomes in the subsequent period.\footnote{For instance, a deviation from a collusive price level yields high immediate profits but might be followed by punishment prices.} Without eligibility traces, the action yields a positive $\delta$ and weights are updated accordingly. There is no direct 'negative credit' for the underwhelming outcomes in episodes in the more distant future.\footnote{In the long run, the agent might still end up refraining from playing the myopic action by taking into account the low estimated value of the subsequent state.} On the other hand, with eligibility traces, a similar immediate effect on updating $\boldsymbol{w}$ takes place but the underwhelming results from periods in the more distant future evoke a retrospective readjustment.
+To illustrate the benefits of eligibility traces consider the following example. An agent selects an action that yields a good immediate reward, but unexpectedly disappointing outcomes in the subsequent period.\footnote{For instance, a deviation from a collusive price level yields high immediate profits but might be followed by punishment prices.} Without eligibility traces, the action yields a positive $\delta$ and coefficients are updated accordingly. There is no direct 'negative credit' for the underwhelming outcomes in episodes in the more distant future. In the long run, the agent might still end up refraining from playing the myopic action by taking into account the low estimated value of the subsequent state, but this might take longer. Eligibility traces can accelerate the learning process. While a similar immediate effect on updating $\boldsymbol{w}$ takes place, the eligibility trace 'remembers' which coefficients were adjusted in the past and enables a retrospective readjustment prompted by underwhelming results from periods in the more distant future. 
 
-\textbf{paragraph on lambda}
-* lambda controls the degree of 'retrospective foresight'
-* lambda == 0 -> eq.13 meaningless and more simple algorithm
-* higher lambda -> problems with convergence (\textbf{citation})
+Armed with the TD error $\delta_t$ and the eligibility trace $\boldsymbol{z}_t$, the final piece is an update rule to improve the parameter vector $\boldsymbol{w}$. The update in \autoref{update_rule} comprises $\boldsymbol{w}$  (the current knowledge of the agent we hope to improve) and the three components, $\alpha$, $\delta_t$ and $\boldsymbol{z}_t$ that dictate the specific shape of the improvement. I will briefly discuss each parameter's role. The TD error $\delta_t$ specifies the direction and magnitude of the update. Recall that it constitutes the 'error' of the original value estimation. For instance, a $\delta_t$ close to 0 suggests the value of the state-action combination was estimated accurately and the to update $\boldsymbol{w}$ will be small. Contrary, a high (low) $\delta$ unveils a large divergence between the agent's value estimation and reality and warrants a more significant update to the parameters. The eligibility trace $\boldsymbol{z}_t$ specifies which elements in $\boldsymbol{w}$ are adjusted giving priority to 'important' parameters. As discussed, $\boldsymbol{z}$ memorizes which parameters were 'responsible' for the selected actions in the past and ensures a retrospective adjustment beyond a one-episode horizon. Lastly, $\alpha$ steers the speed of learning.\footnote{See \autoref{feature_extraction} for a brief discussion on selecting appropriate values of $\alpha$.} In this study, it is constant over time. The outlined reinforcement learning algorithm in this study is summarized in box \autoref{expected SARSA}.
 
+\begin{algorithm}
+	\caption{Gradient Descend Expected SARSA}
+	\begin{algorithmic}[testing]
+		\label{expected SARSA}
+		\small
+		\STATE input feasible prices via $m \in \mathbb{N}$ and $\zeta > 0$
+		\STATE configure static algorithm parameters $\alpha > 0$, $\beta > 0$, and $\lambda \in [0, 1]$
+		\STATE initialize parameter vector and eligibility trace $\boldsymbol{w} = \boldsymbol{z} = \boldsymbol{0}$
+		\STATE declare convergence rule (see \autoref{convergence})
+		\STATE randomly initialize state S
+		\STATE start tracking time: $t = 1$
+		\WHILE{convergence is not achieved,}
+		\STATE select action $A_t$ according to \autoref{action_selection}
+		\STATE observe profit $\pi$, adjust to reward $r$
+		\STATE observe next state: $S_{t+1} \leftarrow A_t$
+		\STATE calculate TD-error: $\delta \leftarrow R +  \gamma \bar{V}(S_{t+1}) - q(S_t)$ (\autoref{td_error_expected})
+		\STATE update eligibility trace: $\boldsymbol{z} \leftarrow \gamma \lambda \rho \boldsymbol{z} + \boldsymbol{x} $ (\autoref{eligibility_trace_update})
+		\STATE update parameter vector: $\boldsymbol{w} \leftarrow \boldsymbol{w} + \alpha  \delta  \boldsymbol{z}$ (\autoref{update_rule})
+		\STATE move to next stage: $S \leftarrow S_{t+1}$ and $t \leftarrow t+1$
+		\ENDWHILE
+	\end{algorithmic}
+\end{algorithm}
 
-Armed with the TD error $\delta_t$ and the eligibility trace $\boldsymbol{z}_t$, the final piece is an update rule to improve the parameter vector $\boldsymbol{w}$ as dictated by \autoref{update_rule}.
-Again, the way $\boldsymbol{z}$ enters \autoref{update_rule} ensures 'important' parameters are prioritized
-$\alpha$ steers the speed of learning. 
+\subsection{Baseline parametrization}\label{parametrization}
 
+\begin{center}
+	\begin{table}
+		\begin{tabular}{|c|c|l|}
+			\hline
+			\textbf{Parameter}&\textbf{Baseline Value}&\textbf{Variations}\\
+			\hline
+			$\beta$&$4 * 10^{-5}$&$(1 * 10^{-5}, ~2 * 10^{-5}, ~8 * 10^{-5}, ~1.6 * 10^{-4})$ \\
+			\hline
+			$\gamma$&$0.95$&$(0, ~0.25, ~0.5, ~0.75, ~0.9, ~1)$ \\
+			\hline
+			$\lambda$&$0.5$&$(0, ~0.2, ~0.4, ~0.6, ~0.8, ~0.9)$ \\
+			\hline
+			$\zeta$&$1$&$(0.1, ~0.5, ~2)$ \\
+			\hline
+			$m$&$19$&$(10, ~39, ~63)$ \\
+			\hline
+		\end{tabular}
+		\caption{Parametrization of learning parameters. Baseline and variations.}
+		\label{baseline}
+	\end{table}
+\end{center}
 
-\emph{Semi-gradient} methods constitute a basic procedure for such continuous optimization. Essentially, the direction and magnitude of updating parameters is driven by $\delta_t$ and the gradient of $\hat{q}$ 
+The presented learning paradigm requires specifying of a number of parameters. Optimizing the setting is not a primary concern of this study. Nevertheless, I attempt to choose reasonable values for all parameters. To some degree, this task can be guided by theoretical considerations and previous simulation studies. Still, there remains a high degree of arbitrariness. To make the impact of those choices more transparent, \autoref{robustness} will present results for other specifications. \autoref{baseline} presents the baseline parametrization of the learning algorithm as well as the considered variations. The discussion on appropriate values of the learning rate parameter $\alpha$ is delayed until \autoref{feature_extraction}. I will briefly provide a justification for the specific parametrization and relate it to other studies.
 
+Starting with $\beta$, the parameter controlling the speed of decay in exploration, note that the baseline in this study is about 4 times higher than in \textcite{calvano_algorithmic_2018}.  Unfortunately, feature extraction methods require more computational power than tabular learning and the scope of this study did not allow for a lower value without sacrificing robustness through the execution of multiple runs per parametrization. Consequently, the agents have less time to explore actions. It is hoped that this is partially offset by the introduction of eligibility traces. Also, the variation $\beta = 1*10^{-5}$ falls right into the considered parameter grid in \textcite{calvano_algorithmic_2018}.
 
+The discount factor $\gamma$ is the only parameter with an inherent economic interpretation. $\gamma$ quantifies the preference of profits today over profits tomorrow. The baseline value $0.95$ is chosen to stay consistent with other simulations in this area (e.g.\ {\textcite{calvano_algorithmic_2018}, \textcite{klein_autonomous_2019} \textbf{other?}). In reinforcement learning, the usage of discounting is often void of any theoretical justification. Rather it is commonly employed as a practical means to avoid infinite reward sums of future rewards in continuous learning tasks \parencite{schwartz_reinforcement_1993}. However, there are some theoretical arguments questioning the validity of using discounting in continuous learning tasks with function approximation. In \autoref{robustness}, I will discuss results of an alternative setting that attempts to optimize \emph{average rewards}.
 
+Regarding $\lambda$, recall that it appears in \autoref{eligibility_trace_update} to update the eligibility trace $\boldsymbol{z}$. In particular, $\lambda$ controls the \emph{decay rate} of $\boldsymbol{z}$. To understand its purpose, consider first the special case of $\lambda = 0$. This reduces the trace update to $\boldsymbol{z}_t = \frac{\Delta \hat{q}}{\Delta \boldsymbol{w}_t} = \boldsymbol{x}_t$ which is paramount to not using eligibility traces at all.\footnote{In fact, the system of equations \ref{td_error_expected}-\ref{update_rule} could then be reduced conveniently to a single equation:
+	\begin{center}
+		$\boldsymbol{w}_{t+1} = \boldsymbol{w}_t + \alpha (r_t + \gamma \bar{V}_t(S_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t)) \boldsymbol{x}_t$
+	\end{center}
+} Increasing $\lambda$ boosts the degree of hindsight by enlarging the algorithm's memory on which parameters were responsible for past action selections. In turn, those 'important' parameters are adjusted beyond a one-period time-frame. However, increasing $\lambda$ comes at the cost of high variance. Persistent traces blow up the number of variables in $\boldsymbol{z}$ such that any outcome is imputed to \emph{too} many parameters that have been activated in the distant past.\footnote{The other extreme, $\lambda = 1$, mimics Monte-Carlo algorithms where learning only takes place after an entire \emph{sequence} of episodes concludes. In some problems, the learning process can be separated into distinct sequences. Such separation is unnatural in the context of demand systems. Accordingly, $\lambda = 1$ is not considered a viable specification for this study.} Empirical results show that intermediate values of $\lambda$ tend to perform best (see e.g.\ \textcite{sutton_1988}, \textcite{rummery_niranjan_1994} and \textcite{sutton_reinforcement_2018}). Accordingly, I choose a baseline value of $\lambda = 0.5$. The variations comprise experiments with $\lambda$ between $0$ and $0.9$.
 
-
-
-
-
-\input{04b_feature_extraction.tex}
+The parameters $\zeta$ and $m$ both control which prices are feasible. The baseline $\zeta = 1$ ensures a symmetric excess of feasible prices above $p_m$ and below $p_n$. The default value of $m$ is $19$.\footnote{As indicated earlier, both $p_m$ and $p_n$ can not be played exactly. The variations of $m$ were chosen specifically to encompass feasible prices close to both benchmarks for prices close to those benchmarks. For instance, $m = 19$ entails one pricing option at $1.466$ (close to $p_n = 1.473$ and another at $1.932$ (close to $p_m = 1.925$)}. The deliberate choice to depart from the scheme in \textcite{calvano_algorithmic_2018} was made to challenge the algorithms with a less \emph{prefabricated} environment comes at the cost of impeded comparability.

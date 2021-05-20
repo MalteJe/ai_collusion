@@ -1,39 +1,4 @@
 
-
-\pagebreak
-\begin{algorithm}
-	\caption{Gradient Descend Expected SARSA}
-	\begin{algorithmic}[]
-		\small
-		\STATE Initialize state S
-		\WHILE{convergence is not achieved,}
-		\STATE Choose action A \~{} $\pi(.|S)$
-		\STATE observe profit $\pi$, adjust to reward $R$
-		\STATE observe next state: $S_{t+1} = A_t$
-		\STATE calculate TD-error: $\delta \leftarrow R +  \gamma \bar{V}(S_{t+1}) - q(S_t)$
-		\STATE update eligibility trace: $\boldsymbol{z} \leftarrow \gamma \lambda \rho \boldsymbol{z} + \boldsymbol{x} $
-		\STATE update parameter vector: $\boldsymbol{w} \leftarrow \boldsymbol{w} + \alpha  \delta  \boldsymbol{z}$
-		\STATE $S \leftarrow S_{t+1}$
-		\STATE $t \leftarrow t+1$
-		\ENDWHILE
-	\end{algorithmic}
-\end{algorithm}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \section{Results}
 Starting, with the baseline specification, this section reports on the simulation results. \textbf{TBD}. To foreshadow the results, profits mostly exceed Nash-predictions, but remain below monopoly profits. While agents learn to charge supra-competitive prices, they fail to incorporate \emph{reward-punishment} schemes consistently. Overall, the results crucially hinge on the combination of feature extraction method and selected parameters. Only tabular learning exhibits a clear tendency to punish deviations with lower prices in subsequent periods.
 

@@ -1,0 +1,144 @@
+
+\section{Feature extraction}\label{feature_extraction}
+
+\textbf{TBD: extended introduction (?)}
+
+This section lays out the methods used in this study to map state-action combinations to a set of numerical values $\boldsymbol{x}$. I shall refer to them as \emph{feature extraction methods}. \footnote{The term \emph{feature} is borrowed from the computer science literature. It usually refers to a (transformed) input variable. It is common that the number of features dwarfs the number of original inputs.} As outlined in \autoref{value_approximation}, the state-action space contains just 3 variables ($p_{i,t-1}$, $p_{j,t-1}$ and $p_{i,t}$). To illustrate, consider a naive attempt of feature extraction where each $S_t$ and $A_t$ is converted to a feature without mathematical transformation, i.e.\ $x_1 = p_{i,t-1}$, $x_2 = p_{j,t-1}$ and $x_3 = p_{i,t}$. Every feature is assigned a single coefficient $w_d$ and the estimated value of any state-action combination would then be $\hat{q}(S_t, A_t, \boldsymbol{w}) = \sum_{d=1}^3 w_d x_d$. Obviously, this simplistic method fails to do justice to the complexity of the optimization problem. In particular, a \emph{reward-punishment} theme requires that actions are chosen conditional on past prices (i.e.\ the state space). Hence, it is imperative to consider interactions and non-linearities. \autoref{feature_extraction_summary} provides an overview of the 4 methods used in this study.
+
+\begin{center}
+	\begin{table}
+		\begin{tabular}{|l|l|l|c|}
+			\hline
+			\textbf{Feature Extraction}&\textbf{Baseline}&\textbf{Length} $\boldsymbol{x}$&\textbf{factor when}\\
+			\textbf{Method}&\textbf{Parametrization}&&\textbf{doubling} $m$\\
+			\hline
+			Tabular&&$m^3 = 6,859$& x8\\
+			\hline
+			Tile Coding&$T = 5, \psi = 9$&$T~(\psi - 1)^3 = 2,560$& x1\\
+			\hline
+			Polynomial Tiles&$T = 5, \psi = 5, k = 4$&$T~(\psi - 1)^3 ({k + 3\choose3}  - 1) = 10880$& x1 \\
+			\hline
+			Separated Polynomials&$k = 5$ &$m($ ${k+2}\choose{2}$ $-1) = 380$& x2 \\
+			\hline
+		\end{tabular}
+		\caption{Feature extraction methods, number of parameters with $m=19$ and complexity.}
+		\label{feature_extraction_summary}
+	\end{table}
+\end{center}
+
+\textbf{1. finish table, 2. described columns in table briefly}
+
+The remainder of this chapter describes the methods in more detail. Note that \emph{polynomial approximation}, as described in \autoref{polynomial}, is not directly used in this study but nevertheless introduced as a precursor to the final two methods \emph{polynomial tiles} and \emph{separate polynomials}.
+
+
+\subsection{Tabular Learning}\label{tabular}
+
+A natural way to represent the state-action space is to preserve a distinct feature (and coefficient) for every unique state-action combination. Features are binary, i.e.\ any feature is  $1$ if the associated state-action combination is selected and $0$ otherwise:
+
+\begin{gather}\label{cell_activation}
+x_d^{Tabular} = \begin{cases}
+1 & \quad \text{if } \{p_{1, t-1}, p_{2, t-1}, p_{1, t}\} \text{~corresponds to cell}_d  \\
+0 & \quad \text{if } \{p_{1, t-1}, p_{2, t-1}, p_{1, t}\} \text{~does not correspond to cell}_d \\ \end{cases} 
+\end{gather}
+
+The respective coefficient tracks the performance over time and directly represents the \emph{value} of that state-action combination. Accordingly, the length of $\boldsymbol{x}$ is $m^3$.\footnote{$3$ derives from the 2 prices from the previous episode plus the considered action of the current episode.} This approach is called \emph{tabular} because it is easy to imagine a table where every cell represents a unique state-action combination. Tabular methods have been used extensively in the simulations on algorithmic collusion that provided empirical evidence of collusive outcomes being possible in simple environments (\textbf(citations)). Their widespread application is justified by their conceptual simplicity and their historic usage in autonomous pricing of airline fares and electricity markets \parencite{ittoo_algorithmic_2017}. Moreover, tabular methods give rise to a family of robust learning algorithms with well-understood convergence guarantees (\textbf{citation}) \footnote{Q-Learning being just one particular application.}.
+
+However, tabular methods are not necessarily the best or fastest way to learn an optimal policy. In real life markets, a salient factor may impede its effectiveness. Prices are (quasi-) continuous - a treat completely ignored by tabular methods. This has two major implications. First, the leeway of decision makers is artificially restricted. Second, due to a \emph{curse of dimensionality}, learning speed and success may deteriorate disproportionately with $m$. I will take a closer look at each of these points.
+
+Obviously, any decision maker is only restricted by the currency's smallest feasible increment and can charge more than just a couple of prices. It is certainly conceivable, maybe even desirable, that a decision maker reduces the own number of considered prices to simplify the decision process. However, in most cases it will be impossible to impose such a restriction on competitors. As an extreme example, consider an opponent who never charges the same price twice. Whenever this opponent introduces a new price, a tabular learning agent is coerced to create a new cell in the state-action matrix that will never be revisited. Consequently, the agent continuously encounters new situations from which it can learn, but can never utilize the acquired knowledge. \footnote{One could attempt to circumvent this problem by discretizing the prices \emph{ex ante} (e.g. as in \autoref{available_prices}) and simply convert the real price to the closest available alternative. While this introduces some imprecision and it is unclear how to optimally discretize prices, it might constitute a practicable solution. In fact, that approach is a special case of \emph{tile coding}, the method I will introduce in \autoref{tile_coding}}.
+
+More importantly, tabular learning does not scale well with $m$ and $n$. In the baseline specification, the number of features is $19^3 = 6859$. Doubling $m$ from $19$ to $38$ causes an eightfold increase of that number to $54,872$. Even worse, increasing the number of competitors alters the exponent. Changing $n$ from $2$ to $3$ entails an increase of features by the factor $m$, in the baseline specification from $6859$ to $130,321$.\footnote{A similar problem arises when the algorithm is supposed to account for cost and demand factors. While changes in costs and prices are not considered in this study, they obviously play an important role in reality.} It is easy to see that modest increases in complexity have the potential to evoke a disproportionate reduction in learning speed. Indeed, \autocite{calvano_algorithmic_2018} show that increasing $m$ and $n$ tends to reduce profits of tabular learning agents.
+
+Another way of looking at the same issue is to consider the nature of the variable $p$. Prices are continuous and transforming them into a qualitative set of discrete actions disregards that fact. In particular, it prevents the opportunity to learn from the result of charging one particular price about the quality of \emph{similar} prices in that same situation. To illustrate with an inflated example, consider a manager who observes large profits after charging a price of $1000$. A human manager is able to infer that charging $1001$ instead would have yielded a similar profit. Tabular learning agents are not.
+
+
+\textbf{point at tradeoff: precision vs. learning speed}
+			* approximate continuous prices by reducing price intervals to arbitrary length
+
+
+
+\subsection{Function approximation methods}
+
+The function approximation methods considered in this study alleviate the \emph{curse of dimensionality}. In fact, length of the feature vector $\boldsymbol{x}$ in \emph{tile coding} and \emph{polynomial tiling} is unaffected by $m$. For \emph{separate polynomials}, it is proportional to $m$, i.e.\ doubling the number of feasible prices also doubles the number of features. Moreover, all methods augment learning in the sense that a particular state-action combination tends to evoke ampler parameter updates (in accordance with \autoref{update_rule}) that also change the future evaluation of \emph{similar} state-action combinations.
+
+\subsubsection{Tile Coding}\label{tile_coding}
+In reinforcement learning, \emph{tile coding} is a common way to extract linear, in fact binary, features from a state-action space.\footnote{for an extensive introduction with helpful illustrations refer to \textcite{sutton_reinforcement_2018}} Its appeal stems partly from the fact that it is a generalization of tabular learning that retains binary features. The idea is that several \emph{tilings} superimpose the state-action space. The $\mathcal{T}$ tilings are offset but each tiling covers the entire state-action space:
+
+\begin{gather}
+	 T^L \leq A^L  ~ \text{and} ~ T^U \geq A^U ~~ \forall  ~~ T \in \{1, 2, ..., \mathcal{T} ~ \} ~~ \text{,}
+\end{gather}
+
+where $T^L$ and $T^U$, respectively, represent the lower and upper bound of tiling $T$. Each tiling is itself composed of uniformly spaced out \emph{tiles}.\footnote{With 2 dimensions, a tiling simply corresponds to a grid. In our case, the state-action space is 3-dimensional, so it may prove more intuitive to think of cubes instead of tilings and tiles.} Every tile is uniquely demarcated by a lower and an upper threshold for every dimension. Consequently, the number of tiles per tiling is controlled by the number of thresholds. For this simulation, it suffices to define a single set of thresholds per tiling that applies to all 3 dimensions. More specifically, the thresholds are spaced out evenly in the tiling-specific interval $[T^L, T^U]$:
+
+\begin{gather}
+(
+T^L,
+T^L + \frac{1(T^U - T^L)}{\psi - 1},
+T^L + \frac{2(T^U - T^L)}{\psi - 1}~ , ... , ~
+T^L + \frac{(\psi-2)(T^U - T^L)}{\psi - 1},
+T^U) ~~ \text{,}
+\end{gather}
+
+where $\psi$ represents the number of thresholds. This gives rise to $(\psi-1)^3$ tiles per tiling. Tiles are binary, i.e.\ if a state-action observation falls into a particular demarcation, the corresponding tile is \emph{activated}:
+
+\begin{gather}\label{tile_activation}
+x_d^{Tiling} = \begin{cases}
+1 & \quad \text{if } \{p_{i, t-1}, p_{j, t-1}, p_{i, t}\} \text{~in tile demaraction}_d  \\
+0 & \quad \text{if } \{p_{i, t-1}, p_{j, t-1}, p_{i, t}\} \text{~not in tile demarcation}_d \\ \end{cases} 
+\end{gather}
+
+Since tiles within a tiling are non-overlapping, any state-action combination activates exactly $\mathcal{T}$ tiles, one per tiling. The total number of features is simply $T~(\psi - 1)^3$. Note that the tabular case can be recovered as a special case by setting $\mathcal{T}~ = 1$ and $\psi \geq m + 1$. In this case, every tile is activated by at most one feasible state-action combination which is equivalent to storing a dedicated coefficient for every state-action combination.\footnote{If $\psi > m + 1$, some tiles would never be activated. But again, every table entry would correspond to a unique tile.}
+
+
+\subsubsection{Polynomials}\label{polynomial}
+
+\emph{Polynomial approximation} applies polynomial transformations to its inputs. In order to keep this (and the upcoming) section brief, I will introduce the notation for the specific case of 3 variables.\footnote{for a more thorough treatment with variations, see e.g.\ \autoref{hastie}} Polynomial approximation of order $k$ maps $S_t$ and $A_t$ to a set of features, where a single feature corresponds to:
+
+
+\begin{gather}\label{polynomial_extraction}
+x_d^{Poly} = p_{i, t-1}^{\kappa_{d,1}} ~ p_{j, t-1}^{\kappa_{d,2}} ~ p_{i, t}^{\kappa_{d,3}}
+\end{gather}
+
+
+Every combination of exponents that adheres to the restrictions
+
+\begin{itemize}
+	\item $0 < \kappa_{d,1} + \kappa_{d,2} + \kappa_{d,3} \leq k  ~~ \forall ~ d$ and
+	\item $\kappa_{d,1}, \kappa_{d,2}, \kappa_{d,3} \in \{0, 1, ..., k\} ~~  \forall ~ d$
+\end{itemize}
+
+constitutes one feature. Using polynomial approximation, the feature vector $\boldsymbol{x}$ contains ${k + 3\choose3}  - 1$ elements. I chose not to use a simple polynomials to approximate the valuation of the entire state-action space. Exploratory runs have shown that the method has some trouble converging and frequently produced unreasonable results in the provided environment. Perhaps, this is not surprising because every state-action combination will always produce non-zero values for \emph{all} features and change every single element in $\boldsymbol{w}$. This makes it difficult for the algorithm to develop different notions for \emph{different} prices.
+
+\subsubsection{Polynomial Tiles}
+
+What I call \emph{polynomial tiles} is a blend of \emph{tile coding} and \emph{polynomial approximation}. To be precise, just as in tile coding, the state-action space is divided into overlapping tiles. However, instead of a binary indication, every tile comprises a distinct polynomial. For the sake of notation, it is helpful to divide the index $d$ into a tiling component $e$ and a polynomial part $f$.  Hence:
+
+\begin{gather}\label{poly_tiling_extraction}
+x_d^{Poly~Tiling} = x_{e,f}^{Poly~Tiling} = \notag \\
+\begin{cases}
+p_{i, t-1}^{\kappa_{f,1}} ~ p_{j, t-1}^{\kappa_{f,2}} ~ p_{i, t}^{\kappa_{f,3}} & \quad \text{if } \{p_{i, t-1}, p_{j, t-1}, p_{i, t}\} \text{~in tile demaraction}_e  \\
+0 & \quad \text{if } \{p_{i, t-1}, p_{j, t-1}, p_{i, t}\} \text{~not in tile demarcation}_e \\ \end{cases} 
+\end{gather}
+
+The restrictions on the exponents $\kappa$ from \autoref{polynomial} apply. The method accompanies $T~(\psi - 1)^3 ({k + 3\choose3}  - 1)$ features. As this method allows for a distinguished value estimation for different state-action combinations within a tile, it appears reasonable to increase the size of the tiles in order to decrease the number of coefficients and avoid overfitting. Specifically, I retain the number of tilings, but reduce the number of tiles per tiling from $512$ to $64$ by imposing $\mathcal{T} = 5$ and $\psi = 5$. Moreover, I allow for polynomial combinations up to degree $k=4$.
+
+\subsubsection{Separated Polynomials}
+
+\emph{Separated polynomials} maintain for every action a distinct set of parameters that apply \emph{polynomial approximation} to the state set. In reinforcement learning, it is common to store a separate set of coefficients for every feasible action \textbf{citation}.\footnote{This approach is best suited if the action spaces is qualitative and the state space continuous. In this simulation, only the latter is strictly true. Therefore, the two issues inherent to tabular learning I have outlined in \autoref{tabular}, also apply to the action space of \emph{separated polynomials}, but not to the state space.} Since $A_t$ is fixed within each set, the polynomial only considers $S_t$:\footnote{The restrictions on $k$ are adjusted accordingly:
+	\begin{itemize}
+		\item $0 < \kappa_{d,1} + \kappa_{d,2}  \leq k  ~~ \forall d$ and
+		\item $\kappa_{d,1}, \kappa_{d,2} \in \{0, 1, ..., k\} ~~  \forall d$
+	\end{itemize}
+}
+
+
+\begin{gather}\label{separated_poly_extraction}
+x_d^{Separated~Poly} = \begin{cases}
+p_{i, t-1}^{\kappa_{d,1}} ~ p_{j, t-1}^{\kappa_{d,2}} & \quad \text{if } a = A_t  \\
+0 & \quad \text{if } a \ne A_t \\ \end{cases} 
+\end{gather}
+
+Note that the method models the value of an action as a function of $S_t$. The number of encompassed features arises naturally as $m($ $k+2\choose2$ $-1)$.
+
+
+Perhaps, an inverse variation could be more intuitive from an economic perspective. Consider a case where every permutation of $S_t$ would hold a distinct set of parameters. This approach is closer to the notion of selecting $a$ to optimize the reward \emph{given} a fixed state set $s$. I leave this variation open as a potential avenue for future research.

@@ -40,7 +40,6 @@ features_extraction_methods <- c("tabular", "tiling", "poly_separated", "poly_ti
 
 # static specs (no variation in study whatsoever)
 static_specs <- list(
-	Algorithm = "expected",
 	rounding_precision = 8,
 	TT_intervention = 10,
 	Epsilon_constant = NA,
@@ -67,6 +66,7 @@ static_specs <- list(
 # variable parameters (some sort of variation throughout study, the baseline will be adjusted throughout simulations)
 
 baseline <- list(
+	Algorithm = "expected",
 	Alpha = NA,
 	Beta = 4*10^-5,
 	Gamma = 0.05,
@@ -150,48 +150,45 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 
 # Beta ------------------------------------------------------------------
 
-betas <- c(16 * 10^-5, 8 * 10^-5, 2 * 10^-5, 1 * 10^-5)
-TTs <- c(1.25 * 10^5, 2.5 * 10^5, 10^6, 2 * 10^6)
-(exp(-betas * TTs)) # equal probability of exploitaiton at the last possible learning period
+# betas <- c(16 * 10^-5, 8 * 10^-5, 2 * 10^-5, 1 * 10^-5)
+# TTs <- c(1.25 * 10^5, 2.5 * 10^5, 10^6, 2 * 10^6)
+# (exp(-betas * TTs)) # equal probability of exploitaiton at the last possible learning period
+# 
+# beta_input <- list_modify(baseline, Alpha = NULL, Beta = betas, TT = TTs)
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_parameter,
+# 		variable_specs = beta_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
-beta_input <- list_modify(baseline, Alpha = NULL, Beta = betas, TT = TTs)
 
-walk2(.x = features_extraction_methods,
-		.y = alphas_manually_optimized,
-		.f = vary_parameter,
-		variable_specs = beta_input,
-		static_specs = static_specs,
-		runs = runs_per_experiment,
-		no_of_cores = no_of_cores)
+# # Vary m (number of feasible prices) -----------------------------------------------
+# 
+# number_of_prices <- c(10, 39, 63)
+# number_of_prices <- c(4, 63)
+# 
+# m_input <- list_modify(baseline, Alpha = NULL,
+# 									 m = number_of_prices)
+# 
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_parameter,
+# 		variable_specs = m_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
 
-# # Psi -------------------------------------------------------------------
-# 
-# psis <- c(1, 0.8, 0.6, 0.4, 0.2)
-# psi_input <- list_modify(baseline, Alpha = NULL,
-# 									Psi = psis)
-# 
-# 
-# meta_res_psi <- map2(.x = features_extraction_methods,
-# 							  .y = alphas_manually_optimized,
-# 							  .f = vary_parameter,
-# 							  variable_specs = psi_input,
-# 							  static_specs = static_specs,
-# 							  runs = runs_per_experiment,
-# 							sequential_execution = TRUE)
-# 
-# 
-# 
-# names(meta_res_psi) <- features_extraction_methods
-# 
-# 
-# save(meta_res_psi, file = "simulation_results/res_varied_psi.RData")
 # 
 # 
 # 
 # # Zeta --------------------------------------------------------------------
 # 
-# zetas <- c(0.1, 0.5, 1, 2)
+# zetas <- c(0.1, 0.5, 1, 1.5)
 # zeta_input <- list_modify(baseline, Alpha = NULL,
 # 								 zeta = zetas)
 # 
@@ -211,6 +208,22 @@ walk2(.x = features_extraction_methods,
 # save(meta_res_zeta, file = "simulation_results/res_varied_psi.RData")
 # 
 # 
+
+
+# Vary Algorithm ----------------------------------------------------------
+
+tb_input <- list_modify(baseline, Alpha = NULL, Algorithm = "tree_backup")
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_algorithm,
+		variable_specs = tb_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
+
+
+
 # 
 # # Differential Reward Setting --------------------------------------------------
 # 
@@ -238,22 +251,6 @@ walk2(.x = features_extraction_methods,
 # 
 # 
 # 
-# # Vary m (number of feasible prices) -----------------------------------------------
-# 
-# number_of_prices <- c(10, 39, 63)
-# number_of_prices <- c(4, 63)
-# 
-# m_input <- list_modify(baseline, Alpha = NULL,
-# 									 m = number_of_prices)
-# 
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = m_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
 
 
 print(str_c(Sys.time(), " | script over"))

@@ -106,6 +106,28 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, static_specs, run
 		 varied_parameter = names(keep(variable_specs, .p = ~length(.) > 1)))
 }
 
+
+vary_algorithm <-  function(feature_by, alpha, variable_specs, static_specs, runs, no_of_cores = 1) {
+	
+	# remove alpha specification if exists
+	cleaned_variable_specs <- discard(variable_specs, names(variable_specs) == "Alpha")
+	
+	# concatenate full specifications with optimized alpha
+	experiment_sequence <- c(features_by = feature_by, Alpha = alpha, cleaned_variable_specs)
+	
+	# wrangle specifications in usable format (one element per experiment)
+	experiment_sequence_specs <- purrr::transpose(experiment_sequence)
+	
+	# map every requested experiment to single_experiment where all experiment's runs are executed. Return results (if any)
+	map(.x = experiment_sequence_specs,
+		 .f = single_experiment,
+		 static_specs = static_specs,
+		 runs = runs,
+		 no_of_cores = no_of_cores,
+		 varied_parameter = experiment_sequence$Algorithm)
+}
+
+
 prolonged_intervention <- function(feature_by, alpha, variable_specs, static_specs, runs, no_of_cores =1) {
 	
 	# remove other alpha specification if exists

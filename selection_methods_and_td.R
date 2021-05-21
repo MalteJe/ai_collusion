@@ -1,56 +1,3 @@
-
-# On-Policy ---------------------------------------------------------------
-
-
-# function to choose action based on e-greedy policy in on-policy learning algorithm
-select_action_on_policy_greedy <- function(state_set, w, epsilon, m, available_prices, feature_specs) {
-	
-	# draw from binomial distribution to determine whether to explore or exploit
-	if(rbinom(n = 1, size = 1, prob = epsilon)) {
-		
-		# exploration: choose random action
-		selected_action_id <- sample(1:m, 1)
-		greedy <- FALSE
-		
-	} else {
-		
-		# exploitation: calculate estimated values of available state-action pairs and select maximum
-		selected_action_id <- map_dbl(.x = available_prices,
-												.f = estimate_state_action_value,
-												state_set = state_set,
-												feature_specs = feature_specs,
-												w = w) %>%
-			which.is.max()   #randomly breaks ties
-		
-		greedy <- TRUE
-	}
-	
-	
-	return(list(
-		id = selected_action_id,
-		value = available_prices[selected_action_id],
-		greedy = greedy))
-}
-
-
-# TD-Errors
-
-td_error_on_policy_differential <- function(r, Delta, Q_t2, Q_t, TD) {
-	TD$Error <- r - TD$r_bar + Q_t2 - Q_t
-	TD$r_bar <-  TD$r_bar + TD$Gamma * TD$Error
-	
-	return(TD)
-}
-
-td_error_on_policy_discounted <- function(r, Delta, Q_t2, Q_t, TD) {
-	TD$Error <- r + Delta * Q_t2 - Q_t
-	
-	return(TD)
-}
-
-
-
-
 # Expected SARSA ----------------------------------------------------------
 
 
@@ -167,18 +114,9 @@ td_error_expected_differential <- function(r, Delta, Q_t, s_t2, w, epsilon, m, a
 	return(TD)
 }
 
+# Select action in prolonged deviation --------------------------------------
 
-# Tree backup -------------------------------------------------------------
-
-# tree backup logic of action selected and TD error estimation is equivalent to expected SARSA 
-td_error_tree_backup_discounted <- td_error_expected_discounted
-td_error_tree_backup_differential <- td_error_expected_differential
-select_action_tree_backup_greedy <- select_action_expected_greedy
-
-
-
-
-
+# select_action_deviation handles the action selection of the cheating player during the prolonged deviation
 select_action_deviation <- function(selected_action_id, state_set, w, available_prices, feature_specs) {
 	
 	# obtain feature vectors for every possible action (still required to determine whether deviation coincides with learned strategy, i.e. is 'on path' or 'off-path')
@@ -221,4 +159,73 @@ select_action_deviation <- function(selected_action_id, state_set, w, available_
 		rho = rho,
 		x_t = x_t,
 		Q_t = Q_t))
+}
+
+
+
+
+# Tree backup -------------------------------------------------------------
+
+# tree backup logic of action selected and TD error estimation is equivalent to expected SARSA 
+td_error_tree_backup_discounted <- td_error_expected_discounted
+td_error_tree_backup_differential <- td_error_expected_differential
+select_action_tree_backup_greedy <- select_action_expected_greedy
+
+
+# On-Policy ---------------------------------------------------------------
+
+# function to choose action based on e-greedy policy in on-policy learning algorithm
+select_action_on_policy_greedy <- function(state_set, w, epsilon, m, available_prices, feature_specs) {
+	
+	# draw from binomial distribution to determine whether to explore or exploit
+	if(rbinom(n = 1, size = 1, prob = epsilon)) {
+		
+		# exploration: choose random action
+		selected_action_id <- sample(1:m, 1)
+		selected_action <- available_prices[selected_action_id]
+		
+		# retrieve feature vector and quality of randomly selected action (required in update rule)
+		x_t <- list(get_x(state_set = state_set, action = selected_action, feature_specs = feature_specs))
+		Q_t <- sum(x_t[[1]] * w)
+		
+	} else {
+		
+		browser()
+		
+		# exploitation: calculate estimated values of available state-action pairs and select maximum
+		features <- map(.x = available_prices,
+							 .f = get_x,
+							 state_set = state_set,
+							 feature_specs = feature_specs)
+		
+		# calculate estimated values of available state-action pairs
+		qualities <- map_dbl(.x = features,
+									.f = ~sum(. * w))
+		
+		# derive optimal action(s)
+		selected_action_id <- which.is.max(qualities)
+		selected_action <- available_prices[selected_action_id]
+		
+		# retrieve feature vector and quality of selected state-action-combination (required in update rule)
+		x_t <- features[selected_action_id]
+		Q_t <- qualities[selected_action_id]
+	}
+	
+	# return results as list
+	return(list(
+		id = selected_action_id,
+		value = selected_action,
+		x_t = x_t,
+		Q_t = Q_t))
+}
+
+
+# TD-Errors
+
+# td_error_on_policy_discounted calculates the TD error utilized in the on-line SARSA algorithm
+td_error_on_policy_discounted <- function(r, Delta, Q_t2, Q_t, TD) {
+	
+	TD$Error <- r + Delta * Q_t2 - Q_t
+	
+	return(TD)
 }

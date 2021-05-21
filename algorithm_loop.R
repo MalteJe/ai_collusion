@@ -14,19 +14,7 @@ SARSA <- function(passed_environment) {
 									m = m,
 									feature_specs = feature_specs,
 									available_prices = available_prices) %>%
-		purrr::transpose() %>% map(unlist)
-	
-	# selected_actions$id[2] <- m-1
-	# selected_actions$value[2] <- available_prices[m-1]
-	
-	# extract features from current state-action combination
-	x_t <- map(.x = selected_actions$value,
-				  .f = get_x,
-				  state_set = s_t,
-				  feature_specs = feature_specs)
-	
-	# initialize state-action-value
-	Q_old <- rep(0, n)
+		purrr::transpose() %>% map(unlist, recursive = FALSE)
 	
 	
 	while (convergence$converged == FALSE && t < TT) {
@@ -55,87 +43,38 @@ SARSA <- function(passed_environment) {
 										 feature_specs = feature_specs,
 										 available_prices = available_prices) %>%
 			purrr::transpose() %>%
-			map(unlist)
-		
-		selected_actions2$id[2] <- m-1
-		selected_actions2$value[2] <- available_prices[m-1]
-		
-		# selected_actions2 <- available_prices[selected_action_ids2]
-		
-		# extract features from current state-action combination
-		x_t2 <- map(.x = selected_actions2$value,
-						.f = get_x,
-						state_set = s_t2,
-						feature_specs = feature_specs)
+			map(unlist, recursive = FALSE)
 		
 		
-		# calculate "quality" of selected actions given states
-		
-		#previous episode
-		Q_t <- map2_dbl(.x = x_t,
+		# update evaluation of "quality" of selected actions given past state with new weights (the quality estimate stored in 'selected_actions' is based on old weights)
+		Q_t <- map2_dbl(.x = selected_actions$x_t,
 							 .y = w,
 							 .f = ~sum(.x * .y))
 		
-		# current episode
-		Q_t2 <- map2_dbl(.x = x_t2,
-							  .y = w,
-							  .f = ~sum(.x * .y))
-		
-		
-		# if(t %% 200 == 0) {browser()}
 		
 		# update weights and average reward
 		for (a in seq_along(w)) {
 			
 			
 			# calculate TD-error 
-			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t2 = Q_t2[a], Q_t[a], TDs[[a]])
+			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t2 = selected_actions2$Q_t[a], Q_t = Q_t[a], TDs[[a]])
 			
+			# update eligibility trace
+			z[[a]] <- Delta * Lambda * z[[a]] + selected_actions$x_t[[a]]
 			
-			# # calculate TD-error
-			# if (differential) {
-			# 	TD <- r[a] - r_bar[a] + Delta * Q_t2[a] - Q_t[a]
-			# } else {
-			# 	TD <- r[a] + Delta * Q_t2[a] - Q_t[a]
-			# }
-			# 
-			# # update average reward
-			# r_bar[a] <- r_bar[a] + Gamma * TD
-			
-			
-			
-			
-			if (dutch_traces) {
-				
-				# update eligbility trace
-				z[[a]] <- Delta * Lambda * z[[a]] + (1 - Alpha * Delta * Lambda * sum(z[[a]] * x_t[[a]])) * x_t[[a]]
-				
-				# update w
-				Q_diff <- Q_t[a] - Q_old[a]
-				
-				w[[a]] <- w[[a]] +
-					Alpha * (TDs[[a]]$Error + Q_diff) * z[[a]] - 
-					Alpha * Q_diff * x_t[[a]]
-			} else {
-				# update w
-				w[[a]] <- w[[a]] + Alpha * TDs[[a]]$Error * x_t[[a]]
-			}
-			
+			# update weights
+			w[[a]] <- w[[a]] + Alpha * TDs[[a]]$Error * z[[a]]
 			
 		}
 		
 		
-		# update Q, state set, actions & timer
-		Q_old <- Q_t2
-		x_t <- x_t2
-		s_t <- s_t2
+		#  shift selected actions
 		selected_actions <- selected_actions2
-		# selected_actions <- selected_actions2
 		
 		
 		# check for convergence
-		
 		if (t %% convergence_check_frequency == 0 && t >= convergence_chunk_length) {
+			
 			convergence <- detect_pattern(outcomes = outcomes,
 													current_t = t - 1,
 													chunk_size = convergence_chunk_length,
@@ -243,7 +182,7 @@ expected_SARSA <- function(passed_environment) {
 # intervention has one agent deviating from the learned strategy to play the best response to the opponent once.
 # Then, both agents revert to the learned strategies for a couple of periods
 intervention <- function(passed_environment) {
-
+	
 	# unpack the passed environment to make variables accessible
 	list2env(x = passed_environment, envir = environment())
 	rm(passed_environment)
@@ -281,7 +220,7 @@ intervention <- function(passed_environment) {
 										feature_specs = feature_specs,
 										available_prices = available_prices) %>%
 			purrr::transpose() %>%
-			map(unlist)
+			map(unlist, recursive = FALSE)
 		
 		# retrieve profits from list
 		r <- R[[selected_actions$id[1] + (selected_actions$id[2]-1) * m]]
@@ -383,7 +322,7 @@ intervention_prolonged <- function(length_intervention, passed_environment) {
 										feature_specs = feature_specs,
 										available_prices = available_prices) %>%
 			purrr::transpose() %>%
-			map(unlist)
+			map(unlist, recursive = FALSE)
 		
 		# retrieve profits from list
 		r <- R[[selected_actions$id[1] + (selected_actions$id[2]-1) * m]]

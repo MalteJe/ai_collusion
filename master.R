@@ -212,15 +212,28 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 
 # Vary Algorithm ----------------------------------------------------------
 
-tb_input <- list_modify(baseline, Alpha = NULL, Algorithm = "tree_backup")
+# tree backup
+# tb_input <- list_modify(baseline, Alpha = NULL, Algorithm = "tree_backup")
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_algorithm,
+# 		variable_specs = tb_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
+
+# on policy (common SARSA)
+op_input <- list_modify(baseline, Alpha = NULL, Algorithm = "on_policy")
 
 walk2(.x = features_extraction_methods,
 		.y = alphas_manually_optimized,
 		.f = vary_algorithm,
-		variable_specs = tb_input,
+		variable_specs = op_input,
 		static_specs = static_specs,
 		runs = runs_per_experiment,
 		no_of_cores = no_of_cores)
+
 
 
 

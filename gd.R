@@ -46,7 +46,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	# determine feasibe prices
 	max_price <- p_m + zeta * (p_n - mc)
 	available_prices <- round(seq(from = mc, to = max_price, length.out = m), rounding_precision)
-
+	
 	# calculate reward set for all action combinations, i.e. cartesian product of available prices
 	R <- cross2(available_prices, available_prices) %>%
 		map(as.numeric) %>% 
@@ -100,8 +100,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	# initiate eligibility trace for both players
 	z_single <- rep(0, length_w)
 	z <- list(z_single, z_single)
-	
-	
 	
 # Algorithm ---------------------------------------------------------------
 	

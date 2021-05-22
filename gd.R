@@ -10,7 +10,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  TT_intervention = 10, # time periods after manual intervention
 							  Alpha, # update rule,
 							  Beta, # exploration control,
-							  Delta = 1, # discount factor
+							  Gamma = 1, # discount factor
 							  Lambda = 0, # trace decay rate
 							  Upsilon, # control speed of update for average reward, ignored if td_error_method = 'discounted'
 							  Epsilon_constant = NA, # epsilon if exploration is constant

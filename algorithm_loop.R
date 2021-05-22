@@ -38,15 +38,15 @@ expected_SARSA <- function(passed_environment) {
 		for (a in seq_along(w)) {
 			
 			# calculate TD-error 
-			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
+			TDs[[a]] <- td_error(r = r[a], Gamma = Gamma, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
 									w = w[[a]], epsilon = epsilon[t+1L], m = m, available_prices = available_prices,
 									feature_specs = feature_specs, TD = TDs[[a]])
 			
 			# update eligbility trace
 			if (Algorithm == "expected") {
-				z[[a]] <- Delta * Lambda * selected_actions$rho[a] * z[[a]] + selected_actions$x_t[[a]]
+				z[[a]] <- Gamma * Lambda * selected_actions$rho[a] * z[[a]] + selected_actions$x_t[[a]]
 			} else if (Algorithm == "tree_backup") {
-				z[[a]] <- Delta * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
+				z[[a]] <- Gamma * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
 			}
 			
 			# update w
@@ -182,15 +182,15 @@ intervention_prolonged <- function(length_intervention, passed_environment) {
 		for (a in seq_along(w)) {
 			
 			# calculate TD-error 
-			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
+			TDs[[a]] <- td_error(r = r[a], Gamma = Gamma, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
 										w = w[[a]], epsilon = 0L, m = m, available_prices = available_prices,
 										feature_specs = feature_specs, TD = TDs[[a]])
 			
 			# update eligbility trace
 			if (Algorithm == "expected") {
-				z[[a]] <- Delta * Lambda * selected_actions$rho[a] * z[[a]] + selected_actions$x_t[[a]]
+				z[[a]] <- Gamma * Lambda * selected_actions$rho[a] * z[[a]] + selected_actions$x_t[[a]]
 			} else if (Algorithm == "tree_backup") {
-				z[[a]] <- Delta * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
+				z[[a]] <- Gamma * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
 			}
 			
 			# update w
@@ -237,15 +237,15 @@ intervention_prolonged <- function(length_intervention, passed_environment) {
 		for (a in seq_along(w)) {
 			
 			# calculate TD-error 
-			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
+			TDs[[a]] <- td_error(r = r[a], Gamma = Gamma, Q_t = selected_actions$Q_t[a], s_t2 = s_t2,
 										w = w[[a]], epsilon = 0L, m = m, available_prices = available_prices,
 										feature_specs = feature_specs, TD = TDs[[a]])
 			
 			# update eligbility trace
 			if (Algorithm == "expected") {
-				z[[a]] <- Delta * Lambda * selected_actions$rho[a] * z[[a]] + selected_actions$x_t[[a]]
+				z[[a]] <- Gamma * Lambda * selected_actions$rho[a] * z[[a]] + selected_actions$x_t[[a]]
 			} else if (Algorithm == "tree_backup") {
-				z[[a]] <- Delta * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
+				z[[a]] <- Gamma * Lambda * selected_actions$target_prob[a] * z[[a]] + selected_actions$x_t[[a]]
 			}
 			
 			# update w
@@ -329,10 +329,10 @@ SARSA <- function(passed_environment) {
 		for (a in seq_along(w)) {
 			
 			# calculate TD-error 
-			TDs[[a]] <- td_error(r = r[a], Delta = Delta, Q_t2 = selected_actions2$Q_t[a], Q_t = Q_t[a], TDs[[a]])
+			TDs[[a]] <- td_error(r = r[a], Gamma = Gamma, Q_t2 = selected_actions2$Q_t[a], Q_t = Q_t[a], TDs[[a]])
 			
 			# update eligibility trace
-			z[[a]] <- Delta * Lambda * z[[a]] + selected_actions$x_t[[a]]
+			z[[a]] <- Gamma * Lambda * z[[a]] + selected_actions$x_t[[a]]
 			
 			# update weights
 			w[[a]] <- w[[a]] + Alpha * TDs[[a]]$Error * z[[a]]

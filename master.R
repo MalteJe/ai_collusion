@@ -69,7 +69,7 @@ baseline <- list(
 	Algorithm = "expected",
 	Alpha = NA,
 	Beta = 4*10^-5,
-	Delta = 0.95,
+	Gamma = 0.95,
 	Lambda = 0.5,
 	Upsilon = 0.05,
 	td_error_method = "discounted",
@@ -133,15 +133,15 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # 		no_of_cores = no_of_cores)
 
 
-# # Delta -------------------------------------------------------------------
+# # Gamma -------------------------------------------------------------------
 
-# deltas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
-# delta_input <- list_modify(baseline, Alpha = NULL, Delta = deltas)
+# gammas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
+# gamma_input <- list_modify(baseline, Alpha = NULL, Gamma = gammas)
 # 
 # walk2(.x = features_extraction_methods,
 # 		.y = alphas_manually_optimized,
 # 		.f = vary_parameter,
-# 		variable_specs = delta_input,
+# 		variable_specs = gamma_input,
 # 		static_specs = static_specs,
 # 		runs = runs_per_experiment,
 # 		no_of_cores = no_of_cores)

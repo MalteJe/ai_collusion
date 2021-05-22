@@ -10,9 +10,9 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  TT_intervention = 10, # time periods after manual intervention
 							  Alpha, # update rule,
 							  Beta, # exploration control,
-							  Gamma, # control speed of update for average reward, ignored if td_error_method = 'discounted'
 							  Delta = 1, # discount factor
-							  Lambda = 0, # trace decay rate (dutch traces)
+							  Lambda = 0, # trace decay rate
+							  Upsilon, # control speed of update for average reward, ignored if td_error_method = 'discounted'
 							  Epsilon_constant = NA, # epsilon if exploration is constant
 							  Psi = 1, # initial exploration rate at t = 1
 							  w_init = 0, # initial weights
@@ -122,7 +122,7 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	# initialize argument passed continuously to td_error function
 	if (td_error_method == "differential") {
 		r_bar <- rep(0, 2)
-		TDs <- list(list(Error = 0, r_bar = 0, Gamma = Gamma), list(Error = 0, r_bar = 0, Gamma = Gamma))
+		TDs <- list(list(Error = 0, r_bar = 0, Upsilon = Upsilon), list(Error = 0, r_bar = 0, Upsilon = Upsilon))
 	} else {
 		TDs <- list(list(Error = 0), list(Error = 0))
 	}

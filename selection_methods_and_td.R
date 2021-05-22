@@ -107,7 +107,7 @@ td_error_expected_differential <- function(r, Delta, Q_t, s_t2, w, epsilon, m, a
 	V_bar <- calculate_expected_value(r = r, s_t2 = s_t2, w = w, epsilon = epsilon, m = m, available_prices = available_prices, feature_specs = feature_specs)
 	
 	TD$Error <- r - TD$r_bar + V_bar - Q_t
-	TD$r_bar <- TD$r_bar + TD$Gamma * TD$Error
+	TD$r_bar <- TD$r_bar + TD$Upsilon * TD$Error
 	
 	return(TD)
 }

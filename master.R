@@ -69,9 +69,9 @@ baseline <- list(
 	Algorithm = "expected",
 	Alpha = NA,
 	Beta = 4*10^-5,
-	Gamma = 0.05,
 	Delta = 0.95,
 	Lambda = 0.5,
+	Upsilon = 0.05,
 	td_error_method = "discounted",
 	Psi = 1,
 	zeta = 1,
@@ -168,7 +168,6 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # # Vary m (number of feasible prices) -----------------------------------------------
 # 
 # number_of_prices <- c(10, 39, 63)
-# number_of_prices <- c(4, 63)
 # 
 # m_input <- list_modify(baseline, Alpha = NULL,
 # 									 m = number_of_prices)
@@ -225,15 +224,15 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 
 
 # on policy (common SARSA)
-op_input <- list_modify(baseline, Alpha = NULL, Algorithm = "on_policy")
-
-walk2(.x = features_extraction_methods,
-		.y = alphas_manually_optimized,
-		.f = vary_algorithm,
-		variable_specs = op_input,
-		static_specs = static_specs,
-		runs = runs_per_experiment,
-		no_of_cores = no_of_cores)
+# op_input <- list_modify(baseline, Alpha = NULL, Algorithm = "on_policy")
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_algorithm,
+# 		variable_specs = op_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
 
 
@@ -242,29 +241,24 @@ walk2(.x = features_extraction_methods,
 # # Differential Reward Setting --------------------------------------------------
 # 
 # 
-# gammas <- c(0.001, 0.005, 0.01, 0.03, 0.05, 0.1)
-# gamma_input <- list_modify(baseline, Alpha = NULL,
-# 									td_error_method = "differential",
-# 								  gamma = gammas)
-# 
-# 
-# meta_res_gamma <- map2(.x = features_extraction_methods,
-# 							 .y = alphas_manually_optimized,
-# 							 .f = vary_parameter,
-# 							 variable_specs = gamma_input,
-# 							 static_specs = static_specs,
-# 							 runs = runs_per_experiment,
-# 							 sequential_execution = TRUE)
-# 
-# 
-# 
-# names(meta_res_gamma) <- features_extraction_methods
-# 
-# save(meta_res_gamma, file = "simulation_results/res_varied_gamma.RData")
-# 
-# 
-# 
-# 
+upsilons <- c(0.001, 0.005, 0.01, 0.025, 0.05, 0.1)
+upsilon_input <- list_modify(baseline, Alpha = NULL,
+									  td_error_method = "differential",
+									  Upsilon = upsilons)
+
+
+
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = upsilon_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
+
+
+
 
 
 print(str_c(Sys.time(), " | script over"))

@@ -36,8 +36,8 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	gc()
 	
 	# workaround to ensure all required functions are loaded on workers
-	a <- select_action_on_policy_greedy;a <-  select_action_expected_greedy; a <-  select_action_tree_backup_greedy; a <-  td_error_on_policy_differential; a <-  td_error_on_policy_discounted; a <- td_error_on_policy_discounted; a <- td_error_expected_discounted; a <-  td_error_expected_differential; a <- td_error_tree_backup_discounted; a <- td_error_tree_backup_differential
-
+	a <- select_action_on_policy_greedy;a <-  select_action_expected_greedy; a <-  select_action_tree_backup_greedy; a <-  td_error_on_policy_discounted; a <- td_error_on_policy_discounted; a <- td_error_expected_discounted; a <-  td_error_expected_differential; a <- td_error_tree_backup_discounted; a <- td_error_tree_backup_differential
+	
 	# calculate benchmark prices (nash and collusive), extract marginal costs from specification
 	p_n <- nash_prices(...)
 	p_m <- optimize_joint_profits(...)
@@ -113,6 +113,8 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	if(!(td_error_method %in% c("differential", "discounted"))) {
 		stop("td_error must be 'differential' or 'discounted'")
 	}
+	
+	
 	
 	# retrieve utilized type of td-error calculation method
 	td_error <- str_c("td_error", Algorithm, td_error_method, sep = "_") %>% get()

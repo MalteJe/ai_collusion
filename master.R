@@ -223,6 +223,7 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # 		runs = runs_per_experiment,
 # 		no_of_cores = no_of_cores)
 
+
 # on policy (common SARSA)
 op_input <- list_modify(baseline, Alpha = NULL, Algorithm = "on_policy")
 

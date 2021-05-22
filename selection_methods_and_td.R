@@ -104,8 +104,6 @@ td_error_expected_discounted <- function(r, Delta, Q_t, s_t2, w, epsilon, m, ava
 
 td_error_expected_differential <- function(r, Delta, Q_t, s_t2, w, epsilon, m, available_prices, feature_specs, TD) {
 	
-	browser()
-	
 	V_bar <- calculate_expected_value(r = r, s_t2 = s_t2, w = w, epsilon = epsilon, m = m, available_prices = available_prices, feature_specs = feature_specs)
 	
 	TD$Error <- r - TD$r_bar + V_bar - Q_t
@@ -189,8 +187,6 @@ select_action_on_policy_greedy <- function(state_set, w, epsilon, m, available_p
 		Q_t <- sum(x_t[[1]] * w)
 		
 	} else {
-		
-		browser()
 		
 		# exploitation: calculate estimated values of available state-action pairs and select maximum
 		features <- map(.x = available_prices,

@@ -87,7 +87,7 @@ vary_parameter <-  function(feature_by, alpha, variable_specs, static_specs, run
 	# concatenate full specifications with optimized alpha
 	experiment_sequence <- c(features_by = feature_by, Alpha = alpha, cleaned_variable_specs)
 	
-	# determine number of experiments (i.e. various alphas)
+	# determine number of experiments based on maximal vector length
 	l <- map_int(experiment_sequence,
 					 .f = length) %>%
 		max()

@@ -188,7 +188,7 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # # Zeta --------------------------------------------------------------------
 
 
-zetas <- c(0.1, 0.5, 1, 1.5)
+zetas <- c(0.1, 0.5, 1.5)
 zeta_input <- list_modify(baseline, Alpha = NULL,
 								 zeta = zetas)
 

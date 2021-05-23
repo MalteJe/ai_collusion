@@ -186,27 +186,20 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # 
 # 
 # # Zeta --------------------------------------------------------------------
-# 
-# zetas <- c(0.1, 0.5, 1, 1.5)
-# zeta_input <- list_modify(baseline, Alpha = NULL,
-# 								 zeta = zetas)
-# 
-# 
-# meta_res_zeta <- map2(.x = features_extraction_methods,
-# 							.y = alphas_manually_optimized,
-# 							.f = vary_parameter,
-# 							variable_specs = zeta_input,
-# 							static_specs = static_specs,
-# 							runs = runs_per_experiment,
-# 							sequential_execution = TRUE)
-# 
-# 
-# 
-# names(meta_res_zeta) <- features_extraction_methods
-# 
-# save(meta_res_zeta, file = "simulation_results/res_varied_psi.RData")
-# 
-# 
+
+
+zetas <- c(0.1, 0.5, 1, 1.5)
+zeta_input <- list_modify(baseline, Alpha = NULL,
+								 zeta = zetas)
+
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = zeta_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 # Vary Algorithm ----------------------------------------------------------
@@ -241,21 +234,21 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # # Differential Reward Setting --------------------------------------------------
 # 
 # 
-upsilons <- c(0.001, 0.005, 0.01, 0.025, 0.05, 0.1)
-upsilon_input <- list_modify(baseline, Alpha = NULL,
-									  td_error_method = "differential",
-									  Upsilon = upsilons)
-
-
-
-
-walk2(.x = features_extraction_methods,
-		.y = alphas_manually_optimized,
-		.f = vary_parameter,
-		variable_specs = upsilon_input,
-		static_specs = static_specs,
-		runs = runs_per_experiment,
-		no_of_cores = no_of_cores)
+# upsilons <- c(0.001, 0.005, 0.01, 0.025, 0.05, 0.1)
+# upsilon_input <- list_modify(baseline, Alpha = NULL,
+# 									  td_error_method = "differential",
+# 									  Upsilon = upsilons)
+# 
+# 
+# 
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_parameter,
+# 		variable_specs = upsilon_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
 
 

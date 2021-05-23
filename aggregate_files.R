@@ -20,7 +20,7 @@ get_delta <- function(profit) {
 }
 
 
-load_return <- function(path, t_grouping, t_before_intervention = 8, t_profit = 100) {
+load_return <- function(path, t_grouping, t_before_intervention = 9, t_profit = 100) {
 	
 	if(is.na(path)) {
 		return(list(
@@ -136,3 +136,4 @@ load_aggregate_save("Alpha_final", t_grouping = 50000)
 load_aggregate_save("prolonged_deviation", t_grouping = 50000)
 load_aggregate_save("Lambda_final", t_grouping = 50000)
 load_aggregate_save("Delta_final", t_grouping = 50000)
+load_aggregate_save("m_final", t_grouping = 50000)

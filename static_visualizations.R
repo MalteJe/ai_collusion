@@ -1,6 +1,8 @@
 library(tidyverse)
 library(tidyquant)
 library(rlang)
+library(ggbeeswarm)
+library(xtable)
 
 source("economic_environment.R")
 
@@ -86,6 +88,85 @@ point_line_plot <- function(data, varied, filter_cond = "TRUE", x_lab, x_log10 =
 }
 
 
+# function to get stacked bar plot with varied parameter on y axis and a count of converged/non-converged/failed runs
+convergence_plot <- function(data, varied, filter_cond = "TRUE", runs_per_experiment, x_lab) {
+	
+	res <- data %>%
+		# identify converged runs and 'complete' with implicitly missing runs (without files in folder)
+		mutate(converged = (convergence < 500000)) %>%
+		complete(feature_method, varied_parameter) %>%
+		
+		# filter anything out (relevant depending on experiment)
+		filter(!! parse_expr(filter_cond)) %>%
+		
+		# summarize in converged, not-converged and failed runs & wrangle in long format 
+		group_by(feature_method, varied_parameter) %>%
+		summarize(failed = runs_per_experiment - n_distinct(run_id, na.rm = TRUE),
+					 converged = sum(converged)) %>%
+		ungroup() %>%
+		mutate(`not converged` = runs_per_experiment - failed - converged) %>%
+		pivot_longer(cols = c("converged", "not converged" ,"failed"), names_to = "status") %>%
+		mutate(status = forcats::fct_rev(status))
+	
+	out <- res %>%
+		ggplot(aes(x = as_factor(as.numeric(!!sym(varied))), y = value, fill = status)) +
+			geom_col(position = "stack") +
+			facet_wrap(~feature_method) +	fill_dictionary +
+			coord_flip() +
+			labs(y = "runs", x = x_lab) +
+			ai_theme +
+			theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+	
+	print(out)
+	
+	return(res)
+}
+
+
+
+
+# function to unnest deviation data and plot average prices around deviation of both players
+deviation_plot <- function(data, varied, filter_cond = "TRUE", tau_min = -5) {
+	
+	res <- data  %>%
+		filter(!! parse_expr(filter_cond)) %>%
+		select(-outcomes, -successful, -varied_parameter_fct, -convergence, -avg_profits) %>%
+		unnest(intervention)
+	
+	out <- res %>%
+		group_by(feature_method, varied_parameter, tau) %>%
+		summarize("deviating agent" = mean(price_1),
+					 "non deviating agent" = mean(price_2)) %>%
+		pivot_longer(cols = c("deviating agent", "non deviating agent"), names_to = "price") %>%
+		filter(tau > tau_min) %>%
+		ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
+		geom_hline(yintercept = c(1.47, 1.93), linetype = "dashed") +
+		geom_vline(xintercept = 0, linetype = "dotted") +
+		geom_point(size = 3) +
+		geom_line(size = 1) +
+		scale_linetype_manual(values = c("solid", "dotted")) +
+		facet_wrap(~feature_method, nrow = 2) +
+		labs(x = expression(tau), y = "") +
+		ai_theme +
+		color_dictionary
+	print(out)
+	
+	return(res)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,38 +175,46 @@ point_line_plot <- function(data, varied, filter_cond = "TRUE", x_lab, x_log10 =
 
 
 # Convergence --------------------------------------------------------
-
 load("simulation_results/Alpha_final/aggregated.RData")
 
-convergence_info <- data %>%
+# invoke function from above to create stacked plot with convergence info
+convergence_info <- convergence_plot(data = data,
+												 varied = "varied_parameter",
+												 filter_cond = "!(feature_method == 'tabular' & varied_parameter %in% c('1e-06', '1e-07', '1e-08', '1e-10', '1e-12')) &
+					  !(feature_method == 'tiling' & varied_parameter == '1e-12')",
+												 runs_per_experiment = 48,
+												 x_lab = expression(alpha))
+ggsave("report/plots/converged.png", width = 25, height = 15, units = "cm")
 
-# identify converged runs and 'complete' with implicitly missing runs (without files in folder)
-	mutate(converged = (convergence < 500000)) %>%
-	complete(feature_method, varied_parameter) %>%
-
-# these experiments were not attempted and shouldn't appear in the graph as 'failed'
-	filter(!(feature_method == "tabular" & varied_parameter %in% c("1e-06", "1e-07", "1e-08", "1e-10", "1e-12"))) %>%
-	filter(!(feature_method == "tiling" & varied_parameter == "1e-12")) %>%
-
-# summarize in converged, not-converged and failed runs & wrangle in long format 
-	group_by(feature_method, varied_parameter) %>%
-	summarize(failed = 48 - n_distinct(run_id, na.rm = TRUE),
-				 converged = sum(converged)) %>%
-	ungroup() %>%
-	mutate(`not converged` = 48 - failed - converged) %>%
-	pivot_longer(cols = c("converged", "not converged" ,"failed"), names_to = "status") %>%
-	mutate(status = forcats::fct_rev(status))
+# convergence_info <- data %>%
+# 
+# # identify converged runs and 'complete' with implicitly missing runs (without files in folder)
+# 	mutate(converged = (convergence < 500000)) %>%
+# 	complete(feature_method, varied_parameter) %>%
+# 
+# # these experiments were not attempted and shouldn't appear in the graph as 'failed'
+# 	filter(!(feature_method == "tabular" & varied_parameter %in% c("1e-06", "1e-07", "1e-08", "1e-10", "1e-12")) &
+# 			 !(feature_method == "tiling" & varied_parameter == "1e-12")) %>%
+# 
+# # summarize in converged, not-converged and failed runs & wrangle in long format 
+# 	group_by(feature_method, varied_parameter) %>%
+# 	summarize(failed = 48 - n_distinct(run_id, na.rm = TRUE),
+# 				 converged = sum(converged)) %>%
+# 	ungroup() %>%
+# 	mutate(`not converged` = 48 - failed - converged) %>%
+# 	pivot_longer(cols = c("converged", "not converged" ,"failed"), names_to = "status") %>%
+# 	mutate(status = forcats::fct_rev(status))
 
 # Bar chart of convergence proportions
-convergence_info %>%
-	ggplot(aes(x = as_factor(as.numeric(varied_parameter)), y = value, fill = status)) +
-	geom_col(position = "stack") +
-	facet_wrap(~feature_method) +	fill_dictionary +
-	coord_flip() +
-	labs(y = "runs", x = expression(alpha)) +
-	ai_theme +
-	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
-ggsave("report/plots/converged.png", width = 25, height = 15, units = "cm")
+# convergence_info %>%
+# 	ggplot(aes(x = as_factor(as.numeric(varied_parameter)), y = value, fill = status)) +
+# 	geom_col(position = "stack") +
+# 	facet_wrap(~feature_method) +	fill_dictionary +
+# 	coord_flip() +
+# 	labs(y = "runs", x = expression(alpha)) +
+# 	ai_theme +
+# 	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+# ggsave("report/plots/converged.png", width = 25, height = 15, units = "cm")
 
 convergence_info %>%
 	count(status, wt = value) %>%
@@ -141,7 +230,7 @@ convergence_info %>%
 data %>%
 	filter(convergence < 500000) %>%
 	ggplot(aes(x = convergence, y = stat(density), col = feature_method)) +
-	geom_freqpoly(size = 1.5, binwidth = 8000, alpha = 0.6) +
+	geom_freqpoly(size = 1.5, binwidth = 8000, alpha = 0.7) +
 	scale_x_continuous(limits = c(0, 500000), labels = scales::comma) +
 	color_dictionary +
 	labs(x = "t") +
@@ -171,10 +260,6 @@ data %>%
 		(feature_method == "tabular" & cycle_length == 10) |
 		(feature_method == "tiling" & cycle_length == 2)
 	)
-
-
-# Delta as function of cycle length (filtered for Delta > 0)
-# point_line_plot(data, "cycle_length", x_lab = "cycle length", filter_cond = "Delta >= 0")
 
 
 # Vary Alpha --------------------------------------------------------------
@@ -224,15 +309,6 @@ poly_sep %>%
 
 # Learning Phase Trajectory  ----------------------------------------------------------
 
-# experiment_ids <- 8; variations[experiment_ids]
-# 
-# 
-# 
-# outcomes <- data %>%
-# 	select(-intervention, -avg_profits) %>%
-# 	unnest(outcomes) %>%
-# 	filter(!is.na(t_group))
-
 t_grouping <- 50000
 
 manually_optimized_alpha <- data %>%
@@ -250,11 +326,7 @@ outcomes <- manually_optimized_alpha %>%
 
 
 learning_phase <- outcomes %>%
-	# complete(feature_method, varied_parameter, run_id, t_group) %>%
-	# group_by(feature_method, varied_parameter, run_id) %>%
-	# fill(price, Delta, .direction = "down") %>%
-	pivot_longer(cols = c(price, Delta), names_to = "metric") # %>%
-# filter(varied_parameter %in% variations[experiment_ids])
+	pivot_longer(cols = c(price, Delta), names_to = "metric")
 
 learning_phase %>%
 	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
@@ -271,19 +343,6 @@ learning_phase %>%
 	labs(x = "t", y = " ")
 ggsave("report/plots/all_runs.png", width = 25, height = 20, units = "cm")
 
-
-# learning_phase %>%
-# 	group_by(feature_method, varied_parameter, t_group, metric) %>%
-# 	summarize(value = mean(value, na.rm = TRUE)) %>%
-# 	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
-# 			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
-# 	ggplot(aes(x = t_group * t_grouping, y = value, color = feature_method)) +
-# 	geom_hline(aes(yintercept = p_n)) +	
-# 	geom_hline(aes(yintercept = p_m)) +	
-# 	geom_line(size = 1) +
-# 	facet_wrap(~ metric, ncol = 1, scales = "free_y") +
-# 	theme_tq() +
-# 	color_dictionary
 
 
 learning_phase %>%
@@ -316,61 +375,12 @@ ggsave("report/plots/trajectory_price.png", width = 25, height = 20, units = "cm
 
 # Price Range -------------------------------------------------------------
 
-# learning_phase %>%
-# 	filter(metric == "price") %>%
-# 	mutate(t = as_factor(format(t_group * t_grouping, scientific = FALSE))) %>%
-# 	ggplot(aes(x = t, y = value, fill = feature_method)) +
-# 	geom_hline(yintercept = c(0,1), linetype = "dashed") +	
-# 	geom_violin(position = "dodge", scale = "count") +
-# 	facet_grid(metric~feature_method, scales = "free_y") +
-# 	facet_wrap(~feature_method, nrow = 4, scales = "free_y") +
-# 	theme_tq() +
-# 	fill_dictionary
-# ggsave("report/plots/trajectory_Delta.png", width = 25, height = 20, units = "cm")
-
-
-# 
-# 
-# manually_optimized_alpha %>%
-# 	filter(convergence < 500000) %>%
-# 	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
-# 	unnest(intervention) %>%
-# 	filter(tau <= 0) %>%
-# 	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
-# 	group_by(feature_method, varied_parameter, run_id, price) %>%
-# 	summarize(min = min(value),
-# 				 max = max(value),
-# 				 range = max - min,
-# 				 cycle_length = unique(cycle_length)) %>%
-# 	ggplot(aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
-# 	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
-# 	geom_boxplot(varwidth = TRUE, col = "grey35") +
-# 	# geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
-# 	facet_wrap(~feature_method, scales = "free_x") +
-# 	ai_theme +
-# 	fill_dictionary +
-# 	labs(x = "cycle length", y = " ")
-# ggsave("report/plots/price_range.png", width = 25, height = 20, units = "cm")
-# 
-# 
-# 
-# 
-# o <- function(x) {
-# 	subset(x, x == max(x) | x == min(x))
-# }
-# 
-# f <- function(x) {
-# 	r <- quantile(x, probs = c(0.00, 0.25, 0.5, 0.75, 1))
-# 	names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
-# 	r
-# }
-
 price_range <- manually_optimized_alpha %>%
 	filter(convergence < 500000) %>%
 	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
 	unnest(intervention) %>%
-	filter(tau <= 0) %>%
-	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
+	filter(tau <= 0) %>%   #zoom in on 'pre-intervention' episodes
+	pivot_longer(cols = c(price_1, price_2), names_to = "price") %>%
 	group_by(feature_method, run_id, price) %>%
 	summarize(min = min(value),
 				 max = max(value),
@@ -379,79 +389,150 @@ price_range <- manually_optimized_alpha %>%
 	group_by(feature_method, cycle_length) %>%
 	mutate(n = n())
 
-price_range_many <- filter(price_range, n() > 2)
-price_range_few <- filter(price_range, n() <= 2)
-
-ggplot(data = price_range_many, aes(x = as.factor(cycle_length), y = range, fill = feature_method)) +
+ggplot(price_range, aes(x = as.factor(cycle_length), y = range, col = feature_method)) +
 	geom_hline(yintercept = (1.92498 - 1.472927), linetype = "dashed") +     # reference line: difference between nash and fully collusive prices
-	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
-	geom_point(data = price_range_few, mapping = aes(y = range)) +
+	geom_quasirandom(size = 1, width = 0.6, varwidth = TRUE, dodge.width = 0.2) +
 	facet_wrap(~feature_method, scales = "free_x") +
 	ai_theme +
 	fill_dictionary +
-	labs(x = "cycle length", y = " ")
-ggsave("report/plots/price_range.png", width = 25, height = 20, units = "cm")
-
-# manually_optimized_alpha %>%
-# 	filter(convergence < 500000) %>%
-# 	select(feature_method, varied_parameter, run_id, intervention, cycle_length) %>%
-# 	unnest(intervention) %>%
-# 	filter(tau <= 0) %>%
-# 	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
-# 	group_by(feature_method, varied_parameter, run_id, price) %>%
-# 	summarize(min = min(value),
-# 				 max = max(value),
-# 				 range = max - min,
-# 				 cycle_length = unique(cycle_length)) %>%
-# 	group_by(feature_method, cycle_length) %>%
-# 	summarize(min = min(range),
-# 				 max = max(range),
-# 				 med = median(range))
-# 
-
-
-# Intervention
-
-intervention <- manually_optimized_alpha %>%
-	select(-outcomes, -avg_profits) %>%
-	unnest(intervention)
+	labs(x = "cycle length", y = " ") +
+	guides(colour = guide_legend(override.aes = list(size = 2)))
+ggsave("report/plots/price_range.png", width = 25, height = 15, units = "cm")
 
 
 
-intervention %>%
-	group_by(feature_method, varied_parameter, tau) %>%
-	summarize(price_1 = mean(price_1),
-				 price_2 = mean(price_2)) %>%
-	pivot_longer(cols = c("price_1", "price_2"), names_to = "price") %>%
-	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
-	geom_hline(yintercept = c(1.47, 1.93)) +
-	geom_vline(xintercept = 0, linetype = 2) +
-	geom_point(size = 3) +
-	geom_line(size = 1) +
-	theme_tq() +
-	color_dictionary +
-	facet_wrap(~feature_method, nrow = 2)
+# Intervention ------------------------------------------------------------
+
+
+intervention <- deviation_plot(data = manually_optimized_alpha, varied = "varied_parameter")
 ggsave("report/plots/average_intervention.png", width = 25, height = 20, units = "cm")
 
-intervention %>%
-	filter(tau > -1) %>%
-	group_by(feature_method, varied_parameter, run_id) %>%
-	transmute(price_change_1 = price_1 - first(price_1),
-				 price_change_2 = price_2 - first(price_2),
-				 tau = tau) %>%
-	pivot_longer(cols = c("price_change_1", "price_change_2"), names_to = "price") %>%
-	ggplot(aes(x = as.factor(tau), y = value, fill = feature_method)) +
-	geom_violin(scale = "width", trim = TRUE) +
-	# geom_boxplot() +
-	fill_dictionary +
-	facet_grid(feature_method~price) +
-	theme_tq() +
+# 
+# intervention <- manually_optimized_alpha %>%
+# 	select(-outcomes, -successful, -varied_parameter_fct, -convergence, -avg_profits) %>%
+# 	unnest(intervention)
+# 
+# 
+# 
+# intervention %>%
+# 	group_by(feature_method, varied_parameter, tau) %>%
+# 	summarize("deviating agent" = mean(price_1),
+# 				 "non deviating agent" = mean(price_2)) %>%
+# 	pivot_longer(cols = c("deviating agent", "non deviating agent"), names_to = "price") %>%
+# 	filter(tau > -5) %>%
+# 	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
+# 	geom_hline(yintercept = c(1.47, 1.93), linetype = "dashed") +
+# 	geom_vline(xintercept = 0, linetype = "dotted") +
+# 	geom_point(size = 3) +
+# 	geom_line(size = 1) +
+# 	scale_linetype_manual(values = c("solid", "dotted")) +
+# 	facet_wrap(~feature_method, nrow = 2) +
+# 	labs(x = expression(tau), y = "") +
+# 	ai_theme +
+# 	color_dictionary
+# ggsave("report/plots/average_intervention.png", width = 25, height = 20, units = "cm")
+
+
+
+counterfactual <- intervention %>%
+	pivot_longer(cols = c("price_1", "price_2", "profit_1", "profit_2"), names_to = "obs", values_to = "actual") %>%
+	group_by(feature_method, run_id, obs) %>%
+	mutate(replacement_pos = ifelse(tau <=0, NA, row_number() - cycle_length * (1 + (row_number() - 11) %/% cycle_length))) %>%
+	mutate(counterfactual = ifelse(is.na(replacement_pos), actual, actual[replacement_pos]),
+			 diff = actual - counterfactual) %>%
+	separate(col = obs, into = c("metric", "player"), sep = "_")
+
+
+
+full_whisker <- function(x) {
+	r <- quantile(x, probs = c(0, 0.15, 0.5, 0.85, 1))
+	names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
+	r
+}
+
+
+counterfactual %>%
+	filter(tau >= 0, metric == "price") %>%
+	ggplot(aes(x = as.factor(tau), y = diff, fill = feature_method)) +
+	stat_summary(fun.data = full_whisker, geom = "errorbar", width = 0.5) +
+	stat_summary(fun.data = full_whisker, geom = "boxplot", col = "gray35") +
+	facet_grid(feature_method~player) +
 	ai_theme +
+	fill_dictionary +
+	labs(x = expression(tau), y = "price difference")
+ggsave("report/plots/intervention_boxplot.png", width = 25, height = 25, units = "cm")
+
+counterfactual %>%
+	filter(tau >= 0, metric == "profit") %>%
+	ggplot(aes(x = as.factor(tau), y = diff, fill = feature_method)) +
+	stat_summary(fun.data = full_whisker, geom = "errorbar", width = 0.5) +
+	stat_summary(fun.data = full_whisker, geom = "boxplot", col = "gray35") +
+	facet_grid(feature_method~player) +
+	ai_theme +
+	fill_dictionary +
 	labs(x = expression(tau))
-ggsave("report/plots/intervention_violin.png", width = 25, height = 25, units = "cm")
+ggsave("report/plots/intervention_profit_boxplot.png", width = 25, height = 25, units = "cm")
 
 
 
+
+deviation_profitability <- counterfactual %>%
+	mutate(player = ifelse(player == 1, "deviating agent", "non deviating agent")) %>%
+	filter(metric == "profit", tau > 0) %>%
+	mutate(actual_discounted = actual * 0.95^(tau - 1),
+			 counterfactual_discounted = counterfactual * 0.95^(tau - 1)) %>%
+	group_by(feature_method, run_id, player) %>%
+	summarize_at(.vars = c("actual_discounted", "counterfactual_discounted"), .funs = sum) %>%
+	mutate(diff_discounted = actual_discounted - counterfactual_discounted)
+
+deviation_profitability_table <- deviation_profitability %>%
+	group_by(feature_method, player) %>%
+	summarize("share profitable" = mean(diff_discounted > 0),
+				 "share unprofitable" = mean(diff_discounted < 0)); deviation_profitability_table
+
+print(xtable(deviation_profitability_table, type = "latex"),
+		file = "report/tables/share_deviation_profitability.tex",
+		floating = FALSE,
+		include.rownames = FALSE)
+
+
+ggplot(deviation_profitability, aes(x = diff_discounted, col = feature_method)) +
+	geom_freqpoly(size = 1, binwidth = 0.02, alpha = 0.7) +
+	facet_wrap(~player, ncol = 1) +
+	scale_x_continuous(limits = c(-0.5, 0.5)) +
+	ai_theme +
+	color_dictionary +
+	guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+	labs(x = expression(pi), y = "")
+ggsave("report/plots/intervention_profitabiliy_polygon.png", width = 25, height = 25, units = "cm")
+
+
+# not displayed in plot above
+filter(deviation_profitability, (diff_discounted <= -0.5 |  diff_discounted >= 0.5))
+
+
+
+intervention %>%
+	filter(feature_method == "poly-tiling", tau > -3, run_id %in% c(1, 6, 12)) %>%
+	pivot_longer(c("price_1", "price_2", "profit_1", "profit_2"), names_to = "temp") %>%
+	separate(temp, into = c("metric", "player"), sep = "_") %>%
+	mutate(p_n = ifelse(metric == "profit", 0.223, 1.473),
+			 p_m = ifelse(metric == "profit", 0.337, 1.925),
+			 run_id = str_pad(run_id, 2, pad = "0"),
+			 player = ifelse(player == 1, "deviating agent", "non deviating agent")) %>%
+	ggplot(aes(x = tau, y = value, shape = player, linetype = player)) +
+	geom_hline(aes(yintercept = p_n), linetype = "dashed") +	
+	geom_hline(aes(yintercept = p_m), linetype = "dashed") +geom_line() +
+	geom_point() +
+	facet_grid(metric~run_id, scales = "free_y") +
+	scale_x_continuous(labels = scales::comma) +
+	ai_theme +
+	labs(x  = expression(tau), y = "")
+ggsave("report/plots/intervention_poly_tiling.png", width = 25, height = 20, units = "cm")
+
+
+
+	
 # Prolonged Intervention - TBD --------------------------------------------
 
 load("simulation_results/prolonged_deviation/aggregated.RData")
@@ -468,6 +549,146 @@ data %>%
 	facet_grid(metric~feature_method, scales = "free_y") +
 	ai_theme +
 	color_dictionary
+
+
+
+# Vary M ------------------------------------------------------------------
+
+load("simulation_results/m_final/aggregated.RData")
+
+data_m <- manually_optimized_alpha %>%
+	mutate(varied_parameter = "19",
+			 varied_parameter_fct = as.factor("19")) %>%
+	bind_rows(data)
+
+# Bar chart of convergence proportions
+convergence_info_m <- convergence_plot(data = data_m,
+					  varied = "varied_parameter",
+					  filter_cond = "varied_parameter != '19'",
+					  runs_per_experiment = 16,
+					  x_lab = "m")
+ggsave("report/plots/converged_m.png", width = 25, height = 15, units = "cm")
+
+
+# proportions by m (over all feeature extraction methods)
+convergence_info_m %>%
+	group_by(varied_parameter) %>%
+	count(status, wt = value) %>%
+	filter(status != "failed") %>%
+	mutate(prop = n/sum(n))
+
+# vary m 
+m_delta <- point_line_plot(data = data_m, varied = "varied_parameter", x_lab = expression(m), x_log10 = FALSE)
+ggsave("report/plots/m.png", width = 25, height = 15, units = "cm")
+
+
+
+
+
+intervention_m <- data_m %>%
+	select(-outcomes, -successful, -varied_parameter_fct, -convergence, -avg_profits) %>%
+	unnest(intervention)
+
+
+
+intervention_m %>%
+	filter(varied_parameter == "10") %>%
+	group_by(feature_method, varied_parameter, tau) %>%
+	summarize("deviating agent" = mean(price_1),
+				 "non deviating agent" = mean(price_2)) %>%
+	pivot_longer(cols = c("deviating agent", "non deviating agent"), names_to = "price") %>%
+	filter(tau > -5) %>%
+	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
+	geom_hline(yintercept = c(1.47, 1.93), linetype = "dashed") +
+	geom_vline(xintercept = 0, linetype = "dotted") +
+	geom_point(size = 3) +
+	geom_line(size = 1) +
+	scale_linetype_manual(values = c("solid", "dotted")) +
+	facet_wrap(~feature_method, nrow = 2) +
+	labs(x = expression(tau), y = "") +
+	ai_theme +
+	color_dictionary
+# ggsave("report/plots/average_intervention.png", width = 25, height = 20, units = "cm")
+
+
+counterfactual_m <- intervention_m %>%
+	filter(varied_parameter == "10") %>%
+	pivot_longer(cols = c("price_1", "price_2", "profit_1", "profit_2"), names_to = "obs", values_to = "actual") %>%
+	group_by(feature_method, run_id, obs) %>%
+	mutate(replacement_pos = ifelse(tau <=0, NA, row_number() - cycle_length * (1 + (row_number() - 11) %/% cycle_length))) %>%
+	mutate(counterfactual = ifelse(is.na(replacement_pos), actual, actual[replacement_pos]),
+			 diff = actual - counterfactual) %>%
+	separate(col = obs, into = c("metric", "player"), sep = "_")
+
+
+
+counterfactual_m %>%
+	filter(tau >= 0, metric == "price") %>%
+	ggplot(aes(x = as.factor(tau), y = diff, fill = feature_method)) +
+	stat_summary(fun.data = full_whisker, geom = "errorbar", width = 0.5) +
+	stat_summary(fun.data = full_whisker, geom = "boxplot", col = "gray35") +
+	facet_grid(feature_method~player) +
+	ai_theme +
+	fill_dictionary +
+	labs(x = expression(tau), y = "price difference")
+# ggsave("report/plots/intervention_boxplot.png", width = 25, height = 25, units = "cm")
+
+
+
+
+deviation_profitability_m <- counterfactual_m %>%
+	mutate(player = ifelse(player == 1, "deviating agent", "non deviating agent")) %>%
+	filter(metric == "profit", tau > 0) %>%
+	mutate(actual_discounted = actual * 0.95^(tau - 1),
+			 counterfactual_discounted = counterfactual * 0.95^(tau - 1)) %>%
+	group_by(feature_method, run_id, player) %>%
+	summarize_at(.vars = c("actual_discounted", "counterfactual_discounted"), .funs = sum) %>%
+	mutate(diff_discounted = actual_discounted - counterfactual_discounted)
+
+deviation_profitability_table_m <- deviation_profitability_m %>%
+	group_by(feature_method, player) %>%
+	summarize("share profitable" = mean(diff_discounted > 0),
+				 "share unprofitable" = mean(diff_discounted < 0)); deviation_profitability_table_m
+
+print(xtable(deviation_profitability_table, type = "latex"),
+		file = "report/tables/share_deviation_profitability.tex",
+		floating = FALSE,
+		include.rownames = FALSE)
+
+
+ggplot(deviation_profitability, aes(x = diff_discounted, col = feature_method)) +
+	geom_freqpoly(size = 1, binwidth = 0.02, alpha = 0.7) +
+	facet_wrap(~player, ncol = 1) +
+	scale_x_continuous(limits = c(-0.5, 0.5)) +
+	ai_theme +
+	color_dictionary +
+	guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+	labs(x = expression(pi), y = "")
+ggsave("report/plots/intervention_profitabiliy_polygon.png", width = 25, height = 25, units = "cm")
+
+
+
+
+intervention %>%
+	filter(feature_method == "poly-tiling", tau > -3, run_id %in% c(1, 6, 12)) %>%
+	pivot_longer(c("price_1", "price_2", "profit_1", "profit_2"), names_to = "temp") %>%
+	separate(temp, into = c("metric", "player"), sep = "_") %>%
+	mutate(p_n = ifelse(metric == "profit", 0.223, 1.473),
+			 p_m = ifelse(metric == "profit", 0.337, 1.925),
+			 run_id = str_pad(run_id, 2, pad = "0"),
+			 player = ifelse(player == 1, "deviating agent", "non deviating agent")) %>%
+	ggplot(aes(x = tau, y = value, shape = player, linetype = player)) +
+	geom_hline(aes(yintercept = p_n), linetype = "dashed") +	
+	geom_hline(aes(yintercept = p_m), linetype = "dashed") +geom_line() +
+	geom_point() +
+	facet_grid(metric~run_id, scales = "free_y") +
+	scale_x_continuous(labels = scales::comma) +
+	ai_theme +
+	labs(x  = expression(tau), y = "")
+ggsave("report/plots/intervention_poly_tiling.png", width = 25, height = 20, units = "cm")
+
+
+
 
 
 

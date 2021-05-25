@@ -26,6 +26,7 @@ load_return <- function(path, t_grouping, t_before_intervention = 9, t_profit = 
 		return(list(
 			outcomes = NA,
 			avg_profits = NA,
+			avg_prices = NA,
 			intervention = NA,
 			intervention_prolonged = NA,
 			convergence = NA,
@@ -56,9 +57,14 @@ load_return <- function(path, t_grouping, t_before_intervention = 9, t_profit = 
 			head(t_profit) %>%
 			mean()
 		
+		avg_prices <- tail(res$outcomes, t_profit + res$specs$TT_intervention)[, c("price_1", "price_2")] %>%
+			head(t_profit) %>%
+			mean()
+		
 		return(list(
 			outcomes = outcomes,
 			avg_profits = avg_profits,
+			avg_prices = avg_prices,
 			intervention = intervention,
 			intervention_prolonged = res$intervention_prolonged,
 			convergence = conv_t,
@@ -72,7 +78,7 @@ load_return <- function(path, t_grouping, t_before_intervention = 9, t_profit = 
 
 # load("simulation_results/prolonged_deviation/tiling_optimized_6.RData")
 # load_return("simulation_results/prolonged_deviation/tiling_optimized_6.RData", t_grouping = 50000)
-# load_return("simulation_results/Alpha_final/tabular_0.001_1.RData", t_grouping = 50000)
+# load_return("simulation_results/Beta_final/tabular_1e-05_1.RData", t_grouping = 50000)
 
 
 # specify path, list single runs in directory and adjust names
@@ -134,6 +140,7 @@ load_aggregate_save <- function(experiment_job, t_grouping) {
 # load simulation results
 load_aggregate_save("Alpha_final", t_grouping = 50000)
 load_aggregate_save("prolonged_deviation", t_grouping = 50000)
+load_aggregate_save("Beta_final", t_grouping = 50000)
 load_aggregate_save("Lambda_final", t_grouping = 50000)
-load_aggregate_save("Delta_final", t_grouping = 50000)
+load_aggregate_save("Gamma_final", t_grouping = 50000)
 load_aggregate_save("m_final", t_grouping = 50000)

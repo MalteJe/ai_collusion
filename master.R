@@ -89,15 +89,29 @@ baseline <- list(
 # Alpha -------------------------------------------------------------------
 
 
-# alphas <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
-# alpha_input <- list_modify(baseline, Alpha = alphas)
-# 
-# walk(.x = features_extraction_methods,
-# 	  .f = vary_alpha,
-# 	  variable_specs = alpha_input,
-# 	  static_specs = static_specs,
-# 	  runs = runs_per_experiment,
-# 	  no_of_cores = no_of_cores)
+alphas_tabular <- 1 * 10^-c(1,2,3,4,5)
+alpha_tabular_input <- list_modify(baseline, Alpha = alphas_tabular)
+
+walk(.x = features_extraction_methods[1],
+	  .f = vary_alpha,
+	  variable_specs = alpha_tabular_input,
+	  static_specs = static_specs,
+	  runs = runs_per_experiment,
+	  no_of_cores = no_of_cores)
+
+
+alphas_fa <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
+alpha_fa_input <- list_modify(baseline, Alpha = alphas_fa)
+
+walk(.x = features_extraction_methods[2:4],
+	  .f = vary_alpha,
+	  variable_specs = alpha_fa_input,
+	  static_specs = static_specs,
+	  runs = runs_per_experiment,
+	  no_of_cores = no_of_cores)
+
+
+
 
 
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
@@ -188,18 +202,18 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 # # Zeta --------------------------------------------------------------------
 
 
-zetas <- c(0.1, 0.5, 1.5)
-zeta_input <- list_modify(baseline, Alpha = NULL,
-								 zeta = zetas)
-
-
-walk2(.x = features_extraction_methods,
-		.y = alphas_manually_optimized,
-		.f = vary_parameter,
-		variable_specs = zeta_input,
-		static_specs = static_specs,
-		runs = runs_per_experiment,
-		no_of_cores = no_of_cores)
+# zetas <- c(0.1, 0.5, 1.5)
+# zeta_input <- list_modify(baseline, Alpha = NULL,
+# 								 zeta = zetas)
+# 
+# 
+# walk2(.x = features_extraction_methods,
+# 		.y = alphas_manually_optimized,
+# 		.f = vary_parameter,
+# 		variable_specs = zeta_input,
+# 		static_specs = static_specs,
+# 		runs = runs_per_experiment,
+# 		no_of_cores = no_of_cores)
 
 
 # Vary Algorithm ----------------------------------------------------------

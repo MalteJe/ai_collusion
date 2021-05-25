@@ -1,6 +1,5 @@
 # Theme ------------------------------------------------------------------
 # visual specifications
-theme_tq
 
 ai_theme <- theme(
 	axis.title = element_text(size = 14, margin = margin(0.3, 0.3, -1, 0, unit = "mm")),

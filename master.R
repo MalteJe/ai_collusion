@@ -89,26 +89,26 @@ baseline <- list(
 # Alpha -------------------------------------------------------------------
 
 
-alphas_tabular <- 1 * 10^-c(1,2,3,4,5)
-alpha_tabular_input <- list_modify(baseline, Alpha = alphas_tabular)
-
-walk(.x = features_extraction_methods[1],
-	  .f = vary_alpha,
-	  variable_specs = alpha_tabular_input,
-	  static_specs = static_specs,
-	  runs = runs_per_experiment,
-	  no_of_cores = no_of_cores)
-
-
-alphas_fa <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
-alpha_fa_input <- list_modify(baseline, Alpha = alphas_fa)
-
-walk(.x = features_extraction_methods[2:4],
-	  .f = vary_alpha,
-	  variable_specs = alpha_fa_input,
-	  static_specs = static_specs,
-	  runs = runs_per_experiment,
-	  no_of_cores = no_of_cores)
+# alphas_tabular <- 1 * 10^-c(1,2,3,4,5)
+# alpha_tabular_input <- list_modify(baseline, Alpha = alphas_tabular)
+# 
+# walk(.x = features_extraction_methods[1],
+# 	  .f = vary_alpha,
+# 	  variable_specs = alpha_tabular_input,
+# 	  static_specs = static_specs,
+# 	  runs = runs_per_experiment,
+# 	  no_of_cores = no_of_cores)
+# 
+# 
+# alphas_fa <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
+# alpha_fa_input <- list_modify(baseline, Alpha = alphas_fa)
+# 
+# walk(.x = features_extraction_methods[2:4],
+# 	  .f = vary_alpha,
+# 	  variable_specs = alpha_fa_input,
+# 	  static_specs = static_specs,
+# 	  runs = runs_per_experiment,
+# 	  no_of_cores = no_of_cores)
 
 
 
@@ -149,16 +149,17 @@ alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 
 # # Gamma -------------------------------------------------------------------
 
-# gammas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
-# gamma_input <- list_modify(baseline, Alpha = NULL, Gamma = gammas)
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = gamma_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+gammas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
+gammas <- c(0.8, 0.85, 0.99)
+gamma_input <- list_modify(baseline, Alpha = NULL, Gamma = gammas)
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = gamma_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 

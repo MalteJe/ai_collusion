@@ -97,7 +97,8 @@ all_runs %>%
 	ai_theme +
 	facet_wrap(~feature_method) +
 	fill_dictionary +
-	guides(col = FALSE)
+	guides(col = FALSE) +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
 ggsave("report/plots/alpha_violin.png", width = 25, height = 15, units = "cm")
 
 
@@ -604,3 +605,199 @@ deviation_profitability_table_gamma <- deviation_profitability_gamma %>%
 	pivot_wider(names_from = "varied_parameter_fct", names_prefix = "$\\gamma =$ ", values_from = 'share profitable') %>%
 	select(feature_method, agent, "$\\beta =$ 0.00016", "$\\beta =$ 8e-05", "$\\beta =$ 4e-05", "$\\beta =$ 2e-05", "$\\beta =$ 1e-05") %>%
 	rename("feature method" = "feature_method"); deviation_profitability_table_beta
+
+
+
+
+# Tree backup -------------------------------------------------------------
+
+load("simulation_results/tree_backup_final/aggregated.RData")
+
+# manually associate the optimized values of alpha with the runs
+data_tb <- data %>%
+	mutate(
+		varied_parameter = case_when(
+			feature_method == "poly-separated" ~ "1e-06",
+			feature_method == "poly-tiling" ~ "1e-08",
+			feature_method == "tiling" ~ "0.001",
+			feature_method == "tabular" ~ "0.1",
+			),
+		varied_parameter_fct = as_factor(varied_parameter)
+	)
+
+
+# all but a single run converged (warning message can be ignored)
+convergence_info_tb <- convergence_plot(data = data,
+												 varied = "varied_parameter",
+												 convergence_max = 500000,
+												 runs_per_experiment = 48,
+												 x_lab = "" )
+
+convergence_info_tb %>%
+	count(status, wt = value) %>%
+	mutate(prop = n/sum(n))
+
+
+
+
+alpha_tb <- point_line_plot(data = data_tb, varied = "varied_parameter", x_lab = expression(alpha), x_log10 = TRUE)
+
+data_tb %>%
+	filter(convergence < 500000) %>%
+	mutate(Delta = get_delta(avg_profits)) %>%
+	ggplot(aes(x = feature_method, y = Delta, fill = feature_method)) +
+	geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+	scale_y_continuous(expand = c(0, 0), breaks = seq(-0.5,1, by = 0.25), labels = c("-0.5", "-0,25", expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	labs(x = " ", y = expression(Delta)) +
+	ai_theme +
+	fill_dictionary +
+	guides(fill = FALSE) +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+ggsave("report/plots/tb_violin.png", width = 25, height = 10, units = "cm")
+
+
+
+# Learning Phase Trajectory  ----------------------------------------------------------
+
+data_tb %>%
+	select(-intervention, -avg_profits) %>%
+	unnest(outcomes) %>%
+	pivot_longer(cols = c(price, Delta), names_to = "metric") %>%
+	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
+			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
+	ggplot(aes(x = t_group * t_grouping, y = value, group = interaction(feature_method, run_id, varied_parameter), col = feature_method)) +
+	geom_hline(aes(yintercept = p_n), linetype = "dashed") +	
+	geom_hline(aes(yintercept = p_m), linetype = "dashed") +	
+	geom_line() +
+	facet_wrap(~metric, ncol =1, scales = "free_y") +
+	ai_theme +
+	scale_x_continuous(labels = scales::comma) +
+	color_dictionary +
+	labs(x = "t", y = " ")
+
+
+# Deviation ------------------------------------------------------------
+
+
+intervention_tb <- deviation_plot(data = data_tb, varied = "feature_method")
+ggsave("report/plots/average_intervention_tb.png", width = 25, height = 20, units = "cm")
+
+
+counterfactual_tb <- counterfactual_plot(data = intervention_tb, varied = "feature_method")
+ggsave("report/plots/intervention_boxplot_tb.png", width = 25, height = 25, units = "cm")
+
+
+# identify and display  polynomial tiling runs where cheated agent respondedwith price cut at tau = 2
+(poly_tiling_deviations_matching <- filter(counterfactual_tb, feature_method == "poly-tiling", tau == "2", metric == "price", agent == "non deviating", diff < 0))
+
+counterfactual_tb %>%
+	filter(feature_method == "poly-tiling", run_id %in% poly_tiling_deviations_matching$run_id, tau > -2, metric == "price") %>%
+	mutate(p_n = ifelse(metric == "profit", 0.223, 1.473),
+			 p_m = ifelse(metric == "profit", 0.337, 1.925),
+			 run_id = str_pad(run_id, 2, pad = "0")) %>%
+	ggplot(aes(x = tau, y = actual, shape = agent, linetype = agent)) +
+	geom_hline(aes(yintercept = p_n), linetype = "dashed") +	
+	geom_hline(aes(yintercept = p_m), linetype = "dashed") +geom_line() +
+	geom_point() +
+	facet_wrap(~run_id, scales = "free_y") +
+	scale_x_continuous(labels = scales::comma) +
+	ai_theme +
+	labs(x  = expression(tau), y = "")
+
+
+
+
+
+
+# On Policy -------------------------------------------------------------
+
+load("simulation_results/on_policy_final/aggregated.RData")
+
+# manually associate the optimized values of alpha with the runs
+data_op <- data %>%
+	mutate(
+		varied_parameter = case_when(
+			feature_method == "poly-separated" ~ "1e-06",
+			feature_method == "poly-tiling" ~ "1e-08",
+			feature_method == "tiling" ~ "0.001",
+			feature_method == "tabular" ~ "0.1",
+		),
+		varied_parameter_fct = as_factor(varied_parameter)
+	)
+
+
+# all runs converged (warning message can be ignored)
+convergence_info_op <- convergence_plot(data = data,
+													 varied = "varied_parameter",
+													 convergence_max = 500000,
+													 runs_per_experiment = 48,
+													 x_lab = "" )
+
+convergence_info_op %>%
+	count(status, wt = value) %>%
+	mutate(prop = n/sum(n))
+
+
+alpha_op <- point_line_plot(data = data_op, varied = "varied_parameter", x_lab = expression(alpha), x_log10 = TRUE)
+
+data_op %>%
+	filter(convergence < 500000) %>%
+	mutate(Delta = get_delta(avg_profits)) %>%
+	ggplot(aes(x = feature_method, y = Delta, fill = feature_method)) +
+	geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+	scale_y_continuous(expand = c(0, 0), breaks = seq(-0.5,1, by = 0.25), labels = c("-0.5", "-0,25", expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	labs(x = " ", y = expression(Delta)) +
+	ai_theme +
+	fill_dictionary +
+	guides(fill = FALSE) +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+ggsave("report/plots/op_violin.png", width = 25, height = 10, units = "cm")
+
+
+
+# Learning Phase Trajectory  ----------------------------------------------------------
+
+# prices more consistently between benchmarks and price trajectory appears a little more stable?
+data_op %>%
+	select(-intervention, -avg_profits) %>%
+	unnest(outcomes) %>%
+	pivot_longer(cols = c(price, Delta), names_to = "metric") %>%
+	mutate(p_n = ifelse(metric == "Delta", 0, 1.47),
+			 p_m = ifelse(metric == "Delta", 1, 1.93 )) %>%
+	ggplot(aes(x = t_group * t_grouping, y = value, group = interaction(feature_method, run_id, varied_parameter), col = feature_method)) +
+	geom_hline(aes(yintercept = p_n), linetype = "dashed") +	
+	geom_hline(aes(yintercept = p_m), linetype = "dashed") +	
+	geom_line() +
+	facet_wrap(~metric, ncol =1, scales = "free_y") +
+	ai_theme +
+	scale_x_continuous(labels = scales::comma) +
+	color_dictionary +
+	labs(x = "t", y = " ")
+
+
+# Deviation ------------------------------------------------------------
+
+# note that due to the delayed learning in on-policy learning, the deviation takes place at tau = 2 and a (potential) response at tau = 3
+intervention_op <- deviation_plot(data = data_op, varied = "feature_method")
+
+
+counterfactual_op <- counterfactual_plot(data = intervention_op, varied = "feature_method")
+
+
+(poly_tiling_deviations_matching_op <- filter(counterfactual_op, feature_method == "poly-tiling", tau == "3", metric == "price", agent == "non deviating", diff < 0))
+
+counterfactual_op %>%
+	filter(feature_method == "poly-tiling", run_id %in% poly_tiling_deviations_matching_op$run_id, tau > -2, metric == "price") %>%
+	mutate(p_n = ifelse(metric == "profit", 0.223, 1.473),
+			 p_m = ifelse(metric == "profit", 0.337, 1.925),
+			 run_id = str_pad(run_id, 2, pad = "0")) %>%
+	ggplot(aes(x = tau, y = actual, shape = agent, linetype = agent)) +
+	geom_hline(aes(yintercept = p_n), linetype = "dashed") +	
+	geom_hline(aes(yintercept = p_m), linetype = "dashed") +geom_line() +
+	geom_point() +
+	facet_wrap(~run_id, scales = "free_y") +
+	scale_x_continuous(labels = scales::comma) +
+	ai_theme +
+	labs(x  = expression(tau), y = "")

@@ -12,7 +12,7 @@ This section lays out the methods used in this study to map state-action combina
 			\textbf{Feature Extraction}&\textbf{Baseline}&\textbf{Length} $\boldsymbol{x}$&\textbf{factor when}\\
 			\textbf{Method}&\textbf{Parametrization}&&\textbf{doubling} $m$\\
 			\hline
-			Tabular&&$m^3 = 6,859$& x8\\
+			Tabular&-&$m^3 = 6,859$& x8\\
 			\hline
 			Tile Coding&$T = 5, \psi = 9$&$T~(\psi - 1)^3 = 2,560$& x1\\
 			\hline
@@ -45,11 +45,11 @@ The respective coefficient tracks the performance over time and directly represe
 
 However, tabular methods are not necessarily the best or fastest way to learn an optimal policy. In real life markets, a salient factor may impede its effectiveness. Prices are (quasi-) continuous - a treat completely ignored by tabular methods. This has two major implications. First, the leeway of decision makers is artificially restricted. Second, due to a \emph{curse of dimensionality}, learning speed and success may deteriorate disproportionately with $m$. I will take a closer look at each of these points.
 
-Obviously, any decision maker is only restricted by the currency's smallest feasible increment and can charge more than just a couple of prices. It is certainly conceivable, maybe even desirable, that a decision maker reduces the own number of considered prices to simplify the decision process. However, in most cases it will be impossible to impose such a restriction on competitors. As an extreme example, consider an opponent who never charges the same price twice. Whenever this opponent introduces a new price, a tabular learning agent is coerced to create a new cell in the state-action matrix that will never be revisited. Consequently, the agent continuously encounters new situations from which it can learn, but can never utilize the acquired knowledge. \footnote{One could attempt to circumvent this problem by discretizing the prices \emph{ex ante} (e.g. as in \autoref{available_prices}) and simply convert the real price to the closest available alternative. While this introduces some imprecision and it is unclear how to optimally discretize prices, it might constitute a practicable solution. In fact, that approach is a special case of \emph{tile coding}, the method I will introduce in \autoref{tile_coding}}.
+Obviously, any decision maker is only restricted by the currency's smallest feasible increment and can charge more than just a couple of prices. It is certainly conceivable, maybe even desirable, that a decision maker reduces the own number of considered prices to simplify the decision process. However, in most cases it will be impossible to impose such a restriction on competitors. As an extreme example, consider an opponent who never charges the same price twice. Whenever this opponent introduces a new price, a tabular learning agent is coerced to create a new cell in the state-action matrix that will never be revisited. Consequently, the agent continuously encounters new situations from which it can learn, but never utilizes the acquired knowledge.\footnote{One could attempt to circumvent this problem by discretizing the prices \emph{ex ante} (e.g. as in \autoref{available_prices}) and simply convert the real price to the closest available alternative. While this introduces some imprecision and it is unclear how to optimally discretize prices, it might constitute a practicable solution. In fact, that approach is a special case of \emph{tile coding}, the method I will introduce in \autoref{tile_coding}.}
 
-More importantly, tabular learning does not scale well with $m$ and $n$. In the baseline specification, the number of features is $19^3 = 6859$. Doubling $m$ from $19$ to $38$ causes an eightfold increase of that number to $54,872$. Even worse, increasing the number of competitors alters the exponent. Changing $n$ from $2$ to $3$ entails an increase of features by the factor $m$, in the baseline specification from $6859$ to $130,321$.\footnote{A similar problem arises when the algorithm is supposed to account for cost and demand factors. While changes in costs and prices are not considered in this study, they obviously play an important role in reality.} It is easy to see that modest increases in complexity have the potential to evoke a disproportionate reduction in learning speed. Indeed, \autocite{calvano_algorithmic_2018} show that increasing $m$ and $n$ tends to reduce profits of tabular learning agents.
+More importantly, tabular learning does not scale well with $m$ and $n$. In the baseline specification, the number of features is $19^3 = 6859$. Doubling $m$ from $19$ to $38$ causes an eightfold increase of that number to $54,872$. Even worse, increasing the number of competitors alters the exponent. Changing $n$ from $2$ to $3$ entails an increase of features by the factor $m$, in the baseline specification from $6859$ to $130,321$.\footnote{A similar problem arises when the algorithm is supposed to account for cost and demand factors. Every added input, whether due to an additional opponent or any other profit-related variable, increases the table by a factor or $m$. While changes in costs and prices are not considered in this study, they obviously play an important role in reality.} It is easy to see that modest increases in complexity have the potential to evoke a disproportionate reduction in learning speed. Indeed, \textcite{calvano_algorithmic_2018} show that increasing $m$ and $n$ tends to reduce profits of tabular learning agents.
 
-Another way of looking at the same issue is to consider the nature of the variable $p$. Prices are continuous and transforming them into a qualitative set of discrete actions disregards that fact. In particular, it prevents the opportunity to learn from the result of charging one particular price about the quality of \emph{similar} prices in that same situation. To illustrate with an inflated example, consider a manager who observes large profits after charging a price of $1000$. A human manager is able to infer that charging $1001$ instead would have yielded a similar profit. Tabular learning agents are not.
+Another way of looking at the same issue is to consider the nature of the variable $p$. Prices are continuous and transforming them into a qualitative set of discrete actions disregards that fact. In particular, it prevents the opportunity to learn from the result of charging a particular price about the quality of \emph{similar} prices in the same situation. To illustrate with an inflated example, consider a manager who observes large profits after charging a price of $1000$. A human manager is able to infer that charging $1001$ instead would have yielded a similar profit. Tabular learning agents are not.
 
 
 \textbf{point at tradeoff: precision vs. learning speed}
@@ -62,7 +62,7 @@ Another way of looking at the same issue is to consider the nature of the variab
 The function approximation methods considered in this study alleviate the \emph{curse of dimensionality}. In fact, length of the feature vector $\boldsymbol{x}$ in \emph{tile coding} and \emph{polynomial tiling} is unaffected by $m$. For \emph{separate polynomials}, it is proportional to $m$, i.e.\ doubling the number of feasible prices also doubles the number of features. Moreover, all methods augment learning in the sense that a particular state-action combination tends to evoke ampler parameter updates (in accordance with \autoref{update_rule}) that also change the future evaluation of \emph{similar} state-action combinations.
 
 \subsubsection{Tile Coding}\label{tile_coding}
-In reinforcement learning, \emph{tile coding} is a common way to extract linear, in fact binary, features from a state-action space.\footnote{for an extensive introduction with helpful illustrations refer to \textcite{sutton_reinforcement_2018}} Its appeal stems partly from the fact that it is a generalization of tabular learning that retains binary features. The idea is that several \emph{tilings} superimpose the state-action space. The $\mathcal{T}$ tilings are offset but each tiling covers the entire state-action space:
+In reinforcement learning, \emph{tile coding} is a common way to extract binary features from a state-action space.\footnote{for an extensive introduction with helpful illustrations refer to \textcite{sutton_reinforcement_2018}} Its appeal stems partly from the fact that it is a generalization of tabular learning. The idea is that several \emph{tilings} superimpose the state-action space. The $\mathcal{T}$ tilings are offset but each tiling covers the entire state-action space:
 
 \begin{gather}
 	 T^L \leq A^L  ~ \text{and} ~ T^U \geq A^U ~~ \forall  ~~ T \in \{1, 2, ..., \mathcal{T} ~ \} ~~ \text{,}
@@ -79,7 +79,7 @@ T^L + \frac{(\psi-2)(T^U - T^L)}{\psi - 1},
 T^U) ~~ \text{,}
 \end{gather}
 
-where $\psi$ represents the number of thresholds. This gives rise to $(\psi-1)^3$ tiles per tiling. Tiles are binary, i.e.\ if a state-action observation falls into a particular demarcation, the corresponding tile is \emph{activated}:
+where $\psi$ represents the number of thresholds. This gives rise to $(\psi-1)^3$ tiles per tiling. As indicated, tiles are binary, i.e.\ if a state-action observation falls into a particular demarcation, the corresponding tile is \emph{activated}:
 
 \begin{gather}\label{tile_activation}
 x_d^{Tiling} = \begin{cases}
@@ -141,4 +141,8 @@ p_{i, t-1}^{\kappa_{d,1}} ~ p_{j, t-1}^{\kappa_{d,2}} & \quad \text{if } a = A_t
 Note that the method models the value of an action as a function of $S_t$. The number of encompassed features arises naturally as $m($ $k+2\choose2$ $-1)$.
 
 
-Perhaps, an inverse variation could be more intuitive from an economic perspective. Consider a case where every permutation of $S_t$ would hold a distinct set of parameters. This approach is closer to the notion of selecting $a$ to optimize the reward \emph{given} a fixed state set $s$. I leave this variation open as a potential avenue for future research.
+Perhaps, an inverse variation could be more intuitive from an economic perspective. Consider a case where every permutation of $S_t$ holds a distinct set of parameters. This approach is closer to the notion of selecting $a$ to optimize the reward \emph{given} a fixed state set $s$. I leave this variation open as a potential avenue for future research.
+
+\subsection{Parameter Grid}
+
+TBD

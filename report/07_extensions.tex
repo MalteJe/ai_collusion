@@ -1,42 +1,122 @@
 \section{Robustness and variations}\label{robustness}
 
-\begin{enumerate}
-	\item vary $\beta$
-	\item vary discount factor
-	\item vary $lambda$
-	\item vary price range
-	\item vary number of prices ($m$)
-	\item other algorithms
-	\item average reward setting
-\end{enumerate}
+
+\subsection{Prolonged deviations}
+
+
+
+\subsection{Parameter variations}\label{vary_parameter}
+
+Besides the learning rate $\alpha$, the exploration strategy is arguably the most important steering choice in reinforcement learning. As discussed, $\beta$ controls the decay in exploration over time. I run a number of experiments varying $\beta$ while keeping the manually optimized values of $\alpha$ constant (see \autoref{justifications}).\footnote{Note that these values are not necessarily 'optimized' for alternative $\beta$. Ideally, exploration rate and learning speed should not be considered in isolation. Indeed, \textcite{calvano_algorithmic_2018} show that lower values of $\alpha$ perform better if exploration is extensive. However, the scope of this study does not allow to systematically search over a 2-dimensional grid of $\alpha$ and $\beta$.} \autoref{beta} displays that the impact of exploration on $\Delta$ is relatively small across feature extraction methods. However, applying the deviation routine described in \autoref{deviations} uncovers notable differences with respect to \emph{incentive compatibility}. \autoref{share_deviation_profitability_beta} clearly shows that cheating becomes less profitable when the opponent had more opportunities to explore actions. This is most apparent with tabular learning where the share of profitable deviations ranges from 39\% at $\beta = 0.00016$ to 6\% at $\beta= 2*10^{-5}$. \autoref{average_intervention_beta_tabular} in \autoref{appendix_2} extends the observation and shows that punishment severity and length increase with extended exploration.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/beta.png}
+	\caption{average $\Delta$ for various experiments. Includes converged and non-converged runs.}
+	\label{beta}
+\end{figure}
+
+
+\begin{center}
+	\begin{table}
+		\input{tables/share_deviation_profitability_beta.tex}
+		\caption{Share of profitable deviations by agent and feature extraction method. Deviations are deemed \emph{profitable} if the discounted ($\gamma = 0.95$) profits due to the deviation until $\tau = 10$  exceed cash flows from a counterfactual without deviation. Only includes converged runs because a clear counterfactual exists.}
+		\label{share_deviation_profitability_beta}
+	\end{table}
+\end{center}
+
+I briefly explore how the choice of $\lambda$ affects the simulation outcomes in \autoref{appendix_2}.
+
+\subsection{Price grid}
+
+\autoref{feature_extraction_summary} emphasized that the length of the parameter vector $\boldsymbol{w}$ with tabular learning increases disproportionately with $m$. Likewise, the optimization problem is likely to become more complex. On the other hand, the feature extraction mechanisms of tile coding and polynomial tiles are largely unaffected by $m$. To gauge the effect on outcomes, I executed experiments with additional variations of $m=10$, $m = 39$ and $m = 63$.\footnote{As before, the odd numbers are chosen to enable prices close to $p_m$ and $p_n$} Due to computational restrictions, these experiments  only comprise 16 runs. Accordingly, inference should be treated with care.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/m.png}
+	\caption{average $\Delta$ for various experiments. Includes converged and non-converged runs.}
+	\label{m}
+\end{figure}
+
+Unsurprisingly, convergence becomes less likely when $m$ increases. While all runs with $m=10$ converged, the percentage for $m=39$ and $m=63$ is only  67.2\% and 57.8\% respectively. This is driven mainly by less converged runs in \emph{tabular learning} and \emph{tile coding}.\footnote{See \autoref{converged_m} in \autoref{appendix_2}.} \autoref{m} illustrates that varying $m$ does not seem to have much of an impact on the average of $\Delta$. 
+\textbf{a little surprising?}. 
+
+However, the number of feasible prices appears to impact the stability of the equilibrium. \autoref{share_deviation_profitability_m} suggests that the share of profitable deviations increases with $m$ for tabular learning and the polynomial tiles method.\footnote{Regarding polynomials tiles, the portion might actually be higher as some deviations lead to new equilibria with lower prices and profits, but the counterfactual comparison only takes into account 10 episodes.} This is supported further by the fact that punishments seem to be strongest with $m = 10$ (see \autoref{average_intervention_m_10} in \autoref{appendix_2}).
+
+\begin{center}
+	\begin{table}
+		\input{tables/share_deviation_profitability_m.tex}
+		\caption{Share of profitable deviations by agent and feature extraction method. Deviations are deemed \emph{profitable} if the discounted ($\gamma = 0.95$) profits due to the deviation until $\tau = 10$  exceed cash flows from a counterfactual without deviation. Only includes converged runs because a clear counterfactual exists.}
+		\label{share_deviation_profitability_m}
+	\end{table}
+\end{center}
+
+
+
+vary $\zeta$ in appendix (?)
+
+Recall from \autoref{price_grid_formula} that $\zeta$ controls the available excess range above the monopoly price $p_m$. I conducted three alternative experiments to assess the impact on outcomes. I keep $m=19$ to ensure reasonable comparisons though prices very close to $p_n$ or $p_m$ might not be available with different $\zeta$.\footnote{with $\zeta = 1$, the price closest to $p_n = 1.473$ ($p_m = 1.925$) is $1.454$ ($1.908$).} \autoref{zeta} \textbf{TBD}
+ 
+
+\subsection{Discount factor}
+
+In dynamic oligopolies, theory ascribes great importance to the discount factor $\gamma$. Typically, there exists a critical value below which the weight on future profits becomes too low to sustain any collusive behavior. Likewise, if $\gamma$ is sufficiently high, rational actors with full information will collude on the monopoly solution. In reality, there are various reasons why decision makers may end up charging prices between both extremes. For instance, they might not be fully aware of what exactly the benchmark prices are and might struggle to communicate and agree on a joint action (explicitly or tacitly). Similarly, in reinforcement learning, it is unlikely that there exists a strict dichotomy between fully collusive and perfectly competitive agents. Indeed, the results so far suggests that many intermediate levels are realistic. Nevertheless, with lower values of $\gamma$, less weight is put on the (expected) value of the future state in \autoref{td_error_expected} and the immediate reward $R_t$ gains relative importance.
+
+To gauge the effect of $\gamma$ on outcomes, I conducted a series of experiments ranging from perfectly myopic ($gamma =0$) to infinitely patient ($\gamma = 1$) agents.\footnote{While $\gamma = 1$ is usually easy to model in economics, it is highly problematic in continuing learning tasks due to its infinite sum property (this is the main reason why discounting is commonly utilized in reinforcement learning in the first place, see e.g.\ \textcite{schwartz_reinforcement_1993}). Consider the following example. An agent with no time preference ($\gamma = 1$) in a continuous task explores  early that a particular action consistently yields positive rewards. When \emph{exploiting}, the agent keeps playing that action and the value estimate accumulates to infinity. This results in a significant bias towards actions that have been explored early and at some point becomes computationally infeasible. Similarly, values marginally below $1$ are known to be unstable \parencite{naik_discounted_2019}.} \autoref{gamma} summarizes the average $\Delta$. The curves of tabular learning and tile coding indicate the hypothesized pattern. though the relationship is not as clear as one might expect, with $\gamma = 0$, the average profits are much closer to the Nash benchmark.\footnote{The relationship is more pronounced with prices, see \autoref{gamma_violin_price} in \autoref{appendix_2}.}
+
+\textbf{another subtlety: outcomes highest at $\gamma = 0.9$?, might be random variation or an artifact of the convergence problems with large $\gamma$. }
+With regard to the polynomial feature extraction methods, the figure serves as further evidence of their ineptness for the considered learning task. 
+
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/gamma.png}
+	\caption{average $\Delta$ for various experiments. Includes converged and non-converged runs.}
+	\label{gamma}
+\end{figure}
+
 
 \subsection{Algorithm Variations}\label{vary_algorithm}
 
-\subsubsection{On Policy}
+Of course, the specific algorithm described in \autoref{expected SARSA} is only one of many ways to mix function approximation wi. I will consider two variations: \emph{Tree backup} and \emph{on-policy SARSA}.
 
-Note that $\delta_t$ can only be calculated after the action in the next period has been taken.\footnote{}
+\subsubsection{Tree backup}
 
-\begin{gather}
-	\delta_t^{SARSA} = \pi_t + \gamma \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}) - \hat{q}(S_t, A_t, \boldsymbol{w})
+\textcite{precup} suggest the \emph{tree backup} algorithm as a successor to Q-Learning. Compared to the \emph{expected SARSA} algorithm, \autoref{eligibility_trace_update} is updated slightly different:
+
+\begin{gather}\label{eligibility_traces_tree_backup}
+\gamma \lambda \kappa(A_t | S_t) \boldsymbol{z}_{t-1} + \frac{\Delta \hat{q}}{\Delta \boldsymbol{w}_t} ~~~~~ \text{,}
 \end{gather}
-		
 
+where $\kappa(A_t | S_t)$ represents the probability of choosing $A_t$ if the agent was following a hypothetical target policy, i.e.\ $\epsilon= 0$. Again, the idea is that the trace resets to 0 as soon as a non-greedy action is played. Unsurprisingly, applying the tree backup algorithm to the environment yields similar results as before.
+
+\subsubsection{On policy SARSA}
+\emph{Q-Learning}, \emph{tree backup} and \emph{expected SARSA} all belong to the family of \emph{off-policy} methods. This stems from the simple fact that the (discounted) value estimation of the state-action combination at $t+1$ is not always based on the actually chosen action $A_t{t+1}$ (see \autoref{td_error_expected} and \textbf{TBD} (?) ).\footnote{It does if $\epsilon = 0$.}  So, it is \emph{off-path} of the actually pursued policy. Off-policy methods tend to provide sophisticated learning but convergence guarantees for them are generally weaker than for \emph{on-policy} algorithms \parencite{sutton_reinforcement_2018} \textbf{other source?}.\footnote{The main reason why I haven't put much consideration into this is that convergence is that due to the \emph{moving target problem} described in \autoref{convergence_considerations}, convergence is not guaranteed anyway. Moreover, \autoref{hettich} shows that off-policy methods can work well with function approximation.}. As their name suggests, \emph{on-policy} methods wait with valuation of the future state-action combination until it is actually known. The straight forward-adaption of calculating the TD error is:
+
+\begin{gather}\label{td_error_on_policy}
+\delta_t^{SARSA} = r_t + \gamma \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~ \text{,} \\
+\end{gather}
+
+Note that learning is delayed in the sense that $\delta_t^{SARSA}$ can only be calculated after the action in the next period has been taken. Using the optimized values of $\alpha$, I conducted one experiment per feature extraction method. The exact algorithm is documented in \autoref{appendix_2}.
+
+\textbf{results}
+		
 \subsection{Differential Reward Setting}
 
-\begin{gather}
-\delta_t = r_t - \widetilde{R}_{t-1} + \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~   \text{,}
+In reinforcement learning, discounting is commonly used to avoid infinite value accumulation (e.g.\ in \autoref{td_error_expected}), but rarely has a practical interpretation \parencite{schwartz_reinforcement_1993}. Therefore, the blend with an economic task seems natural. However, despite wide usage, \textcite{naik_discounted_2019} argue that discounting is fundamentally incompatible in combination with function approximation in infinite sequences. They suggest an alternative \emph{differential reward} setting, where \autoref{dt_error_expected} is replaced by:\footnote{See chapter 10 in \textcite{sutton_reinforcement_2018} for a rigorous treatment formulation. \autoref{hettich} shows that the differential reward setting works well with agents in a Bertrand environment. He also compares both settings and finds a tendency to oscillating behavior with discounting.}
+
+
+\begin{gather}\label{differential_reward}
+\delta_t^{differential} = r_t - \widetilde{R}_{t} + \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~  \text{,}
 \end{gather}
 
-$\widetilde{R}_{t-1}$ is a (weighted) average reward
+where $\widetilde{r}_{t-1}$ is a (weighted) average reward periodically updated according to
 
-\emph{ex post} \emph{differential} profit $\pi_t - \widetilde{R}_{t-1}$ in conjunction with the estimated value of the newly arising state-action combination in $t+1$
+\begin{gather}
+	\widetilde{r}_{t+1} = \widetilde{R}_t + \upsilon r_t\text{.}
+\end{gather}
 
-While they come with a meaningful economic interpretation, \textcite{sutton_reinforcement_2018} and \textcite{naik_discounted_2019} show that their use is inappropriate in infinite sequences with function approximation settings. Moreover, a policy maximizing average rewards is equivalent to a policy maximizing the average of discounted future values - irrespective of the particular discount factor.
+The formulation ensures that recent rewards are weighted higher. $\upsilon$ is a parameter controlling the speed of adjustment. Note that the differential reward setting does not involve any discounting. At first glance, this clashes with the economic understanding of time preferences.\footnote{This is the main reason why I have not utilized the differential setting in the main part of this study.} However, there are two arguments why the differential reward setting might still be well suited. First, \textcite{sutton_reinforcement_2018} proof that, due to the infinite nature of the Bertrand environment, the ordering of policies in the discounted value setting and the setting with average rewards are equivalent (irrespective of $\gamma$). Second, pricing algorithms tend to be used in markets with frequent price changes where it is less important whether a profit is realized immediately or in the next period.
 
-Surprisingly, this system 
-* discount factor can be = 1
-
-
+\textbf{anyway, results here.}
 
 
 \pagebreak

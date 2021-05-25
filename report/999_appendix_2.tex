@@ -1,0 +1,87 @@
+
+
+\textbf{some words on beta}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/average_intervention_beta_tabular.png}
+	\caption{Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}
+	\label{average_intervention_beta_tabular}
+\end{figure}
+
+Recall that high values of $\lambda$ increase the algorithm's hindsight but increases variance. This is reflected in both convergence rates and outcomes. \autoref{converged_lambda} clearly indicates that high values of $\lambda$ impedes convergence for tabular learning and the separated polynomial method. Similarly, \autoref{lambda_violin} exhibits greater variability in profits with increasing $\lambda$. This holds true for all feature extraction methods, but is particularly conspicuous for the separated polynomial method where a significant number of runs end in profits below the Nash equilibrium once $\lambda \ge 0.6$ .\footnote{The runs with $\Delta <0$ are largely the simulations without convergence.} Finally, the conclusions regarding deviation patterns are robust to variations in $\lambda$. Except for tabular learning, the non deviating agent fails to punish cheating which the deviating agent does not reliably exploit that weakness.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/converged_m.png}
+	\caption{Number of runs per experiment that achieved convergence as a function of $\lambda$.}
+	\label{converged_lambda}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/lambda_violin.png}
+	\caption{distribution of $\Delta$ for various experiments. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{lambda_violin}
+\end{figure}
+
+
+\textbf{some words on m}
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/converged_m.png}
+	\caption{Number of runs per experiment that achieved convergence as a function of $m$.}
+	\label{converged_m}
+\end{figure}
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/average_intervention_m_10.png}
+	\caption{Average price trajectory around deviation. $m=10$. Includes converged and non-converged runs}
+	\label{average_intervention_m_10}
+\end{figure}
+
+
+
+
+\textbf{some words on $\gamma$}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/gamma_violin_price.png}
+	\caption{distribution of prices averaged over the last 100 time steps upon convergence and over both agents for various values of $\gamma$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Isolated data points above $2$ are not displayed to improve presentability.}
+	\label{gamma_violin_price}
+\end{figure}
+
+
+
+
+
+
+
+
+\pagebreak
+
+Box 2 describes the \emph{on-policy} algorithm used in \autoref{vary_algorithm}.
+
+\begin{algorithm}
+	\caption{Gradient Descend SARSA (on policy)}
+	\begin{algorithmic}[]
+		\label{SARSA}
+		\small
+		\STATE input feasible prices via $m \in \mathbb{N}$ and $\zeta > 0$
+		\STATE configure static algorithm parameters $\alpha > 0$, $\beta > 0$, and $\lambda \in [0, 1]$
+		\STATE initialize parameter vector and eligibility trace $\boldsymbol{w} = \boldsymbol{z} = \boldsymbol{0}$
+		\STATE declare convergence rule (see \autoref{convergence})
+		\STATE start tracking time: $t = 1$
+		\STATE randomly initialize state $S_t$
+		\STATE choose initial action $A_t$
+		\WHILE{convergence is not achieved,}
+		\STATE observe profit $\pi$, adjust to reward $r$
+		\STATE move to next state: $t \leftarrow t+1$ and $S_{t+1} \leftarrow A_t$
+		\STATE select action $A_{t+1}$ according to \autoref{action_selection}
+		\STATE calculate TD-error: $\delta \leftarrow r + \gamma \hat{q}(S_{t+1}, A_{t+1}) - \hat{q}(S_t, A_t)$ (\autoref{td_error_on_policy})
+		\STATE update eligibility trace: $\boldsymbol{z} \leftarrow \gamma \lambda \boldsymbol{z} + \boldsymbol{x}$
+		\STATE update parameter vector: $\boldsymbol{w} \leftarrow \boldsymbol{w} + \alpha  \delta  \boldsymbol{z}$ (\autoref{update_rule})
+		\STATE $S \leftarrow S_{t+1}$ and $A \leftarrow A_{t+1}$
+		\ENDWHILE
+	\end{algorithmic}
+\end{algorithm}
+

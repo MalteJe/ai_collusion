@@ -281,28 +281,56 @@ ggsave("report/plots/intervention_poly_tiling.png", width = 25, height = 20, uni
 
 
 	
-# Prolonged Intervention - TBD --------------------------------------------
+# Prolonged Intervention --------------------------------------------
 
 load("simulation_results/prolonged_deviation/aggregated.RData")
 
-data %>%
-	select(feature_method, varied_parameter, run_id, intervention_prolonged) %>%
+prolonged <- data %>%
+	select(feature_method, varied_parameter, run_id, intervention_prolonged, cycle_length) %>%
 	unnest(intervention_prolonged) %>%
-	filter(run_id == 1, intervention_length == 10, tau > -4) %>%
-	pivot_longer(c("price_1", "price_2", "profit_1", "profit_2"), names_to = "temp") %>%
-	separate(temp, into = c("metric", "player"), sep = "_") %>%
-	ggplot(aes(x = tau, y = value, col = feature_method, shape = player, linetype = player)) +
-	geom_line() +
-	geom_point() +
-	facet_grid(metric~feature_method, scales = "free_y") +
+	filter(intervention_length == 10)
+
+prolonged %>%
+	group_by(feature_method, tau) %>%
+	summarize("deviating" = mean(price_1),
+				 "non deviating" = mean(price_2)) %>%
+	pivot_longer(cols = c("deviating", "non deviating"), names_to = "price") %>%
+	filter(tau > -2) %>%
+	ggplot(aes(x = tau, y = value, linetype = price, shape = price, col = feature_method)) +
+	geom_hline(yintercept = c(1.47, 1.93), linetype = "dashed") +
+	geom_vline(xintercept = 0, linetype = "dotted") +
+	geom_point(size = 3) +
+	geom_line(size = 1) +
+	scale_linetype_manual(values = c("solid", "dotted")) +
+	facet_wrap(~feature_method, nrow = 2) +
+	labs(x = expression(tau), y = "") +
 	ai_theme +
 	color_dictionary +
 	guides(col = FALSE)
+ggsave("report/plots/average_prolonged_intervention.png", width = 25, height = 20, units = "cm")
+
+prolonged_counterfactual <- prolonged  %>%
+	filter(!is.na(cycle_length)) %>%    # remove not-converged runs because the counterfactual is not clear
+	pivot_longer(cols = c("price_1", "price_2", "profit_1", "profit_2"), names_to = "obs", values_to = "actual") %>%
+	group_by(feature_method, run_id, obs) %>%
+	mutate(replacement_pos = ifelse(tau <=0, NA, row_number() - cycle_length * (1 + (row_number() - 11) %/% cycle_length))) %>%
+	mutate(counterfactual = ifelse(is.na(replacement_pos), actual, actual[replacement_pos]),
+			 diff = actual - counterfactual) %>%
+	separate(col = obs, into = c("metric", "agent"), sep = "_") %>%
+	mutate(agent = ifelse(agent == "1", "deviating", "non deviating"))
 
 
-
-
-
+prolonged_counterfactual %>%
+	filter(tau >= 0, metric == "price") %>%
+	ggplot(aes(x = as.factor(tau), y = diff, fill = feature_method)) +
+	stat_summary(fun.data = full_whisker, geom = "errorbar", width = 0.5) +
+	stat_summary(fun.data = full_whisker, geom = "boxplot", col = "gray35") +
+	facet_grid(feature_method~agent) +
+	ai_theme +
+	fill_dictionary +
+	labs(x = expression(tau), y = "price difference") +
+	guides(fill = FALSE)
+ggsave("report/plots/prolonged_intervention_boxplot.png", width = 25, height = 25, units = "cm")
 
 
 
@@ -502,6 +530,9 @@ ggsave("report/plots/intervention_boxplot_m_10.png", width = 25, height = 25, un
 
 
 # share of profitable deviations as a function of m
+
+
+######################## FIX MISTAKE IN CODE (?) (see beta for example)
 intervention_m <- deviation_plot(data = data_m, varied = "varied_parameter", noplot = TRUE)
 counterfactual_m <- counterfactual_plot(data = intervention_m, varied = "varied_parameter")
 
@@ -529,6 +560,102 @@ print(xtable(deviation_profitability_table_m, type = "latex"),
 		floating = FALSE,
 		include.rownames = FALSE)
 
+
+
+
+
+# Vary Zeta ---------------------------------------------------------------
+
+
+load("simulation_results/zeta_final/aggregated.RData")
+
+data_zeta <- manually_optimized_alpha %>%
+	mutate(varied_parameter = "1.0",
+			 varied_parameter_fct = as.factor("1.0")) %>%
+	bind_rows(data)
+
+# Bar chart of convergence proportions
+convergence_info_zeta <- convergence_plot(data = data_zeta,
+													varied = "varied_parameter",
+													convergence_max = 500000,
+													runs_per_experiment = 48,
+													x_lab = expression(zeta))
+
+
+# proportions by zeta (over all feature extraction methods)
+convergence_info_zeta %>%
+	count(status, wt = value) %>%
+	mutate(prop = n/sum(n))
+
+
+# average Delta
+zeta_delta <- point_line_plot(data = data_zeta, varied = "varied_parameter", x_lab = expression(zeta), x_log10 = FALSE)
+ggsave("report/plots/zeta.png", width = 25, height = 15, units = "cm")
+
+
+filter(data_zeta, !is.na(avg_profits)) %>%
+	mutate(Delta = get_delta(avg_profits)) %>%	
+	ggplot(aes(x = fct_rev(varied_parameter_fct), y = Delta, fill = feature_method)) +
+	geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+	scale_y_continuous(expand = c(0, 0), breaks = seq(-0.5,1, by = 0.25), labels = c("-0.5", "-0,25", expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	labs(x = expression(alpha), y = expression(Delta)) +
+	ai_theme +
+	facet_wrap(~feature_method) +
+	fill_dictionary +
+	guides(fill = FALSE) +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+
+data_zeta %>%
+	ggplot(aes(x = as_factor(as.numeric(varied_parameter)), y = avg_prices, fill = feature_method)) +
+	geom_hline(yintercept = c(1.47, 1.92), linetype = "dashed") +
+	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	labs(x = expression(zeta), y = "average prices") +
+	ai_theme +
+	facet_wrap(~feature_method) +
+	fill_dictionary +
+	guides(fill = FALSE)
+ggsave("report/plots/zeta_violin_prices.png", width = 25, height = 15, units = "cm")
+
+
+
+# average deviation trajectory for different vzeta = 0.1 and zeta = 1.5
+intervention_zeta_01 <- deviation_plot(data = data_zeta, varied = "feature_method", filter_cond = "varied_parameter == '0.1'")
+counterfactual_plot(data = intervention_zeta_01, varied = "feature_method")
+
+intervention_zeta_15 <- deviation_plot(data = data_zeta, varied = "feature_method", filter_cond = "varied_parameter == '1.5'")
+counterfactual_plot(data = intervention_zeta_15, varied = "feature_method")
+
+intervention_zeta_tabular <- deviation_plot(data = data_zeta, varied = "varied_parameter", filter_cond = "feature_method == 'tabular'", no_col = TRUE)
+ggsave("report/plots/average_intervention_zeta_tabular.png", width = 25, height = 15, units = "cm")
+
+
+# share of profitable deviations as a function of m
+
+intervention_zeta <- deviation_plot(data = data_zeta, noplot = TRUE)
+counterfactual_zeta <- counterfactual_plot(data = intervention_zeta, varied = c("varied_parameter_fct", "feature_method"), noplot = TRUE)
+
+deviation_profitability_zeta <- counterfactual_zeta %>%
+	filter(metric == "profit", tau > 0) %>%
+	mutate(actual_discounted = actual * 0.95^(tau - 1),
+			 counterfactual_discounted = counterfactual * 0.95^(tau - 1)) %>%
+	group_by(feature_method, varied_parameter_fct, run_id, agent) %>%
+	summarize_at(.vars = c("actual_discounted", "counterfactual_discounted"), .funs = sum) %>%
+	mutate(diff_discounted = actual_discounted - counterfactual_discounted) 
+
+deviation_profitability_table_zeta <- deviation_profitability_zeta %>%
+	group_by(feature_method, varied_parameter_fct, agent) %>%
+	summarize("share profitable" = mean(diff_discounted > 0)) %>%
+	pivot_wider(names_from = "varied_parameter_fct", names_prefix = "$\\zeta =$ ", values_from = 'share profitable') %>%
+	select(feature_method, agent, "$\\zeta =$ 0.1", "$\\zeta =$ 0.5", "$\\zeta =$ 1.0", "$\\zeta =$ 1.5") %>%
+	rename("feature method" = "feature_method"); deviation_profitability_table_zeta
+
+
+print(xtable(deviation_profitability_table_zeta, type = "latex"),
+		file = "report/tables/share_deviation_profitability_zeta.tex",
+		floating = FALSE,
+		sanitize.colnames.function = identity,
+		include.rownames = FALSE)
 
 
 
@@ -801,3 +928,131 @@ counterfactual_op %>%
 	scale_x_continuous(labels = scales::comma) +
 	ai_theme +
 	labs(x  = expression(tau), y = "")
+
+
+
+
+
+
+
+
+
+
+
+# Vary Upsilon ------------------------------------------------------------
+
+
+load("simulation_results/Upsilon_final/aggregated.RData")
+data_upsilon <- data
+
+# invoke function from above to create stacked plot with convergence info
+convergence_info_upsilon <- convergence_plot(data = data_upsilon,
+												 varied = "varied_parameter",
+												 convergence_max = 500000,
+												 runs_per_experiment = 48,
+												 x_lab = expression(upsilon))
+ggsave("report/plots/converged_upsilon.png", width = 25, height = 15, units = "cm")
+
+convergence_info_upsilon %>%
+	filter(status != "failed") %>%
+	group_by(feature_method) %>%
+	count(status, wt = value) %>%
+	mutate(prop = n/sum(n))
+
+data_upsilon %>%
+	filter(convergence < 500000) %>%
+	ggplot(aes(x = convergence, y = stat(density), col = feature_method)) +
+	geom_freqpoly(size = 1.5, binwidth = 8000, alpha = 0.7) +
+	scale_x_continuous(limits = c(0, 500000), labels = scales::comma) +
+	color_dictionary +
+	labs(x = "t") +
+	ai_theme +
+	guides(colour = guide_legend(override.aes = list(alpha = 1)))
+ggsave("report/plots/convergence_at_upsilon.png", width = 25, height = 15, units = "cm")	
+
+
+
+# also, a tendency towards shorter cycles
+
+data_upsilon %>%
+	ggplot(aes(x = as.factor(cycle_length), fill = feature_method)) +
+	geom_bar(position = "stack", na.rm = TRUE) +
+	scale_x_discrete(na.translate = FALSE) +
+	ai_theme +
+	fill_dictionary +
+	labs(x = "cycle length", y = "")
+
+
+# Vary Upsilon --------------------------------------------------------------
+
+
+upsilon_delta <- point_line_plot(data = data_upsilon, varied = "varied_parameter", x_lab = expression(upsilon), x_log10 = TRUE)
+ggsave("report/plots/upsilon.png", width = 25, height = 15, units = "cm")
+
+
+data_upsilon %>%
+	mutate(Delta = get_delta(avg_profits)) %>%
+	ggplot(aes(x = fct_rev(varied_parameter_fct), y = Delta, fill = feature_method)) +
+	geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+	scale_y_continuous(expand = c(0, 0), breaks = seq(-0.5,1, by = 0.25), labels = c("-0.5", "-0,25", expression(Delta[n]), "0.25", "0.5", "0.75", expression(Delta[m]))) +
+	geom_violin(draw_quantiles = 0.5, color = "grey35", scale = "width") +
+	labs(x = expression(alpha), y = expression(Delta)) +
+	ai_theme +
+	facet_wrap(~feature_method) +
+	fill_dictionary +
+	guides(col = FALSE) +
+	theme(axis.title.y = element_text(size = 18, angle = 0, vjust = 0.5))
+ggsave("report/plots/upsilon_violin.png", width = 25, height = 15, units = "cm")
+
+
+
+
+# Deviation ------------------------------------------------------------
+
+
+
+intervention_upsilon <- deviation_plot(data = manually_optimized_upsilon, varied = "feature_method")
+# ggsave("report/plots/average_intervention_upsilon.png", width = 25, height = 20, units = "cm")
+
+
+counterfactual <- counterfactual_plot(data = intervention_upsilon, varied = "feature_method")
+# ggsave("report/plots/intervention_boxplot_upsilon.png", width = 25, height = 25, units = "cm")
+
+
+# deviation trajectory for upsilon = 0.005 and 0.1 
+intervention_upsilon_005 <- deviation_plot(data = data, varied = "feature_method", filter_cond = "varied_parameter == '0.005'")
+counterfactual_plot(data = intervention_upsilon_005, varied = "feature_method")
+
+intervention_upsilon_1 <- deviation_plot(data = data, varied = "feature_method", filter_cond = "varied_parameter == '0.1'")
+counterfactual_plot(data = intervention_upsilon_1, varied = "feature_method")
+
+# deviation trajectory for, respectively, tabular learning and tile coding
+deviation_plot(data = data, varied = "varied_parameter", filter_cond = "feature_method == 'tabular'", no_col = TRUE)
+
+intervention_upsilon_tiling <- deviation_plot(data = data, varied = "varied_parameter", filter_cond = "feature_method == 'tiling'", no_col = TRUE)
+ggsave("report/plots/intervention_boxplot_tiling.png", width = 25, height = 25, units = "cm")
+counterfactual_plot(data = intervention_upsilon_tiling, varied = "varied_parameter", no_col = TRUE)
+
+
+# share of profitable deviations as a function of upsilon and feature method
+intervention_upsilon <- deviation_plot(data = data_upsilon, noplot = TRUE)
+counterfactual_upsilon <- counterfactual_plot(data = intervention_upsilon, varied = c("varied_parameter_fct", "feature_method"), noplot = TRUE)
+
+deviation_profitability_upsilon <- counterfactual_upsilon %>%
+	filter(metric == "profit", tau > 0) %>%
+	mutate(actual_discounted = actual * 0.95^(tau - 1),
+			 counterfactual_discounted = counterfactual * 0.95^(tau - 1)) %>%
+	group_by(feature_method, varied_parameter_fct, run_id, agent) %>%
+	summarize_at(.vars = c("actual_discounted", "counterfactual_discounted"), .funs = sum) %>%
+	mutate(diff_discounted = actual_discounted - counterfactual_discounted) 
+
+deviation_profitability_table_upsilon <- deviation_profitability_upsilon %>%
+	group_by(feature_method, varied_parameter_fct, agent) %>%
+	summarize("share profitable" = mean(diff_discounted > 0)) %>%
+	pivot_wider(names_from = "varied_parameter_fct", names_prefix = "$\\upsilon =$ ", values_from = 'share profitable') %>%
+	rename("feature method" = "feature_method"); deviation_profitability_table_upsilon
+
+# share of profitable deviations over all values of upsilon
+deviation_profitability_upsilon %>%
+	group_by(feature_method, agent) %>%
+	summarize("share profitable" = mean(diff_discounted > 0))

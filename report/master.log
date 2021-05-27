@@ -95,4 +95,1552 @@ Class scrartcl Info: using compatibility default `afterindent=false'
 Class scrartcl Info: using compatibility default `runin=bysign'
 (scrartcl)           for `\subsection on input line 4779.
 Class scrartcl Info: using compatibility default `afterindent=bysign'
-(scrartcl)           for 
+(scrartcl)           for `\subsection on input line 4779.
+\scr@dte@subsubsection@maxnumwidth=\skip56
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsubsection on input line 4789.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsubsection on input line 4789.
+\scr@dte@paragraph@maxnumwidth=\skip57
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\paragraph on input line 4799.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\paragraph on input line 4799.
+\scr@dte@subparagraph@maxnumwidth=\skip58
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subparagraph on input line 4809.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subparagraph on input line 4809.
+\abovecaptionskip=\skip59
+\belowcaptionskip=\skip60
+\c@pti@nb@sid@b@x=\box46
+Package tocbasic Info: babel extension for `lof' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6040.
+
+\scr@dte@figure@maxnumwidth=\skip61
+\c@figure=\count174
+Package tocbasic Info: babel extension for `lot' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6052.
+
+\scr@dte@table@maxnumwidth=\skip62
+\c@table=\count175
+Class scrartcl Info: Redefining `\numberline' on input line 6216.
+\bibindent=\dimen134
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.sty"
+Package: babel 2020/06/10 3.45 The Babel package
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.def"
+File: babel.def 2020/06/10 3.45 Babel common definitions
+\babel@savecnt=\count176
+\U@D=\dimen135
+\l@babelnohyphens=\language79
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\txtbabel.d
+ef")
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count177
+
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/babel-english\engl
+ish.ldf"
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language73) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language73) on input line 108.
+))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex\biblatex.
+sty"
+Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pdftexcmds\pdftexc
+mds.sty"
+Package: pdftexcmds 2020-06-04 v0.32 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/infwarerr\infwar
+err.sty"
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\iftex.sty"
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ltxcmds\ltxcmds.
+sty"
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/etoolbox\etoolbox.
+sty"
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count178
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/kvoptions\kvoption
+s.sty"
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvsetkeys\kvsetk
+eys.sty"
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/logreq\logreq.sty"
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count179
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/logreq\logreq.def"
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+)) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthen.sty
+"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.sty"
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+\c@tabx@nest=\count180
+\c@listtotal=\count181
+\c@listcount=\count182
+\c@liststart=\count183
+\c@liststop=\count184
+\c@citecount=\count185
+\c@citetotal=\count186
+\c@multicitecount=\count187
+\c@multicitetotal=\count188
+\c@instcount=\count189
+\c@maxnames=\count190
+\c@minnames=\count191
+\c@maxitems=\count192
+\c@minitems=\count193
+\c@citecounter=\count194
+\c@maxcitecounter=\count195
+\c@savedcitecounter=\count196
+\c@uniquelist=\count197
+\c@uniquename=\count198
+\c@refsection=\count199
+\c@refsegment=\count266
+\c@maxextratitle=\count267
+\c@maxextratitleyear=\count268
+\c@maxextraname=\count269
+\c@maxextradate=\count270
+\c@maxextraalpha=\count271
+\c@abbrvpenalty=\count272
+\c@highnamepenalty=\count273
+\c@lownamepenalty=\count274
+\c@maxparens=\count275
+\c@parenlevel=\count276
+\blx@tempcnta=\count277
+\blx@tempcntb=\count278
+\blx@tempcntc=\count279
+\blx@maxsection=\count280
+\blx@maxsegment@0=\count281
+\blx@notetype=\count282
+\blx@parenlevel@text=\count283
+\blx@parenlevel@foot=\count284
+\blx@sectionciteorder@0=\count285
+\blx@entrysetcounter=\count286
+\labelnumberwidth=\skip63
+\labelalphawidth=\skip64
+\biblabelsep=\skip65
+\bibitemsep=\skip66
+\bibnamesep=\skip67
+\bibinitsep=\skip68
+\bibparsep=\skip69
+\bibhang=\skip70
+\blx@bcfin=\read3
+\blx@bcfout=\write3
+\blx@langwohyphens=\language80
+\c@mincomprange=\count287
+\c@maxcomprange=\count288
+\c@mincompwidth=\count289
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex\blx-dm.de
+f"
+File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex citestyle data model...
+Package biblatex Info: ... file 'authoryear.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count290
+\c@savedafterword=\count291
+\c@annotator=\count292
+\c@savedannotator=\count293
+\c@author=\count294
+\c@savedauthor=\count295
+\c@bookauthor=\count296
+\c@savedbookauthor=\count297
+\c@commentator=\count298
+\c@savedcommentator=\count299
+\c@editor=\count300
+\c@savededitor=\count301
+\c@editora=\count302
+\c@savededitora=\count303
+\c@editorb=\count304
+\c@savededitorb=\count305
+\c@editorc=\count306
+\c@savededitorc=\count307
+\c@foreword=\count308
+\c@savedforeword=\count309
+\c@holder=\count310
+\c@savedholder=\count311
+\c@introduction=\count312
+\c@savedintroduction=\count313
+\c@namea=\count314
+\c@savednamea=\count315
+\c@nameb=\count316
+\c@savednameb=\count317
+\c@namec=\count318
+\c@savednamec=\count319
+\c@translator=\count320
+\c@savedtranslator=\count321
+\c@shortauthor=\count322
+\c@savedshortauthor=\count323
+\c@shorteditor=\count324
+\c@savedshorteditor=\count325
+\c@labelname=\count326
+\c@savedlabelname=\count327
+\c@institution=\count328
+\c@savedinstitution=\count329
+\c@lista=\count330
+\c@savedlista=\count331
+\c@listb=\count332
+\c@savedlistb=\count333
+\c@listc=\count334
+\c@savedlistc=\count335
+\c@listd=\count336
+\c@savedlistd=\count337
+\c@liste=\count338
+\c@savedliste=\count339
+\c@listf=\count340
+\c@savedlistf=\count341
+\c@location=\count342
+\c@savedlocation=\count343
+\c@organization=\count344
+\c@savedorganization=\count345
+\c@origlocation=\count346
+\c@savedoriglocation=\count347
+\c@origpublisher=\count348
+\c@savedorigpublisher=\count349
+\c@publisher=\count350
+\c@savedpublisher=\count351
+\c@language=\count352
+\c@savedlanguage=\count353
+\c@origlanguage=\count354
+\c@savedoriglanguage=\count355
+\c@pageref=\count356
+\c@savedpageref=\count357
+\shorthandwidth=\skip71
+\shortjournalwidth=\skip72
+\shortserieswidth=\skip73
+\shorttitlewidth=\skip74
+\shortauthorwidth=\skip75
+\shorteditorwidth=\skip76
+\locallabelnumberwidth=\skip77
+\locallabelalphawidth=\skip78
+\localshorthandwidth=\skip79
+\localshortjournalwidth=\skip80
+\localshortserieswidth=\skip81
+\localshorttitlewidth=\skip82
+\localshortauthorwidth=\skip83
+\localshorteditorwidth=\skip84
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex\blx-compa
+t.def"
+File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex\biblatex.
+def"
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count358
+\c@textcitetotal=\count359
+\c@textcitemaxnames=\count360
+\c@biburlbigbreakpenalty=\count361
+\c@biburlbreakpenalty=\count362
+\c@biburlnumpenalty=\count363
+\c@biburlucpenalty=\count364
+\c@biburllcpenalty=\count365
+\biburlbigskip=\muskip17
+\biburlnumskip=\muskip18
+\biburlucskip=\muskip19
+\biburllcskip=\muskip20
+\c@smartand=\count366
+)
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex/bbx\autho
+ryear.bbx"
+File: authoryear.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex/bbx\stand
+ard.bbx"
+File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count367
+\c@bbx:relatedtotal=\count368
+))
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex/cbx\autho
+ryear.cbx"
+File: authoryear.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex\biblatex.
+cfg"
+File: biblatex.cfg 
+))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xpatch\xpatch.sty"
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3kernel\expl3.sty
+"
+Package: expl3 2020-06-03 L3 programming layer (loader) 
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\l3backen
+d-pdfmode.def"
+File: l3backend-pdfmode.def 2020-06-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count369
+\l__pdf_internal_box=\box47
+))
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3packages/xparse\
+xparse.sty"
+Package: xparse 2020-05-15 L3 Experimental document command parser
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3packages/xparse\
+xparse-generic.tex"
+\l__xparse_current_arg_int=\count370
+\g__xparse_grabber_int=\count371
+\l__xparse_m_args_int=\count372
+\l__xparse_v_nesting_int=\count373
+)))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries/base\gl
+ossaries.sty"
+Package: glossaries 2020/03/19 v4.46 (NLCT)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\xkeyval.st
+y"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkeyval.
+tex"
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkvutils
+.tex"
+\XKV@toks=\toks16
+\XKV@tempa@toks=\toks17
+)
+\XKV@depth=\count374
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mfirstuc\mfirstuc.
+sty"
+Package: mfirstuc 2017/11/14 v2.06 (NLCT)
+\@glsmfirst=\toks18
+\@glsmrest=\toks19
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/textcase\textcase.
+sty"
+Package: textcase 2019/09/14 v1.00 Text only upper/lower case changing (DPC)
+) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xfor\xfor.sty"
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/datatool\datatool-
+base.sty"
+Package: datatool-base 2019/09/27 v2.32 (NLCT)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.st
+y"
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip85
+
+For additional information on amsmath, use the `?' option.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.st
+y"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
+"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks20
+\ex@=\dimen136
+))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty
+"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen137
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty
+"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count375
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count376
+\leftroot@=\count377
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count378
+\DOTSCASE@=\count379
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box48
+\strutbox@=\box49
+\big@size=\dimen138
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count380
+\c@MaxMatrixCols=\count381
+\dotsspace@=\muskip21
+\c@parentequation=\count382
+\dspbrk@lvl=\count383
+\tag@help=\toks21
+\row@=\count384
+\column@=\count385
+\maxfields@=\count386
+\andhelp@=\toks22
+\eqnshift@=\dimen139
+\alignsep@=\dimen140
+\tagshift@=\dimen141
+\tagwidth@=\dimen142
+\totwidth@=\dimen143
+\lineht@=\dimen144
+\@envbody=\toks23
+\multlinegap=\skip86
+\multlinetaggap=\skip87
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/substr\substr.sty"
+Package: substr 2009/10/20 v1.2 Handle substrings
+\c@su@anzahl=\count387
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/datatool\datatool-
+fp.sty"
+Package: datatool-fp 2019/09/27 v2.32 (NLCT)
+ ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp.sty"
+Package: fp 1995/04/02
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\defpattern.sty"
+Package: defpattern 1994/10/12
+\actioncount=\count388
+) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-basic.sty"
+Package: fp-basic 1996/05/13
+\FP@xs=\count389
+\FP@xia=\count390
+\FP@xib=\count391
+\FP@xfa=\count392
+\FP@xfb=\count393
+\FP@rega=\count394
+\FP@regb=\count395
+\FP@regs=\count396
+\FP@times=\count397
+) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-addons.sty
+"
+Package: fp-addons 1995/03/15
+) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-snap.sty"
+Package: fp-snap 1995/04/05
+) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-exp.sty"
+Package: fp-exp 1995/04/03
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-trigo.sty"
+Package: fp-trigo 1995/04/14
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-pas.sty"
+Package: fp-pas 1994/08/29
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-random.sty"
+Package: fp-random 1995/02/23
+\FPseed=\count398
+) ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-eqn.sty"
+Package: fp-eqn 1995/04/03
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-upn.sty"
+Package: fp-upn 1996/10/21
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fp\fp-eval.sty"
+Package: fp-eval 1995/04/03
+)))
+\@dtl@toks=\toks25
+\@dtl@tmpcount=\count399
+\dtl@tmplength=\skip88
+\dtl@sortresult=\count400
+\@dtl@numgrpsepcount=\count401
+\@dtl@datatype=\count402
+\dtl@codeA=\count403
+\dtl@codeB=\count404
+\@dtl@foreach@level=\count405
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries/base\gl
+ossaries-compatible-307.sty"
+Package: glossaries-compatible-307 2020/03/19 v4.46 (NLCT)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tracklang\tracklan
+g.sty"
+Package: tracklang 2020/06/30 v1.5 (NLCT) Track Languages
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/tracklang\trackl
+ang.tex"))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/translator\transla
+tor.sty"
+Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries-english
+\glossaries-english.ldf"
+File: glossaries-english.ldf 2014/11/23 v1.0
+)
+\gls@level=\count406
+\@gls@tmpb=\toks26
+\gls@tmplen=\skip89
+\glskeylisttok=\toks27
+\glslabeltok=\toks28
+\glsshorttok=\toks29
+\glslongtok=\toks30
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries/styles\
+glossary-hypernav.sty"
+Package: glossary-hypernav 2020/03/19 v4.46 (NLCT)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries/styles\
+glossary-list.sty"
+Package: glossary-list 2020/03/19 v4.46 (NLCT)
+\glslistdottedwidth=\skip90
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries/styles\
+glossary-long.sty"
+Package: glossary-long 2020/03/19 v4.46 (NLCT)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\longtable.st
+y"
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip91
+\LTright=\skip92
+\LTpre=\skip93
+\LTpost=\skip94
+\LTchunksize=\count407
+\LTcapwidth=\dimen145
+\LT@head=\box50
+\LT@firsthead=\box51
+\LT@foot=\box52
+\LT@lastfoot=\box53
+\LT@cols=\count408
+\LT@rows=\count409
+\c@LT@tables=\count410
+\c@LT@chunks=\count411
+\LT@p@ftn=\toks31
+)
+Class scrartcl Info: longtable captions redefined on input line 43.
+\glsdescwidth=\skip95
+\glspagelistwidth=\skip96
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries/styles\
+glossary-super.sty"
+Package: glossary-super 2020/03/19 v4.46 (NLCT)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/supertabular\super
+tabular.sty"
+Package: supertabular 2020/02/02 v4.1g the supertabular environment
+\c@tracingst=\count412
+\ST@wd=\dimen146
+\ST@rightskip=\skip97
+\ST@leftskip=\skip98
+\ST@parfillskip=\skip99
+\ST@pageleft=\dimen147
+\ST@headht=\dimen148
+\ST@tailht=\dimen149
+\ST@pagesofar=\dimen150
+\ST@pboxht=\dimen151
+\ST@lineht=\dimen152
+\ST@prevht=\dimen153
+\ST@toadd=\dimen154
+\ST@dimen=\dimen155
+\ST@pbox=\box54
+))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/glossaries/styles\
+glossary-tree.sty"
+Package: glossary-tree 2020/03/19 v4.46 (NLCT)
+\glstreeindent=\skip100
+))
+\glswrite=\write4
+\glo@main@file=\write5
+\openout5 = `master.glo'.
+
+Package glossaries Info: Writing glossary file master.glo on input line 35.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
+sty"
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifvtex.sty
+"
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count413
+\Gm@cntv=\count414
+\c@Gm@tempcnt=\count415
+\Gm@bindingoffset=\dimen156
+\Gm@wd@mp=\dimen157
+\Gm@odd@mp=\dimen158
+\Gm@even@mp=\dimen159
+\Gm@layoutwidth=\dimen160
+\Gm@layoutheight=\dimen161
+\Gm@layouthoffset=\dimen162
+\Gm@layoutvoffset=\dimen163
+\Gm@dimlist=\toks32
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
+cfg"))
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/setspace\setspace.
+sty"
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/algorithms\algorit
+hm.sty"
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count416
+\float@exts=\toks33
+\float@box=\box55
+\@float@everytoks=\toks34
+\@floatcapt=\box56
+)
+\@float@every@algorithm=\toks35
+\c@algorithm=\count417
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/algorithms\algorit
+hmic.sty"
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count418
+\c@ALC@line=\count419
+\c@ALC@rem=\count420
+\c@ALC@depth=\count421
+\ALC@tlm=\skip101
+\algorithmicindent=\skip102
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
+sty"
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
+sty"
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
+ics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
+x.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen164
+\Gin@req@width=\dimen165
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.
+sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb.s
+ty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amscls\amsthm.sty"
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks36
+\thm@bodyfont=\toks37
+\thm@headfont=\toks38
+\thm@notefont=\toks39
+\thm@headpunct=\toks40
+\thm@preskip=\skip103
+\thm@postskip=\skip104
+\thm@headsep=\skip105
+\dth@everypar=\toks41
+)
+Class scrartcl Info: amsthm's \deferred@thm@head patched.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mathtools\mathtool
+s.sty"
+Package: mathtools 2020/03/24 v1.24 mathematical typesetting tools
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\calc.sty"
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count422
+\calc@Bcount=\count423
+\calc@Adimen=\dimen166
+\calc@Bdimen=\dimen167
+\calc@Askip=\skip106
+\calc@Bskip=\skip107
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count424
+\calc@Cskip=\skip108
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mathtools\mhsetup.
+sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
+\g_MT_multlinerow_int=\count425
+\l_MT_multwidth_dim=\dimen168
+\origjot=\skip109
+\l_MT_shortvdotswithinadjustabove_dim=\dimen169
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen170
+\l_MT_above_intertext_sep=\dimen171
+\l_MT_below_intertext_sep=\dimen172
+\l_MT_above_shortintertext_sep=\dimen173
+\l_MT_below_shortintertext_sep=\dimen174
+\xmathstrut@box=\box57
+\xmathstrut@dim=\dimen175
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hyperref.
+sty"
+Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvdefinekeys\kvd
+efinekeys.sty"
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pdfescape\pdfesc
+ape.sty"
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hycolor\hycolor.st
+y"
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/letltxmacro\letltx
+macro.sty"
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/auxhook\auxhook.st
+y"
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen176
+\Hy@linkcounter=\count426
+\Hy@pagecounter=\count427
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\pd1enc.de
+f"
+File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/intcalc\intcalc.
+sty"
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/etexcmds\etexcmd
+s.sty"
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count428
+Package hyperref Info: Hyper figures OFF on input line 4464.
+Package hyperref Info: Link nesting OFF on input line 4469.
+Package hyperref Info: Hyper index ON on input line 4472.
+Package hyperref Info: Plain pages OFF on input line 4479.
+Package hyperref Info: Backreferencing OFF on input line 4484.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4717.
+\c@Hy@tempcnt=\count429
+LaTeX Info: Redefining \url on input line 5076.
+\XeTeXLinkMargin=\dimen177
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/bitset\bitset.st
+y"
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/bigintcalc\bigin
+tcalc.sty"
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count430
+\Field@Width=\dimen178
+\Fld@charsize=\dimen179
+Package hyperref Info: Hyper figures OFF on input line 6347.
+Package hyperref Info: Link nesting OFF on input line 6352.
+Package hyperref Info: Hyper index ON on input line 6355.
+Package hyperref Info: backreferencing OFF on input line 6362.
+Package hyperref Info: Link coloring OFF on input line 6367.
+Package hyperref Info: Link coloring with OCG OFF on input line 6372.
+Package hyperref Info: PDF/A mode OFF on input line 6377.
+LaTeX Info: Redefining \ref on input line 6417.
+LaTeX Info: Redefining \pageref on input line 6421.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/atbegshi\atbegsh
+i.sty"
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count431
+\c@Item=\count432
+\c@Hfootnote=\count433
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hpdftex.d
+ef"
+File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/atveryend\atveryen
+d.sty"
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+)
+\Fld@listcount=\count434
+\c@bookmark@seq@number=\count435
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/rerunfilecheck\rer
+unfilecheck.sty"
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/uniquecounter\un
+iquecounter.sty"
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip110
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cleveref\cleveref.
+sty"
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
+Package cleveref Info: `amsthm' support loaded on input line 3026.
+)
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count436
+\@quotereset=\count437
+(master.aux)
+\openout1 = `master.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+Package scrbase Info: activating english \contentsname on input line 67.
+Package scrbase Info: activating english \listfigurename on input line 67.
+Package scrbase Info: activating english \listtablename on input line 67.
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex/lbx\engli
+sh.lbx"
+File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `master.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'master.bbl' found.
+ (master.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                bundeskartellamt_bundeskartellamt_nodate
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                calvano_algorithmic_2018
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                calvano_artificial_2019
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                hettich
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                maskine-tirole
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                noa
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                precup
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                rummery_niranjan_1994
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                sutton_1988
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
+Package biblatex Info: Reference section=0 on input line 67.
+Package biblatex Info: Reference segment=0 on input line 67.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(113.81102pt, 426.79135pt, 56.9055pt)
+* v-part:(T,H,B)=(71.13188pt, 717.00946pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=426.79135pt
+* \textheight=717.00946pt
+* \oddsidemargin=41.54103pt
+* \evensidemargin=41.54103pt
+* \topmargin=-38.53812pt
+* \headheight=17.0pt
+* \headsep=20.40001pt
+* \topskip=11.0pt
+* \footskip=47.6pt
+* \marginparwidth=59.7508pt
+* \marginparsep=12.8401pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
+df.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count438
+\scratchdimen=\dimen180
+\scratchbox=\box58
+\nofMPsegments=\count439
+\nofMParguments=\count440
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count441
+\MPscratchDim=\dimen181
+\MPnumerator=\count442
+\makeMPintoPDFobject=\count443
+\everyMPtoPDFconversion=\toks43
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
+pdf-base.sty"
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+)
+\AtBeginShipoutBox=\box59
+Package hyperref Info: Link coloring OFF on input line 67.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
+ty"
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/refcount\refcount.
+sty"
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/generic/gettitlestring\g
+ettitlestring.sty"
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count444
+)
+LaTeX Info: Redefining \ref on input line 67.
+LaTeX Info: Redefining \pageref on input line 67.
+LaTeX Info: Redefining \nameref on input line 67.
+ (master.out) (master.out)
+\@outlinefile=\write6
+\openout6 = `master.out'.
+
+Class scrartcl Info: loading recommended package `bookmark'.
+(scrartcl)           Using `bookmark' together with `hyperref' is recommended,
+(scrartcl)           because of handling of possible bookmark level gaps.
+(scrartcl)           You can avoid loading `bookmark' with KOMA-Script option
+(scrartcl)           `bookmarkpackage=false' before \begin{document} and
+(scrartcl)           you can avoid this message adding:
+(scrartcl)             \usepackage{bookmark}
+(scrartcl)           before \begin{document} on input line 67.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/bookmark\bookmark.
+sty"
+Package: bookmark 2019/12/03 v1.28 PDF bookmarks (HO)
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/bookmark\bkm-pdfte
+x.def"
+File: bkm-pdftex.def 2019/12/03 v1.28 bookmark driver for pdfTeX (HO)
+Package auxhook Info: \AddLineBeginMainAux comes a little late,
+(auxhook)             because the main .aux file is already opened on input lin
+e 168.
+\BKM@id=\count445
+))
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=483.69687pt
+* \textheight=591.5302pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-8.26335pt
+* \headheight=17.0pt
+* \headsep=20.40001pt
+* \topskip=11.0pt
+* \footskip=47.6pt
+* \marginparwidth=59.7508pt
+* \marginparsep=12.8401pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 86.
+
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
+
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+\openout4 = `master.ist'.
+
+
+{C:/Users/psymo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(master.toc [2
+
+])
+\tf@toc=\write7
+\openout7 = `master.toc'.
+
+ [3] (master.lof [4] [5] [6] [7])
+\tf@lof=\write8
+\openout8 = `master.lof'.
+
+ [8] (master.lot)
+\tf@lot=\write9
+\openout9 = `master.lot'.
+
+ [9]
+(master.gls) [10] (01_introduction.tex) (02_literature.tex
+Overfull \hbox (2.05371pt too wide) in paragraph at lines 7--10
+[]\OT1/cmr/m/n/10.95 * no hu-man in-tent to achieve supra-com-pet-i-tive prices
+ * but em-ployed al-go-rithms achieved
+ []
+
+[1]) (03_environment.tex [2]) [3] (04_algorithm.tex [4] [5] [6]
+Overfull \hbox (16.57413pt too wide) in paragraph at lines 66--67
+\OT1/cmr/m/n/10.95 plo-ration varies over time. The ex-plicit def-i-ni-tion is 
+equiv-a-lent to []: 
+ []
+
+[7] [8]
+Overfull \hbox (33.50905pt too wide) in paragraph at lines 109--115
+[]\OT1/cmr/m/n/10.95 The sec-ond term is the gra-di-ent of $[](\OML/cmm/m/it/10
+.95 S[]; A[]; [][]\OT1/cmr/m/n/10.95 )$ with re-spect to $[][]$: $[] = \OMS/cms
+y/m/n/10.95 f[]\OML/cmm/m/it/10.95 ; []; :::; []\OMS/cmsy/m/n/10.95 g$\OT1/cmr/
+m/n/10.95 .
+ []
+
+[9]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 119.
+ [10] [11]) (05_feature_extraction.tex
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 19.
+
+
+Overfull \hbox (6.7118pt too wide) in paragraph at lines 10--24
+[][] 
+ []
+
+[12] [13] [14] [15]
+
+LaTeX Warning: Reference `hastie' on page 16 undefined on input line 95.
+
+[16] [17]) (06_results.tex [18]
+<plots/converged.png, id=625, 711.1368pt x 426.6339pt>
+File: plots/converged.png Graphic file (type png)
+<use plots/converged.png>
+Package pdftex.def Info: plots/converged.png  used on input line 17.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [19 <./plots/converged.png>]
+<plots/convergence_at.png, id=638, 711.1368pt x 426.6339pt>
+File: plots/convergence_at.png Graphic file (type png)
+<use plots/convergence_at.png>
+Package pdftex.def Info: plots/convergence_at.png  used on input line 31.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [20]
+<plots/cycle_length.png, id=648, 711.1368pt x 426.6339pt>
+File: plots/cycle_length.png Graphic file (type png)
+<use plots/cycle_length.png>
+Package pdftex.def Info: plots/cycle_length.png  used on input line 41.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+
+Overfull \hbox (59.4402pt too wide) in paragraph at lines 50--51
+\OT1/cmr/m/n/10.95 In or-der to bench-mark the sim-u-la-tion prof-its, I nor-ma
+l-ize prof-its sim-i-lar to []: 
+ []
+
+[21 <./plots/convergence_at.png>]
+<plots/alpha.png, id=660, 711.1368pt x 426.6339pt>
+File: plots/alpha.png Graphic file (type png)
+<use plots/alpha.png>
+Package pdftex.def Info: plots/alpha.png  used on input line 59.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [22 <./plots/cycle_length.png>]
+<plots/alpha_violin.png, id=673, 711.1368pt x 426.6339pt>
+File: plots/alpha_violin.png Graphic file (type png)
+<use plots/alpha_violin.png>
+Package pdftex.def Info: plots/alpha_violin.png  used on input line 69.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [23 <./plots/alpha.png>]
+Overfull \hbox (17.3008pt too wide) in paragraph at lines 80--97
+[][] 
+ []
+
+<plots/trajectory_Delta.png, id=686, 711.1368pt x 569.0058pt>
+File: plots/trajectory_Delta.png Graphic file (type png)
+<use plots/trajectory_Delta.png>
+Package pdftex.def Info: plots/trajectory_Delta.png  used on input line 104.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+[24 <./plots/alpha_violin.png>] [25 <./plots/trajectory_Delta.png>]
+<plots/price_range.png, id=701, 711.1368pt x 426.6339pt>
+File: plots/price_range.png Graphic file (type png)
+<use plots/price_range.png>
+Package pdftex.def Info: plots/price_range.png  used on input line 116.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [26 <./plots/price_range.png>]
+<plots/average_intervention.png, id=709, 711.1368pt x 569.0058pt>
+File: plots/average_intervention.png Graphic file (type png)
+<use plots/average_intervention.png>
+Package pdftex.def Info: plots/average_intervention.png  used on input line 129
+.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+ [27] [28 <./plots/average_intervention.png>]
+<plots/intervention_boxplot.png, id=737, 711.1368pt x 711.1368pt>
+File: plots/intervention_boxplot.png Graphic file (type png)
+<use plots/intervention_boxplot.png>
+Package pdftex.def Info: plots/intervention_boxplot.png  used on input line 137
+.
+(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
+
+(tables/share_deviation_profitability.tex) [29] [30 <./plots/intervention_boxpl
+ot.png>] [31]
+
+LaTeX Warning: Reference `prolonged deviation' on page 32 undefined on input li
+ne 165.
+
+[32]) (07_extensions.tex [33]
+<plots/average_prolonged_intervention.png, id=786, 711.1368pt x 569.0058pt>
+File: plots/average_prolonged_intervention.png Graphic file (type png)
+<use plots/average_prolonged_intervention.png>
+Package pdftex.def Info: plots/average_prolonged_intervention.png  used on inpu
+t line 13.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+ [34 <./plots/average_prolonged_intervention.png>]
+<plots/beta.png, id=803, 711.1368pt x 426.6339pt>
+File: plots/beta.png Graphic file (type png)
+<use plots/beta.png>
+Package pdftex.def Info: plots/beta.png  used on input line 30.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+(tables/share_deviation_profitability_beta.tex)
+Overfull \hbox (41.1927pt too wide) in paragraph at lines 3--39
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--39
+
+ []
+
+[35] [36 <./plots/beta.png>]
+<plots/m.png, id=817, 711.1368pt x 426.6339pt>
+File: plots/m.png Graphic file (type png)
+<use plots/m.png>
+Package pdftex.def Info: plots/m.png  used on input line 51.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ (tables/share_deviation_profitability_m.tex)
+[37 <./plots/m.png>]
+<plots/zeta.png, id=835, 711.1368pt x 426.6339pt>
+File: plots/zeta.png Graphic file (type png)
+<use plots/zeta.png>
+Package pdftex.def Info: plots/zeta.png  used on input line 78.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [38]
+<plots/zeta_violin_prices.png, id=844, 711.1368pt x 426.6339pt>
+File: plots/zeta_violin_prices.png Graphic file (type png)
+<use plots/zeta_violin_prices.png>
+Package pdftex.def Info: plots/zeta_violin_prices.png  used on input line 86.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ (tables/share_deviation_profitability_zeta.tex)
+[39 <./plots/zeta.png>] [40 <./plots/zeta_violin_prices.png>]
+<plots/gamma.png, id=867, 711.1368pt x 426.6339pt>
+File: plots/gamma.png Graphic file (type png)
+<use plots/gamma.png>
+Package pdftex.def Info: plots/gamma.png  used on input line 113.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [41 <./plots/gamma.png>]
+<plots/tb_violin.png, id=884, 711.1368pt x 284.5029pt>
+File: plots/tb_violin.png Graphic file (type png)
+<use plots/tb_violin.png>
+Package pdftex.def Info: plots/tb_violin.png  used on input line 135.
+(pdftex.def)             Requested size: 426.79135pt x 170.74646pt.
+<plots/average_intervention_tb.png, id=887, 711.1368pt x 569.0058pt>
+File: plots/average_intervention_tb.png Graphic file (type png)
+<use plots/average_intervention_tb.png>
+Package pdftex.def Info: plots/average_intervention_tb.png  used on input line 
+141.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+
+
+LaTeX Warning: Reference `hettich' on page 42 undefined on input line 147.
+
+[42] [43 <./plots/tb_violin.png> <./plots/average_intervention_tb.png>]
+<plots/op_violin.png, id=907, 711.1368pt x 284.5029pt>
+File: plots/op_violin.png Graphic file (type png)
+<use plots/op_violin.png>
+Package pdftex.def Info: plots/op_violin.png  used on input line 156.
+(pdftex.def)             Requested size: 426.79135pt x 170.74646pt.
+
+
+LaTeX Warning: Reference `dt_error_expected' on page 44 undefined on input line
+ 164.
+
+
+LaTeX Warning: Reference `hettich' on page 44 undefined on input line 164.
+
+[44 <./plots/op_violin.png>]
+<plots/converged_upsilon.png, id=926, 711.1368pt x 426.6339pt>
+File: plots/converged_upsilon.png Graphic file (type png)
+<use plots/converged_upsilon.png>
+Package pdftex.def Info: plots/converged_upsilon.png  used on input line 181.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/upsilon.png, id=932, 711.1368pt x 426.6339pt>
+File: plots/upsilon.png Graphic file (type png)
+<use plots/upsilon.png>
+Package pdftex.def Info: plots/upsilon.png  used on input line 190.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [45]
+
+LaTeX Warning: Reference `intervention' on page 46 undefined on input line 196.
+
+
+) [46 <./plots/converged_upsilon.png>] (08_conclusions.tex) [47 <./plots/upsilo
+n.png>]
+Overfull \hbox (26.49452pt too wide) in paragraph at lines 146--146
+\OT1/cmr/m/n/10.95 updates/investigation-whether-economy-energy-e-gas-and-elect
+ricity-and-dyball-associates-
+ []
+
+
+Overfull \hbox (35.4674pt too wide) in paragraph at lines 146--146
+\OT1/cmr/m/n/10.95 have-infringed-chapter-i-competition-act-1998-respect-suspec
+ted-anti-competitive-agreement. 
+ []
+
+
+Overfull \hbox (4.06975pt too wide) in paragraph at lines 146--146
+\OT1/cmr/m/n/10.95 counted Re-wards''. \OT1/cmr/m/it/10.95 Pro-ceed-ings of the
+ 10th In-ter-na-tional Con-fer-ence on Ma-chine Learn-
+ []
+
+[48] (99_appendix.tex
+<plots/trajectory_price.png, id=968, 711.1368pt x 569.0058pt>
+File: plots/trajectory_price.png Graphic file (type png)
+<use plots/trajectory_price.png>
+Package pdftex.def Info: plots/trajectory_price.png  used on input line 5.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+<plots/all_runs.png, id=969, 711.1368pt x 569.0058pt>
+File: plots/all_runs.png Graphic file (type png)
+<use plots/all_runs.png>
+Package pdftex.def Info: plots/all_runs.png  used on input line 11.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+<plots/intervention_profit_boxplot.png, id=971, 711.1368pt x 711.1368pt>
+File: plots/intervention_profit_boxplot.png Graphic file (type png)
+<use plots/intervention_profit_boxplot.png>
+Package pdftex.def Info: plots/intervention_profit_boxplot.png  used on input l
+ine 20.
+(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
+<plots/intervention_profitabiliy_polygon.png, id=972, 711.1368pt x 711.1368pt>
+File: plots/intervention_profitabiliy_polygon.png Graphic file (type png)
+<use plots/intervention_profitabiliy_polygon.png>
+Package pdftex.def Info: plots/intervention_profitabiliy_polygon.png  used on i
+nput line 27.
+(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
+<plots/intervention_poly_tiling.png, id=973, 711.1368pt x 569.0058pt>
+File: plots/intervention_poly_tiling.png Graphic file (type png)
+<use plots/intervention_poly_tiling.png>
+Package pdftex.def Info: plots/intervention_poly_tiling.png  used on input line
+ 34.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+) [49] [50 <./plots/trajectory_price.png>] [51 <./plots/all_runs.png>] [52 <./p
+lots/intervention_profit_boxplot.png>] [53 <./plots/intervention_profitabiliy_p
+olygon.png>] [54 <./plots/intervention_poly_tiling.png>]
+(999_appendix_2.tex
+<plots/prolonged_intervention_boxplot.png, id=1004, 711.1368pt x 711.1368pt>
+File: plots/prolonged_intervention_boxplot.png Graphic file (type png)
+<use plots/prolonged_intervention_boxplot.png>
+Package pdftex.def Info: plots/prolonged_intervention_boxplot.png  used on inpu
+t line 4.
+(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
+<plots/average_intervention_beta_tabular.png, id=1005, 711.1368pt x 426.6339pt>
+
+File: plots/average_intervention_beta_tabular.png Graphic file (type png)
+<use plots/average_intervention_beta_tabular.png>
+Package pdftex.def Info: plots/average_intervention_beta_tabular.png  used on i
+nput line 12.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/converged_m.png, id=1009, 711.1368pt x 426.6339pt>
+File: plots/converged_m.png Graphic file (type png)
+<use plots/converged_m.png>
+Package pdftex.def Info: plots/converged_m.png  used on input line 20.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/lambda_violin.png, id=1010, 711.1368pt x 426.6339pt>
+File: plots/lambda_violin.png Graphic file (type png)
+<use plots/lambda_violin.png>
+Package pdftex.def Info: plots/lambda_violin.png  used on input line 26.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+File: plots/converged_m.png Graphic file (type png)
+<use plots/converged_m.png>
+Package pdftex.def Info: plots/converged_m.png  used on input line 36.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/average_intervention_m_10.png, id=1011, 711.1368pt x 569.0058pt>
+File: plots/average_intervention_m_10.png Graphic file (type png)
+<use plots/average_intervention_m_10.png>
+Package pdftex.def Info: plots/average_intervention_m_10.png  used on input lin
+e 43.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+<plots/average_intervention_zeta_tabular.png, id=1012, 711.1368pt x 426.6339pt>
+
+File: plots/average_intervention_zeta_tabular.png Graphic file (type png)
+<use plots/average_intervention_zeta_tabular.png>
+Package pdftex.def Info: plots/average_intervention_zeta_tabular.png  used on i
+nput line 51.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/gamma_violin_price.png, id=1013, 711.1368pt x 426.6339pt>
+File: plots/gamma_violin_price.png Graphic file (type png)
+<use plots/gamma_violin_price.png>
+Package pdftex.def Info: plots/gamma_violin_price.png  used on input line 61.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/intervention_boxplot_tb.png, id=1015, 711.1368pt x 711.1368pt>
+File: plots/intervention_boxplot_tb.png Graphic file (type png)
+<use plots/intervention_boxplot_tb.png>
+Package pdftex.def Info: plots/intervention_boxplot_tb.png  used on input line 
+74.
+(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
+ [55] [56 <./plots/prolonged_intervention_boxplot.png>]
+[57 <./plots/average_intervention_beta_tabular.png> <./plots/converged_m.png>]
+[58 <./plots/lambda_violin.png>] [59 <./plots/average_intervention_m_10.png> <.
+/plots/average_intervention_zeta_tabular.png>]
+<plots/convergence_at_upsilon.png, id=1051, 711.1368pt x 426.6339pt>
+File: plots/convergence_at_upsilon.png Graphic file (type png)
+<use plots/convergence_at_upsilon.png>
+Package pdftex.def Info: plots/convergence_at_upsilon.png  used on input line 1
+16.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/upsilon_violin.png, id=1053, 711.1368pt x 426.6339pt>
+File: plots/upsilon_violin.png Graphic file (type png)
+<use plots/upsilon_violin.png>
+Package pdftex.def Info: plots/upsilon_violin.png  used on input line 125.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/intervention_boxplot_upsilon_005.png, id=1055, 711.1368pt x 711.1368pt>
+File: plots/intervention_boxplot_upsilon_005.png Graphic file (type png)
+<use plots/intervention_boxplot_upsilon_005.png>
+Package pdftex.def Info: plots/intervention_boxplot_upsilon_005.png  used on in
+put line 133.
+(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 156.
+ [60
+runsystem(makeindex -s master.ist -t master.glg -o master.gls master.glo)...exe
+cuted (allowed).
+
+ <./plots/gamma_violin_price.png>] [61 <./plots/intervention_boxplot_tb.png>] [
+62 <./plots/convergence_at_upsilon.png> <./plots/upsilon_violin.png>] [63 <./pl
+ots/intervention_boxplot_upsilon_005.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
+ (master.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 156.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 156.
+Package rerunfilecheck Info: File `master.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+LaTeX Warning: There were undefined references.
+
+Package logreq Info: Writing requests to 'master.run.xml'.
+\openout1 = `master.run.xml'.
+
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 169 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 27221 strings out of 480797
+ 515183 string characters out of 2895576
+ 1319163 words of memory out of 3000000
+ 42433 multiletter control sequences out of 15000+200000
+ 552084 words of font info for 95 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,18n,66p,10103b,3457s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\psymo\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknap
+pen/ec/dpi600\tcrm0900.pk> <C:\Users\psymo\AppData\Local\MiKTeX\2.9\fonts/pk/lj
+four/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/psymo/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/psymo/AppData/Local/
+Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/psymo/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/U
+sers/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
+x10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/psymo/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/psymo/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/
+psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.
+pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cmextra/cmmib8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cmextra/cmmib9.pfb><C:/Users/psymo/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/psymo/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/psymo
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/
+Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r7.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/psymo/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/psymo/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users
+/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.p
+fb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmsy8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmsy9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/psymo/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/psymo/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/psym
+o/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.
+pfb>
+Output written on master.pdf (73 pages, 2401577 bytes).
+PDF statistics:
+ 1378 PDF objects out of 1440 (max. 8388607)
+ 308 named destinations out of 1000 (max. 500000)
+ 501 words of extra memory for PDF output out of 10000 (max. 10000000)
+

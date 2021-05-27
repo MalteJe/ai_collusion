@@ -2130,4 +2130,155 @@
         <bcf:field>title</bcf:field>
         <bcf:field>booktitle</bcf:field>
       </bcf:constraint>
-    </bcf:const
+    </bcf:constraints>
+    <bcf:constraints>
+      <bcf:entrytype>report</bcf:entrytype>
+      <bcf:constraint type="mandatory">
+        <bcf:field>author</bcf:field>
+        <bcf:field>title</bcf:field>
+        <bcf:field>type</bcf:field>
+        <bcf:field>institution</bcf:field>
+      </bcf:constraint>
+    </bcf:constraints>
+    <bcf:constraints>
+      <bcf:entrytype>thesis</bcf:entrytype>
+      <bcf:constraint type="mandatory">
+        <bcf:field>author</bcf:field>
+        <bcf:field>title</bcf:field>
+        <bcf:field>type</bcf:field>
+        <bcf:field>institution</bcf:field>
+      </bcf:constraint>
+    </bcf:constraints>
+    <bcf:constraints>
+      <bcf:entrytype>unpublished</bcf:entrytype>
+      <bcf:constraint type="mandatory">
+        <bcf:field>author</bcf:field>
+        <bcf:field>title</bcf:field>
+      </bcf:constraint>
+    </bcf:constraints>
+    <bcf:constraints>
+      <bcf:constraint type="data" datatype="isbn">
+        <bcf:field>isbn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="issn">
+        <bcf:field>issn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="ismn">
+        <bcf:field>ismn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="date">
+        <bcf:field>date</bcf:field>
+        <bcf:field>eventdate</bcf:field>
+        <bcf:field>origdate</bcf:field>
+        <bcf:field>urldate</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="pattern" pattern="(?:sf|sm|sn|pf|pm|pn|pp)">
+        <bcf:field>gender</bcf:field>
+      </bcf:constraint>
+    </bcf:constraints>
+  </bcf:datamodel>
+  <!-- CITATION DATA -->
+  <!-- SECTION 0 -->
+  <bcf:bibdata section="0">
+    <bcf:datasource type="file" datatype="bibtex">zotero_refs.bib</bcf:datasource>
+  </bcf:bibdata>
+  <bcf:section number="0">
+    <bcf:citekey order="1">oecd_price_2016</bcf:citekey>
+    <bcf:citekey order="2">ezrachi_algorithmic_2017</bcf:citekey>
+    <bcf:citekey order="3">mehra_antitrust_2015</bcf:citekey>
+    <bcf:citekey order="4">ezrachi_sustainable_2018</bcf:citekey>
+    <bcf:citekey order="5">oefgen_decision_2019</bcf:citekey>
+    <bcf:citekey order="6">oecd_price_2016</bcf:citekey>
+    <bcf:citekey order="7">bundeskartellamt_bundeskartellamt_nodate</bcf:citekey>
+    <bcf:citekey order="8">cma_case_2016</bcf:citekey>
+    <bcf:citekey order="9">oefgen_decision_2019</bcf:citekey>
+    <bcf:citekey order="10">noa</bcf:citekey>
+    <bcf:citekey order="11">bundeskartellamt_bundeskartellamt_nodate</bcf:citekey>
+    <bcf:citekey order="12">waltman_q-learning_2008</bcf:citekey>
+    <bcf:citekey order="13">cooper_learning_2015</bcf:citekey>
+    <bcf:citekey order="14">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="15">klein_autonomous_2019</bcf:citekey>
+    <bcf:citekey order="16">assad_algorithmic_2020</bcf:citekey>
+    <bcf:citekey order="17">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="18">anderson_logit_1992</bcf:citekey>
+    <bcf:citekey order="19">anderson_logit_1992</bcf:citekey>
+    <bcf:citekey order="20">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="21">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="22">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="23">hettich</bcf:citekey>
+    <bcf:citekey order="24">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="25">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="26">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="27">seijen_true_2014</bcf:citekey>
+    <bcf:citekey order="28">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="29">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="30">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="31">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="32">klein_autonomous_2019</bcf:citekey>
+    <bcf:citekey order="33">schwartz_reinforcement_1993</bcf:citekey>
+    <bcf:citekey order="34">sutton_1988</bcf:citekey>
+    <bcf:citekey order="35">rummery_niranjan_1994</bcf:citekey>
+    <bcf:citekey order="36">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="37">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="38">ittoo_algorithmic_2017</bcf:citekey>
+    <bcf:citekey order="39">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="40">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="41">calvano_artificial_2019</bcf:citekey>
+    <bcf:citekey order="42">fischer_collusion_2019</bcf:citekey>
+    <bcf:citekey order="43">maskine-tirole</bcf:citekey>
+    <bcf:citekey order="44">klein_autonomous_2019</bcf:citekey>
+    <bcf:citekey order="45">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="46">assad_algorithmic_2020</bcf:citekey>
+    <bcf:citekey order="47">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="48">klein_autonomous_2019</bcf:citekey>
+    <bcf:citekey order="49">calvano_algorithmic_2018</bcf:citekey>
+    <bcf:citekey order="50">schwartz_reinforcement_1993</bcf:citekey>
+    <bcf:citekey order="51">naik_discounted_2019</bcf:citekey>
+    <bcf:citekey order="52">waltman_q-learning_2008</bcf:citekey>
+    <bcf:citekey order="53">precup</bcf:citekey>
+    <bcf:citekey order="54">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="55">schwartz_reinforcement_1993</bcf:citekey>
+    <bcf:citekey order="56">naik_discounted_2019</bcf:citekey>
+    <bcf:citekey order="57">sutton_reinforcement_2018</bcf:citekey>
+    <bcf:citekey order="58">sutton_reinforcement_2018</bcf:citekey>
+  </bcf:section>
+  <!-- SORTING TEMPLATES -->
+  <bcf:sortingtemplate name="nyt">
+    <bcf:sort order="1">
+      <bcf:sortitem order="1">presort</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="2" final="1">
+      <bcf:sortitem order="1">sortkey</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="3">
+      <bcf:sortitem order="1">sortname</bcf:sortitem>
+      <bcf:sortitem order="2">author</bcf:sortitem>
+      <bcf:sortitem order="3">editor</bcf:sortitem>
+      <bcf:sortitem order="4">translator</bcf:sortitem>
+      <bcf:sortitem order="5">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="6">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="4">
+      <bcf:sortitem order="1">sortyear</bcf:sortitem>
+      <bcf:sortitem order="2">year</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="5">
+      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="2">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="6">
+      <bcf:sortitem order="1">volume</bcf:sortitem>
+      <bcf:sortitem literal="1" order="2">0</bcf:sortitem>
+    </bcf:sort>
+  </bcf:sortingtemplate>
+  <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="nyt/global//global/global"
+                type="entry"
+                sortingtemplatename="nyt"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global">
+  </bcf:datalist>
+</bcf:controlfile>

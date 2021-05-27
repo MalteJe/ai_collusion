@@ -9,8 +9,8 @@ This section lays out the methods used in this study to map state-action combina
 	\begin{table}
 		\begin{tabular}{|l|l|l|c|}
 			\hline
-			\textbf{Feature Extraction}&\textbf{Baseline}&\textbf{Length} $\boldsymbol{x}$&\textbf{factor when}\\
-			\textbf{Method}&\textbf{Parametrization}&&\textbf{doubling} $m$\\
+			\textbf{Feature }&\textbf{Baseline}&\textbf{Length} $\boldsymbol{x}$&\textbf{factor when}\\
+			\textbf{Extraction}&\textbf{Parametrization}&&\textbf{doubling} $m$\\
 			\hline
 			Tabular&-&$m^3 = 6,859$& x8\\
 			\hline
@@ -18,10 +18,10 @@ This section lays out the methods used in this study to map state-action combina
 			\hline
 			Polynomial Tiles&$T = 5, \psi = 5, k = 4$&$T~(\psi - 1)^3 ({k + 3\choose3}  - 1) = 10880$& x1 \\
 			\hline
-			Separated Polynomials&$k = 5$ &$m($ ${k+2}\choose{2}$ $-1) = 380$& x2 \\
+			Sep. Polynomials&$k = 5$ &$m($ ${k+2}\choose{2}$ $-1) = 380$& x2 \\
 			\hline
 		\end{tabular}
-		\caption{Feature extraction methods, number of parameters with $m=19$ and complexity.}
+		\caption{Feature extraction methods, number of parameters with $m=19$ and factor when doubling the number of available prices $m$.}
 		\label{feature_extraction_summary}
 	\end{table}
 \end{center}
@@ -107,7 +107,7 @@ Every combination of exponents that adheres to the restrictions
 	\item $\kappa_{d,1}, \kappa_{d,2}, \kappa_{d,3} \in \{0, 1, ..., k\} ~~  \forall ~ d$
 \end{itemize}
 
-constitutes one feature. Using polynomial approximation, the feature vector $\boldsymbol{x}$ contains ${k + 3\choose3}  - 1$ elements. I chose not to use a simple polynomials to approximate the valuation of the entire state-action space. Exploratory runs have shown that the method has some trouble converging and frequently produced unreasonable results in the provided environment. Perhaps, this is not surprising because every state-action combination will always produce non-zero values for \emph{all} features and change every single element in $\boldsymbol{w}$. This makes it difficult for the algorithm to develop different notions for \emph{different} prices.
+constitutes one feature. Using polynomial approximation, the feature vector $\boldsymbol{x}$ contains ${k + 3\choose3}  - 1$ elements. I chose not to use a simple polynomial to approximate the valuation of the entire state-action space. Exploratory runs have shown that the method has some trouble converging and frequently produced unreasonable results in the provided environment. Perhaps, this is not surprising because every state-action combination will always produce non-zero values for \emph{all} features and change every single element in $\boldsymbol{w}$. This makes it difficult for the algorithm to develop different notions for \emph{different} prices.
 
 \subsubsection{Polynomial Tiles}
 
@@ -124,7 +124,7 @@ The restrictions on the exponents $\kappa$ from \autoref{polynomial} apply. The 
 
 \subsubsection{Separated Polynomials}
 
-\emph{Separated polynomials} maintain for every action a distinct set of parameters that apply \emph{polynomial approximation} to the state set. In reinforcement learning, it is common to store a separate set of coefficients for every feasible action \textbf{citation}.\footnote{This approach is best suited if the action spaces is qualitative and the state space continuous. In this simulation, only the latter is strictly true. Therefore, the two issues inherent to tabular learning I have outlined in \autoref{tabular}, also apply to the action space of \emph{separated polynomials}, but not to the state space.} Since $A_t$ is fixed within each set, the polynomial only considers $S_t$:\footnote{The restrictions on $k$ are adjusted accordingly:
+\emph{Separated polynomials} maintain for every action a distinct set of parameters that apply \emph{polynomial approximation} to the state set. In reinforcement learning, it is common to store a separate set of coefficients for every feasible action \textbf{citation}.\footnote{This approach is best suited if the action space is qualitative and the state space continuous. In this simulation, only the latter is strictly true. Therefore, the two issues inherent to tabular learning I have outlined in \autoref{tabular}, also apply to the action space of \emph{separated polynomials}, but not to the state space.} Since $A_t$ is fixed within each set, the polynomial only considers $S_t$:\footnote{The restrictions on $k$ are adjusted accordingly:
 	\begin{itemize}
 		\item $0 < \kappa_{d,1} + \kappa_{d,2}  \leq k  ~~ \forall d$ and
 		\item $\kappa_{d,1}, \kappa_{d,2} \in \{0, 1, ..., k\} ~~  \forall d$
@@ -141,7 +141,7 @@ p_{i, t-1}^{\kappa_{d,1}} ~ p_{j, t-1}^{\kappa_{d,2}} & \quad \text{if } a = A_t
 Note that the method models the value of an action as a function of $S_t$. The number of encompassed features arises naturally as $m($ $k+2\choose2$ $-1)$.
 
 
-Perhaps, an inverse variation could be more intuitive from an economic perspective. Consider a case where every permutation of $S_t$ holds a distinct set of parameters. This approach is closer to the notion of selecting $a$ to optimize the reward \emph{given} a fixed state set $s$. I leave this variation open as a potential avenue for future research.
+Perhaps, an inverse variation could be more intuitive from an economic perspective. Consider that every permutation of $S_t$ holds a distinct set of parameters. This approach is closer to the notion of selecting $a$ to optimize the reward \emph{given} a fixed state set $s$. I leave this variation open as a potential avenue for future research.
 
 \subsection{Parameter Grid}
 

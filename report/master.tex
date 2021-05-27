@@ -5,51 +5,80 @@
 \usepackage[english]{babel}  %for German texts: ngerman
 %\usepackage[utf8]{inputenc}   %encode in UTF-8 (I think TexStudio does this by default)
 
-%\usepackage{natbib}  %used for bibliography (exact purpose unknown)
-%\bibliographystyle{natdin} %bibliography style
 
-\usepackage[backend = biber, citestyle=authoryear, bibstyle = authoryear]{biblatex} %more options, see e.g. https://www.overleaf.com/learn/latex/Biblatex_citation_styles
+\usepackage[backend = biber, citestyle=authoryear, bibstyle = authoryear, doi=false,isbn=false,url=false,eprint=false]{biblatex} %more options, see e.g. https://www.overleaf.com/learn/latex/Biblatex_citation_styles
+
+\AtEveryBibitem{
+	\clearlist{language} % clears language
+	
+} 
+
+\renewbibmacro{in:}{}
+
+\usepackage{xpatch}
+
+% No dot before number of articles
+\xpatchbibmacro{volume+number+eid}{%
+	\setunit*{\adddot}%
+}{%
+}{}{}
+
+% Number of articles in parentheses
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+
 \addbibresource{zotero_refs.bib} %pass the name of the bib file
 
-%Formatting and Layout
-%\usepackage[left = 1.5cm, right = 1.5cm]{geometry} %This package allows for granular specified layouts. Optional arguments are, among others: left, right, top, bottom, width, height, textwidth, textheight, includeheadfoot
-\usepackage[onehalfspacing]{setspace} %controls space between lines (line spacing)
-\renewcommand{\baselinestretch}{1.5} %controls space between lines (line spacing)
-\usepackage{blindtext} % to test layout via \blindtext
 
-% Algorithm box
+% define glossary
+\usepackage[nopostdot,nogroupskip,style=super,nonumberlist,toc,automake,toc]{glossaries}
+\makeglossaries
+
+\newglossaryentry{mdp}{name={MDP},description={Markov Decision Process}}
+\newglossaryentry{fem}{name={FEM},description={Feature Extraction Method}}
+
+
+%Formatting and Layout
+\usepackage[left = 4cm, right = 2cm, top = 2.5cm, bottom = 2cm]{geometry}
+
+% line spacing: 1.5
+\usepackage[onehalfspacing]{setspace}
+\renewcommand{\baselinestretch}{1.5}
+
+%no indentation in captions of figures and tables
+\setcapindent{0pt} 
+
+
+% Package for algorithm boxes
 \usepackage{algorithm,algorithmic}
 
-\usepackage{calligra}
-\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+% section name is printed on the head of each page
+\pagestyle{headings}   
 
 
-\pagestyle{headings}   %optional: section name is printed on the head of each page
-
-
-\usepackage{xcolor}    %Colour package
 \usepackage{graphicx}  %for graphics
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}  %math packages
 
 %References
-\usepackage[hidelinks]{hyperref} % should be called as last package
+\usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
 
 
 \begin{document}
 	
+	% overwrite autoreference labels
 	\def\sectionautorefname{section}
+	\def\subsectionautorefname{section}
+	\def\subsubsectionautorefname{section}
 	\def\equationautorefname{equation}
+	\def\algorithmautorefname{Algorithm}
 	
+	% start roman page numbers
+	\pagenumbering{Roman}
 	
-	
-	
-	\title{\LaTeX Template}
-	\author{Malte Jeschonneck}
-	\date{\today}
-	\maketitle
-	
-	\newpage
+	% center front page, no page number
+	\newgeometry{left = 2cm, right = 2cm}
+	\thispagestyle{empty}
 	
 	\begin{titlepage}
 		\centering
@@ -81,15 +110,20 @@
 		{\large \today\par}
 	\end{titlepage}
 
+\restoregeometry % go back to default layout
+
 \newpage
 	
-	
+	% TOC, LOF, LOT, Abbreviations
 	\tableofcontents
 	\newpage
 	\listoffigures
 	\newpage
 	\listoftables
 	\newpage
+	\printglossary[title={List of Abbreviations}] %Generate List of Abbreviations
+	\newpage
+	\pagenumbering{arabic}
 	
 	\input{01_introduction.tex}
 	

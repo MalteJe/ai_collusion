@@ -1,4 +1,10 @@
-
+	\textbf{some words on prolonged deviations}
+	
+\begin{figure}
+		\includegraphics[width=\linewidth]{plots/prolonged_intervention_boxplot.png}
+		\caption{distribution of prices at and after prolonged deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the price at the same $\tau$ had no deviation taken place. Only includes converged runs because a clear counterfactual exists. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+		\label{prolonged_intervention_boxplot}
+\end{figure}
 
 \textbf{some words on beta}
 
@@ -39,6 +45,13 @@ Recall that high values of $\lambda$ increase the algorithm's hindsight but incr
 	\label{average_intervention_m_10}
 \end{figure}
 
+\textbf{some words on $zeta$}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/average_intervention_zeta_tabular.png}
+	\caption{Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}
+	\label{average_intervention_zeta_tabular}
+\end{figure}
 
 
 
@@ -53,8 +66,15 @@ Recall that high values of $\lambda$ increase the algorithm's hindsight but incr
 
 
 
+\textbf{words on tree backup?}
 
+\autoref{intervention_boxplot_tb} displays the distribution of prices around the forced deviation. With regard to polynomial tiles, \emph{some} runs show a sort of punishment or matching behavior in the wake of a price cut, but the vast majority (87.5\%) or runs show no response.
 
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/intervention_boxplot_tb.png}
+	\caption{distribution of prices at and after deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the prices at the same $\tau$ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+	\label{intervention_boxplot_tb}
+\end{figure}
 
 
 \pagebreak
@@ -85,3 +105,32 @@ Box 2 describes the \emph{on-policy} algorithm used in \autoref{vary_algorithm}.
 	\end{algorithmic}
 \end{algorithm}
 
+
+
+
+\textbf{words on differential reward setting}
+
+Curiously, the separated polynomial method struggles to achieve convergence in the differential reward setting. \autoref{convergence_at_upsilon} illustrates that a surprisingly large number of runs converge at a stage where exploration is incredibly rare. This suggests that agents frequently change their evaluation of what the optimal action is. Moreover, this may also help to explain the large share of non-converged runs (refer back to \autoref{converged_upsilon}) with an insufficient length of episodes per run.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/convergence_at_upsilon.png}
+	\caption{timing of convergence n the differential reward setting, runs that did not converge or failed to complete are excluded. Width of bins: 8,000}
+	\label{convergence_at_upsilon}
+\end{figure}
+
+
+\autoref{upsilon_violin}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/upsilon_violin.png}
+	\caption{distribution of $\Delta$ in the differential reward setting for various values of $\upsilon$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{upsilon_violin}
+\end{figure}
+
+\autoref{intervention_boxplot_tiling} illustrates the charged prices around the intervention relative to a counterfactual without a forced deviation for tile coding. Tabular learning shows a clear tendency to punish price cuts at $\tau = 2$. For tile coding and polynomial tiles, a price cut in response to the deviation occurs in \emph{some} runs.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/intervention_boxplot_upsilon_005.png}
+	\caption{distribution of prices in the differential reward setting with $\upsilon = 0.005$ at and after deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the prices at the same $\tau$ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+	\label{intervention_boxplot_tiling}
+\end{figure}

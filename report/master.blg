@@ -1,26 +1,27 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
-[0] Config.pm:307> INFO - Logfile is 'master.blg'
-[98] biber-MSWIN64:322> INFO - === 
-[130] Biber.pm:415> INFO - Reading 'master.bcf'
-[283] Biber.pm:943> INFO - Found 28 citekeys in bib section 0
-[311] Biber.pm:4256> INFO - Processing section 0
-[311] Utils.pm:75> INFO - Globbing data source 'zotero_refs.bib'
-[325] Utils.pm:91> INFO - Globbed data source 'zotero_refs.bib' to zotero_refs.bib
-[345] Biber.pm:4455> INFO - Looking for bibtex format file 'zotero_refs.bib' for section 0
-[363] bibtex.pm:1653> INFO - LaTeX decoding ...
-[931] bibtex.pm:1471> INFO - Found BibTeX data source 'zotero_refs.bib'
-[1117] Utils.pm:304> WARN - I didn't find a database entry for 'noa' (section 0)
-[1118] Utils.pm:304> WARN - I didn't find a database entry for 'sutton_1988' (section 0)
-[1118] Utils.pm:304> WARN - I didn't find a database entry for 'rummery_niranjan_1994' (section 0)
-[1118] Utils.pm:304> WARN - I didn't find a database entry for 'maskine-tirole' (section 0)
-[1118] Utils.pm:304> WARN - I didn't find a database entry for 'demo_art' (section 0)
-[1118] Utils.pm:304> WARN - I didn't find a database entry for 'demo_book' (section 0)
-[1118] Utils.pm:304> WARN - I didn't find a database entry for 'demo_source' (section 0)
-[1118] Utils.pm:304> WARN - I didn't find a database entry for 'grapov2018rise' (section 0)
-[1167] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1168] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1168] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[1168] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[1233] bbl.pm:652> INFO - Writing 'master.bbl' with encoding 'UTF-8'
-[1256] bbl.pm:755> INFO - Output to master.bbl
-[1256] Biber.pm:128> INFO - WARNINGS: 8
+[1] Config.pm:307> INFO - Logfile is 'master.blg'
+[106] biber-MSWIN64:322> INFO - === 
+[140] Biber.pm:415> INFO - Reading 'master.bcf'
+[364] Biber.pm:943> INFO - Found 26 citekeys in bib section 0
+[409] Biber.pm:4256> INFO - Processing section 0
+[409] Utils.pm:75> INFO - Globbing data source 'zotero_refs.bib'
+[437] Utils.pm:91> INFO - Globbed data source 'zotero_refs.bib' to zotero_refs.bib
+[468] Biber.pm:4455> INFO - Looking for bibtex format file 'zotero_refs.bib' for section 0
+[491] bibtex.pm:1653> INFO - LaTeX decoding ...
+[1267] bibtex.pm:1471> INFO - Found BibTeX data source 'zotero_refs.bib'
+[1501] Utils.pm:304> WARN - I didn't find a database entry for 'bundeskartellamt_bundeskartellamt_nodate' (section 0)
+[1501] Utils.pm:304> WARN - I didn't find a database entry for 'noa' (section 0)
+[1501] Utils.pm:304> WARN - I didn't find a database entry for 'calvano_artificial_2019' (section 0)
+[1501] Utils.pm:304> WARN - I didn't find a database entry for 'calvano_algorithmic_2018' (section 0)
+[1501] Utils.pm:304> WARN - I didn't find a database entry for 'hettich' (section 0)
+[1501] Utils.pm:304> WARN - I didn't find a database entry for 'sutton_1988' (section 0)
+[1501] Utils.pm:304> WARN - I didn't find a database entry for 'rummery_niranjan_1994' (section 0)
+[1502] Utils.pm:304> WARN - I didn't find a database entry for 'maskine-tirole' (section 0)
+[1502] Utils.pm:304> WARN - I didn't find a database entry for 'precup' (section 0)
+[1558] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1558] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1558] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[1558] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[1621] bbl.pm:652> INFO - Writing 'master.bbl' with encoding 'UTF-8'
+[1641] bbl.pm:755> INFO - Output to master.bbl
+[1642] Biber.pm:128> INFO - WARNINGS: 9

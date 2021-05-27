@@ -3,6 +3,23 @@
 
 \subsection{Prolonged deviations}
 
+To extend the mixed results from \autoref{deviations}, I conducted another \emph{prolonged deviation} experiment with continued learning. As I will show, the previously drawn conclusions remain intact. However, first I briefly explain why a continued intervention could theoretically be different from a one-time deviation. The critical components are continued learning and the eligibility trace vector $\boldsymbol{z}$ that make conceivable an agent tolerating isolated deviations but punishing longer price cuts.
+
+Without eligibility traces and the ability to learn, a one-time deviation suffices to assess retaliatory behavior because the memory is too short to \emph{remember} that the opponent cheated for longer than a single period. Likewise, stripping the non deviating agent of his ability to update $\boldsymbol{w}$ renders him unable to learn that tolerating deviations is exploitable and culminates in low rewards. Consequently, if he failed to punish a deviation at $\tau = 2$, he will not react at $\tau = 3$ either. On the contrary, with the ability to learn enabled, both agents can readjust the parameter updates. For instance, after discovering that tolerating a one-time deviation yields a low reward, the non deviating agent might adjust $\boldsymbol{w}$ and decide to play a different action next time he is cheated (e.g.\ match or punish the price cut). This is augmented by the length of deviation episodes and the existence of eligibility traces. If the deviating agent \emph{continues} to cheat, the opponent should continue to decrease the valuation of the \emph{tolerating} strategy and could ultimately fall back to the next best action (which might be a price cut).\footnote{Furthermore, remember that the deviation experiment is conducted right after convergence was detected. Consequently, the algorithm was \emph{on-path} for a large number of episodes and the eligibility traces have not been reset recently (see \autoref{eligibility_trace_update}). Therefore, after the deviation experiment concludes, the convergence equilibrium might not be feasible anymore because its valuation by the agents changed.}
+
+The \emph{prolonged deviation} lasts 20 episodes in total. It was set up as follows. The deviating agent anticipates the price of her opponent perfectly and continuously plays the best response for a total of 10 periods of cheating. This relies on the assumption that she is capable of perfectly predicting her opponent's response to her initial deviation. Exploration remains disabled ($\epsilon = 0$) but both agents continue learning from their actions.\footnote{I also prescribe that the forced deviation is considered \emph{on-policy}. Since $\epsilon = 0$, this is most natural to incorporate.} After I stop forcing the deviating agent to play the best response, both agents play another 10 episodes adhering to their learned strategies. Exploration remains disabled and learning continues until the very last episode.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/average_prolonged_intervention.png}
+	\caption{Average price trajectory around prolonged deviation.}
+	\label{average_prolonged_intervention}
+\end{figure}
+
+\autoref{average_prolonged_intervention} displays the average price trajectory around the prolonged deviation and confirms the previous deductions. Only with tabular learning does the non deviating agent matches the price cuts systematically. The top left panel shows both agents hover around the Nash benchmark for the deviation period. Clearly, this is unprofitable for both agents but a necessary punishment to sustain supra-competitive prices in the first place. Note also the quick return to pre-deviation levels as soon as the deviating agent returns to her learned behavior. This illustrates that the supra-competitive outcomes remain sustainable in the face of persistent interruptions.
+
+With regard to the three function approximation methods, the deviating agent appears to systematically exploit her opponent who fails to punish the price cut. The subtle differences between methods extend to the prolonged deviation. Separated polynomials evoke no response at all from the non deviating agent. Both tiling methods show a small \emph{average} price cut over the duration of the prolonged deviation. Again, averaging over all runs of an experiment veils important subtleties. Indeed, \autoref{prolonged_intervention_boxplot} uncovers that only isolated runs exhibit the non deviating agent cutting the pre-deviation price levels. A reaction is absent in most runs which enables continuous exploitation by the deviating agent. Despite that, the latter tends to return to pre-deviation price levels. Therefore, both agents act far from optimal (in the economic sense of the word) and fail to learn (enough) from the prolonged deviation experiment. Lastly, note the difference between pre- and post-deviation price levels at the bottom right panel, representing polynomial tiles. As noted previously, this suggests that the agents proceed to play a different, less profitable equilibrium after the deviation. This easy switch to a new strategy impugns the viability of the pre-deviation equilibrium in the first place.
+
+It is conceivable, maybe even likely, that the non deviating agent does alter its strategy after a time frame much longer than 10 episodes. However, this is of no importance for this study because the agent's strategy is easy to exploit in the short term and, due to discounting, the deviations are profitable (see \autoref{share_deviation_profitability}).
 
 
 \subsection{Parameter variations}\label{vary_parameter}
@@ -51,10 +68,38 @@ However, the number of feasible prices appears to impact the stability of the eq
 
 
 
-vary $\zeta$ in appendix (?)
+Recall from \autoref{price_grid_formula} that $\zeta$ controls the available excess range above the fully collusive price $p_m$. These prices are inferior to $p_m$ in almost any situation and the simulations confirm that few runs converge in \emph{supra-collusive} prices. Still, \emph{ex ante} the effect of $\zeta$ on outcomes is ambiguous and may differ between feature extraction methods. I will briefly sketch some of the possible effects.
 
-Recall from \autoref{price_grid_formula} that $\zeta$ controls the available excess range above the monopoly price $p_m$. I conducted three alternative experiments to assess the impact on outcomes. I keep $m=19$ to ensure reasonable comparisons though prices very close to $p_n$ or $p_m$ might not be available with different $\zeta$.\footnote{with $\zeta = 1$, the price closest to $p_n = 1.473$ ($p_m = 1.925$) is $1.454$ ($1.908$).} \autoref{zeta} \textbf{TBD}
- 
+Most importantly, an increase in $\zeta$ increases the share of available prices above $p_m$ and decreases the share of \emph{viable} prices within the range of $p_m$ and $p_n$. Consequently, the agents may quickly discard a larger share of actions engendering low (or negative) rewards and \emph{narrow down} the range of reasonable actions between $p_m$ and $p_n$. Then, with fewer available actions, the optimization within that range might be facilitated. This might be particularly important with the separated polynomials method because agents could learn that certain polynomials associated with actions above $p_m$ (or below $p_n$) consistently yield low rewards - irrespective of the preceding state set, refrain from playing them early in the simulation and focus on refining the polynomials of actions within the range of $p_n$ and $p_m$.
+
+There is an additional effect on the both tiling methods. The thresholds of tiles derive from the size of the action space. Consequently, all tiles are relocated and some actions will be associated with different tiles. \emph{A priori}, the effect on outcomes is hard to predict.
+
+ \begin{figure}
+	\includegraphics[width=\linewidth]{plots/zeta.png}
+	\caption{average $\Delta$ for various experiments. Includes converged and non-converged runs.}
+	\label{zeta}
+\end{figure}
+
+I conducted three additional experiments with $\zeta \in \{0.1, 0.5, 1.5\}$ to assess the impact of varying $zeta$ while keeping $m=19$ to ensure comparability between experiments. \footnote{Note however, different $zeta$ may prohibit playing actions very close to $p_n$ or $p_m$. For instance, with $\zeta = 1.5$, the price closest to $p_n = 1.473$ ($p_m = 1.925$) is $1.454$ ($1.908$). The distances are quite a bite higher than in the default specification.} \autoref{zeta} illustrates that $\zeta$ significantly influences profits upon convergence. Across feature extraction methods, the average $\Delta$ increases with $\zeta$. Moreover, \autoref{zeta_violin_prices} confirms that average prices upon convergence largely remain within the Nash and collusive benchmarks. Polynomial tiles constitute the only exception which further discredits the method as appropriate for the learning task.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/zeta_violin_prices.png}
+	\caption{distribution of average prices (over both players and cycle steps) for various experiments. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{zeta_violin_prices}
+\end{figure}
+
+To reiterate, prices close to the collusive solution are not necessarily evidence of a stable equilibrium with a \emph{reward-punishment} scheme. If anything, the simulation runs in this study have suggested the opposite. It turns out that despite the differences in $\Delta$, the stability of the learned strategies does is not heavily influenced by $\zeta$. \autoref{share_deviation_profitability_zeta} does not show prominent trends in the share of profitable deviations. As further evidence, \autoref{average_intervention_zeta_tabular} in \autoref{appendix_2} shows that tabular learning agents tend to punish deviations with retaliatory prices for all considered variations of $\zeta$. Similarly, the absence of competitive reactions to the punishment for the other feature extraction methods does not seem to hinge on $\zeta$.
+
+\begin{center}
+	\begin{table}
+		\input{tables/share_deviation_profitability_zeta.tex}
+		\caption{Share of profitable deviations by agent and feature extraction method. Deviations are deemed \emph{profitable} if the discounted ($\gamma = 0.95$) profits due to the deviation until $\tau = 10$  exceed cash flows from a counterfactual without deviation. Only includes converged runs because a clear counterfactual exists.}
+		\label{share_deviation_profitability_zeta}
+	\end{table}
+\end{center}
+
+
+
 
 \subsection{Discount factor}
 
@@ -63,9 +108,6 @@ In dynamic oligopolies, theory ascribes great importance to the discount factor 
 To gauge the effect of $\gamma$ on outcomes, I conducted a series of experiments ranging from perfectly myopic ($gamma =0$) to infinitely patient ($\gamma = 1$) agents.\footnote{While $\gamma = 1$ is usually easy to model in economics, it is highly problematic in continuing learning tasks due to its infinite sum property (this is the main reason why discounting is commonly utilized in reinforcement learning in the first place, see e.g.\ \textcite{schwartz_reinforcement_1993}). Consider the following example. An agent with no time preference ($\gamma = 1$) in a continuous task explores  early that a particular action consistently yields positive rewards. When \emph{exploiting}, the agent keeps playing that action and the value estimate accumulates to infinity. This results in a significant bias towards actions that have been explored early and at some point becomes computationally infeasible. Similarly, values marginally below $1$ are known to be unstable \parencite{naik_discounted_2019}.} \autoref{gamma} summarizes the average $\Delta$. The curves of tabular learning and tile coding indicate the hypothesized pattern. though the relationship is not as clear as one might expect, with $\gamma = 0$, the average profits are much closer to the Nash benchmark.\footnote{The relationship is more pronounced with prices, see \autoref{gamma_violin_price} in \autoref{appendix_2}.}
 
 \textbf{another subtlety: outcomes highest at $\gamma = 0.9$?, might be random variation or an artifact of the convergence problems with large $\gamma$. }
-With regard to the polynomial feature extraction methods, the figure serves as further evidence of their ineptness for the considered learning task. 
-
-
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/gamma.png}
@@ -73,20 +115,33 @@ With regard to the polynomial feature extraction methods, the figure serves as f
 	\label{gamma}
 \end{figure}
 
+With regard to the polynomial feature extraction methods, the figure serves as further evidence of their ineptness for the considered learning task. Even without discounting ($\gamma = 0$), the outcomes remain high. In fact, they are even higher with the separated polynomial method. This clearly hints at a failure to learn how to compete when \emph{only} the immediate reward matters.\footnote{I interpret this similar to the results in \textcite{waltman_q-learning_2008} where \emph{memoryless} agents without the ability to assert whether the opponent cheated still learn to charge supra-competitive prices.}
 
 \subsection{Algorithm Variations}\label{vary_algorithm}
 
-Of course, the specific algorithm described in \autoref{expected SARSA} is only one of many ways to mix function approximation wi. I will consider two variations: \emph{Tree backup} and \emph{on-policy SARSA}.
+Of course, the specific algorithm described in \autoref{expected SARSA} is only one of many ways to use function approximation in learning tasks. I will consider two variations: \emph{Tree backup} and \emph{on-policy SARSA}.
 
 \subsubsection{Tree backup}
 
-\textcite{precup} suggest the \emph{tree backup} algorithm as a successor to Q-Learning. Compared to the \emph{expected SARSA} algorithm, \autoref{eligibility_trace_update} is updated slightly different:
+\textcite{precup} suggest the \emph{tree backup} algorithm as a successor to Q-Learning. Compared to the \emph{expected SARSA} algorithm, \autoref{eligibility_trace_update} is updated in a slightly different way:
 
 \begin{gather}\label{eligibility_traces_tree_backup}
 \gamma \lambda \kappa(A_t | S_t) \boldsymbol{z}_{t-1} + \frac{\Delta \hat{q}}{\Delta \boldsymbol{w}_t} ~~~~~ \text{,}
 \end{gather}
 
-where $\kappa(A_t | S_t)$ represents the probability of choosing $A_t$ if the agent was following a hypothetical target policy, i.e.\ $\epsilon= 0$. Again, the idea is that the trace resets to 0 as soon as a non-greedy action is played. Unsurprisingly, applying the tree backup algorithm to the environment yields similar results as before.
+where $\kappa(A_t | S_t)$ represents the probability of choosing $A_t$ if the agent were to follow a hypothetical target policy with $\epsilon= 0$. As with the trace in expected SARSA, the idea is that the trace resets to 0 as soon as a non-greedy action is played. Unsurprisingly, applying the tree backup with algorithm to the environment yields similar results. \autoref{tb_violin} displays the distribution of $\Delta$ which is reminiscent of the violins for optimized values of $\alpha$ in \autoref{alpha_violin}. Similarly,  \autoref{average_intervention_tb} reiterates that only tabular learning agents show a consistent punishment in response to a deviation and the cheated agents learning with feature approximation methods fail to respond. The bottom right panel, representing the polynomial tile method, hints at a vague \emph{matching strategy} leading to new equilibria again, but here averaging turns out to be deceptive. In fact, only in 12.5\% of the runs does the non deviating agent respond with a price cut. The distribution of deviation prices and responses are displayed as boxplots in \autoref{appendix_2}.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/tb_violin.png}
+	\caption{distribution of $\Delta$ for \emph{tree backup} algorithm. $\alpha$ is optimized in accordance with \autoref{justifications}. Includes only converged runs for better presentability. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{tb_violin}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/average_intervention_tb.png}
+	\caption{Average price trajectory around deviation.}
+	\label{average_intervention_tb}
+\end{figure}
 
 \subsubsection{On policy SARSA}
 \emph{Q-Learning}, \emph{tree backup} and \emph{expected SARSA} all belong to the family of \emph{off-policy} methods. This stems from the simple fact that the (discounted) value estimation of the state-action combination at $t+1$ is not always based on the actually chosen action $A_t{t+1}$ (see \autoref{td_error_expected} and \textbf{TBD} (?) ).\footnote{It does if $\epsilon = 0$.}  So, it is \emph{off-path} of the actually pursued policy. Off-policy methods tend to provide sophisticated learning but convergence guarantees for them are generally weaker than for \emph{on-policy} algorithms \parencite{sutton_reinforcement_2018} \textbf{other source?}.\footnote{The main reason why I haven't put much consideration into this is that convergence is that due to the \emph{moving target problem} described in \autoref{convergence_considerations}, convergence is not guaranteed anyway. Moreover, \autoref{hettich} shows that off-policy methods can work well with function approximation.}. As their name suggests, \emph{on-policy} methods wait with valuation of the future state-action combination until it is actually known. The straight forward-adaption of calculating the TD error is:
@@ -95,9 +150,14 @@ where $\kappa(A_t | S_t)$ represents the probability of choosing $A_t$ if the ag
 \delta_t^{SARSA} = r_t + \gamma \hat{q}(S_{t+1}, A_{t+1}, \boldsymbol{w}_t) - \hat{q}(S_t, A_t, \boldsymbol{w}_t) ~~ \text{,} \\
 \end{gather}
 
-Note that learning is delayed in the sense that $\delta_t^{SARSA}$ can only be calculated after the action in the next period has been taken. Using the optimized values of $\alpha$, I conducted one experiment per feature extraction method. The exact algorithm is documented in \autoref{appendix_2}.
+Note that learning is delayed in the sense that $\delta_t^{SARSA}$ can only be calculated after the action in the next period has been taken. Using the optimized values of $\alpha$, I conducted one experiment per feature extraction method. \autoref{appendix_2} documents the exact algorithm. \autoref{op_violin} illustrates that the distribution of outcomes per experiment are similar to the two \emph{off-policy} algorithms. overall, the conclusions drawn in the previous section also apply to the \emph{on-policy} algorithm.
 
-\textbf{results}
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/op_violin.png}
+	\caption{distribution of $\Delta$ for \emph{on-policy} algorithm. $\alpha$ is optimized in accordance with \autoref{justifications}. Includes only converged runs for better presentability. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{op_violin}
+\end{figure}
+
 		
 \subsection{Differential Reward Setting}
 
@@ -116,7 +176,24 @@ where $\widetilde{r}_{t-1}$ is a (weighted) average reward periodically updated 
 
 The formulation ensures that recent rewards are weighted higher. $\upsilon$ is a parameter controlling the speed of adjustment. Note that the differential reward setting does not involve any discounting. At first glance, this clashes with the economic understanding of time preferences.\footnote{This is the main reason why I have not utilized the differential setting in the main part of this study.} However, there are two arguments why the differential reward setting might still be well suited. First, \textcite{sutton_reinforcement_2018} proof that, due to the infinite nature of the Bertrand environment, the ordering of policies in the discounted value setting and the setting with average rewards are equivalent (irrespective of $\gamma$). Second, pricing algorithms tend to be used in markets with frequent price changes where it is less important whether a profit is realized immediately or in the next period.
 
-\textbf{anyway, results here.}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/converged_upsilon.png}
+	\caption{Number of runs per experiment that achieved convergence as a function of $\lambda$.}
+	\label{converged_upsilon}
+\end{figure}
+
+I conducted a series of experiments varying over the following values for $\upsilon$: $0.001$, $0.005$, $0.01$, $0.025$, $0.05$ and $0.1$. As with the other variations, $\alpha$ is fixed at values deemed optimal. \autoref{converged_upsilon} shows the convergence tendencies as a function of $\upsilon$ and the feature extraction methods. Disregarding two runs that failed to complete, convergence is consistently achieved for tabular learning, tile coding and separated polynomials. Contrary, only 74.2\% of polynomial tiles runs converged. This starkly contrasts the observation made in the experiments using the discounted reward setting. There, all runs with polynomial tiles converged for various values of $\alpha$.\footnote{The statements disregards runs that failed to complete. Refer back to the bottom right panel in \autoref{converged}. \autoref{convergence_at_upsilon} in \autoref{appendix_2} shows that polynomial tiles in the differential reward setting also tend to converge later than the other methods.} Moreover, the plot suggests that low values of $\upsilon$ impede convergence for this method.
+
+
+ \begin{figure}
+	\includegraphics[width=\linewidth]{plots/upsilon.png}
+	\caption{average $\Delta$ for various values of $\upsilon$ in the differential reward setting. Includes converged and non-converged runs. Beware the logarithmic x-scale.}
+	\label{upsilon}
+\end{figure}
+
+
+\autoref{upsilon} displays how the average profits relative to $p_n$ and $p_m$ change with $\upsilon$. The overall impact is small. However, tabular learning and, to a lesser extent, tile coding seem to be sensitive to very low values of $\upsilon$.\footnote{\autoref{upsilon_violin} reveals that the variability in average $\Delta$ is higher than in the discounted setting.} With respect to punishment of price cuts, the results are similar to the discounted setting. Irrespective of $\upsilon$, the majority of deviations in experiments with separated polynomials and polynomial tiles is profitable and evokes no retaliation. With tabular learning, the share of profitable deviations is 24.7\% over all runs. There is slight evidence that the hint at some sort of punishment in tile coding is more pronounced in the differential reward setting. Only 48.8\% of deviations are strictly profitable.\footnote{The percentage drops to only 45.8\% if only runs with $\upsilon = 0.1$ or $\upsilon = 0.005$ are considered.} \autoref{intervention} in \autoref{appendix_2} shows that on average, the non deviating agent retaliates with a slight price cut at $\tau = 2$ for various $\upsilon$.
 
 
 \pagebreak

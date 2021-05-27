@@ -51,7 +51,6 @@
       \field{labeltitlesource}{title}
       \field{issn}{0030-7653}
       \field{journaltitle}{Oxford Economic Papers}
-      \field{note}{Publisher: Oxford University Press}
       \field{number}{1}
       \field{title}{The {Logit} as a {Model} of {Product} {Differentiation}}
       \field{urlday}{23}
@@ -72,7 +71,7 @@
       \verb https://www.jstor.org/stable/2663424
       \endverb
     \endentry
-    \entry{assad_algorithmic_2020}{report}{}
+    \entry{assad_algorithmic_2020}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=e71e4e9c0a4f93740834e6a70a85b086}{%
            family={Assad},
@@ -99,14 +98,8 @@
            giveni={L\bibinitperiod},
            givenun=0}}%
       }
-      \list{institution}{1}{%
-        {Social Science Research Network}%
-      }
       \list{language}{1}{%
         {en}%
-      }
-      \list{location}{1}{%
-        {Rochester, NY}%
       }
       \strng{namehash}{8562e1796a879668a6b6e19cb43d3d55}
       \strng{fullhash}{ebb45952c7403b2e1c7ad07a07644117}
@@ -121,10 +114,9 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Economic theory provides ambiguous and conflicting predictions about the association between algorithmic pricing and competition. In this paper we provide the first empirical analysis of this relationship. We study Germany’s retail gasoline market where algorithmic-pricing software became widely available by mid-2017, and for which we have access to comprehensive, highfrequency price data. Because adoption dates are unknown, we identify gas stations that adopt algorithmic-pricing software by testing for structural breaks in markers associated with algorithmic pricing. We find a large number of station-level structural breaks around the suspected time of large-scale adoption. Using this information we investigate the impact of adoption on outcomes linked to competition. Because station-level adoption is endogenous, we use brand headquarter-level adoption decisions as instruments. Our IV results show that adoption increases margins by 9\%, but only in non-monopoly markets. Restricting attention to duopoly markets, we find that market-level margins do not change when only one of the two stations adopts, but increase by 28\% in markets where both do. These results suggest that AI adoption has a significant effect on competition.}
-      \field{number}{ID 3682021}
+      \field{note}{Working Paper}
       \field{shorttitle}{Algorithmic {Pricing} and {Competition}}
       \field{title}{Algorithmic {Pricing} and {Competition}: {Empirical} {Evidence} from the {German} {Retail} {Gasoline} {Market}}
-      \field{type}{{SSRN} {Scholarly} {Paper}}
       \field{urlday}{25}
       \field{urlmonth}{1}
       \field{urlyear}{2021}
@@ -140,186 +132,6 @@
       \verb https://papers.ssrn.com/abstract=3682021
       \endverb
       \keyw{artificial intelligence,collusion,pricing-algorithms,retail gasoline}
-    \endentry
-    \entry{bundeskartellamt_bundeskartellamt_nodate}{misc}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=c17765d4927d5c4f57c0b3837468849f}{%
-           family={Bundeskartellamt},
-           familyi={B\bibinitperiod}}}%
-      }
-      \strng{namehash}{c17765d4927d5c4f57c0b3837468849f}
-      \strng{fullhash}{c17765d4927d5c4f57c0b3837468849f}
-      \strng{bibnamehash}{c17765d4927d5c4f57c0b3837468849f}
-      \strng{authorbibnamehash}{c17765d4927d5c4f57c0b3837468849f}
-      \strng{authornamehash}{c17765d4927d5c4f57c0b3837468849f}
-      \strng{authorfullhash}{c17765d4927d5c4f57c0b3837468849f}
-      \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{url}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Bundeskartellamt - {Homepage} - {Working} {Paper} - {Algorithms} and {Competition}}
-      \field{urlday}{25}
-      \field{urlmonth}{1}
-      \field{urlyear}{2021}
-      \field{urldateera}{ce}
-      \verb{file}
-      \verb Bundeskartellamt - Homepage - Working Paper - Algorithms and Competition:C\:\\Users\\psymo\\Zotero\\storage\\BRRVQNGX\\Algorithms_and_Competition_Working-Paper.html\;jsessionid=839547DE0AC4D5F41DECA09740F7A4E9.html:text/html;Bundeskartellamt - Bundeskartellamt - Homepage - Working Paper - Algo.pdf:C\:\\Users\\psymo\\Zotero\\storage\\QH9733VQ\\Bundeskartellamt - Bundeskartellamt - Homepage - Working Paper - Algo.pdf:application/pdf;summary.html:C\:\\Users\\psymo\\Zotero\\storage\\9ITY7MKR\\summary.html:text/html
-      \endverb
-      \verb{urlraw}
-      \verb https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Berichte/Algorithms_and_Competition_Working-Paper.html;jsessionid=839547DE0AC4D5F41DECA09740F7A4E9.2_cid362?nn=3591568
-      \endverb
-      \verb{url}
-      \verb https://www.bundeskartellamt.de/SharedDocs/Publikation/EN/Berichte/Algorithms_and_Competition_Working-Paper.html;jsessionid=839547DE0AC4D5F41DECA09740F7A4E9.2_cid362?nn=3591568
-      \endverb
-    \endentry
-    \entry{calvano_algorithmic_2018}{report}{}
-      \name{author}{4}{}{%
-        {{un=0,uniquepart=base,hash=251159e14bbd3cf5d61777ead5d463a5}{%
-           family={Calvano},
-           familyi={C\bibinitperiod},
-           given={Emilio},
-           giveni={E\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=5f94b7504494f666a2b2eebedab0368d}{%
-           family={Calzolari},
-           familyi={C\bibinitperiod},
-           given={Giacomo},
-           giveni={G\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=f80e1192ff1e3bb1c3bd7c962aa511d7}{%
-           family={Denicolò},
-           familyi={D\bibinitperiod},
-           given={Vincenzo},
-           giveni={V\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=990b7ca7771e7a800d292dd804707ebd}{%
-           family={Pastorello},
-           familyi={P\bibinitperiod},
-           given={Sergio},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{institution}{1}{%
-        {Social Science Research Network}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \list{location}{1}{%
-        {Rochester, NY}%
-      }
-      \strng{namehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{fullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
-      \strng{bibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{authorbibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{authornamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{authorfullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
-      \field{extraname}{1}
-      \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{abstract}{Pricing decisions are increasingly in the “hands” of artificial algorithms. Scholars and competition authorities have voiced concerns that those algorithms are capable of sustaining collusive outcomes more effectively than human decision makers. If this is so, then our traditional policy tools for fighting collusion may have to be reconsidered. We discuss these issues by critically surveying the relevant law, economics and computer science literatures.}
-      \field{month}{7}
-      \field{number}{ID 3209781}
-      \field{shorttitle}{Algorithmic {Pricing}}
-      \field{title}{Algorithmic {Pricing}: {What} {Implications} for {Competition} {Policy}?}
-      \field{type}{{SSRN} {Scholarly} {Paper}}
-      \field{urlday}{25}
-      \field{urlmonth}{1}
-      \field{urlyear}{2021}
-      \field{year}{2018}
-      \field{urldateera}{ce}
-      \verb{doi}
-      \verb 10.2139/ssrn.3209781
-      \endverb
-      \verb{file}
-      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\2I2BUY77\\papers.html:text/html
-      \endverb
-      \verb{urlraw}
-      \verb https://papers.ssrn.com/abstract=3209781
-      \endverb
-      \verb{url}
-      \verb https://papers.ssrn.com/abstract=3209781
-      \endverb
-      \keyw{Collusion,Algorithmic Pricing,Artifical Intellicence,Competition Policy,Machine Learning}
-    \endentry
-    \entry{calvano_artificial_2019}{report}{}
-      \name{author}{4}{}{%
-        {{un=0,uniquepart=base,hash=251159e14bbd3cf5d61777ead5d463a5}{%
-           family={Calvano},
-           familyi={C\bibinitperiod},
-           given={Emilio},
-           giveni={E\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=5f94b7504494f666a2b2eebedab0368d}{%
-           family={Calzolari},
-           familyi={C\bibinitperiod},
-           given={Giacomo},
-           giveni={G\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=f80e1192ff1e3bb1c3bd7c962aa511d7}{%
-           family={Denicolò},
-           familyi={D\bibinitperiod},
-           given={Vincenzo},
-           giveni={V\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=990b7ca7771e7a800d292dd804707ebd}{%
-           family={Pastorello},
-           familyi={P\bibinitperiod},
-           given={Sergio},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{institution}{1}{%
-        {Social Science Research Network}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \list{location}{1}{%
-        {Rochester, NY}%
-      }
-      \strng{namehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{fullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
-      \strng{bibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{authorbibnamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{authornamehash}{1ee52d72a23eb19828f83bdcf88fe01a}
-      \strng{authorfullhash}{215b4aa89c6c9ca7cff6af4003bd4ce3}
-      \field{extraname}{2}
-      \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Pricing algorithms are increasingly replacing human decision making in real marketplaces. To inform the competition policy debate on possible consequences, we run experiments with pricing algorithms powered by Artificial Intelligence in controlled environments (computer simulations).In particular, we study the interaction among a number of Q-learning algorithms in the context of a workhorse oligopoly model of price competition with Logit demand and constant marginal costs. We show that the algorithms consistently learn to charge supra-competitive prices, without communicating with each other. The high prices are sustained by classical collusive strategies with a finite punishment phase followed by a gradual return to cooperation. This finding is robust to asymmetries in cost or demand and to changes in the number of players.}
-      \field{month}{4}
-      \field{number}{ID 3304991}
-      \field{title}{Artificial {Intelligence}, {Algorithmic} {Pricing} and {Collusion}}
-      \field{type}{{SSRN} {Scholarly} {Paper}}
-      \field{urlday}{25}
-      \field{urlmonth}{1}
-      \field{urlyear}{2021}
-      \field{year}{2019}
-      \field{urldateera}{ce}
-      \verb{doi}
-      \verb 10.2139/ssrn.3304991
-      \endverb
-      \verb{file}
-      \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\BCZC26X8\\papers.html:text/html;calvano_et_al2020_supplementary.pdf:C\:\\Users\\psymo\\Zotero\\storage\\E3CWZ5ZJ\\calvano_et_al2020_supplementary.pdf:application/pdf;calvano_et_al2019_20.pdf:C\:\\Users\\psymo\\Zotero\\storage\\YW4I8JRH\\calvano_et_al2019_20.pdf:application/pdf;summary.html:C\:\\Users\\psymo\\Zotero\\storage\\8LA7B44I\\summary.html:text/html
-      \endverb
-      \verb{urlraw}
-      \verb https://papers.ssrn.com/abstract=3304991
-      \endverb
-      \verb{url}
-      \verb https://papers.ssrn.com/abstract=3304991
-      \endverb
-      \keyw{Artificial Intelligence,Collusion,Pricing-Algorithms,Q-Learning.,Reinforcement Learning}
     \endentry
     \entry{cma_case_2016}{misc}{}
       \name{author}{1}{}{%
@@ -343,7 +155,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The CMA investigated a cartel relating to sales of posters and frames by 2 competing online sellers on Amazon’s UK website.}
-      \field{month}{9}
+      \field{note}{https://www.gov.uk/cma-cases/online-sales-of-discretionary-consumer-products}
       \field{title}{Case 50223}
       \field{urlday}{18}
       \field{urlmonth}{4}
@@ -362,31 +174,31 @@
     \endentry
     \entry{cooper_learning_2015}{article}{}
       \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=18013d22b2b2e0a17e7d68c268321d12}{%
+        {{un=0,uniquepart=base,hash=587ae0767e98aa3db8f0ce91a60e60a2}{%
            family={Cooper},
            familyi={C\bibinitperiod},
-           given={William\bibnamedelima L.},
+           given={W.\bibnamedelimi L.},
            giveni={W\bibinitperiod\bibinitdelim L\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=ff76dc6206d64a1afab17ef6452fbfa6}{%
+        {{un=0,uniquepart=base,hash=100f2b668f5ee15afaa61c02a5a7d952}{%
            family={Homem-de-Mello},
            familyi={H\bibinithyphendelim M\bibinitperiod},
-           given={Tito},
+           given={T.},
            giveni={T\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=52ec314ca774889b226931986605c5e2}{%
+        {{un=0,uniquepart=base,hash=0a7b4a30bbdaeaab3a24ba163cc20774}{%
            family={Kleywegt},
            familyi={K\bibinitperiod},
-           given={Anton\bibnamedelima J.},
+           given={A.\bibnamedelimi J.},
            giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{dfac529fdf1dc4990a93c1b04317390d}
-      \strng{fullhash}{dfac529fdf1dc4990a93c1b04317390d}
-      \strng{bibnamehash}{dfac529fdf1dc4990a93c1b04317390d}
-      \strng{authorbibnamehash}{dfac529fdf1dc4990a93c1b04317390d}
-      \strng{authornamehash}{dfac529fdf1dc4990a93c1b04317390d}
-      \strng{authorfullhash}{dfac529fdf1dc4990a93c1b04317390d}
+      \strng{namehash}{05787c07b1d4dc5d82cc6b4cf5f7ddd0}
+      \strng{fullhash}{05787c07b1d4dc5d82cc6b4cf5f7ddd0}
+      \strng{bibnamehash}{05787c07b1d4dc5d82cc6b4cf5f7ddd0}
+      \strng{authorbibnamehash}{05787c07b1d4dc5d82cc6b4cf5f7ddd0}
+      \strng{authornamehash}{05787c07b1d4dc5d82cc6b4cf5f7ddd0}
+      \strng{authorfullhash}{05787c07b1d4dc5d82cc6b4cf5f7ddd0}
       \field{sortinit}{C}
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{extradatescope}{labelyear}
@@ -397,7 +209,6 @@
       \field{issn}{0030-364X}
       \field{journaltitle}{Operations Research}
       \field{month}{2}
-      \field{note}{Publisher: INFORMS}
       \field{number}{1}
       \field{title}{Learning and {Pricing} with {Models} {That} {Do} {Not} {Explicitly} {Incorporate} {Competition}}
       \field{urlday}{18}
@@ -423,28 +234,28 @@
     \endentry
     \entry{ezrachi_algorithmic_2017}{inproceedings}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=bdfeb85ba61b8ef0634724326682078c}{%
+        {{un=0,uniquepart=base,hash=43759057b5f67e6b7e3dbb95907e33ea}{%
            family={Ezrachi},
            familyi={E\bibinitperiod},
-           given={Ariel},
+           given={A.},
            giveni={A\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=7c7351bb095fd64d31ed898faa84dae1}{%
+        {{un=0,uniquepart=base,hash=166bfb898fed3f8764cb38fb79d4d9b2}{%
            family={Stucke},
            familyi={S\bibinitperiod},
-           given={Maurice\bibnamedelima E.},
+           given={M.\bibnamedelimi E.},
            giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
            givenun=0}}%
       }
       \list{language}{1}{%
         {EN}%
       }
-      \strng{namehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{fullhash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{bibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{authorbibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{authornamehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{authorfullhash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \strng{namehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{fullhash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{bibnamehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{authorbibnamehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{authornamehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{authorfullhash}{0628ad4bae1be34f890bf70ed27bf206}
       \field{extraname}{1}
       \field{sortinit}{E}
       \field{sortinithash}{c554bd1a0b76ea92b9f105fe36d9c7b0}
@@ -452,6 +263,7 @@
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{booktitle}{Background material at the {Roundtable} on {Algorithms} and {Collusion} at the {OECD} {Competition} {Committee}}
       \field{month}{6}
       \field{title}{Algorithmic {Collusion}: {Problems} and {Counter} {Measures}}
       \field{urlday}{17}
@@ -469,23 +281,20 @@
       \verb http://saiexam.nta.ac.in/cgi-bin/content/view.php?data=algorithmic_collusion_problems_and_counter_measures&filetype=pdf&id=58dd2c85905cd7515329353735c621eb
       \endverb
     \endentry
-    \entry{ezrachi_sustainable_2018}{report}{}
+    \entry{ezrachi_sustainable_2018}{inproceedings}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=bdfeb85ba61b8ef0634724326682078c}{%
+        {{un=0,uniquepart=base,hash=43759057b5f67e6b7e3dbb95907e33ea}{%
            family={Ezrachi},
            familyi={E\bibinitperiod},
-           given={Ariel},
+           given={A.},
            giveni={A\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=7c7351bb095fd64d31ed898faa84dae1}{%
+        {{un=0,uniquepart=base,hash=166bfb898fed3f8764cb38fb79d4d9b2}{%
            family={Stucke},
            familyi={S\bibinitperiod},
-           given={Maurice\bibnamedelima E.},
+           given={M.\bibnamedelimi E.},
            giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
            givenun=0}}%
-      }
-      \list{institution}{1}{%
-        {Social Science Research Network}%
       }
       \list{language}{1}{%
         {en}%
@@ -493,12 +302,15 @@
       \list{location}{1}{%
         {Rochester, NY}%
       }
-      \strng{namehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{fullhash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{bibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{authorbibnamehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{authornamehash}{5a532b512c1f33ca8b642d48e0822b4f}
-      \strng{authorfullhash}{5a532b512c1f33ca8b642d48e0822b4f}
+      \list{publisher}{1}{%
+        {Social Science Research Network}%
+      }
+      \strng{namehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{fullhash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{bibnamehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{authorbibnamehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{authornamehash}{0628ad4bae1be34f890bf70ed27bf206}
+      \strng{authorfullhash}{0628ad4bae1be34f890bf70ed27bf206}
       \field{extraname}{2}
       \field{sortinit}{E}
       \field{sortinithash}{c554bd1a0b76ea92b9f105fe36d9c7b0}
@@ -507,10 +319,8 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Algorithmic collusion is a hot topic within antitrust circles in Europe, US and beyond. But some economists downplay algorithmic collusion as unlikely, if not impossible. This paper responds to these criticisms by pointing to new emerging evidence and the gap between law and this particular economic theory. We explain why algorithmic tacit collusion isn’t only possible, but warrants the increasing concerns of many enforcers.}
-      \field{month}{11}
-      \field{number}{ID 3282235}
+      \field{booktitle}{University of {Tennessee} {Legal} {Studies} {Research} paper {No}. 366}
       \field{title}{Sustainable and {Unchallenged} {Algorithmic} {Tacit} {Collusion}}
-      \field{type}{{SSRN} {Scholarly} {Paper}}
       \field{urlday}{18}
       \field{urlmonth}{4}
       \field{urlyear}{2021}
@@ -532,28 +342,28 @@
     \endentry
     \entry{fischer_collusion_2019}{article}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=2ae8b825424bb4146ee68e7247449025}{%
+        {{un=0,uniquepart=base,hash=51d6b34f76b3c4c3fe23cb8981f34379}{%
            family={Fischer},
            familyi={F\bibinitperiod},
-           given={Christian},
+           given={C.},
            giveni={C\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=81105a69865da8e5c1a37998c2df35ee}{%
+        {{un=0,uniquepart=base,hash=0e9cfad4925ea8b6bef7f30404f2661a}{%
            family={Normann},
            familyi={N\bibinitperiod},
-           given={Hans-Theo},
+           given={H.-T.},
            giveni={H\bibinithyphendelim T\bibinitperiod},
            givenun=0}}%
       }
       \list{language}{1}{%
         {en}%
       }
-      \strng{namehash}{712dd6d74dc99fc9c2ef8e12bad89637}
-      \strng{fullhash}{712dd6d74dc99fc9c2ef8e12bad89637}
-      \strng{bibnamehash}{712dd6d74dc99fc9c2ef8e12bad89637}
-      \strng{authorbibnamehash}{712dd6d74dc99fc9c2ef8e12bad89637}
-      \strng{authornamehash}{712dd6d74dc99fc9c2ef8e12bad89637}
-      \strng{authorfullhash}{712dd6d74dc99fc9c2ef8e12bad89637}
+      \strng{namehash}{000871e3ff478bf0eb732c8c764de8fa}
+      \strng{fullhash}{000871e3ff478bf0eb732c8c764de8fa}
+      \strng{bibnamehash}{000871e3ff478bf0eb732c8c764de8fa}
+      \strng{authorbibnamehash}{000871e3ff478bf0eb732c8c764de8fa}
+      \strng{authornamehash}{000871e3ff478bf0eb732c8c764de8fa}
+      \strng{authorfullhash}{000871e3ff478bf0eb732c8c764de8fa}
       \field{sortinit}{F}
       \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
       \field{extradatescope}{labelyear}
@@ -563,7 +373,6 @@
       \field{abstract}{In asymmetric dilemma games without side payments, players face involved cooperation and bargaining problems. The maximization of joint profits is implausible, players disagree on the collusive action, and the outcome is often inefficient. For the example of a Cournot duopoly with asymmetric cost, we investigate experimentally how players cooperate (collude implicitly and explicitly), if at all, in such games. In our treatments without communication, players fail to cooperate and essentially play the static Nash equilibrium (consistent with previous results). With communication, inefficient firms gain at the expense of efficient ones. When the role of the efficient firm is earned in a contest, the efficient firm earns higher profits than when this role is randomly allocated. Bargaining solutions do not satisfactorily predict outcomes.}
       \field{issn}{0014-2921}
       \field{journaltitle}{European Economic Review}
-      \field{month}{1}
       \field{title}{Collusion and bargaining in asymmetric {Cournot} duopoly—{An} experiment}
       \field{urlday}{25}
       \field{urlmonth}{1}
@@ -587,36 +396,33 @@
       \endverb
       \keyw{Cartels,Asymmetries,Bargaining,Communication,Cournot,Earned role,Experiments}
     \endentry
-    \entry{ittoo_algorithmic_2017}{report}{}
+    \entry{ittoo_algorithmic_2017}{incollection}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=022281daa38a949268ce8cd19108b04f}{%
+        {{un=0,uniquepart=base,hash=abc715dcc99319fe0e0e3c3f4785180f}{%
            family={Ittoo},
            familyi={I\bibinitperiod},
-           given={Ashwin},
+           given={A.},
            giveni={A\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=d2865f7c5d200f23e4bd424a7c52d847}{%
+        {{un=0,uniquepart=base,hash=27adbcc11e8992a637a3763336df038c}{%
            family={Petit},
            familyi={P\bibinitperiod},
-           given={Nicolas},
+           given={N.},
            giveni={N\bibinitperiod},
            givenun=0}}%
-      }
-      \list{institution}{1}{%
-        {Social Science Research Network}%
       }
       \list{language}{1}{%
         {en}%
       }
-      \list{location}{1}{%
-        {Rochester, NY}%
+      \list{publisher}{1}{%
+        {Social Science Research Network}%
       }
-      \strng{namehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
-      \strng{fullhash}{5adba9faeee1896567ba6fcf5a4bfb1b}
-      \strng{bibnamehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
-      \strng{authorbibnamehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
-      \strng{authornamehash}{5adba9faeee1896567ba6fcf5a4bfb1b}
-      \strng{authorfullhash}{5adba9faeee1896567ba6fcf5a4bfb1b}
+      \strng{namehash}{3d72cd1c2f505347f5da341d6b926800}
+      \strng{fullhash}{3d72cd1c2f505347f5da341d6b926800}
+      \strng{bibnamehash}{3d72cd1c2f505347f5da341d6b926800}
+      \strng{authorbibnamehash}{3d72cd1c2f505347f5da341d6b926800}
+      \strng{authornamehash}{3d72cd1c2f505347f5da341d6b926800}
+      \strng{authorfullhash}{3d72cd1c2f505347f5da341d6b926800}
       \field{sortinit}{I}
       \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
       \field{extradatescope}{labelyear}
@@ -624,16 +430,17 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Amongst the wealth of concerns raised by Artificial Intelligence (“AI”), one is the risk that the deployment of algorithmic pricing agents on markets will increase occurrences of tacit collusion by orders of magnitude, and well beyond the oligopoly setting where such markets failures have been traditionally observed. This concern has already generated policy interest, and regulatory options are now commonly discussed at academic, commercial and official conferences. At the same time, however, we remain in lack of understanding of whether current AI technology holds the capabilities that entitle algorithmic pricing agents to autonomously enter into tacitly collusive strategies without human intervention. In this paper, we look at three plain-vanilla Reinforcement Learning (“RL”) technologies, and attempt to understand whether their introduction at scale on markets can lead to tacit collusion. While we do not deny the fact that smart pricing agents can enter into tacit collusion and that regulators may be right to be vigilant, we find that there are several technological challenges in the general realm of RL that mitigate this risk.Our paper proceeds in five steps. We first discuss the algorithmic tacit collusion conjecture (I). We then provide a non technical overview of reinforcement learning technologies (II). We then move on to discuss how naïve single agent Q-learning (III) and multi-agent Q-learning (IV) interact as market players. We close with a discussion of how technological challenges fragilize the algorithmic tacit collusion conjecture (V).}
+      \field{booktitle}{L'intelligence artificielle et le droit}
       \field{month}{10}
-      \field{number}{ID 3046405}
       \field{shorttitle}{Algorithmic {Pricing} {Agents} and {Tacit} {Collusion}}
       \field{title}{Algorithmic {Pricing} {Agents} and {Tacit} {Collusion}: {A} {Technological} {Perspective}}
-      \field{type}{{SSRN} {Scholarly} {Paper}}
       \field{urlday}{25}
       \field{urlmonth}{1}
       \field{urlyear}{2021}
       \field{year}{2017}
       \field{urldateera}{ce}
+      \field{pages}{241\bibrangedash 256}
+      \range{pages}{16}
       \verb{doi}
       \verb 10.2139/ssrn.3046405
       \endverb
@@ -648,30 +455,24 @@
       \endverb
       \keyw{Artificial Intelligence,Collusion,Reinforcement Learning,Algorithms,Antitrust,Markets,Pricing}
     \endentry
-    \entry{klein_autonomous_2019}{report}{}
+    \entry{klein_autonomous_2019}{article}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=27aa2e0111d1e6dfdb6b78ecf424f9e0}{%
+        {{un=0,uniquepart=base,hash=8b38c459dec51e696d1d986a2ea96c71}{%
            family={Klein},
            familyi={K\bibinitperiod},
-           given={Timo},
+           given={T.},
            giveni={T\bibinitperiod},
            givenun=0}}%
-      }
-      \list{institution}{1}{%
-        {Social Science Research Network}%
       }
       \list{language}{1}{%
         {en}%
       }
-      \list{location}{1}{%
-        {Rochester, NY}%
-      }
-      \strng{namehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
-      \strng{fullhash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
-      \strng{bibnamehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
-      \strng{authorbibnamehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
-      \strng{authornamehash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
-      \strng{authorfullhash}{27aa2e0111d1e6dfdb6b78ecf424f9e0}
+      \strng{namehash}{8b38c459dec51e696d1d986a2ea96c71}
+      \strng{fullhash}{8b38c459dec51e696d1d986a2ea96c71}
+      \strng{bibnamehash}{8b38c459dec51e696d1d986a2ea96c71}
+      \strng{authorbibnamehash}{8b38c459dec51e696d1d986a2ea96c71}
+      \strng{authornamehash}{8b38c459dec51e696d1d986a2ea96c71}
+      \strng{authorfullhash}{8b38c459dec51e696d1d986a2ea96c71}
       \field{sortinit}{K}
       \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
       \field{extradatescope}{labelyear}
@@ -679,14 +480,13 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Prices are increasingly set by algorithms. One concern is that intelligent algorithms may learn to collude on higher prices even in absence of the kind of communication or agreement necessary to establish an antitrust infringement. However, exactly how this may happen is an open question. I show in a simulated environment of sequential competition that competing reinforcement learning algorithms can indeed learn to converge to collusive equilibria. When the set of discrete prices increases, the algorithm considered increasingly converges to supra-competitive asymmetric cycles. I show that results are robust to various extensions and discuss practical limitations and policy implications.}
-      \field{month}{7}
-      \field{number}{ID 3195812}
+      \field{journaltitle}{Amsterdam Law School Research Paper}
       \field{shorttitle}{Autonomous {Algorithmic} {Collusion}}
       \field{title}{Autonomous {Algorithmic} {Collusion}: {Q}-{Learning} {Under} {Sequential} {Pricing}}
-      \field{type}{{SSRN} {Scholarly} {Paper}}
       \field{urlday}{25}
       \field{urlmonth}{1}
       \field{urlyear}{2021}
+      \field{volume}{No.2018-15}
       \field{year}{2019}
       \field{urldateera}{ce}
       \verb{doi}
@@ -703,30 +503,24 @@
       \endverb
       \keyw{algorithmic collusion,artificial intelligence,machine learning,pricing algorithms,Q-learning,reinforcement learning,sequential pricing}
     \endentry
-    \entry{mehra_antitrust_2015}{report}{}
+    \entry{mehra_antitrust_2015}{article}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=20b4ceb461aee7703fc2e397f131ab31}{%
+        {{un=0,uniquepart=base,hash=46c27030fd57e62b8a6c4a772bf383d2}{%
            family={Mehra},
            familyi={M\bibinitperiod},
-           given={Salil\bibnamedelima K.},
+           given={S.\bibnamedelimi K.},
            giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod},
            givenun=0}}%
-      }
-      \list{institution}{1}{%
-        {Social Science Research Network}%
       }
       \list{language}{1}{%
         {en}%
       }
-      \list{location}{1}{%
-        {Rochester, NY}%
-      }
-      \strng{namehash}{20b4ceb461aee7703fc2e397f131ab31}
-      \strng{fullhash}{20b4ceb461aee7703fc2e397f131ab31}
-      \strng{bibnamehash}{20b4ceb461aee7703fc2e397f131ab31}
-      \strng{authorbibnamehash}{20b4ceb461aee7703fc2e397f131ab31}
-      \strng{authornamehash}{20b4ceb461aee7703fc2e397f131ab31}
-      \strng{authorfullhash}{20b4ceb461aee7703fc2e397f131ab31}
+      \strng{namehash}{46c27030fd57e62b8a6c4a772bf383d2}
+      \strng{fullhash}{46c27030fd57e62b8a6c4a772bf383d2}
+      \strng{bibnamehash}{46c27030fd57e62b8a6c4a772bf383d2}
+      \strng{authorbibnamehash}{46c27030fd57e62b8a6c4a772bf383d2}
+      \strng{authornamehash}{46c27030fd57e62b8a6c4a772bf383d2}
+      \strng{authorfullhash}{46c27030fd57e62b8a6c4a772bf383d2}
       \field{sortinit}{M}
       \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
       \field{extradatescope}{labelyear}
@@ -734,16 +528,18 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Increasingly, firms are knitting together newly available mass data collection, Internet-driven interconnective power, and automated algorithmic selling with their traditional supply-chain and sales functions. Traditional sales functions such as competitive intelligence gathering and pricing are being delegated to software “robo-sellers.” This Article offers the first descriptive and normative study of the implications of this shift away from humans to machines (the “robo-sellers”) for antitrust law. This change is a critical challenge for antitrust law – both in how it is currently applied and in highlighting and exacerbating its existing weaknesses.}
+      \field{journaltitle}{Minnesota Law Review}
       \field{month}{3}
-      \field{number}{ID 2576341}
       \field{shorttitle}{Antitrust and the {Robo}-{Seller}}
       \field{title}{Antitrust and the {Robo}-{Seller}: {Competition} in the {Time} of {Algorithms}}
-      \field{type}{{SSRN} {Scholarly} {Paper}}
       \field{urlday}{25}
       \field{urlmonth}{1}
       \field{urlyear}{2021}
+      \field{volume}{100}
       \field{year}{2015}
       \field{urldateera}{ce}
+      \field{pages}{1323}
+      \range{pages}{1}
       \verb{file}
       \verb Snapshot:C\:\\Users\\psymo\\Zotero\\storage\\LQDU7N79\\papers.html:text/html;Mehra - 2015 - Antitrust and the Robo-Seller Competition in the .pdf:C\:\\Users\\psymo\\Zotero\\storage\\79Z6ULA4\\Mehra - 2015 - Antitrust and the Robo-Seller Competition in the .pdf:application/pdf
       \endverb
@@ -757,43 +553,43 @@
     \endentry
     \entry{naik_discounted_2019}{article}{}
       \name{author}{5}{}{%
-        {{un=0,uniquepart=base,hash=3f00c53e13e0a727532280d48b4df5ce}{%
+        {{un=0,uniquepart=base,hash=3a4ba0d28c57b5bb7ee725c11052890f}{%
            family={Naik},
            familyi={N\bibinitperiod},
-           given={Abhishek},
+           given={A.},
            giveni={A\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=4acfcb6f31bb7afcf88f9f0845770b2f}{%
+        {{un=0,uniquepart=base,hash=df2290601b0486199b7809debe32a2b6}{%
            family={Shariff},
            familyi={S\bibinitperiod},
-           given={Roshan},
+           given={R.},
            giveni={R\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=5e02b19f41bae8330d6cdbdd984524a8}{%
+        {{un=0,uniquepart=base,hash=51582229a4c979d89da667e065ed3d92}{%
            family={Yasui},
            familyi={Y\bibinitperiod},
-           given={Niko},
+           given={N.},
            giveni={N\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=f17d6b9c135febd7ab6a3e84ebbbe23e}{%
+        {{un=0,uniquepart=base,hash=8745dfbfebe94251ce117f403ed8f3c1}{%
            family={Yao},
            familyi={Y\bibinitperiod},
-           given={Hengshuai},
+           given={H.},
            giveni={H\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+        {{un=0,uniquepart=base,hash=f6e3bc679b5057a2558857c9c28078b8}{%
            family={Sutton},
            familyi={S\bibinitperiod},
-           given={Richard\bibnamedelima S.},
+           given={R.\bibnamedelimi S.},
            giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{b4fc7ffead9491d19d9624c400a6e727}
-      \strng{fullhash}{e3438806a8107b070eef416aaf9fffae}
-      \strng{bibnamehash}{b4fc7ffead9491d19d9624c400a6e727}
-      \strng{authorbibnamehash}{b4fc7ffead9491d19d9624c400a6e727}
-      \strng{authornamehash}{b4fc7ffead9491d19d9624c400a6e727}
-      \strng{authorfullhash}{e3438806a8107b070eef416aaf9fffae}
+      \strng{namehash}{e3e59727d10e93d6a64d5b339cebda87}
+      \strng{fullhash}{b1ac618fdeaf3e668c646060e0a87b43}
+      \strng{bibnamehash}{e3e59727d10e93d6a64d5b339cebda87}
+      \strng{authorbibnamehash}{e3e59727d10e93d6a64d5b339cebda87}
+      \strng{authornamehash}{e3e59727d10e93d6a64d5b339cebda87}
+      \strng{authorfullhash}{b1ac618fdeaf3e668c646060e0a87b43}
       \field{sortinit}{N}
       \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
       \field{extradatescope}{labelyear}
@@ -801,9 +597,8 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Discounted reinforcement learning is fundamentally incompatible with function approximation for control in continuing tasks. It is not an optimization problem in its usual formulation, so when using function approximation there is no optimal policy. We substantiate these claims, then go on to address some misconceptions about discounting and its connection to the average reward formulation. We encourage researchers to adopt rigorous optimization approaches, such as maximizing average reward, for reinforcement learning in continuing tasks.}
-      \field{journaltitle}{arXiv:1910.02140 [cs]}
-      \field{month}{11}
-      \field{note}{arXiv: 1910.02140}
+      \field{journaltitle}{Preprint}
+      \field{note}{arXiv:1910.02140v3}
       \field{title}{Discounted {Reinforcement} {Learning} {Is} {Not} an {Optimization} {Problem}}
       \field{urlday}{14}
       \field{urlmonth}{3}
@@ -844,6 +639,7 @@
       \field{labeltitlesource}{title}
       \field{abstract}{In recent years the scope for near perfect price discrimination, particularly in the digital economy, appears to have grown. This raises a question over how those jurisdictions in which exploitative price discrimination is an offence will respond. In contrast, the risk of price discrimination distorting downstream markets does not appear to have changed, and instead the debate has been on whether the rules and case law have an economic basis, and if not, how agencies might prioritise cases. In this paper, we set out the benefits of price discrimination as well as the concerns over its potential exploitative, distortionary, and exclusionary effects and describe analytical frameworks for assessing these, as well as possible remedies. We distinguish these cases from those investigations where there is a different policy rationale, such as fairness or another policy goal.}
       \field{month}{11}
+      \field{note}{https://www.oecd.org/daf/competition/price-discrimination.htm}
       \field{title}{Price discrimination - {Background} {Note} by the {Secretariat}}
       \field{type}{techreport}
       \field{urlday}{17}
@@ -884,6 +680,7 @@
       \field{labeltitlesource}{title}
       \field{abstract}{The Authority has found that Economy Energy, E (Gas and Electricity) Ltd and Dyball Associates have committed an infringement of the Competition Act 1998.}
       \field{month}{7}
+      \field{note}{https://www.ofgem.gov.uk/publications-and-updates/investigation-whether-economy-energy-e-gas-and-electricity-and-dyball-associates-have-infringed-chapter-i-competition-act-1998-respect-suspected-anti-competitive-agreement}
       \field{title}{Decision of 26.07.2019}
       \field{urlday}{18}
       \field{urlmonth}{4}
@@ -922,6 +719,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{While most Reinforcement Learning work utilizes temporal discounting to evaluate performance, the reasons for this are unclear. Is it out of desire or necessity? We argue that it is not out of desire, and seek to dispel the notion that temporal discounting is necessary by proposing a framework for undiscounted optimization. We present a metric of undiscounted performance and an algorithm for finding action policies that maximize that measure. The technique, which we call R-learning, is modelled after the popular Q-learning algorithm [17]. Initial experimental results are presented which attest to a great improvement over Q-learning in some simple cases.}
+      \field{booktitle}{Proceedings of the 10th {International} {Conference} on {Machine} {Learning} ({ICML}'93), {Amherst}, {MA}}
       \field{isbn}{978-1-55860-307-3}
       \field{month}{12}
       \field{title}{A {Reinforcement} {Learning} {Method} for {Maximizing} {Undiscounted} {Rewards}}
@@ -992,16 +790,16 @@
     \endentry
     \entry{sutton_reinforcement_2018}{book}{}
       \name{author}{2}{}{%
-        {{un=1,uniquepart=given,hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+        {{un=1,uniquepart=given,hash=f6e3bc679b5057a2558857c9c28078b8}{%
            family={Sutton},
            familyi={S\bibinitperiod},
-           given={Richard\bibnamedelima S.},
+           given={R.\bibnamedelimi S.},
            giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
            givenun=1}}%
-        {{un=0,uniquepart=base,hash=32a0a208f8bcf56a13b0a8e618aa806a}{%
+        {{un=0,uniquepart=base,hash=fdb3b9edd91ad4fc7c4dc1c212f7f3a9}{%
            family={Barto},
            familyi={B\bibinitperiod},
-           given={Andrew\bibnamedelima G.},
+           given={A.\bibnamedelimi G.},
            giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod},
            givenun=0}}%
       }
@@ -1011,12 +809,12 @@
       \list{publisher}{1}{%
         {MIT Press}%
       }
-      \strng{namehash}{c6212f1a1407d96a3d9f4fefbb07eade}
-      \strng{fullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
-      \strng{bibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
-      \strng{authorbibnamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
-      \strng{authornamehash}{c6212f1a1407d96a3d9f4fefbb07eade}
-      \strng{authorfullhash}{c6212f1a1407d96a3d9f4fefbb07eade}
+      \strng{namehash}{ae3768ac5e17b9be43bb7551c725803f}
+      \strng{fullhash}{ae3768ac5e17b9be43bb7551c725803f}
+      \strng{bibnamehash}{ae3768ac5e17b9be43bb7551c725803f}
+      \strng{authorbibnamehash}{ae3768ac5e17b9be43bb7551c725803f}
+      \strng{authornamehash}{ae3768ac5e17b9be43bb7551c725803f}
+      \strng{authorfullhash}{ae3768ac5e17b9be43bb7551c725803f}
       \field{sortinit}{S}
       \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
       \field{extradatescope}{labelyear}
@@ -1025,8 +823,6 @@
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{The significantly expanded and updated new edition of a widely used text on reinforcement learning, one of the most active research areas in artificial intelligence.Reinforcement learning, one of the most active research areas in artificial intelligence, is a computational approach to learning whereby an agent tries to maximize the total amount of reward it receives while interacting with a complex, uncertain environment. In Reinforcement Learning, Richard Sutton and Andrew Barto provide a clear and simple account of the field's key ideas and algorithms. This second edition has been significantly expanded and updated, presenting new topics and updating coverage of other topics.Like the first edition, this second edition focuses on core online learning algorithms, with the more mathematical material set off in shaded boxes. Part I covers as much of reinforcement learning as possible without going beyond the tabular case for which exact solutions can be found. Many algorithms presented in this part are new to the second edition, including UCB, Expected Sarsa, and Double Learning. Part II extends these ideas to function approximation, with new sections on such topics as artificial neural networks and the Fourier basis, and offers expanded treatment of off-policy learning and policy-gradient methods. Part III has new chapters on reinforcement learning's relationships to psychology and neuroscience, as well as an updated case-studies chapter including AlphaGo and AlphaGo Zero, Atari game playing, and IBM Watson's wagering strategy. The final chapter discusses the future societal impacts of reinforcement learning.}
       \field{isbn}{978-0-262-35270-3}
-      \field{month}{11}
-      \field{note}{Google-Books-ID: uWV0DwAAQBAJ}
       \field{shorttitle}{Reinforcement {Learning}, second edition}
       \field{title}{Reinforcement {Learning}, second edition: {An} {Introduction}}
       \field{year}{2018}
@@ -1037,25 +833,25 @@
     \endentry
     \entry{waltman_q-learning_2008}{article}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=783af1eb97144feb275a9c50368af326}{%
+        {{un=0,uniquepart=base,hash=3d02594967691421684117371c8beabc}{%
            family={Waltman},
            familyi={W\bibinitperiod},
-           given={Ludo},
+           given={L.},
            giveni={L\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=142d8d19220de00d7acfdcb7c2e8f3bb}{%
+        {{un=0,uniquepart=base,hash=a7c83401fceb15066a7552e0be58f176}{%
            family={Kaymak},
            familyi={K\bibinitperiod},
-           given={Uzay},
+           given={U.},
            giveni={U\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{0d586e85c2a286f6460afd0cbf9b586c}
-      \strng{fullhash}{0d586e85c2a286f6460afd0cbf9b586c}
-      \strng{bibnamehash}{0d586e85c2a286f6460afd0cbf9b586c}
-      \strng{authorbibnamehash}{0d586e85c2a286f6460afd0cbf9b586c}
-      \strng{authornamehash}{0d586e85c2a286f6460afd0cbf9b586c}
-      \strng{authorfullhash}{0d586e85c2a286f6460afd0cbf9b586c}
+      \strng{namehash}{0d31329758fe135e9d1595d0fb716277}
+      \strng{fullhash}{0d31329758fe135e9d1595d0fb716277}
+      \strng{bibnamehash}{0d31329758fe135e9d1595d0fb716277}
+      \strng{authorbibnamehash}{0d31329758fe135e9d1595d0fb716277}
+      \strng{authornamehash}{0d31329758fe135e9d1595d0fb716277}
+      \strng{authorfullhash}{0d31329758fe135e9d1595d0fb716277}
       \field{sortinit}{W}
       \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
       \field{extradatescope}{labelyear}
@@ -1064,7 +860,6 @@
       \field{labeltitlesource}{title}
       \field{issn}{0165-1889}
       \field{journaltitle}{Journal of Economic Dynamics and Control}
-      \field{note}{Publisher: Elsevier}
       \field{number}{10}
       \field{title}{Q-learning agents in a {Cournot} oligopoly model}
       \field{urlday}{25}
@@ -1086,12 +881,13 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{demo_art}
-  \missing{demo_book}
-  \missing{demo_source}
-  \missing{grapov2018rise}
+  \missing{bundeskartellamt_bundeskartellamt_nodate}
+  \missing{calvano_algorithmic_2018}
+  \missing{calvano_artificial_2019}
+  \missing{hettich}
   \missing{maskine-tirole}
   \missing{noa}
+  \missing{precup}
   \missing{rummery_niranjan_1994}
   \missing{sutton_1988}
 \endrefsection

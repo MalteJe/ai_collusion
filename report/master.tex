@@ -31,11 +31,14 @@
 
 
 % define glossary
-\usepackage[nopostdot,nogroupskip,style=super,nonumberlist,toc,automake,toc]{glossaries}
+\usepackage[nopostdot,nogroupskip,style=super,nonumberlist,automake]{glossaries}
+
+\glstocfalse
 \makeglossaries
 
 \newglossaryentry{mdp}{name={MDP},description={Markov Decision Process}}
 \newglossaryentry{fem}{name={FEM},description={Feature Extraction Method}}
+\newglossaryentry{td_error}{name={TD error},description={temporal-difference error}}
 
 
 %Formatting and Layout
@@ -59,6 +62,13 @@
 \usepackage{graphicx}  %for graphics
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}  %math packages
 
+
+
+% abstract and appendices
+\usepackage{abstract}
+\usepackage[title]{appendix}
+\newcommand*{\Appendixautorefname}{appendix}
+
 %References
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
@@ -72,6 +82,8 @@
 	\def\subsubsectionautorefname{section}
 	\def\equationautorefname{equation}
 	\def\algorithmautorefname{Algorithm}
+	
+
 	
 	% start roman page numbers
 	\pagenumbering{Roman}
@@ -113,6 +125,11 @@
 \restoregeometry % go back to default layout
 
 \newpage
+	\begin{abstract}
+		 The increased prevalence of pricing algorithms incited an ongoing debate about new forms of collusion. The concern is that intelligent algorithms may be able to forge collusive schemes without being explicitly instructed to do so. I attempt to examine the ability of competing \emph{reinforcement learning} algorithms to maintain collusive prices in a simulated oligopoly of price competition. To my knowledge, this study is the first to use a reinforcement learning system with linear function approximation and eligibility traces in an economic environment. I show that the deployed agents sustain supra-competitive prices, but tend to be exploitable in the short-term. The degree of collusion crucially hinges on the utilized method to estimate the qualities of actions. This finding is robust to variations of parameters that control the learning process.
+	\end{abstract}
+	
+\newpage	
 	
 	% TOC, LOF, LOT, Abbreviations
 	\tableofcontents
@@ -144,13 +161,16 @@
 	\pagebreak
 	\printbibliography
 	
-	\appendix
-	\section{Appendix}\label{appendix}
+	\begin{appendices}
+	\section{Results Appendix}\label{appendix}
 	
 		\input{99_appendix.tex}
 	
 	\pagebreak
-	\section{second appendix}\label{appendix_2}
-		
+	\section{Robustness and variations Appendix}\label{appendix_2}
+	
+
+	
 		\input{999_appendix_2}
+	\end{appendices}
 \end{document}

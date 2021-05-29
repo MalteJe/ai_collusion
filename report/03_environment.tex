@@ -1,12 +1,12 @@
 \section{Environment}\label{enironment}
 
-This section presents the simulated economic environment that the autonomous pricing agents interact with. I consider an infinitely repeated pricing game with a multinominal logit demand as in \textcite{calvano_artificial_2019}. Restricting the analysis to a symmetric oligopoly case with $n=2$ agents (where $i = 1,2$), the market comprises \emph{2} differentiated products and an outside option. In every period $t$, both agents simultaneously pick a price $p_i$. Demand for agent $i$ is then determined \parencite{anderson_logit_1992}:\footnote{Generalization to a model with \emph{n} agents is straightforward. In fact, the demand formula remains the same. The limitation to 2 agents is merely chosen for computational efficiency and the (intuitive) conjecture that the simulation results generalize to more players.}
+This section presents the simulated economic environment that the autonomous pricing agents interact with. I consider an infinitely repeated pricing game with a multinominal logit demand as in \textcite{calvano_artificial_2020}. Restricting the analysis to a symmetric oligopoly case with $n=2$ agents (where $i = 1,2$), the market comprises \emph{2} differentiated products and an outside option. In every period $t$, both agents simultaneously pick a price $p_i$. Demand for agent $i$ is then determined:\footnote{The model was pioneered by \textcite{anderson_logit_1992}. Generalization to a model with \emph{n} agents is straightforward. In fact, the demand formula remains the same. The limitation to 2 agents is merely chosen for computational efficiency and the (intuitive) conjecture that the simulation results generalize to more players.}
 
 \begin{gather}\label{quantity}
 q_{i,t}=\frac{e^{\frac{a - p_{i,t}}{\mu}}}{\sum_{j=1}^{n}~ e^{\frac{a-p_{j,t}}{\mu}}+e^{\frac{a_0}{\mu}}}
 \end{gather}
 
-$\mu$ controls the degree of horizontal differentiation, where $\mu \rightarrow 0$ approximates perfect substitutability. While I forego to incorporate vertical differentiation throughout this study, it may be incorporated by choosing firm-specific quality parameters $a$. $a_0$ reflects the appeal of the outside good. It diminishes as $a_0 \rightarrow -\infty$. 
+$\mu$ controls the degree of horizontal differentiation, where $\mu \rightarrow 0$ approximates perfect substitutability. In this study I forego to incorporate vertical differentiation. But it is easily incorporated by choosing firm-specific quality parameters $a$. $a_0$ reflects the appeal of the outside good. It diminishes as $a_0 \rightarrow -\infty$. 
 
 Profits of both agents $\pi_i$ are simply calculated as
 
@@ -22,8 +22,8 @@ where $c$ is the marginal cost.\footnote{Again, $c$ could be varied by adding pl
 
 Naturally, the other extreme, a collusive (or monopoly) solution, is obtained by maximizing joint profits.\footnote{For this study, I approximate both cases using numerical optimization.} Both, the Nash outcomes characterized by $p_n$ and $\pi_n$ \emph{and} the fully collusive solution ($p_m$ and $\pi_m$) shall serve as benchmarks for the simulations.
 
-Market entry and exit are not considered. The parametrization is identical to the baseline in \textcite{calvano_artificial_2019}:
+Market entry and exit are not considered. The parametrization is identical to the baseline in \textcite{calvano_artificial_2020}:
 $c = 1$,
 $a = 2$,
 $a_0 = 0$ and
-$\mu = \frac{1}{4}$. These parameters give rise to a static Nash equilibrium with $p_n \approx 1.47$ and $\pi_n \approx 0.23$ per agent. The fully collusive solution entails $p_m \approx 1.92$ with $\pi_m \approx 0.34$.
+$\mu = \frac{1}{4}$. These parameters give rise to a static Nash equilibrium with $p_n \approx 1.47$ and $\pi_n \approx 0.23$ per agent. The fully collusive solution brings about $p_m \approx 1.92$ with $\pi_m \approx 0.34$.

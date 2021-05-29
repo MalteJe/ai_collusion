@@ -1,16 +1,18 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Parametrization of learning parameters. Baseline and variations.}}{10}{table.1}%
+\contentsline {table}{\numberline {1}{\ignorespaces Parametrization of learning parameters. Baseline and variations.}}{15}{table.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {2}{\ignorespaces Feature extraction methods, number of parameters with $m=19$ and factor when doubling the number of available prices $m$.}}{13}{table.2}%
+\contentsline {table}{\numberline {2}{\ignorespaces Parametrization of feature extraction methods}}{16}{table.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {3}{\ignorespaces \emph {Optimized} values of $\alpha $ by feature extraction method}}{24}{table.3}%
+\contentsline {table}{\numberline {3}{\ignorespaces Grid of trialed $\alpha $}}{22}{table.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {4}{\ignorespaces Share of profitable deviations}}{29}{table.4}%
+\contentsline {table}{\numberline {4}{\ignorespaces \emph {Optimized} values of $\alpha $ by \gls {fem}}}{29}{table.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {5}{\ignorespaces Share of profitable deviations by agent and feature extraction method. Deviations are deemed \emph {profitable} if the discounted ($\gamma = 0.95$) profits due to the deviation until $\tau = 10$ exceed cash flows from a counterfactual without deviation. Only includes converged runs because a clear counterfactual exists.}}{36}{table.5}%
+\contentsline {table}{\numberline {5}{\ignorespaces Share of profitable deviations by \gls {fem} and agent}}{32}{table.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {6}{\ignorespaces Share of profitable deviations by agent and feature extraction method. Deviations are deemed \emph {profitable} if the discounted ($\gamma = 0.95$) profits due to the deviation until $\tau = 10$ exceed cash flows from a counterfactual without deviation. Only includes converged runs because a clear counterfactual exists.}}{38}{table.6}%
+\contentsline {table}{\numberline {6}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $\beta $}}{38}{table.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {7}{\ignorespaces Share of profitable deviations by agent and feature extraction method. Deviations are deemed \emph {profitable} if the discounted ($\gamma = 0.95$) profits due to the deviation until $\tau = 10$ exceed cash flows from a counterfactual without deviation. Only includes converged runs because a clear counterfactual exists.}}{40}{table.7}%
+\contentsline {table}{\numberline {7}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $m$}}{39}{table.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {8}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $\zeta $}}{41}{table.8}%

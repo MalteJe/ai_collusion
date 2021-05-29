@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7440 64-bit) (preloaded format=pdflatex 2020.7.2)  27 MAY 2021 16:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7440 64-bit) (preloaded format=pdflatex 2020.7.2)  30 MAY 2021 00:32
 entering extended mode
 **./master.tex
 (master.tex
@@ -694,7 +694,7 @@ Package: glossary-tree 2020/03/19 v4.46 (NLCT)
 \glo@main@file=\write5
 \openout5 = `master.glo'.
 
-Package glossaries Info: Writing glossary file master.glo on input line 35.
+Package glossaries Info: Writing glossary file master.glo on input line 37.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
 sty"
@@ -837,6 +837,22 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \xmathstrut@box=\box57
 \xmathstrut@dim=\dimen175
 )
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/abstract\abstract.
+sty"
+Package: abstract 2009/06/08 v1.2a configurable abstracts
+\abstitleskip=\skip110
+\absleftindent=\skip111
+\absrightindent=\skip112
+\absparindent=\skip113
+\absparsep=\skip114
+)
+("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/appendix\appendix.
+sty"
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count426
+\c@@ppsavesec=\count427
+\c@@ppsaveapp=\count428
+)
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hyperref.
 sty"
 Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
@@ -862,8 +878,8 @@ y"
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen176
-\Hy@linkcounter=\count426
-\Hy@pagecounter=\count427
+\Hy@linkcounter=\count429
+\Hy@pagecounter=\count430
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\pd1enc.de
 f"
@@ -879,7 +895,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 s.sty"
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count428
+\Hy@SavedSpaceFactor=\count431
 Package hyperref Info: Hyper figures OFF on input line 4464.
 Package hyperref Info: Link nesting OFF on input line 4469.
 Package hyperref Info: Hyper index ON on input line 4472.
@@ -887,7 +903,7 @@ Package hyperref Info: Plain pages OFF on input line 4479.
 Package hyperref Info: Backreferencing OFF on input line 4484.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4717.
-\c@Hy@tempcnt=\count429
+\c@Hy@tempcnt=\count432
 LaTeX Info: Redefining \url on input line 5076.
 \XeTeXLinkMargin=\dimen177
 
@@ -900,7 +916,7 @@ tcalc.sty"
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count430
+\Fld@menulength=\count433
 \Field@Width=\dimen178
 \Fld@charsize=\dimen179
 Package hyperref Info: Hyper figures OFF on input line 6347.
@@ -917,9 +933,9 @@ LaTeX Info: Redefining \pageref on input line 6421.
 i.sty"
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count431
-\c@Item=\count432
-\c@Hfootnote=\count433
+\Hy@abspage=\count434
+\c@Item=\count435
+\c@Hfootnote=\count436
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -931,8 +947,8 @@ File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
 d.sty"
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 )
-\Fld@listcount=\count434
-\c@bookmark@seq@number=\count435
+\Fld@listcount=\count437
+\c@bookmark@seq@number=\count438
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/rerunfilecheck\rer
 unfilecheck.sty"
@@ -945,7 +961,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip110
+\Hy@SectionHShift=\skip115
 )
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cleveref\cleveref.
 sty"
@@ -967,30 +983,30 @@ Package cleveref Info: `amsthm' support loaded on input line 3026.
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count436
-\@quotereset=\count437
+\@quotelevel=\count439
+\@quotereset=\count440
 (master.aux)
 \openout1 = `master.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-Package scrbase Info: activating english \contentsname on input line 67.
-Package scrbase Info: activating english \listfigurename on input line 67.
-Package scrbase Info: activating english \listtablename on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+Package scrbase Info: activating english \contentsname on input line 77.
+Package scrbase Info: activating english \listfigurename on input line 77.
+Package scrbase Info: activating english \listtablename on input line 77.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -1009,49 +1025,7 @@ Package biblatex Info: ... file 'master.bbl' found.
 
 Package biblatex Warning: The following entry could not be found
 (biblatex)                in the database:
-(biblatex)                bundeskartellamt_bundeskartellamt_nodate
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
 (biblatex)                calvano_algorithmic_2018
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                calvano_artificial_2019
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                hettich
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                maskine-tirole
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                noa
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                precup
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
@@ -1070,8 +1044,8 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 67.
-Package biblatex Info: Reference segment=0 on input line 67.
+Package biblatex Info: Reference section=0 on input line 77.
+Package biblatex Info: Reference segment=0 on input line 77.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1111,16 +1085,16 @@ Package biblatex Info: Reference segment=0 on input line 67.
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
 df.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count438
+\scratchcounter=\count441
 \scratchdimen=\dimen180
 \scratchbox=\box58
-\nofMPsegments=\count439
-\nofMParguments=\count440
+\nofMPsegments=\count442
+\nofMParguments=\count443
 \everyMPshowfont=\toks42
-\MPscratchCnt=\count441
+\MPscratchCnt=\count444
 \MPscratchDim=\dimen181
-\MPnumerator=\count442
-\makeMPintoPDFobject=\count443
+\MPnumerator=\count445
+\makeMPintoPDFobject=\count446
 \everyMPtoPDFconversion=\toks43
 )
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
@@ -1130,7 +1104,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
 \AtBeginShipoutBox=\box59
-Package hyperref Info: Link coloring OFF on input line 67.
+Package hyperref Info: Link coloring OFF on input line 77.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -1144,11 +1118,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ettitlestring.sty"
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count444
+\c@section@level=\count447
 )
-LaTeX Info: Redefining \ref on input line 67.
-LaTeX Info: Redefining \pageref on input line 67.
-LaTeX Info: Redefining \nameref on input line 67.
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
+LaTeX Info: Redefining \nameref on input line 77.
  (master.out) (master.out)
 \@outlinefile=\write6
 \openout6 = `master.out'.
@@ -1160,7 +1134,7 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 67.
+(scrartcl)           before \begin{document} on input line 77.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/bookmark\bookmark.
 sty"
@@ -1172,7 +1146,7 @@ File: bkm-pdftex.def 2019/12/03 v1.28 bookmark driver for pdfTeX (HO)
 Package auxhook Info: \AddLineBeginMainAux comes a little late,
 (auxhook)             because the main .aux file is already opened on input lin
 e 168.
-\BKM@id=\count445
+\BKM@id=\count448
 ))
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1206,13 +1180,13 @@ e 168.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 86.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 98.
 
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
 
 ("C:\Users\psymo\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1221,365 +1195,374 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout4 = `master.ist'.
 
 
-{C:/Users/psymo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(master.toc [2
+{C:/Users/psymo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
-])
+]
+(master.toc [3])
 \tf@toc=\write7
 \openout7 = `master.toc'.
 
- [3] (master.lof [4] [5] [6] [7])
+ [4] (master.lof [5] [6])
 \tf@lof=\write8
 \openout8 = `master.lof'.
 
- [8] (master.lot)
+ [7] (master.lot)
 \tf@lot=\write9
 \openout9 = `master.lot'.
 
- [9]
-(master.gls) [10] (01_introduction.tex) (02_literature.tex
-Overfull \hbox (2.05371pt too wide) in paragraph at lines 7--10
-[]\OT1/cmr/m/n/10.95 * no hu-man in-tent to achieve supra-com-pet-i-tive prices
- * but em-ployed al-go-rithms achieved
- []
+ [8] (master.gls)
+[9] (01_introduction.tex [1]) (02_literature.tex [2]
 
-[1]) (03_environment.tex [2]) [3] (04_algorithm.tex [4] [5] [6]
-Overfull \hbox (16.57413pt too wide) in paragraph at lines 66--67
-\OT1/cmr/m/n/10.95 plo-ration varies over time. The ex-plicit def-i-ni-tion is 
-equiv-a-lent to []: 
- []
+LaTeX Warning: Reference `gal' on page 3 undefined on input line 25.
 
-[7] [8]
-Overfull \hbox (33.50905pt too wide) in paragraph at lines 109--115
-[]\OT1/cmr/m/n/10.95 The sec-ond term is the gra-di-ent of $[](\OML/cmm/m/it/10
-.95 S[]; A[]; [][]\OT1/cmr/m/n/10.95 )$ with re-spect to $[][]$: $[] = \OMS/cms
-y/m/n/10.95 f[]\OML/cmm/m/it/10.95 ; []; :::; []\OMS/cmsy/m/n/10.95 g$\OT1/cmr/
-m/n/10.95 .
- []
-
-[9]
+[3] [4] [5]) (03_environment.tex [6]) (04_algorithm.tex [7] [8] [9] [10]
+[11] [12] [13]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 119.
- [10] [11]) (05_feature_extraction.tex
+put line 126.
+ [14] [15]) (05_feature_extraction.tex
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 19.
+(amsmath)                 on input line 18.
 
 
-Overfull \hbox (6.7118pt too wide) in paragraph at lines 10--24
-[][] 
+Overfull \hbox (5.95142pt too wide) in paragraph at lines 9--23
+ [][] 
  []
 
-[12] [13] [14] [15]
-
-LaTeX Warning: Reference `hastie' on page 16 undefined on input line 95.
-
-[16] [17]) (06_results.tex [18]
-<plots/converged.png, id=625, 711.1368pt x 426.6339pt>
+[16] [17] [18] [19] [20] [21]) (06_results.tex [22] [23]
+<plots/converged.png, id=686, 711.1368pt x 426.6339pt>
 File: plots/converged.png Graphic file (type png)
 <use plots/converged.png>
-Package pdftex.def Info: plots/converged.png  used on input line 17.
+Package pdftex.def Info: plots/converged.png  used on input line 13.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [19 <./plots/converged.png>]
-<plots/convergence_at.png, id=638, 711.1368pt x 426.6339pt>
+ [24 <./plots/converged.png>]
+<plots/convergence_at.png, id=698, 711.1368pt x 426.6339pt>
 File: plots/convergence_at.png Graphic file (type png)
 <use plots/convergence_at.png>
-Package pdftex.def Info: plots/convergence_at.png  used on input line 31.
+Package pdftex.def Info: plots/convergence_at.png  used on input line 27.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [20]
-<plots/cycle_length.png, id=648, 711.1368pt x 426.6339pt>
+ [25 <./plots/convergence_at.png>]
+<plots/cycle_length.png, id=708, 711.1368pt x 426.6339pt>
 File: plots/cycle_length.png Graphic file (type png)
 <use plots/cycle_length.png>
-Package pdftex.def Info: plots/cycle_length.png  used on input line 41.
+Package pdftex.def Info: plots/cycle_length.png  used on input line 37.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-
-Overfull \hbox (59.4402pt too wide) in paragraph at lines 50--51
-\OT1/cmr/m/n/10.95 In or-der to bench-mark the sim-u-la-tion prof-its, I nor-ma
-l-ize prof-its sim-i-lar to []: 
- []
-
-[21 <./plots/convergence_at.png>]
-<plots/alpha.png, id=660, 711.1368pt x 426.6339pt>
+ [26 <./plots/cycle_length.png>]
+<plots/alpha.png, id=720, 711.1368pt x 426.6339pt>
 File: plots/alpha.png Graphic file (type png)
 <use plots/alpha.png>
-Package pdftex.def Info: plots/alpha.png  used on input line 59.
+Package pdftex.def Info: plots/alpha.png  used on input line 56.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [22 <./plots/cycle_length.png>]
-<plots/alpha_violin.png, id=673, 711.1368pt x 426.6339pt>
+
+[27 <./plots/alpha.png>]
+<plots/alpha_violin.png, id=733, 711.1368pt x 426.6339pt>
 File: plots/alpha_violin.png Graphic file (type png)
 <use plots/alpha_violin.png>
-Package pdftex.def Info: plots/alpha_violin.png  used on input line 69.
+Package pdftex.def Info: plots/alpha_violin.png  used on input line 64.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [23 <./plots/alpha.png>]
-Overfull \hbox (17.3008pt too wide) in paragraph at lines 80--97
-[][] 
- []
-
-<plots/trajectory_Delta.png, id=686, 711.1368pt x 569.0058pt>
-File: plots/trajectory_Delta.png Graphic file (type png)
-<use plots/trajectory_Delta.png>
-Package pdftex.def Info: plots/trajectory_Delta.png  used on input line 104.
-(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
-[24 <./plots/alpha_violin.png>] [25 <./plots/trajectory_Delta.png>]
-<plots/price_range.png, id=701, 711.1368pt x 426.6339pt>
-File: plots/price_range.png Graphic file (type png)
-<use plots/price_range.png>
-Package pdftex.def Info: plots/price_range.png  used on input line 116.
-(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [26 <./plots/price_range.png>]
-<plots/average_intervention.png, id=709, 711.1368pt x 569.0058pt>
+ [28 <./plots/alpha_violin.png>] [29]
+<plots/average_intervention.png, id=756, 711.1368pt x 483.4863pt>
 File: plots/average_intervention.png Graphic file (type png)
 <use plots/average_intervention.png>
-Package pdftex.def Info: plots/average_intervention.png  used on input line 129
+Package pdftex.def Info: plots/average_intervention.png  used on input line 106
 .
-(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
- [27] [28 <./plots/average_intervention.png>]
-<plots/intervention_boxplot.png, id=737, 711.1368pt x 711.1368pt>
+(pdftex.def)             Requested size: 426.79135pt x 290.16779pt.
+ [30 <./plots/average_intervention.png>]
+<plots/intervention_boxplot.png, id=774, 711.1368pt x 569.0058pt>
 File: plots/intervention_boxplot.png Graphic file (type png)
 <use plots/intervention_boxplot.png>
-Package pdftex.def Info: plots/intervention_boxplot.png  used on input line 137
+Package pdftex.def Info: plots/intervention_boxplot.png  used on input line 114
 .
-(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
-
-(tables/share_deviation_profitability.tex) [29] [30 <./plots/intervention_boxpl
-ot.png>] [31]
-
-LaTeX Warning: Reference `prolonged deviation' on page 32 undefined on input li
-ne 165.
-
-[32]) (07_extensions.tex [33]
-<plots/average_prolonged_intervention.png, id=786, 711.1368pt x 569.0058pt>
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+ [31 <./plots/intervention_boxplot.png>]
+(tables/share_deviation_profitability.tex) [32] [33]) (07_extensions.tex
+[34]
+<plots/average_prolonged_intervention.png, id=821, 711.1368pt x 483.4863pt>
 File: plots/average_prolonged_intervention.png Graphic file (type png)
 <use plots/average_prolonged_intervention.png>
 Package pdftex.def Info: plots/average_prolonged_intervention.png  used on inpu
-t line 13.
-(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
- [34 <./plots/average_prolonged_intervention.png>]
-<plots/beta.png, id=803, 711.1368pt x 426.6339pt>
+t line 14.
+(pdftex.def)             Requested size: 426.79135pt x 290.16779pt.
+ [35] [36 <./plots/average_prolonged_intervention.png>]
+<plots/beta.png, id=840, 711.1368pt x 426.6339pt>
 File: plots/beta.png Graphic file (type png)
 <use plots/beta.png>
-Package pdftex.def Info: plots/beta.png  used on input line 30.
+Package pdftex.def Info: plots/beta.png  used on input line 31.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-(tables/share_deviation_profitability_beta.tex)
-Overfull \hbox (41.1927pt too wide) in paragraph at lines 3--39
-[][]
+ [37 <./plots/beta.png>] (tables/share_deviation_profitability_beta.tex)
+Overfull \hbox (38.21187pt too wide) in paragraph at lines 3--41
+ [][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 3--39
-
- []
-
-[35] [36 <./plots/beta.png>]
-<plots/m.png, id=817, 711.1368pt x 426.6339pt>
+<plots/m.png, id=857, 711.1368pt x 426.6339pt>
 File: plots/m.png Graphic file (type png)
 <use plots/m.png>
-Package pdftex.def Info: plots/m.png  used on input line 51.
+Package pdftex.def Info: plots/m.png  used on input line 52.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- (tables/share_deviation_profitability_m.tex)
-[37 <./plots/m.png>]
-<plots/zeta.png, id=835, 711.1368pt x 426.6339pt>
+
+LaTeX Warning: Reference `m_appendix' on page 38 undefined on input line 57.
+
+[38] (tables/share_deviation_profitability_m.tex) [39 <./plots/m.png>]
+<plots/zeta.png, id=876, 711.1368pt x 426.6339pt>
 File: plots/zeta.png Graphic file (type png)
 <use plots/zeta.png>
-Package pdftex.def Info: plots/zeta.png  used on input line 78.
+Package pdftex.def Info: plots/zeta.png  used on input line 72.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [38]
-<plots/zeta_violin_prices.png, id=844, 711.1368pt x 426.6339pt>
-File: plots/zeta_violin_prices.png Graphic file (type png)
-<use plots/zeta_violin_prices.png>
-Package pdftex.def Info: plots/zeta_violin_prices.png  used on input line 86.
-(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- (tables/share_deviation_profitability_zeta.tex)
-[39 <./plots/zeta.png>] [40 <./plots/zeta_violin_prices.png>]
-<plots/gamma.png, id=867, 711.1368pt x 426.6339pt>
+ [40 <./plots/zeta.png>] (tables/share_deviation_profitability_zeta.tex) [41]
+<plots/gamma.png, id=902, 711.1368pt x 426.6339pt>
 File: plots/gamma.png Graphic file (type png)
 <use plots/gamma.png>
-Package pdftex.def Info: plots/gamma.png  used on input line 113.
+Package pdftex.def Info: plots/gamma.png  used on input line 95.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [41 <./plots/gamma.png>]
-<plots/tb_violin.png, id=884, 711.1368pt x 284.5029pt>
+ [42 <./plots/gamma.png>]
+<plots/tb_violin.png, id=920, 711.1368pt x 284.5029pt>
 File: plots/tb_violin.png Graphic file (type png)
 <use plots/tb_violin.png>
-Package pdftex.def Info: plots/tb_violin.png  used on input line 135.
+Package pdftex.def Info: plots/tb_violin.png  used on input line 117.
 (pdftex.def)             Requested size: 426.79135pt x 170.74646pt.
-<plots/average_intervention_tb.png, id=887, 711.1368pt x 569.0058pt>
-File: plots/average_intervention_tb.png Graphic file (type png)
-<use plots/average_intervention_tb.png>
-Package pdftex.def Info: plots/average_intervention_tb.png  used on input line 
-141.
-(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
-
-
-LaTeX Warning: Reference `hettich' on page 42 undefined on input line 147.
-
-[42] [43 <./plots/tb_violin.png> <./plots/average_intervention_tb.png>]
-<plots/op_violin.png, id=907, 711.1368pt x 284.5029pt>
+ [43 <./plots/tb_violin.png>]
+<plots/op_violin.png, id=937, 711.1368pt x 284.5029pt>
 File: plots/op_violin.png Graphic file (type png)
 <use plots/op_violin.png>
-Package pdftex.def Info: plots/op_violin.png  used on input line 156.
+Package pdftex.def Info: plots/op_violin.png  used on input line 132.
 (pdftex.def)             Requested size: 426.79135pt x 170.74646pt.
-
-
-LaTeX Warning: Reference `dt_error_expected' on page 44 undefined on input line
- 164.
-
-
-LaTeX Warning: Reference `hettich' on page 44 undefined on input line 164.
-
-[44 <./plots/op_violin.png>]
-<plots/converged_upsilon.png, id=926, 711.1368pt x 426.6339pt>
+ [44 <./plots/op_violin.png>]
+<plots/converged_upsilon.png, id=956, 711.1368pt x 426.6339pt>
 File: plots/converged_upsilon.png Graphic file (type png)
 <use plots/converged_upsilon.png>
-Package pdftex.def Info: plots/converged_upsilon.png  used on input line 181.
+Package pdftex.def Info: plots/converged_upsilon.png  used on input line 157.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/upsilon.png, id=932, 711.1368pt x 426.6339pt>
+
+[45]
+<plots/upsilon.png, id=969, 711.1368pt x 426.6339pt>
 File: plots/upsilon.png Graphic file (type png)
 <use plots/upsilon.png>
-Package pdftex.def Info: plots/upsilon.png  used on input line 190.
+Package pdftex.def Info: plots/upsilon.png  used on input line 166.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
- [45]
-
-LaTeX Warning: Reference `intervention' on page 46 undefined on input line 196.
-
-
 ) [46 <./plots/converged_upsilon.png>] (08_conclusions.tex) [47 <./plots/upsilo
 n.png>]
-Overfull \hbox (26.49452pt too wide) in paragraph at lines 146--146
+Overfull \hbox (457.14914pt too wide) in paragraph at lines 163--163
+[][]\OT1/cmr/m/n/10.95 Bundeskartellamt (2021). \OT1/cmr/m/it/10.95 Work-ing Pa
+-per - Al-go-rithms and Com-pe-ti-tion\OT1/cmr/m/n/10.95 . https://www.bundeska
+rtellamt.de/SharedDocs/Publikation/EN/Berichte/Algorithms[]and[]Competition[]Wo
+rking-
+ []
+
+[48]
+Overfull \hbox (41.72894pt too wide) in paragraph at lines 163--163
+[][]\OT1/cmr/m/n/10.95 Motta, M. (Jan. 2004). \OT1/cmr/m/it/10.95 Com-pe-ti-tio
+n Pol-icy: The-ory and Prac-tice\OT1/cmr/m/n/10.95 . Google-Books-ID: J3xZnDSlf
+C8C.
+ []
+
+
+Overfull \hbox (29.18346pt too wide) in paragraph at lines 163--163
+[]\OT1/cmr/m/n/10.95 eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.
+1530-9134.2008.00181.x, pp. 345{
+ []
+
+
+Overfull \hbox (15.77972pt too wide) in paragraph at lines 163--163
+[][]\OT1/cmr/m/n/10.95 OECD (2017). ``Al-go-rithms and Col-lu-sion: Com-pe-ti-t
+ion Pol-icy in the Dig-i-tal Age''. \OT1/cmr/m/it/10.95 Roundtable
+ []
+
+
+Overfull \hbox (5.64711pt too wide) in paragraph at lines 163--163
+\OT1/cmr/m/it/10.95 on Col-lu-sion and Al-go-rithms\OT1/cmr/m/n/10.95 . https:/
+/www.oecd.org/competition/algorithms-collusion-
+ []
+
+[49]
+Overfull \hbox (26.49452pt too wide) in paragraph at lines 163--163
 \OT1/cmr/m/n/10.95 updates/investigation-whether-economy-energy-e-gas-and-elect
 ricity-and-dyball-associates-
  []
 
 
-Overfull \hbox (35.4674pt too wide) in paragraph at lines 146--146
+Overfull \hbox (35.4674pt too wide) in paragraph at lines 163--163
 \OT1/cmr/m/n/10.95 have-infringed-chapter-i-competition-act-1998-respect-suspec
 ted-anti-competitive-agreement. 
  []
 
 
-Overfull \hbox (4.06975pt too wide) in paragraph at lines 146--146
+Overfull \hbox (4.06975pt too wide) in paragraph at lines 163--163
 \OT1/cmr/m/n/10.95 counted Re-wards''. \OT1/cmr/m/it/10.95 Pro-ceed-ings of the
  10th In-ter-na-tional Con-fer-ence on Ma-chine Learn-
  []
 
-[48] (99_appendix.tex
-<plots/trajectory_price.png, id=968, 711.1368pt x 569.0058pt>
+(99_appendix.tex [50]
+<plots/price_range.png, id=1006, 711.1368pt x 426.6339pt>
+File: plots/price_range.png Graphic file (type png)
+<use plots/price_range.png>
+Package pdftex.def Info: plots/price_range.png  used on input line 6.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [51 <./plots/price_range.png>]
+<plots/trajectory_Delta.png, id=1015, 711.1368pt x 483.4863pt>
+File: plots/trajectory_Delta.png Graphic file (type png)
+<use plots/trajectory_Delta.png>
+Package pdftex.def Info: plots/trajectory_Delta.png  used on input line 18.
+(pdftex.def)             Requested size: 426.79135pt x 290.16779pt.
+<plots/trajectory_price.png, id=1018, 711.1368pt x 483.4863pt>
 File: plots/trajectory_price.png Graphic file (type png)
 <use plots/trajectory_price.png>
-Package pdftex.def Info: plots/trajectory_price.png  used on input line 5.
-(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
-<plots/all_runs.png, id=969, 711.1368pt x 569.0058pt>
+Package pdftex.def Info: plots/trajectory_price.png  used on input line 24.
+(pdftex.def)             Requested size: 426.79135pt x 290.16779pt.
+<plots/all_runs.png, id=1020, 711.1368pt x 426.6339pt>
 File: plots/all_runs.png Graphic file (type png)
 <use plots/all_runs.png>
-Package pdftex.def Info: plots/all_runs.png  used on input line 11.
-(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
-<plots/intervention_profit_boxplot.png, id=971, 711.1368pt x 711.1368pt>
+Package pdftex.def Info: plots/all_runs.png  used on input line 32.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+ [52 <./plots/trajectory_Delta.png>] [53 <./plots/trajectory_price.png> <./plot
+s/all_runs.png>]
+<plots/intervention_profit_boxplot.png, id=1034, 711.1368pt x 569.0058pt>
 File: plots/intervention_profit_boxplot.png Graphic file (type png)
 <use plots/intervention_profit_boxplot.png>
 Package pdftex.def Info: plots/intervention_profit_boxplot.png  used on input l
-ine 20.
-(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
-<plots/intervention_profitabiliy_polygon.png, id=972, 711.1368pt x 711.1368pt>
+ine 45.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+<plots/intervention_profitabiliy_polygon.png, id=1036, 711.1368pt x 483.4863pt>
+
 File: plots/intervention_profitabiliy_polygon.png Graphic file (type png)
 <use plots/intervention_profitabiliy_polygon.png>
 Package pdftex.def Info: plots/intervention_profitabiliy_polygon.png  used on i
-nput line 27.
-(pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
-<plots/intervention_poly_tiling.png, id=973, 711.1368pt x 569.0058pt>
+nput line 53.
+(pdftex.def)             Requested size: 426.79135pt x 290.16779pt.
+<plots/intervention_poly_tiling.png, id=1037, 711.1368pt x 569.0058pt>
 File: plots/intervention_poly_tiling.png Graphic file (type png)
 <use plots/intervention_poly_tiling.png>
 Package pdftex.def Info: plots/intervention_poly_tiling.png  used on input line
- 34.
+ 61.
 (pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
-) [49] [50 <./plots/trajectory_price.png>] [51 <./plots/all_runs.png>] [52 <./p
-lots/intervention_profit_boxplot.png>] [53 <./plots/intervention_profitabiliy_p
-olygon.png>] [54 <./plots/intervention_poly_tiling.png>]
+ [54 <./plots/intervention_profit_boxplot.png>] [55 <./plots/intervention_profi
+tabiliy_polygon.png>] [56 <./plots/intervention_poly_tiling.png>]) [57]
 (999_appendix_2.tex
-<plots/prolonged_intervention_boxplot.png, id=1004, 711.1368pt x 711.1368pt>
+<plots/prolonged_intervention_boxplot.png, id=1057, 711.1368pt x 711.1368pt>
 File: plots/prolonged_intervention_boxplot.png Graphic file (type png)
 <use plots/prolonged_intervention_boxplot.png>
 Package pdftex.def Info: plots/prolonged_intervention_boxplot.png  used on inpu
-t line 4.
+t line 6.
 (pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
-<plots/average_intervention_beta_tabular.png, id=1005, 711.1368pt x 426.6339pt>
+ [58] [59 <./plots/prolonged_intervention_boxplot.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 13.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\beta' on input line 13.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 13.
+
+<plots/average_intervention_beta_tabular.png, id=1068, 711.1368pt x 426.6339pt>
 
 File: plots/average_intervention_beta_tabular.png Graphic file (type png)
 <use plots/average_intervention_beta_tabular.png>
 Package pdftex.def Info: plots/average_intervention_beta_tabular.png  used on i
-nput line 12.
+nput line 18.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/converged_m.png, id=1009, 711.1368pt x 426.6339pt>
+[60 <./plots/average_intervention_beta_tabular.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 25.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\lambda' on input line 25.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 25.
+
+<plots/converged_m.png, id=1078, 711.1368pt x 426.6339pt>
 File: plots/converged_m.png Graphic file (type png)
 <use plots/converged_m.png>
-Package pdftex.def Info: plots/converged_m.png  used on input line 20.
+Package pdftex.def Info: plots/converged_m.png  used on input line 31.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/lambda_violin.png, id=1010, 711.1368pt x 426.6339pt>
+<plots/lambda_violin.png, id=1079, 711.1368pt x 426.6339pt>
 File: plots/lambda_violin.png Graphic file (type png)
 <use plots/lambda_violin.png>
-Package pdftex.def Info: plots/lambda_violin.png  used on input line 26.
+Package pdftex.def Info: plots/lambda_violin.png  used on input line 37.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+[61 <./plots/converged_m.png>]
 File: plots/converged_m.png Graphic file (type png)
 <use plots/converged_m.png>
-Package pdftex.def Info: plots/converged_m.png  used on input line 36.
+Package pdftex.def Info: plots/converged_m.png  used on input line 51.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/average_intervention_m_10.png, id=1011, 711.1368pt x 569.0058pt>
+<plots/average_intervention_m_10.png, id=1086, 711.1368pt x 569.0058pt>
 File: plots/average_intervention_m_10.png Graphic file (type png)
 <use plots/average_intervention_m_10.png>
 Package pdftex.def Info: plots/average_intervention_m_10.png  used on input lin
-e 43.
+e 58.
 (pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
-<plots/average_intervention_zeta_tabular.png, id=1012, 711.1368pt x 426.6339pt>
+<plots/zeta_violin_prices.png, id=1088, 711.1368pt x 426.6339pt>
+File: plots/zeta_violin_prices.png Graphic file (type png)
+<use plots/zeta_violin_prices.png>
+Package pdftex.def Info: plots/zeta_violin_prices.png  used on input line 68.
+(pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
+<plots/average_intervention_zeta_tabular.png, id=1089, 711.1368pt x 426.6339pt>
 
 File: plots/average_intervention_zeta_tabular.png Graphic file (type png)
 <use plots/average_intervention_zeta_tabular.png>
 Package pdftex.def Info: plots/average_intervention_zeta_tabular.png  used on i
-nput line 51.
+nput line 75.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/gamma_violin_price.png, id=1013, 711.1368pt x 426.6339pt>
+ [62 <./plots/lambda_violin.png>] [63 <./plots/average_intervention_m_10.png>] 
+[64 <./plots/zeta_violin_prices.png> <./plots/average_intervention_zeta_tabular
+.png>]
+<plots/gamma_violin_price.png, id=1107, 711.1368pt x 426.6339pt>
 File: plots/gamma_violin_price.png Graphic file (type png)
 <use plots/gamma_violin_price.png>
-Package pdftex.def Info: plots/gamma_violin_price.png  used on input line 61.
+Package pdftex.def Info: plots/gamma_violin_price.png  used on input line 85.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/intervention_boxplot_tb.png, id=1015, 711.1368pt x 711.1368pt>
+ [65 <./plots/gamma_violin_price.png>]
+<plots/average_intervention_tb.png, id=1114, 711.1368pt x 569.0058pt>
+File: plots/average_intervention_tb.png Graphic file (type png)
+<use plots/average_intervention_tb.png>
+Package pdftex.def Info: plots/average_intervention_tb.png  used on input line 
+100.
+(pdftex.def)             Requested size: 426.79135pt x 341.49294pt.
+<plots/intervention_boxplot_tb.png, id=1117, 711.1368pt x 711.1368pt>
 File: plots/intervention_boxplot_tb.png Graphic file (type png)
 <use plots/intervention_boxplot_tb.png>
 Package pdftex.def Info: plots/intervention_boxplot_tb.png  used on input line 
-74.
+111.
 (pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
- [55] [56 <./plots/prolonged_intervention_boxplot.png>]
-[57 <./plots/average_intervention_beta_tabular.png> <./plots/converged_m.png>]
-[58 <./plots/lambda_violin.png>] [59 <./plots/average_intervention_m_10.png> <.
-/plots/average_intervention_zeta_tabular.png>]
-<plots/convergence_at_upsilon.png, id=1051, 711.1368pt x 426.6339pt>
+
+[66 <./plots/average_intervention_tb.png>] [67 <./plots/intervention_boxplot_tb
+.png>] [68]
+<plots/convergence_at_upsilon.png, id=1156, 711.1368pt x 426.6339pt>
 File: plots/convergence_at_upsilon.png Graphic file (type png)
 <use plots/convergence_at_upsilon.png>
 Package pdftex.def Info: plots/convergence_at_upsilon.png  used on input line 1
-16.
+56.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/upsilon_violin.png, id=1053, 711.1368pt x 426.6339pt>
+<plots/upsilon_violin.png, id=1158, 711.1368pt x 426.6339pt>
 File: plots/upsilon_violin.png Graphic file (type png)
 <use plots/upsilon_violin.png>
-Package pdftex.def Info: plots/upsilon_violin.png  used on input line 125.
+Package pdftex.def Info: plots/upsilon_violin.png  used on input line 165.
 (pdftex.def)             Requested size: 426.79135pt x 256.0474pt.
-<plots/intervention_boxplot_upsilon_005.png, id=1055, 711.1368pt x 711.1368pt>
+<plots/intervention_boxplot_upsilon_005.png, id=1160, 711.1368pt x 711.1368pt>
 File: plots/intervention_boxplot_upsilon_005.png Graphic file (type png)
 <use plots/intervention_boxplot_upsilon_005.png>
 Package pdftex.def Info: plots/intervention_boxplot_upsilon_005.png  used on in
-put line 133.
+put line 173.
 (pdftex.def)             Requested size: 426.79135pt x 426.79388pt.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 156.
- [60
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 176.
+ [69
 runsystem(makeindex -s master.ist -t master.glg -o master.gls master.glo)...exe
 cuted (allowed).
 
- <./plots/gamma_violin_price.png>] [61 <./plots/intervention_boxplot_tb.png>] [
-62 <./plots/convergence_at_upsilon.png> <./plots/upsilon_violin.png>] [63 <./pl
-ots/intervention_boxplot_upsilon_005.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
+ <./plots/convergence_at_upsilon.png>] [70 <./plots/upsilon_violin.png>] [71 <.
+/plots/intervention_boxplot_upsilon_005.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 176.
  (master.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 156.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 156.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 176.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 176.
 Package rerunfilecheck Info: File `master.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1592,16 +1575,16 @@ Package logreq Info: Writing requests to 'master.run.xml'.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 169 ({)
+### simple group (level 1) entered at line 156 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 27221 strings out of 480797
- 515183 string characters out of 2895576
- 1319163 words of memory out of 3000000
- 42433 multiletter control sequences out of 15000+200000
- 552084 words of font info for 95 fonts, out of 3000000 for 9000
+ 27638 strings out of 480797
+ 524059 string characters out of 2895576
+ 1313862 words of memory out of 3000000
+ 42797 multiletter control sequences out of 15000+200000
+ 553844 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,18n,66p,10103b,3457s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 57i,18n,66p,10103b,3456s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\psymo\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknap
 pen/ec/dpi600\tcrm0900.pk> <C:\Users\psymo\AppData\Local\MiKTeX\2.9\fonts/pk/lj
 four/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/psymo/AppData/Local/Programs/MiKT
@@ -1611,36 +1594,38 @@ ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/U
 sers/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
 x10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmmi10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmmi6.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/psymo/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/psymo/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/
-psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.
-pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cmextra/cmmib8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cmextra/cmmib9.pfb><C:/Users/psymo/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/psymo/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/psymo
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/
-Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-r7.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmr8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/psymo/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/psymo/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users
-/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.p
+pe1/public/amsfonts/cm/cmmi12.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/psymo/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/psymo/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users
+/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.p
 fb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/psymo/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/psymo/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/psym
-o/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb>
-Output written on master.pdf (73 pages, 2401577 bytes).
+s/cm/cmmib10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cmextra/cmmib8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb><C:/Users/psymo/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/psym
+o/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
+:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr6.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr7.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/psymo/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/psymo/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users
+/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy6.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmsy8.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/psymo/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/psymo/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/psy
+mo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><
+C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmtt9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/amsfonts/symbols/msbm10.pfb>
+Output written on master.pdf (80 pages, 2416010 bytes).
 PDF statistics:
- 1378 PDF objects out of 1440 (max. 8388607)
- 308 named destinations out of 1000 (max. 500000)
- 501 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1495 PDF objects out of 1728 (max. 8388607)
+ 354 named destinations out of 1000 (max. 500000)
+ 557 words of extra memory for PDF output out of 10000 (max. 10000000)
 

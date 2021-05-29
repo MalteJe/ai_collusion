@@ -1,3 +1,5 @@
+\subsection{Prolonged deviations}\label{prolonged_deviations_appendix}
+
 	\textbf{some words on prolonged deviations}
 	
 \begin{figure}
@@ -6,6 +8,10 @@
 		\label{prolonged_intervention_boxplot}
 \end{figure}
 
+
+\pagebreak
+\subsection{$\beta$}\label{beta_appendix}
+
 \textbf{some words on beta}
 
 \begin{figure}
@@ -13,6 +19,11 @@
 	\caption{Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}
 	\label{average_intervention_beta_tabular}
 \end{figure}
+
+
+\pagebreak
+\subsection{$\lambda$}\label{lambda_appendix}
+
 
 Recall that high values of $\lambda$ increase the algorithm's hindsight but increases variance. This is reflected in both convergence rates and outcomes. \autoref{converged_lambda} clearly indicates that high values of $\lambda$ impedes convergence for tabular learning and the separated polynomial method. Similarly, \autoref{lambda_violin} exhibits greater variability in profits with increasing $\lambda$. This holds true for all feature extraction methods, but is particularly conspicuous for the separated polynomial method where a significant number of runs end in profits below the Nash equilibrium once $\lambda \ge 0.6$ .\footnote{The runs with $\Delta <0$ are largely the simulations without convergence.} Finally, the conclusions regarding deviation patterns are robust to variations in $\lambda$. Except for tabular learning, the non deviating agent fails to punish cheating which the deviating agent does not reliably exploit that weakness.
 
@@ -29,8 +40,12 @@ Recall that high values of $\lambda$ increase the algorithm's hindsight but incr
 \end{figure}
 
 
+\pagebreak
+\subsection{Price grid}\label{price_grid_appendix}
+
 \textbf{some words on m}
 
+\textbf{additional picutre showing stronger response for $m=10$ compared to other $m's$}
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/converged_m.png}
@@ -47,14 +62,23 @@ Recall that high values of $\lambda$ increase the algorithm's hindsight but incr
 
 \textbf{some words on $zeta$}
 
+Moreover, \autoref{zeta_violin_prices} confirms that average prices upon convergence largely remain within the Nash and collusive benchmarks. Polynomial tiles constitute the only exception which further discredits the method as appropriate for the learning task.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/zeta_violin_prices.png}
+	\caption[Distribution of average prices by \gls{fem} and $\zeta$]{Distribution of average prices (over cycle steps and both players) by \gls{fem} and $\zeta$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of individual violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\label{zeta_violin_prices}
+\end{figure}
+
+
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/average_intervention_zeta_tabular.png}
 	\caption{Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}
 	\label{average_intervention_zeta_tabular}
 \end{figure}
 
-
-
+\pagebreak
+\subsection{Discount factor}\label{discounting_appendix}
 \textbf{some words on $\gamma$}
 
 \begin{figure}
@@ -65,10 +89,23 @@ Recall that high values of $\lambda$ increase the algorithm's hindsight but incr
 
 
 
+\pagebreak
+\subsection{Algorithm Variations}\label{vary_algorithm_appendix}
 
 \textbf{words on tree backup?}
 
-\autoref{intervention_boxplot_tb} displays the distribution of prices around the forced deviation. With regard to polynomial tiles, \emph{some} runs show a sort of punishment or matching behavior in the wake of a price cut, but the vast majority (87.5\%) or runs show no response.
+Similarly,  \autoref{average_intervention_tb} reiterates that only tabular learning agents show a consistent punishment in response to a deviation and the cheated agents learning with feature approximation methods fail to respond. The bottom right panel, representing the polynomial tiles \gls{fem}, hints at a vague \emph{matching strategy} leading to new equilibria again, but here averaging turns out to be deceptive. In fact, only in 12.5\% of the runs does the non deviating agent respond with a price cut. Compared to the Expected SARSA algorithm, polynomial tiles exhibits a larger share of runs at the perfectly collusive solution.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{plots/average_intervention_tb.png}
+	\caption[Average $\Delta$ for \emph{tree backup} algorithm with optimized $\alpha$ by \gls{fem}]{Average $\Delta$ for \emph{tree backup} algorithm with optimized $\alpha$ by \gls{fem}. Includes converged and non-converged runs.}
+	\label{average_intervention_tb}
+\end{figure}
+
+
+The distribution of deviation prices and responses are displayed as boxplots in \autoref{intervention_boxplot_tb}.
+
+\autoref{intervention_boxplot_tb} displays the distribution of prices around the forced deviation. With regard to polynomial tiles, \emph{some} runs show a sort of punishment or matching behavior in the wake of a price cut, but the vast majority (87.5\%) of runs show no response.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/intervention_boxplot_tb.png}
@@ -107,6 +144,9 @@ Box 2 describes the \emph{on-policy} algorithm used in \autoref{vary_algorithm}.
 
 
 
+
+\pagebreak
+\subsection{Differential Reward}\label{differential_appendix}
 
 \textbf{words on differential reward setting}
 

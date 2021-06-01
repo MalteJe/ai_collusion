@@ -6,11 +6,18 @@
 %\usepackage[utf8]{inputenc}   %encode in UTF-8 (I think TexStudio does this by default)
 
 
-\usepackage[backend = biber, citestyle=authoryear, bibstyle = authoryear, doi=false,isbn=false,url=false,eprint=false]{biblatex} %more options, see e.g. https://www.overleaf.com/learn/latex/Biblatex_citation_styles
+\usepackage{flafter} % figures always BELOW respective section headers
+\usepackage[bottom]{footmisc}
 
-\AtEveryBibitem{
-	\clearlist{language} % clears language
-	
+% citations and bibliography
+\usepackage[backend = biber,citestyle=authoryear, bibstyle = authoryear, uniquename=false, uniquelist=false, doi=false,isbn=false,eprint=false]{biblatex}
+
+\AtEveryBibitem{ % clears appendix
+	\clearlist{language} 
+	\clearfield{urlyear}
+	\clearfield{urldate}
+	\clearfield{month}
+	\clearfield{labelmonth}
 } 
 
 \renewbibmacro{in:}{}
@@ -95,38 +102,39 @@
 	\begin{titlepage}
 		\centering
 		\vspace{1cm}
-		{\Large\bfseries \LaTeX Template \par}
+		{\Large\bfseries Collusion among autonomous pricing algorithms utilizing function approximation methods\par}
 		\vspace{4cm}
 		{\large\itshape Heinrich-Heine-University Düsseldorf\par}
 		\vspace{0.5cm}
-		{\large\itshape Faculty of Business Administration and Economics\par}
+		{\large\itshape Düsseldorf Institute for Competition Economics (DICE)\par}
 		\vspace{0.5cm}
-		{\large\itshape MW70 Competition Law and Policy\par}
+		{\large\itshape Prof. Dr. Hans-Theo Normann\par}
 		\vspace{0.5cm}
-		{\large\itshape Summer Term 2018\par}
+		{\large\itshape Summer Term 2021\par}
 		{\large\itshape \par}
 		\vfill
 		by\par
-		\vspace{0.5cm}
+		\vspace{0.2cm}
 		Malte Jeschonneck\\
 		Malte.Jechonneck@uni-duesseldorf.de\\
+		Mobile: 01575-1294972\\
 		Matriculation Number: 2307497\\
 		Mörsenbroicher Weg 179, 40470 Düsseldorf\\
 		Program: Economics, M. Sc.\\
-		First Term
+		
 		
 		
 		\vfill
 		
 		% Bottom of the page
-		{\large \today\par}
+		{\large Submitted: \today\par}
 	\end{titlepage}
 
 \restoregeometry % go back to default layout
 
 \newpage
 	\begin{abstract}
-		 The increased prevalence of pricing algorithms incited an ongoing debate about new forms of collusion. The concern is that intelligent algorithms may be able to forge collusive schemes without being explicitly instructed to do so. I attempt to examine the ability of competing \emph{reinforcement learning} algorithms to maintain collusive prices in a simulated oligopoly of price competition. To my knowledge, this study is the first to use a reinforcement learning system with linear function approximation and eligibility traces in an economic environment. I show that the deployed agents sustain supra-competitive prices, but tend to be exploitable in the short-term. The degree of collusion crucially hinges on the utilized method to estimate the qualities of actions. This finding is robust to variations of parameters that control the learning process.
+		 The increased prevalence of pricing algorithms incited an ongoing debate about new forms of collusion. The concern is that intelligent algorithms may be able to forge collusive schemes without being explicitly instructed to do so. I attempt to examine the ability of \emph{reinforcement learning} algorithms to maintain collusive prices in a simulated oligopoly of price competition. To my knowledge, this study is the first to use a reinforcement learning system with linear function approximation and eligibility traces in an economic environment. I show that the deployed agents sustain supra-competitive prices, but tend to be exploitable by deviating agents in the short-term. The price level upon convergence crucially hinges on the utilized method to estimate the qualities of actions. These findings are robust to variations of parameters that control the learning process and the environment.
 	\end{abstract}
 	
 \newpage	
@@ -158,19 +166,19 @@
 	
 	\input{08_conclusions.tex}
 
-	\pagebreak
+	\clearpage
 	\printbibliography
+	\clearpage
 	
 	\begin{appendices}
-	\section{Results Appendix}\label{appendix}
+	\section{Further Results}\label{appendix}
 	
 		\input{99_appendix.tex}
 	
-	\pagebreak
-	\section{Robustness and variations Appendix}\label{appendix_2}
+	\clearpage
 	
+	\section{Further Variations}\label{appendix_2}
 
-	
 		\input{999_appendix_2}
 	\end{appendices}
 \end{document}

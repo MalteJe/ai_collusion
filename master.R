@@ -3,7 +3,7 @@ print("first line, specifying no_of_cores and total runs per experiment")
 # High Level simulation specifications ------------------------------------
 
 runs_per_experiment <- 48 # repetitions per experiment (same set of specifications)
-no_of_cores <- 16
+no_of_cores <- 4         # number of corse that the runs are distirbuted on
 
 
 print("loading libraries")
@@ -30,11 +30,9 @@ getwd() %>%
 	walk(source)
 
 
-# For Finalization --------------------------------------------------------
-
 print("defining specs")
 
-# methods
+# defube feature extraction methods
 features_extraction_methods <- c("tabular", "tiling", "poly_separated", "poly_tiling")
 
 
@@ -47,7 +45,6 @@ static_specs <- list(
 	r_adjust = 0.2229272,
 	seed = NA,
 	specifications = list(
-		# degree = 6,
 		degree_sep = 5,
 		degree_poly_tiling = 4,
 		poly_n_tilings = 5,
@@ -86,71 +83,81 @@ baseline <- list(
 
 
 
-# Alpha -------------------------------------------------------------------
+# VAry Alpha -------------------------------------------------------------------
+
+# tabular learning variations
+alphas_tabular <- 1 * 10^-c(1,2,3,4,5)
+alpha_tabular_input <- list_modify(baseline, Alpha = alphas_tabular)
+
+walk(.x = features_extraction_methods[1],
+	  .f = vary_alpha,
+	  variable_specs = alpha_tabular_input,
+	  static_specs = static_specs,
+	  runs = runs_per_experiment,
+	  no_of_cores = no_of_cores)
 
 
-# alphas_tabular <- 1 * 10^-c(1,2,3,4,5)
-# alpha_tabular_input <- list_modify(baseline, Alpha = alphas_tabular)
-# 
-# walk(.x = features_extraction_methods[1],
-# 	  .f = vary_alpha,
-# 	  variable_specs = alpha_tabular_input,
-# 	  static_specs = static_specs,
-# 	  runs = runs_per_experiment,
-# 	  no_of_cores = no_of_cores)
-# 
-# 
-# alphas_fa <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
-# alpha_fa_input <- list_modify(baseline, Alpha = alphas_fa)
-# 
-# walk(.x = features_extraction_methods[2:4],
-# 	  .f = vary_alpha,
-# 	  variable_specs = alpha_fa_input,
-# 	  static_specs = static_specs,
-# 	  runs = runs_per_experiment,
-# 	  no_of_cores = no_of_cores)
+# tile coding variations
+alphas_tiling <- 1 * 10^-c(1,2,3,4,5,6,7,8,10,12)
+alpha_tiling_input <- list_modify(baseline, Alpha = alphas_tiling)
+
+walk(.x = features_extraction_methods[2],
+	  .f = vary_alpha,
+	  variable_specs = alpha_tiling_input,
+	  static_specs = static_specs,
+	  runs = runs_per_experiment,
+	  no_of_cores = no_of_cores)
+
+# polynomial methods variations
+alphas_poly <- 1 * 10^-c(3,4,5,6,7,8,10,12)
+alpha_poly_input <- list_modify(baseline, Alpha = alphas_poly)
+
+walk(.x = features_extraction_methods[3:4],
+	  .f = vary_alpha,
+	  variable_specs = alpha_poly_input,
+	  static_specs = static_specs,
+	  runs = runs_per_experiment,
+	  no_of_cores = no_of_cores)
 
 
-
-
+# specify optimal values of alpha for variation in other parameters
 
 alphas_manually_optimized <- c(0.1, 0.001, 1 * 10^-6, 1 * 10^-8)
 
 
 # prolonged deviation with optimized Alphas ----------------------------
 
-# prolonged_intervention_input <- list_modify(baseline, Alpha = NULL, length_prolonged_intervention = list(1:10))
-# 
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = prolonged_intervention,
-# 		variable_specs = prolonged_intervention_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+prolonged_intervention_input <- list_modify(baseline, Alpha = NULL, length_prolonged_intervention = list(1:10))
+
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = prolonged_intervention,
+		variable_specs = prolonged_intervention_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 
 # Lambda ------------------------------------------------------------------
 
-# lambdas <- c(seq(from = 0, to = 0.8, by = 0.2), 0.9)
-# lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
-# 
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = lambda_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+lambdas <- c(seq(from = 0, to = 0.8, by = 0.2), 0.9)
+lambda_input <- list_modify(baseline, Alpha = NULL, Lambda = lambdas)
+
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = lambda_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 # # Gamma -------------------------------------------------------------------
 
-gammas <- c(0L, 0.25, 0.5, 0.75, 0.9, 1L)
-gammas <- c(0.8, 0.85, 0.99)
+gammas <- c(0L, 0.25, 0.5, 0.75, 0.8, 0.85, 0.9, 0.99)
 gamma_input <- list_modify(baseline, Alpha = NULL, Gamma = gammas)
 
 walk2(.x = features_extraction_methods,
@@ -165,105 +172,103 @@ walk2(.x = features_extraction_methods,
 
 # Beta ------------------------------------------------------------------
 
-# betas <- c(16 * 10^-5, 8 * 10^-5, 2 * 10^-5, 1 * 10^-5)
-# TTs <- c(1.25 * 10^5, 2.5 * 10^5, 10^6, 2 * 10^6)
-# (exp(-betas * TTs)) # equal probability of exploitaiton at the last possible learning period
-# 
-# beta_input <- list_modify(baseline, Alpha = NULL, Beta = betas, TT = TTs)
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = beta_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+betas <- c(16 * 10^-5, 8 * 10^-5, 2 * 10^-5, 1 * 10^-5)
+TTs <- c(1.25 * 10^5, 2.5 * 10^5, 10^6, 2 * 10^6)
+(exp(-betas * TTs)) # equal probability of exploitaiton at the last possible learning period
+
+beta_input <- list_modify(baseline, Alpha = NULL, Beta = betas, TT = TTs)
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = beta_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
-# # Vary m (number of feasible prices) -----------------------------------------------
-# 
-# number_of_prices <- c(10, 39, 63)
-# 
-# m_input <- list_modify(baseline, Alpha = NULL,
-# 									 m = number_of_prices)
-# 
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = m_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+# Vary m (number of feasible prices) -----------------------------------------------
+ 
+number_of_prices <- c(10, 39, 63)
+
+m_input <- list_modify(baseline, Alpha = NULL,
+									 m = number_of_prices)
 
 
-# 
-# 
-# 
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = m_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
+
+
+
 # # Zeta --------------------------------------------------------------------
 
 
-# zetas <- c(0.1, 0.5, 1.5)
-# zeta_input <- list_modify(baseline, Alpha = NULL,
-# 								 zeta = zetas)
-# 
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = zeta_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+zetas <- c(0.1, 0.5, 1.5)
+zeta_input <- list_modify(baseline, Alpha = NULL,
+								 zeta = zetas)
+
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = zeta_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 # Vary Algorithm ----------------------------------------------------------
 
 # tree backup
-# tb_input <- list_modify(baseline, Alpha = NULL, Algorithm = "tree_backup")
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_algorithm,
-# 		variable_specs = tb_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+tb_input <- list_modify(baseline, Alpha = NULL, Algorithm = "tree_backup")
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_algorithm,
+		variable_specs = tb_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 # on policy (common SARSA)
-# op_input <- list_modify(baseline, Alpha = NULL, Algorithm = "on_policy")
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_algorithm,
-# 		variable_specs = op_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+op_input <- list_modify(baseline, Alpha = NULL, Algorithm = "on_policy")
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_algorithm,
+		variable_specs = op_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 
 
-# 
+
 # # Differential Reward Setting --------------------------------------------------
-# 
-# 
-# upsilons <- c(0.001, 0.005, 0.01, 0.025, 0.05, 0.1)
-# upsilon_input <- list_modify(baseline, Alpha = NULL,
-# 									  td_error_method = "differential",
-# 									  Upsilon = upsilons)
-# 
-# 
-# 
-# 
-# walk2(.x = features_extraction_methods,
-# 		.y = alphas_manually_optimized,
-# 		.f = vary_parameter,
-# 		variable_specs = upsilon_input,
-# 		static_specs = static_specs,
-# 		runs = runs_per_experiment,
-# 		no_of_cores = no_of_cores)
+ 
+ 
+upsilons <- c(0.001, 0.005, 0.01, 0.025, 0.05, 0.1)
+upsilon_input <- list_modify(baseline, Alpha = NULL,
+									  td_error_method = "differential",
+									  Upsilon = upsilons)
+
+
+
+
+walk2(.x = features_extraction_methods,
+		.y = alphas_manually_optimized,
+		.f = vary_parameter,
+		variable_specs = upsilon_input,
+		static_specs = static_specs,
+		runs = runs_per_experiment,
+		no_of_cores = no_of_cores)
 
 
 

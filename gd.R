@@ -2,7 +2,6 @@
 # define function for a single run (function approximation):
 
 single_run <- function(Algorithm,  # determines type of learning Algorithm
-							  # n = 2,   # number of players
 							  zeta = 0.1, # deviation above monopoly price and below one shot nash price
 							  rounding_precision = 8, # rounding available prices after x digits
 							  m, # number of discrete prices
@@ -22,8 +21,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 							  specifications, # list with specifications regarding calculation of feature set, values depend on chosen feature extraction method
 							  features_by = "tiling", # specify feature extraction method
 							  td_error_method = "discounted",  # use discounted or differential setting
-							  # dutch_traces = FALSE, # logical: use dutch eligibility traces?, only relevant in on-policy algorithm
-							  # policy = "greedy",  # logical: use boltzmann to select action probabilistically
 							  convergence_chunk_length = 10000, # length of block that is checked against convergence
 							  convergence_cycle_length = 10, # what is the maximum cycle length considered
 							  convergence_check_frequency = 2000, # how often should convergence be checked
@@ -131,10 +128,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 
 # Policy ------------------------------------------------------------------
 
-	# if(!(policy %in% c("boltzmann", "greedy"))) {
-	# 	stop("policy must be 'greedy' or 'boltzmann'")
-	# }
-
 	# retrieve utilized selection action method
 	select_action <- get(str_c("select_action", Algorithm, "greedy", sep = "_"))
 	
@@ -207,9 +200,6 @@ single_run <- function(Algorithm,  # determines type of learning Algorithm
 	
 	# truncate from outcomes NA rows 'after convergence'
 	outcomes <- na.omit(outcomes)
-	
-	# if(is.na(run_id)) {run_id <- sample.int(1000000, size = 1)}
-	
 	
 	# summarize run in 'res'
 	

@@ -1,18 +1,18 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Parametrization of learning parameters. Baseline and variations.}}{15}{table.1}%
+\contentsline {table}{\numberline {1}{\ignorespaces Baseline parametrization and variations}}{16}{table.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {2}{\ignorespaces Parametrization of feature extraction methods}}{16}{table.2}%
+\contentsline {table}{\numberline {2}{\ignorespaces Parametrization of feature extraction methods}}{17}{table.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {3}{\ignorespaces Grid of trialed $\alpha $}}{22}{table.3}%
+\contentsline {table}{\numberline {3}{\ignorespaces Grid of trialed $\alpha $}}{23}{table.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {4}{\ignorespaces \emph {Optimized} values of $\alpha $ by \gls {fem}}}{29}{table.4}%
+\contentsline {table}{\numberline {4}{\ignorespaces \emph {Optimized} values of $\alpha $ by \gls {fem}}}{30}{table.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {5}{\ignorespaces Share of profitable deviations by \gls {fem} and agent}}{32}{table.5}%
+\contentsline {table}{\numberline {5}{\ignorespaces Share of profitable deviations by \gls {fem} and agent}}{33}{table.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {6}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $\beta $}}{38}{table.6}%
+\contentsline {table}{\numberline {6}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $\beta $}}{39}{table.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {7}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $m$}}{39}{table.7}%
+\contentsline {table}{\numberline {7}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $m$}}{41}{table.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {8}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $\zeta $}}{41}{table.8}%
+\contentsline {table}{\numberline {8}{\ignorespaces Share of profitable deviations by \gls {fem}, agent and $\zeta $}}{42}{table.8}%

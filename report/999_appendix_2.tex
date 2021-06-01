@@ -1,125 +1,114 @@
 \subsection{Prolonged deviations}\label{prolonged_deviations_appendix}
 
-	\textbf{some words on prolonged deviations}
-	
+\autoref{prolonged_intervention_boxplot} displays the distribution of prices relative to the counterfactual during and after the prolonged deviation experiment. The deviating agent sustains deviation prices for 10 periods. With tabular learning, the cheated agent matches the price cuts on average. This means that both agents are likely to make lower profits. After the deviation, they return to pre-deviation levels. The responses in tile coding and polynomial tiles are less pronounced. In fact, the median indicates that the non deviating agents does not respond at all. 
+
 \begin{figure}
 		\includegraphics[width=\linewidth]{plots/prolonged_intervention_boxplot.png}
-		\caption{distribution of prices at and after prolonged deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the price at the same $\tau$ had no deviation taken place. Only includes converged runs because a clear counterfactual exists. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+		\caption[Distribution of price differences around prolonged deviation by \gls{fem}]{Distribution of price differences around prolonged deviation relative to counterfactual path \emph{without} forced deviation, i.e.\ the difference to the price had no deviation taken place, by \gls{fem}. Only includes converged runs because a clear counterfactual exists. Boxes demarcate 15th and 85th percentiles. They are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
 		\label{prolonged_intervention_boxplot}
 \end{figure}
 
 
-\pagebreak
-\subsection{$\beta$}\label{beta_appendix}
+\clearpage
 
-\textbf{some words on beta}
+\subsection{Exploration ($\beta$)}\label{beta_appendix}
+
+Section \ref{vary_parameter} showed that deviations in tabular learning environments were less likely to be profitable if exploration was extensive. \autoref{average_intervention_beta_tabular} confirms that the convergence equilibria are more likely to be underpinned by severe punishment strategies if $\beta$ decreases (i.e.\ exploration becomes more extensive). The immediate response of the non deviating agent is harshest with $\beta = 10^{-5}$.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/average_intervention_beta_tabular.png}
-	\caption{Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}
+	\caption[Average price trajectory around deviation by $\beta$]{Average price trajectory around deviation by $\beta$ (values on strip). Includes only tabular learning experiments. Points represent the average price over all runs of an experiment. Dashed horizontal lines represent the fully collusive price $p_m$ and the static Nash solution $p_n$. Dotted vertical line reflects time of convergence, i.e.\ the period immediately before the forced deviation.}
 	\label{average_intervention_beta_tabular}
 \end{figure}
 
 
-\pagebreak
-\subsection{$\lambda$}\label{lambda_appendix}
+\clearpage
 
+\subsection{Memory ($\lambda$)}\label{lambda_appendix}
 
-Recall that high values of $\lambda$ increase the algorithm's hindsight but increases variance. This is reflected in both convergence rates and outcomes. \autoref{converged_lambda} clearly indicates that high values of $\lambda$ impedes convergence for tabular learning and the separated polynomial method. Similarly, \autoref{lambda_violin} exhibits greater variability in profits with increasing $\lambda$. This holds true for all feature extraction methods, but is particularly conspicuous for the separated polynomial method where a significant number of runs end in profits below the Nash equilibrium once $\lambda \ge 0.6$ .\footnote{The runs with $\Delta <0$ are largely the simulations without convergence.} Finally, the conclusions regarding deviation patterns are robust to variations in $\lambda$. Except for tabular learning, the non deviating agent fails to punish cheating which the deviating agent does not reliably exploit that weakness.
+Recall that high values of $\lambda$ increase the algorithm's hindsight but also the variance. This is reflected in both convergence rates and outcomes. \autoref{converged_lambda} clearly indicates that high values of $\lambda$ impede convergence for tabular learning and the separate polynomials \gls{fem}. Similarly, \autoref{lambda_violin} exhibits greater variability in profits with increasing $\lambda$. This holds true for all feature extraction methods, but is most salient for separate polynomials where a significant number of runs end in profits below the Nash equilibrium once $\lambda$ exceeds $0.6$.\footnote{The runs with $\Delta <0$ are mainly runs where convergence was not achieved.}
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{plots/converged_m.png}
-	\caption{Number of runs per experiment that achieved convergence as a function of $\lambda$.}
+	\includegraphics[width=\linewidth]{plots/converged_lambda.png}
+	\caption[Converged runs by \gls{fem} and $\lambda$]{Number of runs per experiments that (i) achieved convergence, (ii) did not converge or (iii) failed to complete as a function of \gls{fem} and $\lambda$.}
 	\label{converged_lambda}
 \end{figure}
 
+
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/lambda_violin.png}
-	\caption{distribution of $\Delta$ for various experiments. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\caption[Distribution of $\Delta$ by \gls{fem} and $\lambda$]{Distribution of $\Delta$ by \gls{fem} and $\lambda$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of individual violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively.}
 	\label{lambda_violin}
 \end{figure}
 
+\clearpage
 
-\pagebreak
 \subsection{Price grid}\label{price_grid_appendix}
-
-\textbf{some words on m}
-
-\textbf{additional picutre showing stronger response for $m=10$ compared to other $m's$}
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/converged_m.png}
-	\caption{Number of runs per experiment that achieved convergence as a function of $m$.}
+	\caption[Converged runs by \gls{fem} and $m$]{Number of runs per experiments that (i) achieved convergence, (ii) did not converge or (iii) failed to complete as a function of \gls{fem} and $m$. $m = 19$ is not plotted because the number of runs is not comparable (refer back to \autoref{converged}).}
 	\label{converged_m}
 \end{figure}
 
+Recall that $m$ determine the number of feasible prices and therefore increases the complexity of the learning task. This holds particularly true for tabular learning and, to a lesser extent, for separate polynomials (refer back to \autoref{feature_extraction_summary}). Against that backdrop, it is unsurprising that \autoref{converged_m} shows less runs converging if $m$ increases. The effect is most pronounced for tabular learning and tile coding. \autoref{average_intervention_m_10} shows the average response to a deviation for $m=10$. Compared to the baseline parametrization, the punishment of the cheated agent seems more severe with tabular learning and polynomial tiles. However, the low sample size of runs (16 per experiment) warrants cautious interpretation.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/average_intervention_m_10.png}
-	\caption{Average price trajectory around deviation. $m=10$. Includes converged and non-converged runs}
+	\caption[Average price trajectory around deviation by \gls{fem}with  $m=10$]{Average price trajectory around deviation by \gls{fem} with $m=10$. Points represent the average price over all runs of an experiment. Dashed horizontal lines represent the fully collusive price $p_m$ and the static Nash solution $p_n$. Dotted vertical line reflects time of convergence, i.e.\ the period immediately before the forced deviation.}
 	\label{average_intervention_m_10}
 \end{figure}
 
-\textbf{some words on $zeta$}
-
-Moreover, \autoref{zeta_violin_prices} confirms that average prices upon convergence largely remain within the Nash and collusive benchmarks. Polynomial tiles constitute the only exception which further discredits the method as appropriate for the learning task.
+Moving to variations in $\zeta$, the parameter controlling the excess price range above $p_m$, \autoref{zeta_violin_prices} confirms that average prices upon convergence largely remain within the Nash and collusive benchmarks. Polynomial tiles constitute the only exception. With $\zeta = 1$, a significant share of runs displays prices above $p_m$. This finding further discredits the \gls{fem} as appropriate for the learning task. \autoref{average_intervention_zeta_tabular} displays the price trajectory during the forced deviation episode for tabular learning. Retaliatory pricing is visible in all variations.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/zeta_violin_prices.png}
-	\caption[Distribution of average prices by \gls{fem} and $\zeta$]{Distribution of average prices (over cycle steps and both players) by \gls{fem} and $\zeta$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of individual violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\caption[Distribution of average prices by \gls{fem} and $\zeta$]{Distribution of average prices upon convergence by \gls{fem} and $\zeta$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of individual violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
 	\label{zeta_violin_prices}
 \end{figure}
 
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/average_intervention_zeta_tabular.png}
-	\caption{Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}
+	\caption[Average price trajectory around deviation by $\zeta$]{Average price trajectory around deviation by $\zeta$. Numbers on strip represent values of $\zeta$. Includes only tabular learning experiments. Points represent the average price over all runs of an experiment. Dashed horizontal lines represent the fully collusive price $p_m$ and the static Nash solution $p_n$. Dotted vertical line reflects time of convergence, i.e.\ the period immediately before the forced deviation.}
 	\label{average_intervention_zeta_tabular}
 \end{figure}
 
-\pagebreak
+\clearpage
+
 \subsection{Discount factor}\label{discounting_appendix}
-\textbf{some words on $\gamma$}
+
+The expectation with low values of $\gamma$ is that agents value future profits less and price closer to the competitive benchmark $p_n$ in order to increase immediate profits. Indeed, \autoref{gamma_violin_price} shows that the distribution of average prices clearly shifts downwards for three of the four \gls{fem}s. The effect is very clear for tabular learning and polynomial tiles. With regard to the latter, note that prices are still far above $p_n$. This is puzzling. Without regard for future profits one would expect agents to end up very close to the Nash solution. Likewise, $\gamma$'s effect on average prices with tile coding points in the expected direction but is unexpectedly subtle. With separate polynomials, the impact of $\gamma$ is not obvious. If anything, the plot suggests that low discount factors increase profits.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/gamma_violin_price.png}
-	\caption{distribution of prices averaged over the last 100 time steps upon convergence and over both agents for various values of $\gamma$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Isolated data points above $2$ are not displayed to improve presentability.}
+	\caption[Distribution of average prices by \gls{fem} and $\gamma$]{Distribution of average prices upon convergence by \gls{fem} and $\gamma$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of individual violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
 	\label{gamma_violin_price}
 \end{figure}
 
+\clearpage
 
+\subsection{Alternative algorithms}\label{vary_algorithm_appendix}
 
-\pagebreak
-\subsection{Algorithm Variations}\label{vary_algorithm_appendix}
-
-\textbf{words on tree backup?}
-
-Similarly,  \autoref{average_intervention_tb} reiterates that only tabular learning agents show a consistent punishment in response to a deviation and the cheated agents learning with feature approximation methods fail to respond. The bottom right panel, representing the polynomial tiles \gls{fem}, hints at a vague \emph{matching strategy} leading to new equilibria again, but here averaging turns out to be deceptive. In fact, only in 12.5\% of the runs does the non deviating agent respond with a price cut. Compared to the Expected SARSA algorithm, polynomial tiles exhibits a larger share of runs at the perfectly collusive solution.
+\autoref{average_intervention_tb} displays the average price trajectory around the deviation episode due to runs utilizing the \emph{tree-backup} algorithm from \autoref{tree_backup}. As with the default algorithm described in \autoref{parameter_update}, the panels reiterates that only tabular learning agents show a consistent punishment in response to the forced deviation and the cheated agents learning through function approximation \gls{fem}s fail to respond in a compelling way. The bottom right panel, representing the polynomial tiles \gls{fem}, hints at a vague \emph{matching strategy} culminating in new equilibria. But averaging turns out to be deceptive here. In fact, only in 12.5\% of the runs does the non deviating agent respond with a price cut. \autoref{intervention_boxplot_tb} displays the distribution of prices around the forced deviation. With regard to polynomial tiles, \emph{some} runs show a sort of punishment or matching behavior in the wake of a price cut, but the vast majority (87.5\%) of runs show no response.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/average_intervention_tb.png}
-	\caption[Average $\Delta$ for \emph{tree backup} algorithm with optimized $\alpha$ by \gls{fem}]{Average $\Delta$ for \emph{tree backup} algorithm with optimized $\alpha$ by \gls{fem}. Includes converged and non-converged runs.}
+	\caption[Average price trajectory around deviation by \gls{fem} with \emph{tree backup} algorithm]{Average price trajectory around deviation by \gls{fem} with \emph{tree backup} algorithm. Points represent the average price over all runs of an experiment. Dashed horizontal lines represent the fully collusive price $p_m$ and the static Nash solution $p_n$. Dotted vertical line reflects time of convergence, i.e.\ the period immediately before the forced deviation.}
 	\label{average_intervention_tb}
 \end{figure}
 
 
-The distribution of deviation prices and responses are displayed as boxplots in \autoref{intervention_boxplot_tb}.
-
-\autoref{intervention_boxplot_tb} displays the distribution of prices around the forced deviation. With regard to polynomial tiles, \emph{some} runs show a sort of punishment or matching behavior in the wake of a price cut, but the vast majority (87.5\%) of runs show no response.
-
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/intervention_boxplot_tb.png}
-	\caption{distribution of prices at and after deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the prices at the same $\tau$ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+	\caption[Distribution of price differences around deviation by \gls{fem} with \emph{tree backup} algorithm]{Distribution of price differences around deviation relative to counterfactual path \emph{without} forced deviation, i.e.\ the difference to the price had no deviation taken place by \gls{fem} with \emph{tree backup} algorithm. Only includes converged runs because a clear counterfactual exists. Boxes demarcate 15th and 85th percentiles. They are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
 	\label{intervention_boxplot_tb}
 \end{figure}
 
-
-\pagebreak
-
-Box 2 describes the \emph{on-policy} algorithm used in \autoref{vary_algorithm}.
+\autoref{SARSA} describes the \emph{on-policy} algorithm used in \autoref{vary_algorithm}. Note that $\rho$ does not appear in the update system anymore. This is precisely because the algorithm only takes into account the actually selected action at $t+1$.
 
 \begin{algorithm}
-	\caption{Gradient Descend SARSA (on policy)}
+	\caption{SARSA (on policy)}
 	\begin{algorithmic}[]
 		\label{SARSA}
 		\small
@@ -142,35 +131,32 @@ Box 2 describes the \emph{on-policy} algorithm used in \autoref{vary_algorithm}.
 	\end{algorithmic}
 \end{algorithm}
 
+\clearpage
 
+\subsection{Differential reward setting}\label{differential_appendix}
 
-
-\pagebreak
-\subsection{Differential Reward}\label{differential_appendix}
-
-\textbf{words on differential reward setting}
-
-Curiously, the separated polynomial method struggles to achieve convergence in the differential reward setting. \autoref{convergence_at_upsilon} illustrates that a surprisingly large number of runs converge at a stage where exploration is incredibly rare. This suggests that agents frequently change their evaluation of what the optimal action is. Moreover, this may also help to explain the large share of non-converged runs (refer back to \autoref{converged_upsilon}) with an insufficient length of episodes per run.
+Section \ref{differential} described the \emph{differential reward} setting, an alternative method to incorporate rewards into the learning process. I also described how the separated polynomial method struggled to achieve convergence in the alternative setting (refer back to \autoref{converged_upsilon}). \autoref{convergence_at_upsilon} emphasizes that point. A surprisingly large number of runs converges at a stage where exploration is incredibly rare. This suggests that agents, despite continuous exploitation, frequently change their evaluation of what the optimal action is.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/convergence_at_upsilon.png}
-	\caption{timing of convergence n the differential reward setting, runs that did not converge or failed to complete are excluded. Width of bins: 8,000}
+	\caption[Timing of convergence in \emph{differential reward} setting by \gls{fem}]{Timing of convergence in \emph{differential reward} setting by \gls{fem}. only includes converged runs. Width of bins: 8,000.}
 	\label{convergence_at_upsilon}
 \end{figure}
 
 
-\autoref{upsilon_violin}
+\autoref{upsilon_violin} displays for every experiment in the differential reward setting the range of $\Delta$ upon convergence. It appears that the considered values of $\upsilon$ do not impact the outcomes much. In comparison to the baseline runs, tabular learning and tile coding exhibit larger variation. In the case of tabular learning, some runs hover around Nash profits while others converge in equilibria close to the perfectly collusive benchmark.
+
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/upsilon_violin.png}
-	\caption{distribution of $\Delta$ in the differential reward setting for various values of $\upsilon$. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\caption[Distribution of $\Delta$ by \gls{fem} and $\upsilon$]{Distribution of $\Delta$ by \gls{fem} and $\upsilon$. Includes converged and non-converged runs from experiments employing the differential reward setting. Violin widths are scaled to maximize width of individual violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively.}
 	\label{upsilon_violin}
 \end{figure}
 
-\autoref{intervention_boxplot_tiling} illustrates the charged prices around the intervention relative to a counterfactual without a forced deviation for tile coding. Tabular learning shows a clear tendency to punish price cuts at $\tau = 2$. For tile coding and polynomial tiles, a price cut in response to the deviation occurs in \emph{some} runs.
+\autoref{intervention_boxplot_upsilon_005} illustrates the charged prices around the intervention relative to a counterfactual without a forced deviation for experiments with $\upsilon = 0.005$. Tabular learning shows a clear tendency to punish price cuts at $\tau = 2$. For tile coding and polynomial tiles, a price cut in response to the deviation occurs in \emph{some} runs.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/intervention_boxplot_upsilon_005.png}
-	\caption{distribution of prices in the differential reward setting with $\upsilon = 0.005$ at and after deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the prices at the same $\tau$ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
-	\label{intervention_boxplot_tiling}
+	\caption[Distribution of price differences around deviation by \gls{fem} in differential reward setting with $\upsilon = 0.005$]{Distribution of price differences around deviation by \gls{fem} relative to counterfactual path \emph{without} forced deviation, i.e.\ the difference to the price had no deviation taken place in the differential reward setting with $\upsilon = 0.005$. Only includes converged runs because a clear counterfactual exists. Boxes demarcate 15th and 85th percentiles. They are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+	\label{intervention_boxplot_upsilon_005}
 \end{figure}

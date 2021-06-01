@@ -1,76 +1,76 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Converged runs by \gls {fem} and $\alpha $}}{24}{figure.1}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Converged runs by \gls {fem} and $\alpha $}}{25}{figure.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2}{\ignorespaces Timing of convergence}}{25}{figure.2}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Timing of convergence by \gls {fem}}}{27}{figure.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3}{\ignorespaces Number of converged runs by \gls {fem} and cycle length.}}{26}{figure.3}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Count of converged runs by \gls {fem} and cycle length}}{27}{figure.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4}{\ignorespaces average $\Delta $ by \gls {fem} and $\alpha $}}{27}{figure.4}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Average $\Delta $ by \gls {fem} and $\alpha $}}{29}{figure.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5}{\ignorespaces Distribution of $\Delta $ by \gls {fem} and $\alpha $}}{28}{figure.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Distribution of $\Delta $ by \gls {fem} and $\alpha $}}{29}{figure.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6}{\ignorespaces Average price trajectory around deviation by \gls {fem}}}{30}{figure.6}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Average price trajectory around deviation by \gls {fem}}}{32}{figure.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {7}{\ignorespaces Distribution of price differences around deviation by \gls {fem}}}{31}{figure.7}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Distribution of price differences around deviation by \gls {fem}}}{33}{figure.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {8}{\ignorespaces Average price trajectory around prolonged deviation by \gls {fem}}}{36}{figure.8}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Average price trajectory around prolonged deviation by \gls {fem}}}{38}{figure.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {9}{\ignorespaces average $\Delta $ by \gls {fem} and $\beta $}}{37}{figure.9}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Average $\Delta $ by \gls {fem} and $\beta $}}{40}{figure.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {10}{\ignorespaces average $\Delta $ by \gls {fem} and $m$}}{39}{figure.10}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Average $\Delta $ by \gls {fem} and $m$}}{41}{figure.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {11}{\ignorespaces average $\Delta $ by \gls {fem} and $\zeta $}}{40}{figure.11}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Average $\Delta $ by \gls {fem} and $\zeta $}}{43}{figure.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {12}{\ignorespaces average $\Delta $ by \gls {fem} and $\gamma $}}{42}{figure.12}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Average $\Delta $ by \gls {fem} and $\gamma $}}{45}{figure.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {13}{\ignorespaces Distribution of $\Delta $ for \emph {tree backup} algorithm with optimized $\alpha $ by \gls {fem}}}{43}{figure.13}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Distribution of $\Delta $ by \gls {fem} with \emph {tree backup} algorithm}}{45}{figure.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {14}{\ignorespaces Distribution of $\Delta $ for \emph {on-policy} algorithm with optimized $\alpha $ by \gls {fem}}}{44}{figure.14}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Distribution of $\Delta $ by \gls {fem} with \emph {on-policy} algorithm }}{47}{figure.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {15}{\ignorespaces Converged runs by \gls {fem} and $\upsilon $}}{46}{figure.15}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Converged runs by \gls {fem} and $\upsilon $}}{48}{figure.15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {16}{\ignorespaces average $\Delta $ by \gls {fem} and $\upsilon $}}{47}{figure.16}%
+\contentsline {figure}{\numberline {16}{\ignorespaces average $\Delta $ by \gls {fem} and $\upsilon $}}{49}{figure.16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {17}{\ignorespaces Distribution of price range by \gls {fem} and cycle length}}{51}{figure.17}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Distribution of price range by \gls {fem} and cycle length}}{56}{figure.17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {18}{\ignorespaces Distribution of trajectory of $\Delta $ by \gls {fem}}}{52}{figure.18}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Distribution of trajectory of $\Delta $ by \gls {fem}}}{58}{figure.18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {19}{\ignorespaces Distribution of trajectory of average prices by \gls {fem}}}{53}{figure.19}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Distribution of trajectory of average prices by \gls {fem}}}{59}{figure.19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {20}{\ignorespaces All runs with manually optimized $\alpha $.}}{53}{figure.20}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Trajectories of average $\Delta $ and prices with optimized $\alpha $}}{59}{figure.20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {21}{\ignorespaces distribution of profits at and after deviation relative to alternative path \emph {without} forced deviation, i.e.\ the difference to the profits at the same $\tau $ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}}{54}{figure.21}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Distribution of profit differences around deviation by \gls {fem}}}{61}{figure.21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {22}{\ignorespaces Distribution of additional profitability due to deviation by agent and feature extraction method. Width of bins: 0.02. 6 extreme data points ($<-0.5$ or $>0.5$) are excluded for better presentability. Deviations are deemed \emph {profitable} if the discounted profits until $\tau = 10$ due to the deviation exceed cash flows from a counterfactual without deviation. Discounting is paramount to $\Delta $ in \textbf {equation X}, i.e.\ 0.95. The spike at zero is due to a significant number of 'deviations' that are neither profitable nor unprofitable. In those runs, the learned strategy of the deviating agent at $\tau = 1$ amounts to the best response and both agents keep following their respective price cycle.}}{55}{figure.22}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Distribution of additional profitability due to deviation by agent and \gls {fem}}}{62}{figure.22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {23}{\ignorespaces Prices and profits of 3 individual runs belonging to the \emph {optimal } polynomial tiling experiment. Run \emph {01} shows the common pattern of immediate reversal to pre-deviation prices and profits. Run \emph {06} has the deviating agent continue to cheat and increasing her long-term profits. Run \emph {12} shows the non deviating agent meeting the price cut. This also yields a new equilibrium with lower prices. Since the pre-deviation prices were slightly above the collusive benchmark, the new equilibrium actually improves both agent's profits in this particular example.}}{56}{figure.23}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Prices and profits in polynomial tiles deviation experiment}}{63}{figure.23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {24}{\ignorespaces distribution of prices at and after prolonged deviation relative to alternative path \emph {without} forced deviation, i.e.\ the difference to the price at the same $\tau $ had no deviation taken place. Only includes converged runs because a clear counterfactual exists. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}}{59}{figure.24}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Distribution of price differences around prolonged deviation by \gls {fem}}}{65}{figure.24}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {25}{\ignorespaces Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}}{60}{figure.25}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Average price trajectory around deviation by $\beta $}}{67}{figure.25}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {26}{\ignorespaces Number of runs per experiment that achieved convergence as a function of $\lambda $.}}{61}{figure.26}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Converged runs by \gls {fem} and $\lambda $}}{69}{figure.26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {27}{\ignorespaces distribution of $\Delta $ for various experiments. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}}{62}{figure.27}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Distribution of $\Delta $ by \gls {fem} and $\lambda $}}{69}{figure.27}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {28}{\ignorespaces Number of runs per experiment that achieved convergence as a function of $m$.}}{63}{figure.28}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Converged runs by \gls {fem} and $m$}}{71}{figure.28}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {29}{\ignorespaces Average price trajectory around deviation. $m=10$. Includes converged and non-converged runs}}{63}{figure.29}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Average price trajectory around deviation by \gls {fem}with $m=10$}}{71}{figure.29}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {30}{\ignorespaces Distribution of average prices by \gls {fem} and $\zeta $}}{64}{figure.30}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Distribution of average prices by \gls {fem} and $\zeta $}}{72}{figure.30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {31}{\ignorespaces Average price trajectory around deviation. Only tabular learning. Includes converged and non-converged runs}}{64}{figure.31}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Average price trajectory around deviation by $\zeta $}}{72}{figure.31}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {32}{\ignorespaces distribution of prices averaged over the last 100 time steps upon convergence and over both agents for various values of $\gamma $. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Isolated data points above $2$ are not displayed to improve presentability.}}{65}{figure.32}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Distribution of average prices by \gls {fem} and $\gamma $}}{74}{figure.32}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {33}{\ignorespaces Average $\Delta $ for \emph {tree backup} algorithm with optimized $\alpha $ by \gls {fem}}}{66}{figure.33}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Average price trajectory around deviation by \gls {fem} with \emph {tree backup} algorithm}}{76}{figure.33}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {34}{\ignorespaces distribution of prices at and after deviation relative to alternative path \emph {without} forced deviation, i.e.\ the difference to the prices at the same $\tau $ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}}{67}{figure.34}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Distribution of price differences around deviation by \gls {fem} with \emph {tree backup} algorithm}}{77}{figure.34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {35}{\ignorespaces timing of convergence n the differential reward setting, runs that did not converge or failed to complete are excluded. Width of bins: 8,000}}{69}{figure.35}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Timing of convergence in \emph {differential reward} setting by \gls {fem}}}{79}{figure.35}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {36}{\ignorespaces distribution of $\Delta $ in the differential reward setting for various values of $\upsilon $. Includes converged and non-converged runs. Violin widths are scaled to maximize width of single violins, comparisons of widths between violins are not meaningful. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}}{70}{figure.36}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Distribution of $\Delta $ by \gls {fem} and $\upsilon $}}{79}{figure.36}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {37}{\ignorespaces distribution of prices in the differential reward setting with $\upsilon = 0.005$ at and after deviation relative to alternative path \emph {without} forced deviation, i.e.\ the difference to the prices at the same $\tau $ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}}{71}{figure.37}%
+\contentsline {figure}{\numberline {37}{\ignorespaces Distribution of price differences around deviation by \gls {fem} in differential reward setting with $\upsilon = 0.005$}}{80}{figure.37}%

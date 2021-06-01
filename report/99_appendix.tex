@@ -1,70 +1,69 @@
 \subsection{Price range}\label{prices}
 
-As established in \autoref{convergence}, many simulations converge in price cycles of various lengths. \autoref{price_range} plots the range between the lowest and highest price a single agent charges in a cycle upon convergence. Naturally, the price range is null if both agents do not vary their actions at all. Perhaps unsurprisingly, the price range then tends to increase with cycle length, at times becoming remarkably high. The range of prices due to tabular learning frequently exceeds the range between collusive and Nash prices. This is a clear indication that price setting is occasionally irrational. Irrespective of agents competing or colluding, prices outside this range are not economically optimal. Recall from \autoref{convergence} that other \gls{fem} tend to yield lower cycle lengths. \autoref{price_range} extends that observation with the insight that those methods also produce lower price ranges. However, the inversion of the previous argument is dangerous. One should not deduct that behavior is \emph{closer to optimal} from the mere fact that prices appear more stable. In fact, the study shows that the strategies learned with function approximation are often far from optimal and easy to exploit. Lastly, take note that relationships of prices to the opponent's prices are not examined in this study.
+As established in \autoref{convergence}, many simulations converge in price cycles of various lengths. \autoref{price_range} plots the range between the lowest and highest price a single agent charges in a cycle upon convergence. Naturally, the price range is null if an agent does not vary its actions at all. Perhaps unsurprisingly, the price range then tends to increase with cycle length, at times becoming remarkably high. The range of prices due to tabular learning frequently exceeds the range between collusive and Nash prices. This is a clear indication that price setting is occasionally irrational. Irrespective of agents competing or colluding, prices outside this range are not economically optimal.
+
+Recall from \autoref{convergence} that function approximation \gls{fem} tend to converge with lower cycle lengths. \autoref{price_range} extends that observation with the insight that those methods also produce lower price ranges. However, the inversion of the previous argument is dangerous. One should not deduct that behavior is \emph{closer to optimal} from the mere fact that prices appear more stable. In fact, the study shows that the strategies learned with function approximation are often far from optimal and easy to exploit.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/price_range.png}
-	\caption[Distribution of price range by \gls{fem} and cycle length]{Distribution of price range by \gls{fem} and cycle length. Every point represents a single run. Within groups, points are spaced out horizontally. Price range is defined as the difference between the highest and lowest price an agent charges within a cycle. Only converged runs are considered (as cycle length is unavailable for other runs). Dashed line represents the difference between collusive and Nash outcome (i.e.\ $p_m - p_n$).}
+	\caption[Distribution of price range by \gls{fem} and cycle length]{Distribution of price range by \gls{fem} and cycle length. Every point represents a single run. Within groups, points are spaced out horizontally. Price range is defined as the difference between the highest and lowest price an agent charges within a cycle. Only converged runs are considered (as cycle length is unavailable for other runs). Horizontal line represents the difference between collusive and Nash outcome (i.e.\ $p_m - p_n$).}
 	\label{price_range}
 \end{figure}
 
-\pagebreak
+\clearpage
 
 \subsection{Price trajectory}\label{trajectory_prices_section}
 
-\autoref{trajectory_Delta} displays the trajectory of $\Delta$ over time. Only runs of the \emph{optimal} runs are printed, as explained in \autoref{justifications}. $\Delta$ is averaged over 50,000 episodes apiece and over both players. Due to amassed exploration early in the simulation, average profits are low early on but increase over time. Furthermore, starting at $t = 250,000$ violin widths decrease because of converging runs. Interestingly, the non-converging runs in the optimized separate polynomials experiments are characterized by profits \emph{below} the static Nash equilibrium. Lastly, the speed at which polynomial tiles increases profits is remarkable. After mere $100,000$ episodes, the median $\Delta$ hovers around $0.75$ already. Similarly, \autoref{trajectory_price} displays the distribution of average \emph{prices} in optimized experiments over time. The plot confirms the observations.
+\autoref{trajectory_Delta} displays the trajectory of $\Delta$ over time. Only runs of the \emph{optimized} experiments are printed, as explained in \autoref{justifications}. $\Delta$ is averaged over 50,000 periods apiece and over both players. Due to amassed exploration early in the simulation, average profits are low early on but increase over time. Furthermore, starting at $t = 250,000$ violin widths decrease because of some runs triggering the convergence criteria. Interestingly, the non-converging runs in the optimized separate polynomials experiments are characterized by profits \emph{below} the static Nash equilibrium. Arguably the most outstanding is the remarkable speed at which polynomial tiles increases profits. After mere $100,000$ periods, the median $\Delta$ hovers around $0.75$ already.
+
+
+
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/trajectory_Delta.png}
-	\caption[Distribution of trajectory of $\Delta$ by \gls{fem}]{Distribution of trajectory of $\Delta$ by \gls{fem} with optimized $\alpha$ (see \autoref{justifications}). For individual runs, $\Delta$ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 episodes, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\caption[Distribution of trajectory of $\Delta$ by \gls{fem}]{Distribution of trajectory of $\Delta$ by \gls{fem} with optimized $\alpha$ (see \autoref{justifications}). For individual runs, $\Delta$ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 periods, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
 	\label{trajectory_Delta}
 \end{figure}
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/trajectory_price.png}
-	\caption[Distribution of trajectory of average prices by \gls{fem}]{Distribution of trajectory average prices by \gls{fem} with optimized $\alpha$. For individual runs, $p$ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 episodes, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
+	\caption[Distribution of trajectory of average prices by \gls{fem}]{Distribution of trajectory average prices by \gls{fem} with optimized $\alpha$. For individual runs, $p$ is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs. Violin widths represent quantity of active runs at $t$ which enables comparisons between violins. As most runs converge after 200,000 to 300,000 periods, violin widths decrease thereafter. Violins are trimmed at smallest and largest observation respectively. Horizontal lines represent the median.}
 	\label{trajectory_price}
 \end{figure}
 
- \autoref{all_runs} displays the price and profit trajectory of single runs over time. The figure illustrates that, by and large, prices and profits remain within the benchmarks of Nash competition and the cartel case. Obviously, this does not apply to every single period, but holds true on average.
+\autoref{trajectory_price} depicts the distribution of average \emph{prices} in optimized experiments over time and \autoref{all_runs} displays the price and profit trajectory of single runs over time. Both figures illustrate that, by and large, prices and profits remain within the benchmarks of Nash competition and the fully collusive case. Obviously, this does not apply to every single period, but holds true on average.
  
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/all_runs.png}
-	\caption{All runs with manually optimized $\alpha$.}
+	\caption[Trajectories of average $\Delta$ and prices with optimized $\alpha$]{Trajectories of average $\Delta$ (top panel) and prices (bottom panel) with optimized $\alpha$. For individual runs, the respective metric is averaged over 50,000 periods apiece and both players. Plot includes converged and non-converged runs.}
 	\label{all_runs}
 \end{figure}
 
-\pagebreak
+\clearpage
+
 \subsection{Deviations}\label{deviations_appendix}
 
-\autoref{intervention_profit_boxplot} displays the difference between profits agents receive after the forced deviation takes place and profits of the alternative path with no deviation.
-
-\textbf{TBD other plots}
+\autoref{intervention_profit_boxplot} displays the difference between profits agents receive after the forced deviation takes place and profits of the alternative path with no deviation. Naturally, the deviating agent makes larger profits at the deviation period $\tau = 1$. With tabular learning, her profits decrease thereafter due to retaliatory prices. The plot shows that this occasionally happens with tile coding and polynomial tiles. With all \gls{fem}s, profits tend to return to pre-deviation levels quickly. 
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/intervention_profit_boxplot.png}
-	\caption{distribution of profits at and after deviation relative to alternative path \emph{without} forced deviation, i.e.\ the difference to the profits at the same $\tau$ had no deviation taken place. Boxes demarcate 15th and 85th percentiles and are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
+	\caption[Distribution of profit differences around deviation by \gls{fem}]{Distribution of profit differences around deviation relative to counterfactual path \emph{without} forced deviation, i.e.\ the difference to the price had no deviation taken place, by \gls{fem}. Only includes converged runs because a clear counterfactual exists. Boxes demarcate 15th and 85th percentiles. They are extended by whiskers that mark the entire range of price differences. Horizontal lines represent the group median.}
 	\label{intervention_profit_boxplot}
 \end{figure}
 
-\autoref{intervention_profitability_polygon} displays a frequency polygon to gauge how much more or less profitable the deviation is compared to the counterfactual of sticking to the learned strategy.
+\autoref{intervention_profitability_polygon} displays a frequency polygon to gauge how much more or less profitable the deviation is compared to the counterfactual of sticking to the learned strategy. With tabular learning, most deviations end up being unprofitable. Contrary, the line for polynomial tiles indicates that most deviations are profitable, some of them are impressively high. With regards to tile coding and separated polynomials, the deviations in many runs seem to yield profits similar to not deviating. Unsurprisingly, the bottom panel is skewed to the left suggesting that the deviation experiment is unprofitable for the non-deviating agent.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/intervention_profitabiliy_polygon.png}
-	\caption{Distribution of additional profitability due to deviation by agent and feature extraction method. Width of bins: 0.02. 6 extreme data points ($<-0.5$ or $>0.5$) are excluded for better presentability. Deviations are deemed \emph{profitable} if the discounted profits until $\tau = 10$ due to the deviation exceed cash flows from a counterfactual without deviation. Discounting is paramount to $\Delta$ in \textbf{equation X}, i.e.\ 0.95. The spike at zero is due to a significant number of 'deviations' that are neither profitable nor unprofitable. In those runs, the learned strategy of the deviating agent at $\tau = 1$ amounts to the best response and both agents keep following their respective price cycle.}
+	\caption[Distribution of additional profitability due to deviation by agent and \gls{fem}]{Distribution of additional profitability due to deviation by agent and \gls{fem}. Width of bins: 0.02. 13 extreme data points ($<-0.5$ or $>0.5$) are excluded for better presentability. Deviations are deemed \emph{profitable} if the discounted profits until $\tau = 10$ due to the deviation exceed cash flows from a counterfactual without deviation. Only includes converged runs because a clear counterfactual exists. Discounting is equivalent to $\gamma$ in \autoref{td_error_expected}, i.e.\ 0.95. A significant number of 'deviations' are neither profitable nor unprofitable. In those runs, the learned strategy of the deviating agent is actually the best response at $\tau = 1$ and both agents keep following their respective price cycle.}
 	\label{intervention_profitability_polygon}
 \end{figure}
 
 
+\autoref{intervention_poly_tiling} depicts the price trajectory of three individual runs belonging to the optimized polynomial tiles experiment. Run \emph{06} shows the deviating agent continuing to cheat and increasing her long-term profits. It also shows that price asymmetries \emph{between} players are not an uncommon phenomenon. Run \emph{08} shows the non deviating agent meeting the price cut. This culminates in a new equilibrium with lower prices. Since the pre-deviation prices were slightly above the collusive benchmark, the new equilibrium actually improves both agent's profits in this particular example. Run \emph{09} shows the common pattern of quick reversal to pre-deviation prices and profits.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{plots/intervention_poly_tiling.png}
-	\caption{Prices and profits of 3 individual runs belonging to the \emph{optimal } polynomial tiling experiment. Run \emph{01} shows the common pattern of immediate reversal to pre-deviation prices and profits. Run \emph{06} has the deviating agent continue to cheat and increasing her long-term profits. Run \emph{12} shows the non deviating agent meeting the price cut. This also yields a new equilibrium with lower prices. Since the pre-deviation prices were slightly above the collusive benchmark, the new equilibrium actually improves both agent's profits in this particular example.}
+	\caption[Prices and profits in polynomial tiles deviation experiment]{Prices and profits in 3 exemplary polynomial tiles deviation experiments with optimized $\alpha$. Top panels display prices, bottom panels profits. The exemplary runs are stacked horizontally	. Numbers on strip indicate assigned run id. Dashed horizontal lines represent the fully collusive and static Nash benchmarks. Dotted vertical line reflects time of convergence, i.e.\ the period immediately before the forced deviation.}
 	\label{intervention_poly_tiling}
 \end{figure}
-
-
-\pagebreak
-\subsection{responses off equilibrium}\label{off_path}
-
-\textbf{TBD}

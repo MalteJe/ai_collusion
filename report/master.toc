@@ -3,100 +3,88 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Literature Review}{2}{section.2}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Competition Policy and pricing algorithms}{3}{subsection.2.1}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline likelihood}{3}{section*.6}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline illegal?}{4}{section*.7}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\nonumberline liability}{4}{section*.8}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}Simulation Studies}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {2}Literature review}{2}{section.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}Environment}{6}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Algorithm}{7}{section.4}%
+\contentsline {section}{\numberline {4}Learning algorithm}{8}{section.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1}Price grid}{8}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2}Value approximation}{9}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Exploration and exploitation}{10}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.3}Exploration and exploitation}{11}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.4}Parameter update}{11}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.5}Baseline parametrization}{14}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.6}convergence}{16}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.6}Convergence considerations}{16}{subsection.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Feature extraction}{16}{section.5}%
+\contentsline {section}{\numberline {5}Feature extraction}{17}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Tabular Learning}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Tabular learning}{17}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Function approximation methods}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.2}Function approximation methods}{19}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.1}Tile Coding}{19}{subsubsection.5.2.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.2}Polynomials}{20}{subsubsection.5.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.3}Polynomial tiles}{20}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.3}Polynomial tiles}{21}{subsubsection.5.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.4}Separate Polynomials}{21}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.4}Separate Polynomials}{22}{subsubsection.5.2.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.3}Learning speed considerations}{22}{subsection.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Results}{22}{section.6}%
+\contentsline {section}{\numberline {6}Results}{23}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1}Convergence}{23}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.1}Convergence}{24}{subsection.6.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.2}Profits}{26}{subsection.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3}Deviations}{29}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.3}Deviations}{30}{subsection.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Robustness and variations}{34}{section.7}%
+\contentsline {section}{\numberline {7}Robustness and variations}{36}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Prolonged deviations}{34}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}Prolonged deviations}{36}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Parameter variations}{37}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}Learning parameters}{38}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Price grid}{38}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.3}Price grid}{39}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.4}Discount factor}{41}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.4}Discount factor}{43}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.5}Algorithm Variations}{43}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.5}Alternative algorithms}{44}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {7.5.1}Tree backup}{43}{subsubsection.7.5.1}%
+\contentsline {subsubsection}{\numberline {7.5.1}Tree backup}{44}{subsubsection.7.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {7.5.2}On policy SARSA}{44}{subsubsection.7.5.2}%
+\contentsline {subsubsection}{\numberline {7.5.2}On-policy SARSA}{46}{subsubsection.7.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.6}Differential Reward Setting}{45}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.6}Differential reward setting}{46}{subsection.7.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusions}{47}{section.8}%
+\contentsline {section}{\numberline {8}Conclusions}{48}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Results Appendix}{50}{appendix.a.A}%
+\contentsline {section}{\numberline {A}Further Results}{55}{appendix.a.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1}Price range}{50}{subsection.a.A.1}%
+\contentsline {subsection}{\numberline {A.1}Price range}{55}{subsection.a.A.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.2}Price trajectory}{52}{subsection.a.A.2}%
+\contentsline {subsection}{\numberline {A.2}Price trajectory}{57}{subsection.a.A.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.3}Deviations}{54}{subsection.a.A.3}%
+\contentsline {subsection}{\numberline {A.3}Deviations}{60}{subsection.a.A.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.4}responses off equilibrium}{57}{subsection.a.A.4}%
+\contentsline {section}{\numberline {B}Further Variations}{64}{appendix.a.B}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Robustness and variations Appendix}{58}{appendix.a.B}%
+\contentsline {subsection}{\numberline {B.1}Prolonged deviations}{64}{subsection.a.B.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.1}Prolonged deviations}{58}{subsection.a.B.1}%
+\contentsline {subsection}{\numberline {B.2}Exploration ($\beta $)}{66}{subsection.a.B.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.2}$\beta $}{60}{subsection.a.B.2}%
+\contentsline {subsection}{\numberline {B.3}Memory ($\lambda $)}{68}{subsection.a.B.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.3}$\lambda $}{61}{subsection.a.B.3}%
+\contentsline {subsection}{\numberline {B.4}Price grid}{70}{subsection.a.B.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.4}Price grid}{62}{subsection.a.B.4}%
+\contentsline {subsection}{\numberline {B.5}Discount factor}{73}{subsection.a.B.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.5}Discount factor}{65}{subsection.a.B.5}%
+\contentsline {subsection}{\numberline {B.6}Alternative algorithms}{75}{subsection.a.B.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.6}Algorithm Variations}{66}{subsection.a.B.6}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.7}Differential Reward}{69}{subsection.a.B.7}%
+\contentsline {subsection}{\numberline {B.7}Differential reward setting}{78}{subsection.a.B.7}%

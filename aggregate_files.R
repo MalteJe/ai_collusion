@@ -1,6 +1,5 @@
 library(tidyverse)
 library(janitor)
-library(tidyquant)
 library(future.apply)
 library(glue)
 library(parallel)
@@ -104,11 +103,18 @@ load_aggregate_save <- function(experiment_job, t_grouping) {
 	# extract meta_overview
 	meta_overview <- tibble(filename = adjusted_files) %>%
 		separate(col = filename, into = c("feature_method", "varied_parameter", "run_id"), sep = "_") %>%
-		mutate(path = str_c(path, filenames), successful = TRUE)
+		mutate(path = str_c(path, filenames), successful = TRUE,
+				 FEM = case_when(                             # ensure consistent naming with paper
+				 	feature_method == "tiling" ~ "Tile Coding",
+				 	feature_method == "tabular" ~ "Tabular",
+				 	feature_method == "poly-tiling" ~ "Polynomial Tiles",
+				 	feature_method == "poly-separated" ~ "Separate Polynomials",
+				 	TRUE ~ NA_character_
+				 )) 
 	
 	# count runs per experiment (this will be returned)
 	out <- meta_overview %>%
-		group_by(feature_method, varied_parameter) %>%
+		group_by(FEM, varied_parameter) %>%
 		count() %>%
 		arrange(n)
 	
@@ -127,7 +133,7 @@ load_aggregate_save <- function(experiment_job, t_grouping) {
 	print("unnesting data")
 	data <- data_nested %>%
 		unnest_wider(sim) %>%
-		mutate(feature_method = fct_relevel(feature_method, "tabular", "tiling", "poly-separated", "poly-tiling"),
+		mutate(FEM = fct_relevel(FEM, "Tabular", "Tile Coding", "Separate Polynomials", "Polynomial Tiles"),
 				 varied_parameter_fct = fct_relevel(as_factor(varied_parameter), as.character(variations)))
 	
 	print("saving data in directory")
@@ -139,7 +145,7 @@ load_aggregate_save <- function(experiment_job, t_grouping) {
 
 # load simulation results
 load_aggregate_save("Alpha_final", t_grouping = 50000)
-load_aggregate_save("prolonged_deviation", t_grouping = 50000)
+load_aggregate_save("prolonged_deviation", t_grouping = 50000)   #warning message due to no variation --> can be ignored
 load_aggregate_save("Beta_final", t_grouping = 50000)
 load_aggregate_save("Lambda_final", t_grouping = 50000)
 load_aggregate_save("m_final", t_grouping = 50000)

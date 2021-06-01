@@ -2,14 +2,15 @@
 \begin{theglossary}\glossaryheader
 \glsgroupheading{F}\relax \glsresetentrylist %
 \glossentry{fem}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{V\delimN VI}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{VIII}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{16}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{22\delimR 34}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{36\delimR 47}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{50\delimR 53}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{64}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{66}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{V\delimR VII}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{17}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{22\delimN 23}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{25\delimR 35}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{37\delimR 50}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{55\delimN 56}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{58\delimR 62}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{65}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{68\delimR 77}}}\glsgroupskip
 \glsgroupheading{M}\relax \glsresetentrylist %
 \glossentry{mdp}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{8}}}\glsgroupskip

@@ -48,7 +48,7 @@ Another way of looking at the same issue is to consider the nature of prices. Th
 
 The function approximation methods considered in this study alleviate the \emph{curse of dimensionality}. In fact, the length of the feature vector $\boldsymbol{x}$ in \emph{tile coding} and \emph{polynomial tiles} is unaffected by $m$. For \emph{separate polynomials}, it is proportional to $m$, i.e.\ doubling the number of feasible prices also doubles the number of features. Moreover, all methods augment learning in the sense that a particular state-action combination tends to evoke ampler parameter updates (in accordance with \autoref{update_rule}) that also change the future evaluation of \emph{similar} state-action combinations.
 
-\subsubsection{Tile Coding}\label{tile_coding}
+\subsubsection{Tile coding}\label{tile_coding}
 In reinforcement learning, \emph{tile coding} is a common way to extract binary features from a state-action space.\footnote{For an extensive introduction with helpful illustrations refer to \textcite[pp.217-221]{sutton_reinforcement_2018}.} Its appeal stems partly from the fact that it is a generalization of tabular learning. The idea is that several \emph{tilings} superimpose the state-action space. The $\mathcal{T}$ tilings are offset but each tiling covers the entire state-action space:
 
 \begin{gather}
@@ -109,7 +109,7 @@ p_{i, t-1}^{\kappa_{f,1}} ~ p_{j, t-1}^{\kappa_{f,2}} ~ p_{i, t}^{\kappa_{f,3}} 
 
 The restrictions on the exponents $\kappa$ from \autoref{polynomial} apply. The method accompanies $T~(\psi - 1)^3 ({k + 3\choose3}  - 1)$ features. As this method allows for a distinguished value estimation for different state-action combinations even within a tile, it appears reasonable to increase the size of the tiles in order to decrease the number of coefficients and avoid overfitting. Specifically, I retain the number of tilings ($\mathcal{T} = 5$), but reduce the number of tiles per tiling from $512$ to $64$ by imposing $\psi = 5$. Moreover, I allow for polynomial combinations up to degree $k=4$. With a total number of $10,880$ parameters, $\boldsymbol{w}$ is about 50\% larger than in tabular learning.
 
-\subsubsection{Separate Polynomials}\label{separate_polys}
+\subsubsection{Separate polynomials}\label{separate_polys}
 
 \emph{Separate polynomials} maintain for every action a distinct set of parameters that apply \emph{polynomial approximation} to the state set. In reinforcement learning, it is common to store a separate set of coefficients for every feasible action.\footnote{This approach is best suited if the action space is qualitative and the state space continuous. In this simulation, only the latter is strictly true. Therefore, the two issues inherent to tabular learning I have outlined in \autoref{tabular}, also apply to the action space of \emph{separate polynomials}, but not to the state space.} Since $A_t$ is fixed within each set, the polynomial only considers $S_t$:\footnote{The restrictions on $k$ are adjusted accordingly:
 	\begin{itemize}

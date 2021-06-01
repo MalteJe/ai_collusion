@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7440 64-bit) (preloaded format=pdflatex 2020.7.2)  1 JUN 2021 17:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7440 64-bit) (preloaded format=pdflatex 2020.7.2)  1 JUN 2021 19:14
 entering extended mode
 **./master.tex
 (master.tex
@@ -1589,7 +1589,7 @@ Package logreq Info: Writing requests to 'master.run.xml'.
 Here is how much of TeX's memory you used:
  27810 strings out of 480797
  527621 string characters out of 2895576
- 1311868 words of memory out of 3000000
+ 1311867 words of memory out of 3000000
  42937 multiletter control sequences out of 15000+200000
  553066 words of font info for 99 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1633,7 +1633,7 @@ symo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb
 cm/cmtt10.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt9.pfb><C:/Users/psymo/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on master.pdf (88 pages, 2609183 bytes).
+Output written on master.pdf (88 pages, 2609178 bytes).
 PDF statistics:
  1614 PDF objects out of 1728 (max. 8388607)
  376 named destinations out of 1000 (max. 500000)

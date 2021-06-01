@@ -27,13 +27,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2}Function approximation methods}{19}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1}Tile Coding}{19}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.1}Tile coding}{19}{subsubsection.5.2.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.2}Polynomials}{20}{subsubsection.5.2.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.3}Polynomial tiles}{21}{subsubsection.5.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.4}Separate Polynomials}{22}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.4}Separate polynomials}{22}{subsubsection.5.2.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.3}Learning speed considerations}{22}{subsection.5.3}%
 \defcounter {refsection}{0}\relax 
